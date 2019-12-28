@@ -1220,6 +1220,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Europe.
+        /// </summary>
+        internal static string Europe {
+            get {
+                return ResourceManager.GetString("Europe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Executing command:.
         /// </summary>
         internal static string ExecutingCommand {
@@ -2422,6 +2431,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Japan.
+        /// </summary>
+        internal static string Japan {
+            get {
+                return ResourceManager.GetString("Japan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap jp {
@@ -2922,6 +2940,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One.
+        /// </summary>
+        internal static string One {
+            get {
+                return ResourceManager.GetString("One", resourceCulture);
             }
         }
         
@@ -3969,6 +3996,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Two, not simultaneously.
+        /// </summary>
+        internal static string TwoNotSimultaneously {
+            get {
+                return ResourceManager.GetString("TwoNotSimultaneously", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two, simultaneously.
+        /// </summary>
+        internal static string TwoSimultaneously {
+            get {
+                return ResourceManager.GetString("TwoSimultaneously", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ua {
@@ -4074,6 +4119,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UninstallWithKernelFile {
             get {
                 return ResourceManager.GetString("UninstallWithKernelFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to United States.
+        /// </summary>
+        internal static string UnitedStates {
+            get {
+                return ResourceManager.GetString("UnitedStates", resourceCulture);
             }
         }
         

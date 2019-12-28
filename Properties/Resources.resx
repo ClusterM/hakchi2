@@ -1515,4 +1515,22 @@ This will erase all data present on the card!</value>
   <data name="GenreTable" xml:space="preserve">
     <value>Table</value>
   </data>
+  <data name="One" xml:space="preserve">
+    <value>One</value>
+  </data>
+  <data name="TwoNotSimultaneously" xml:space="preserve">
+    <value>Two, not simultaneously</value>
+  </data>
+  <data name="TwoSimultaneously" xml:space="preserve">
+    <value>Two, simultaneously</value>
+  </data>
+  <data name="UnitedStates" xml:space="preserve">
+    <value>United States</value>
+  </data>
+  <data name="Europe" xml:space="preserve">
+    <value>Europe</value>
+  </data>
+  <data name="Japan" xml:space="preserve">
+    <value>Japan</value>
+  </data>
 </root>

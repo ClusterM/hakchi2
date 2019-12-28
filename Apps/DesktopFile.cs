@@ -180,6 +180,34 @@ namespace com.clusterrr.hakchi_gui
             set { setIf(value, ref genre); }
         }
 
+        private string index = string.Empty;
+        public string Index
+        {
+            get { return index; }
+            set { setIf(value, ref index); }
+        }
+
+        private string demoTime = string.Empty;
+        public string DemoTime
+        {
+            get { return demoTime; }
+            set { setIf(value, ref demoTime); }
+        }
+
+        private string country = string.Empty;
+        public string Country
+        {
+            get { return country; }
+            set { setIf(value, ref country); }
+        }
+
+        private string regionTag = string.Empty;
+        public string RegionTag
+        {
+            get { return regionTag; }
+            set { setIf(value, ref regionTag); }
+        }
+
         private string description = string.Empty;
         public string Description
         {
@@ -303,6 +331,18 @@ namespace com.clusterrr.hakchi_gui
                                 case "sortrawgenre":
                                     Genre = value;
                                     break;
+                                case "index":
+                                    Index = value;
+                                    break;
+                                case "demo_time":
+                                    DemoTime = value;
+                                    break;
+                                case "country":
+                                    Country = value;
+                                    break;
+                                case "regiontag":
+                                    RegionTag = value;
+                                    break;
                             }
                         }
                     }
@@ -342,7 +382,8 @@ namespace com.clusterrr.hakchi_gui
                 $"Exec={this.exec}\n" +
                 $"Path={this.profilePath}{(omitProfilePathCode ? "" : "/" + this.code)}\n" +
                 $"Name={this.name ?? this.code}\n" +
-                $"Icon={this.iconPath}/{this.code}/{this.iconFilename}\n\n" +
+                $"Icon={this.iconPath}/{this.code}/{this.iconFilename}\n" +
+                "\n" +
                 $"[X-CLOVER Game]\n" +
                 $"Code={this.code}\n" +
                 $"TestID={this.testId}\n" +
@@ -355,9 +396,15 @@ namespace com.clusterrr.hakchi_gui
                 $"SortRawTitle={this.sortRawTitle}\n" +
                 $"SortRawPublisher={this.sortRawPublisher.ToUpper()}\n" +
                 $"Copyright={this.copyright}\n" +
-                (snesExtraFields ? $"MyPlayDemoTime=45\n\n" : "\n") +
-                "[M2engage]\n" +
-                $"sortRawGenre={this.genre}\n\n" +
+                (snesExtraFields ? $"MyPlayDemoTime=45\n" : "") +
+                "\n" +
+                "[m2engage]\n" +
+                $"regionTag={this.regionTag}\n" +
+                $"sortRawGenre={this.genre}\n" +
+                $"index={this.index}\n" +
+                $"demo_time={this.demoTime}\n" +
+                $"country={this.country}\n" +
+                "\n" +
                 "[Description]\nText = \n" +
                 this.description.Replace("\r\n", "\n").Trim());
             return content;
@@ -414,7 +461,12 @@ namespace com.clusterrr.hakchi_gui
                 sortRawPublisher = string.Copy(sortRawPublisher),
                 copyright = string.Copy(copyright),
                 description = string.Copy(description),
-                genre = string.Copy(genre)
+                genre = string.Copy(genre),
+                index = string.Copy(index),
+                demoTime = string.Copy(demoTime),
+                country = string.Copy(country),
+                regionTag = string.Copy(regionTag)
+
             };
             return newObject;
         }

@@ -113,25 +113,34 @@ namespace com.clusterrr.hakchi_gui
             {
                 timerShowSelected.Enabled = false;
                 maxPlayersComboBox.Items.AddRange(new string[] {
-                    "One player",
-                    "Two players, not simultaneously",
-                    "Two players, simultaneously"
+                    Resources.One,
+                    Resources.TwoNotSimultaneously,
+                    Resources.TwoSimultaneously
                 });
 
                 comboBoxGenre.Items.Clear();
                 comboBoxGenre.Items.AddRange(new object[]
                 {
-                    new GameGenre("", ""),
-                    new GameGenre(Resources.GenreAction, "Action"),
-                    new GameGenre(Resources.GenreAdventure, "Adventure"),
-                    new GameGenre(Resources.GenreEducational, "Educational"),
-                    new GameGenre(Resources.GenrePuzzle, "Puzzle"),
-                    new GameGenre(Resources.GenreRacing, "Racing"),
-                    new GameGenre(Resources.GenreRPG, "RPG"),
-                    new GameGenre(Resources.GenreShootEmUp, "Shoot-'em-Up"),
-                    new GameGenre(Resources.GenreSports, "Sports"),
-                    new GameGenre(Resources.GenreSimulation, "Simulation"),
-                    new GameGenre(Resources.GenreTable, "Table")
+                    new NameValuePair<string>("", ""),
+                    new NameValuePair<string>(Resources.GenreAction, "Action"),
+                    new NameValuePair<string>(Resources.GenreAdventure, "Adventure"),
+                    new NameValuePair<string>(Resources.GenreEducational, "Educational"),
+                    new NameValuePair<string>(Resources.GenrePuzzle, "Puzzle"),
+                    new NameValuePair<string>(Resources.GenreRacing, "Racing"),
+                    new NameValuePair<string>(Resources.GenreRPG, "RPG"),
+                    new NameValuePair<string>(Resources.GenreShootEmUp, "Shoot-'em-Up"),
+                    new NameValuePair<string>(Resources.GenreSports, "Sports"),
+                    new NameValuePair<string>(Resources.GenreSimulation, "Simulation"),
+                    new NameValuePair<string>(Resources.GenreTable, "Table")
+                });
+
+                comboBoxCountry.Items.Clear();
+                comboBoxCountry.Items.AddRange(new object[]
+                {
+                    new NameValuePair<string>("", ""),
+                    new NameValuePair<string>(Resources.UnitedStates, "us"),
+                    new NameValuePair<string>(Resources.Europe, "eu"),
+                    new NameValuePair<string>(Resources.Japan, "jp")
                 });
 
                 // prepare collections
@@ -920,6 +929,7 @@ namespace com.clusterrr.hakchi_gui
                 textBoxArguments.Text = "";
                 textBoxDescription.Text = "";
                 comboBoxGenre.SelectedIndex = 0;
+                comboBoxCountry.SelectedIndex = 0;
                 numericUpDownSaveCount.Value = 0;
                 pictureBoxArt.Image = Resources.noboxart;
                 pictureBoxThumbnail.Image = null;
@@ -959,11 +969,11 @@ namespace com.clusterrr.hakchi_gui
                 bool setGenre = false;
                 for (var i = 0; i < comboBoxGenre.Items.Count; i++)
                 {
-                    if (comboBoxGenre.Items[i] is GameGenre)
+                    if (comboBoxGenre.Items[i] is NameValuePair<string>)
                     {
-                        var genre = (GameGenre)comboBoxGenre.Items[i];
+                        var genre = (NameValuePair<string>)comboBoxGenre.Items[i];
 
-                        if (genre.Name == app.Desktop.Genre)
+                        if (genre.Value == app.Desktop.Genre)
                         {
                             comboBoxGenre.SelectedIndex = i;
                             setGenre = true;
@@ -975,6 +985,27 @@ namespace com.clusterrr.hakchi_gui
                 if (setGenre == false)
                 {
                     comboBoxGenre.SelectedIndex = 0;
+                }
+
+                bool setCountry = false;
+                for (var i = 0; i < comboBoxCountry.Items.Count; i++)
+                {
+                    if (comboBoxCountry.Items[i] is NameValuePair<string>)
+                    {
+                        var country = (NameValuePair<string>)comboBoxCountry.Items[i];
+
+                        if (country.Value == app.Desktop.Country)
+                        {
+                            comboBoxCountry.SelectedIndex = i;
+                            setCountry = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (setCountry == false)
+                {
+                    comboBoxCountry.SelectedIndex = 0;
                 }
 
                 numericUpDownSaveCount.Value = app.Desktop.SaveCount;
@@ -3414,10 +3445,29 @@ namespace com.clusterrr.hakchi_gui
             if (selected == null || !(selected is NesApplication)) return;
             var game = (selected as NesApplication);
 
-            if (comboBoxGenre.SelectedItem is GameGenre)
+            if (comboBoxGenre.SelectedItem is NameValuePair<string>)
             {
-                game.Desktop.Genre = ((GameGenre)comboBoxGenre.SelectedItem).Name;
+                game.Desktop.Genre = ((NameValuePair<string>)comboBoxGenre.SelectedItem).Value;
             }
+        }
+
+        private void comboBoxCountry_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (showingSelected) return;
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (selected == null || !(selected is NesApplication)) return;
+            var game = (selected as NesApplication);
+
+            if (comboBoxCountry.SelectedItem is NameValuePair<string>)
+            {
+                game.Desktop.Country = ((NameValuePair<string>)comboBoxCountry.SelectedItem).Value;
+            }
+        }
+
+        private void tableLayoutPanelGameInfo_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

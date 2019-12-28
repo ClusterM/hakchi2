@@ -226,7 +226,6 @@ namespace com.clusterrr.hakchi_gui
             this.tableLayoutPanelGameInfo = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanelSize = new System.Windows.Forms.TableLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
             this.maxPlayersComboBox = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanelGameID = new System.Windows.Forms.TableLayoutPanel();
@@ -237,6 +236,8 @@ namespace com.clusterrr.hakchi_gui
             this.labelName = new System.Windows.Forms.Label();
             this.labelGenre = new System.Windows.Forms.Label();
             this.comboBoxGenre = new System.Windows.Forms.ComboBox();
+            this.labelCountry = new System.Windows.Forms.Label();
+            this.comboBoxCountry = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSpine = new System.Windows.Forms.Button();
@@ -279,7 +280,6 @@ namespace com.clusterrr.hakchi_gui
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanelGameInfo.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tableLayoutPanelSize.SuspendLayout();
             this.tableLayoutPanelGameID.SuspendLayout();
             this.tableLayoutPanelGameGenie.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -1548,7 +1548,6 @@ namespace com.clusterrr.hakchi_gui
             // labelMaxPlayers
             // 
             resources.ApplyResources(this.labelMaxPlayers, "labelMaxPlayers");
-            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelMaxPlayers, 2);
             this.labelMaxPlayers.Name = "labelMaxPlayers";
             // 
             // labelGameGenie
@@ -1663,9 +1662,9 @@ namespace com.clusterrr.hakchi_gui
             // tableLayoutPanelGameInfo
             // 
             resources.ApplyResources(this.tableLayoutPanelGameInfo, "tableLayoutPanelGameInfo");
+            this.tableLayoutPanelGameInfo.Controls.Add(this.label10, 1, 1);
             this.tableLayoutPanelGameInfo.Controls.Add(this.panel1, 0, 20);
             this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxArguments, 0, 18);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.tableLayoutPanelSize, 1, 0);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelCommandLine, 0, 17);
             this.tableLayoutPanelGameInfo.Controls.Add(this.numericUpDownSaveCount, 0, 14);
             this.tableLayoutPanelGameInfo.Controls.Add(this.maxPlayersComboBox, 0, 12);
@@ -1687,7 +1686,11 @@ namespace com.clusterrr.hakchi_gui
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelName, 0, 3);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelGenre, 1, 13);
             this.tableLayoutPanelGameInfo.Controls.Add(this.comboBoxGenre, 1, 14);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelCountry, 1, 11);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.comboBoxCountry, 1, 12);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelSize, 1, 2);
             this.tableLayoutPanelGameInfo.Name = "tableLayoutPanelGameInfo";
+            this.tableLayoutPanelGameInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanelGameInfo_Paint);
             // 
             // panel1
             // 
@@ -1702,13 +1705,6 @@ namespace com.clusterrr.hakchi_gui
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.TextChanged += new System.EventHandler(this.textBoxDescription_TextChanged);
             // 
-            // tableLayoutPanelSize
-            // 
-            resources.ApplyResources(this.tableLayoutPanelSize, "tableLayoutPanelSize");
-            this.tableLayoutPanelSize.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanelSize.Controls.Add(this.labelSize, 1, 0);
-            this.tableLayoutPanelSize.Name = "tableLayoutPanelSize";
-            // 
             // label10
             // 
             resources.ApplyResources(this.label10, "label10");
@@ -1716,7 +1712,6 @@ namespace com.clusterrr.hakchi_gui
             // 
             // maxPlayersComboBox
             // 
-            this.tableLayoutPanelGameInfo.SetColumnSpan(this.maxPlayersComboBox, 2);
             resources.ApplyResources(this.maxPlayersComboBox, "maxPlayersComboBox");
             this.maxPlayersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.maxPlayersComboBox.FormattingEnabled = true;
@@ -1726,6 +1721,7 @@ namespace com.clusterrr.hakchi_gui
             // tableLayoutPanelGameID
             // 
             resources.ApplyResources(this.tableLayoutPanelGameID, "tableLayoutPanelGameID");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.tableLayoutPanelGameID, 2);
             this.tableLayoutPanelGameID.Controls.Add(this.labelID, 1, 0);
             this.tableLayoutPanelGameID.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanelGameID.Name = "tableLayoutPanelGameID";
@@ -1772,6 +1768,19 @@ namespace com.clusterrr.hakchi_gui
             this.comboBoxGenre.Name = "comboBoxGenre";
             this.comboBoxGenre.SelectedValueChanged += new System.EventHandler(this.comboBoxGenre_SelectedValueChanged);
             // 
+            // labelCountry
+            // 
+            resources.ApplyResources(this.labelCountry, "labelCountry");
+            this.labelCountry.Name = "labelCountry";
+            // 
+            // comboBoxCountry
+            // 
+            resources.ApplyResources(this.comboBoxCountry, "comboBoxCountry");
+            this.comboBoxCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCountry.FormattingEnabled = true;
+            this.comboBoxCountry.Name = "comboBoxCountry";
+            this.comboBoxCountry.SelectedValueChanged += new System.EventHandler(this.comboBoxCountry_SelectedValueChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tableLayoutPanel1);
@@ -1812,7 +1821,7 @@ namespace com.clusterrr.hakchi_gui
             resources.ApplyResources(this.pictureBoxM2Spine, "pictureBoxM2Spine");
             this.pictureBoxM2Spine.Name = "pictureBoxM2Spine";
             this.pictureBoxM2Spine.TabStop = false;
-            this.pictureBoxM2Spine.Tag = MdMiniImageType.Spine;
+            this.pictureBoxM2Spine.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.MdMiniImageType.Spine;
             this.pictureBoxM2Spine.Click += new System.EventHandler(this.pictureBoxM2_Click);
             // 
             // pictureBoxM2Front
@@ -1821,7 +1830,7 @@ namespace com.clusterrr.hakchi_gui
             resources.ApplyResources(this.pictureBoxM2Front, "pictureBoxM2Front");
             this.pictureBoxM2Front.Name = "pictureBoxM2Front";
             this.pictureBoxM2Front.TabStop = false;
-            this.pictureBoxM2Front.Tag = MdMiniImageType.Front;
+            this.pictureBoxM2Front.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.MdMiniImageType.Front;
             this.pictureBoxM2Front.Click += new System.EventHandler(this.pictureBoxM2_Click);
             // 
             // groupBox1
@@ -2047,8 +2056,6 @@ namespace com.clusterrr.hakchi_gui
             this.tableLayoutPanelGameInfo.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tableLayoutPanelSize.ResumeLayout(false);
-            this.tableLayoutPanelSize.PerformLayout();
             this.tableLayoutPanelGameID.ResumeLayout(false);
             this.tableLayoutPanelGameID.PerformLayout();
             this.tableLayoutPanelGameGenie.ResumeLayout(false);
@@ -2295,7 +2302,6 @@ namespace com.clusterrr.hakchi_gui
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGameInfo;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelSize;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGameID;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
@@ -2303,6 +2309,8 @@ namespace com.clusterrr.hakchi_gui
         private System.Windows.Forms.Button buttonSpine;
         private System.Windows.Forms.Label labelGenre;
         private System.Windows.Forms.ComboBox comboBoxGenre;
+        private System.Windows.Forms.Label labelCountry;
+        private System.Windows.Forms.ComboBox comboBoxCountry;
     }
 }
 

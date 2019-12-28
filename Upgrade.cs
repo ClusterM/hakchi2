@@ -1,13 +1,8 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
-using com.clusterrr.hakchi_gui.Tasks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -206,6 +201,15 @@ namespace com.clusterrr.hakchi_gui
                     targetVersion = new Version("3.5.3.0"),
                     action = new ActionFunc(() => {
                         ConfigIni.Instance.repos = ConfigIni.Instance.repos.Where(repo => repo.URL != "modstore://").ToArray();
+                        return true;
+                    })
+                },
+
+                new Action() {
+                    startingVersion = new Version("3.7.0.0"),
+                    targetVersion = new Version("3.7.0.0"),
+                    action = new ActionFunc(() => {
+                        mainForm.ResetOriginalGamesForAllSystems(true);
                         return true;
                     })
                 }
