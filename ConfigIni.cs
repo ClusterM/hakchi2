@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using com.clusterrr.hakchi_gui.ModHub.Repository;
+using com.clusterrr.hakchi_gui.Tasks;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using com.clusterrr.hakchi_gui.ModHub.Repository;
-using com.clusterrr.hakchi_gui.Tasks;
-using Newtonsoft.Json;
-using static com.clusterrr.hakchi_gui.Tasks.MembootTasks;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -20,7 +18,7 @@ namespace com.clusterrr.hakchi_gui
         public const string LegacyConfigFile = "config.ini";
 
         // games collection specific settings
-        private class GamesCollectionSetting
+        public class GamesCollectionSetting
         {
             public List<string> SelectedGames = new List<string>();
             public List<string> OriginalGames = new List<string>();
@@ -31,8 +29,9 @@ namespace com.clusterrr.hakchi_gui
             public NesMenuCollection.SplitStyle FoldersMode = NesMenuCollection.SplitStyle.Original_Auto;
             public Dictionary<string, List<string>> Presets = new Dictionary<string, List<string>>();
         };
+
         [JsonProperty]
-        private Dictionary<hakchi.ConsoleType, GamesCollectionSetting> gamesCollectionSettings;
+        internal Dictionary<hakchi.ConsoleType, GamesCollectionSetting> gamesCollectionSettings;
         [JsonProperty]
         private hakchi.ConsoleType consoleType = hakchi.ConsoleType.NES;
         [JsonIgnore]

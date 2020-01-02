@@ -153,6 +153,8 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+
+
         public override Image Thumbnail
         {
             get
@@ -205,6 +207,19 @@ namespace com.clusterrr.hakchi_gui
                 return null;
             string imagePath = Path.Combine(FolderImagesDirectory, id + ".png");
             string overrideImagePath = imageSet != null ? Path.Combine(FolderImagesDirectory, imageSet, id + ".png") : imagePath;
+            if (File.Exists(overrideImagePath))
+                return overrideImagePath;
+            if (File.Exists(imagePath))
+                return imagePath;
+            return null;
+        }
+
+        private string getSpinePath(string id)
+        {
+            if (id == null)
+                return null;
+            string imagePath = Path.Combine(FolderImagesDirectory, "spines", id + ".png");
+            string overrideImagePath = imageSet != null ? Path.Combine(FolderImagesDirectory, imageSet, "spines", id + ".png") : imagePath;
             if (File.Exists(overrideImagePath))
                 return overrideImagePath;
             if (File.Exists(imagePath))
@@ -302,30 +317,47 @@ namespace com.clusterrr.hakchi_gui
             var maxY = 204;
             var sourcePath = getImagePath(ImageId);
             Stream iconStream, smallIconStream;
+            var mdMiniStream = new MemoryStream();
+
             if (sourcePath != null)
             {
                 var smallSourcePath = sourcePath.Replace(".png", "_small.png");
                 if (!File.Exists(smallSourcePath))
                     smallSourcePath = sourcePath;
+
                 iconStream = ProcessImageFileToStream(sourcePath, maxX, maxY, true, false, false);
                 smallIconStream = ProcessImageFileToStream(smallSourcePath, 40, 40, true, false, false);
 
+                SetMdMini(sourcePath, MdMiniImageType.Front, mdMiniStream);
+                var spinePath = getSpinePath(imageId);
+
+                if (spinePath != null)
+                {
+                    SetMdMini(spinePath, MdMiniImageType.Spine, mdMiniStream);
+                }
+
+
                 localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}.png", File.GetLastWriteTimeUtc(sourcePath), iconStream));
                 localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}_small.png", File.GetLastWriteTimeUtc(smallSourcePath), smallIconStream));
+                localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}_mdmini.png", DateTime.UtcNow, mdMiniStream));
             }
             else
             {
                 iconStream = ProcessImageToStream(Image, maxX, maxY, true, false, false);
                 smallIconStream = ProcessImageToStream(Image, 40, 40, true, false, false);
 
+                SetMdMini(Image as Bitmap, MdMiniImageType.Front, mdMiniStream);
+
                 localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}.png", DateTime.UtcNow, iconStream));
                 localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}_small.png", DateTime.UtcNow, smallIconStream));
+                localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}_mdmini.png", DateTime.UtcNow, mdMiniStream));
             }
 
             long calculatedSize =
                 Shared.PadFileSize(desktopStream.Length, hakchi.BLOCK_SIZE) +
                 Shared.PadFileSize(iconStream.Length, hakchi.BLOCK_SIZE) +
                 Shared.PadFileSize(smallIconStream.Length, hakchi.BLOCK_SIZE);
+                Shared.PadFileSize(mdMiniStream.Length, hakchi.BLOCK_SIZE);
 
             return calculatedSize;
         }

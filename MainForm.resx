@@ -2257,7 +2257,7 @@
     <value>37</value>
   </data>
   <data name="labelCountry.Text" xml:space="preserve">
-    <value>Country</value>
+    <value>Region</value>
   </data>
   <data name="labelCountry.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>

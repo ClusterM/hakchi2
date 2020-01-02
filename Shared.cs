@@ -512,38 +512,57 @@ namespace com.clusterrr.hakchi_gui
             return correctKeys;
         }
 
+        public readonly static IReadOnlyList<string> MoonHashes = new List<string>()
+        {
+            "80e6df2cdf27e024f19cf3804ca956cb  MOON-mass-moon-es1-v0.8.3-1080US-0d16385", // Booted
+            "e9f1ed8378db818f477a75c462916782  MOON-mass-moon-es1-v0.8.3-1085AS-1f2365d", // Booted
+            "4d0dc84296b576f3b7fa30772b36a71b  MOON-mass-moon-es1-v0.8.3-1085EU-1f2365d", // Booted
+            "010cb247983ebcfc245aa68da7221846  MOON-mass-moon-es1-v0.8.3-1085JP-1f2365d", // Booted
+            "102e1104a9af8fc88c6cc2f521c70584  _MOON-mass-moon-es1-v0.8.1-1080US-e0c1975", // Booted
+            "fbcae55f319b5c6300a87e360e3af92a  _MOON-rework-moon-es1-v0.8.1-1080US-71571fe", // Booted
+
+            "7d24875fd69a8690e6b7bf298eac5d0e  MOON-mass-moon-es1-v0.8.3-1080US-0d16385", // Never Booted
+            "67342a75cf192c361f57e6a3bdbe0682  MOON-mass-moon-es1-v0.8.3-1085AS-1f2365d", // Never Booted
+            "121babdd900ba8573e36c98ae51c48bf  MOON-mass-moon-es1-v0.8.3-1085EU-1f2365d", // Never Booted
+            "8454dd4c8fdcdbed5563d68992248976  MOON-mass-moon-es1-v0.8.3-1085JP-1f2365d", // Never Booted
+            "c5d31c389940744ac94153935b949503  _MOON-mass-moon-es1-v0.8.1-1080US-e0c1975" // Never Booted
+        };
+
+
         public static Dictionary<hakchi.ConsoleType, string[]> CorrectKernels()
         {
-            Dictionary<hakchi.ConsoleType, string[]> correctKernels = new Dictionary<hakchi.ConsoleType, string[]>();
-            correctKernels[hakchi.ConsoleType.NES] = new string[] {
-                "5cfdca351484e7025648abc3b20032ff", // kernel-dp-nes-release-v1.0.2-0-g99e37e1.img
-                "07bfb800beba6ef619c29990d14b5158", // kernel-dp-nes-release-v1.0.3-0-gc4c703b.img
-                "90eec1e2b4f00e53dc2dd53a9e7334c1", // kernel-dp-nes-release-v1.0.7-0-g4ea4041.img
-            };
-            correctKernels[hakchi.ConsoleType.Famicom] = new string[] {
-                "ac8144c3ea4ab32e017648ee80bdc230", // kernel-dp-hvc-release-v1.0.5-0-g2f04d11.img
-                "cf5fd8e5ad0835bbf9dbd9bdc198a369", // kernel-dp-hvc-release-v1.0.8-0-g32708cb.img
-            };
-            correctKernels[hakchi.ConsoleType.SNES_EUR] = new string[] {
-                "d76c2a091ebe7b4614589fc6954653a5", // kernel-dp-sneseur-release-v2.0.7-0-geb2b275.img
-                "c2b57b550f35d64d1c6ce66f9b5180ce", // kernel-dp-sneseur-release-v2.0.13-0-g9dca6c5.img
-                "0f890bc78cbd9ede43b83b015ba4c022", // kernel-dp-sneseur-release-v2.0.14-0-gd8b65c6.img
-            };
-            correctKernels[hakchi.ConsoleType.SNES_USA] = new string[] {
-                "5296e64818bf2d1dbdc6b594f3eefd17", // kernel-dp-snesusa-release-v2.0.7-0-geb2b275.img
-                "449b711238575763c6701f5958323d48", // kernel-dp-snesusa-release-v2.0.13-0-g9dca6c5.img
-                "228967ab1035a347caa9c880419df487", // kernel-dp-snesusa-release-v2.0.14-0-gd8b65c6.img
-            };
-            correctKernels[hakchi.ConsoleType.SuperFamicom] = new string[]
+            
+            return new Dictionary<hakchi.ConsoleType, string[]>()
             {
-                "632e179db63d9bcd42281f776a030c14", // kernel-dp-shvc-release-v2.0.12-0-gbff4fb3.img
-                "c3378edfc1b96a5268a066d5fbe12d89", // kernel-dp-shvc-release-v2.0.14-0-gd8b65c6.img
+                [hakchi.ConsoleType.NES] = new string[] {
+                    "5cfdca351484e7025648abc3b20032ff", // kernel-dp-nes-release-v1.0.2-0-g99e37e1.img
+                    "07bfb800beba6ef619c29990d14b5158", // kernel-dp-nes-release-v1.0.3-0-gc4c703b.img
+                    "90eec1e2b4f00e53dc2dd53a9e7334c1", // kernel-dp-nes-release-v1.0.7-0-g4ea4041.img
+                },
+                [hakchi.ConsoleType.Famicom] = new string[] {
+                    "ac8144c3ea4ab32e017648ee80bdc230", // kernel-dp-hvc-release-v1.0.5-0-g2f04d11.img
+                    "cf5fd8e5ad0835bbf9dbd9bdc198a369", // kernel-dp-hvc-release-v1.0.8-0-g32708cb.img
+                },
+                [hakchi.ConsoleType.SNES_EUR] = new string[] {
+                    "d76c2a091ebe7b4614589fc6954653a5", // kernel-dp-sneseur-release-v2.0.7-0-geb2b275.img
+                    "c2b57b550f35d64d1c6ce66f9b5180ce", // kernel-dp-sneseur-release-v2.0.13-0-g9dca6c5.img
+                    "0f890bc78cbd9ede43b83b015ba4c022", // kernel-dp-sneseur-release-v2.0.14-0-gd8b65c6.img
+                },
+                [hakchi.ConsoleType.SNES_USA] = new string[] {
+                    "5296e64818bf2d1dbdc6b594f3eefd17", // kernel-dp-snesusa-release-v2.0.7-0-geb2b275.img
+                    "449b711238575763c6701f5958323d48", // kernel-dp-snesusa-release-v2.0.13-0-g9dca6c5.img
+                    "228967ab1035a347caa9c880419df487", // kernel-dp-snesusa-release-v2.0.14-0-gd8b65c6.img
+                },
+                [hakchi.ConsoleType.SuperFamicom] = new string[]
+                {
+                    "632e179db63d9bcd42281f776a030c14", // kernel-dp-shvc-release-v2.0.12-0-gbff4fb3.img
+                    "c3378edfc1b96a5268a066d5fbe12d89", // kernel-dp-shvc-release-v2.0.14-0-gd8b65c6.img
+                },
+                [hakchi.ConsoleType.ShonenJump] = new string[]
+                {
+                    "8a6731a5aebea36293f076fad9afa600", // kernel-dp-hvcj-release-v3.0.1-0-gad315e1.img
+                }
             };
-            correctKernels[hakchi.ConsoleType.ShonenJump] = new string[]
-            {
-                "8a6731a5aebea36293f076fad9afa600", // kernel-dp-hvcj-release-v3.0.1-0-gad315e1.img
-            };
-            return correctKernels;
         }
 
         public static string EscapeShellArgument(string unquotedArgument)

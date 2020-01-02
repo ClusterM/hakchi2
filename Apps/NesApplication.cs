@@ -1,17 +1,15 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
-using SharpCompress.Archives;
-using pdj.tiny7z.Archive;
 using Newtonsoft.Json;
+using pdj.tiny7z.Archive;
+using SharpCompress.Archives;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Windows.Forms;
-using SharpCompress.Compressors.Deflate;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -843,6 +841,17 @@ namespace com.clusterrr.hakchi_gui
                     {
                         SetImageFile(covers[0], ConfigIni.Instance.CompressCover);
                         CoverArtMatches = new string[] { covers[0] };
+                        return CoverArtMatchSuccess = true;
+                    }
+                }
+
+                // check for exact mdmini match in art directory
+                {
+                    var imagePath = Path.Combine(artDirectory, "originals", $"{filename}_mdmini.png");
+                    if (File.Exists(imagePath))
+                    {
+                        File.Copy(imagePath, mdMiniIconPath);
+                        CoverArtMatches = new string[] { imagePath };
                         return CoverArtMatchSuccess = true;
                     }
                 }
