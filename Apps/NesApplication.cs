@@ -836,23 +836,39 @@ namespace com.clusterrr.hakchi_gui
                 // first test for crc32 match (most precise)
                 if (crc32 != 0)
                 {
+                    var crcMatches = new List<string>();
                     string[] covers = Directory.GetFiles(artDirectory, string.Format("{0:X8}*.*", crc32), SearchOption.AllDirectories);
-                    if (covers.Length > 0 && imageExtensions.Contains(Path.GetExtension(covers[0])))
+                    foreach (var cover in covers)
                     {
-                        SetImageFile(covers[0], ConfigIni.Instance.CompressCover);
-                        CoverArtMatches = new string[] { covers[0] };
+                        if (imageExtensions.Contains(Path.GetExtension(cover)))
+                        {
+                            crcMatches.Add(cover);
+                        }
+                    }
+                    if (crcMatches.Count == 1)
+                    {
+                        SetImageFile(crcMatches[0], ConfigIni.Instance.CompressCover);
+                        CoverArtMatches = crcMatches.ToArray();
+                        return CoverArtMatchSuccess = true;
+                    }
+                    else if (crcMatches.Count > 1)
+                    {
+                        CoverArtMatches = crcMatches.ToArray();
                         return CoverArtMatchSuccess = true;
                     }
                 }
 
-                // check for exact mdmini match in art directory
+                // check for original art in archive
+                using (var extractorTar = SharpCompress.Archives.Tar.TarArchive.Open(Path.Combine(Program.BaseDirectoryInternal, "data", "original_art.tar")))
                 {
-                    var imagePath = Path.Combine(artDirectory, "originals", $"{filename}_mdmini.png");
-                    if (File.Exists(imagePath))
+                    foreach (var f in extractorTar.Entries)
                     {
-                        File.Copy(imagePath, mdMiniIconPath);
-                        CoverArtMatches = new string[] { imagePath };
-                        return CoverArtMatchSuccess = true;
+                        if (f.Key == $"./{filename}_mdmini.png")
+                        {
+                            f.WriteToFile(mdMiniIconPath);
+                            CoverArtMatches = new string[] { f.Key };
+                            return CoverArtMatchSuccess = true;
+                        }
                     }
                 }
 

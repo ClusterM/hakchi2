@@ -1390,6 +1390,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Five.
+        /// </summary>
+        internal static string Five {
+            get {
+                return ResourceManager.GetString("Five", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Flashing NAND memory....
         /// </summary>
         internal static string FlashingNand {
@@ -1945,6 +1954,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string FormattingTheSDCard {
             get {
                 return ResourceManager.GetString("FormattingTheSDCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Four.
+        /// </summary>
+        internal static string Four {
+            get {
+                return ResourceManager.GetString("Four", resourceCulture);
             }
         }
         
@@ -3955,6 +3973,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string TelnetServerOn {
             get {
                 return ResourceManager.GetString("TelnetServerOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Three.
+        /// </summary>
+        internal static string Three {
+            get {
+                return ResourceManager.GetString("Three", resourceCulture);
             }
         }
         

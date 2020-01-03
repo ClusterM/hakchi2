@@ -1533,4 +1533,13 @@ This will erase all data present on the card!</value>
   <data name="Japan" xml:space="preserve">
     <value>Japan</value>
   </data>
+  <data name="Five" xml:space="preserve">
+    <value>Five</value>
+  </data>
+  <data name="Four" xml:space="preserve">
+    <value>Four</value>
+  </data>
+  <data name="Three" xml:space="preserve">
+    <value>Three</value>
+  </data>
 </root>

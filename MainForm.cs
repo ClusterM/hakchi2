@@ -77,7 +77,10 @@ namespace com.clusterrr.hakchi_gui
         {
             OnePlayer = 0,
             TwoPlayer = 1,
-            TwoPlayerSimultaneous = 2
+            TwoPlayerSimultaneous = 2,
+            ThreePlayer = 3,
+            FourPlayer = 4,
+            FivePlayer = 5
         }
 
         public static bool? DownloadCover;
@@ -115,7 +118,10 @@ namespace com.clusterrr.hakchi_gui
                 maxPlayersComboBox.Items.AddRange(new string[] {
                     Resources.One,
                     Resources.TwoNotSimultaneously,
-                    Resources.TwoSimultaneously
+                    Resources.TwoSimultaneously,
+                    Resources.Three,
+                    Resources.Four,
+                    Resources.Five
                 });
 
                 comboBoxGenre.Items.Clear();
@@ -948,6 +954,12 @@ namespace com.clusterrr.hakchi_gui
                         maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.TwoPlayerSimultaneous;
                     else if (app.Desktop.Players == 2)
                         maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.TwoPlayer;
+                    else if (app.Desktop.Players == 3)
+                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.ThreePlayer;
+                    else if (app.Desktop.Players == 4)
+                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.FourPlayer;
+                    else if (app.Desktop.Players == 5)
+                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.FivePlayer;
                     else
                         maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.OnePlayer;
                 }
@@ -1389,7 +1401,38 @@ namespace com.clusterrr.hakchi_gui
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesApplication)) return;
             var game = (selected as NesApplication);
-            game.Desktop.Players = (byte)(maxPlayersComboBox.SelectedIndex == (int)MaxPlayers.OnePlayer ? 1 : 2);
+
+            switch ((maxPlayersComboBox.SelectedIndex))
+            {
+                case (int)MaxPlayers.OnePlayer:
+                    game.Desktop.Players = 1;
+                    break;
+
+                case (int)MaxPlayers.TwoPlayer:
+                    game.Desktop.Players = 2;
+                    break;
+
+                case (int)MaxPlayers.TwoPlayerSimultaneous:
+                    game.Desktop.Players = 2;
+                    break;
+
+                case (int)MaxPlayers.ThreePlayer:
+                    game.Desktop.Players = 3;
+                    break;
+
+                case (int)MaxPlayers.FourPlayer:
+                    game.Desktop.Players = 4;
+                    break;
+
+                case (int)MaxPlayers.FivePlayer:
+                    game.Desktop.Players = 5;
+                    break;
+
+                default:
+                    game.Desktop.Players = 1;
+                    break;
+            }
+
             game.Desktop.Simultaneous = maxPlayersComboBox.SelectedIndex == (int)MaxPlayers.TwoPlayerSimultaneous;
         }
 
