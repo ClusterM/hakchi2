@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_Kid_Chameleon.bin --preamp=-4.14 --mdz80.overclock=0.992
+Path=/var/saves/CLV-M2-eu_en_Kid_Chameleon
+Name=Kid Chameleon
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_Kid_Chameleon/CLV-M2-eu_en_Kid_Chameleon.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_Kid_Chameleon
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Kid Chameleon
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_KidCham
+sortRawGenre=
+index=17
+demo_time=4440
+country=us
+
+[Description]
+Text = 
+Release Year: 1992
+ 
+Kid Chameleon, the hero with nine 
+faces, stars in this side-
+scrolling action game set in the 
+world of holograms. Use the 
+special powers of nine different 
+helmets to beat over 100 levels!

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_jp_Ecco_the_Dolphin.bin --preamp=-1.42 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_jp_Ecco_the_Dolphin
+Name=エコー・ザ・ドルフィン
+CePrefix=JP
+Icon=/var/games/CLV-M2-eu_jp_Ecco_the_Dolphin/CLV-M2-eu_jp_Ecco_the_Dolphin.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_jp_Ecco_the_Dolphin
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=エコー・ザ・ドルフィン
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=EU_JP_Eccothe
+sortRawGenre=
+index=12
+demo_time=6420
+country=jp
+
+[Description]
+Text = 
+1993年 7月30日発売　
+　　　　　　　　　
+イルカのエコーになって大海原
+を泳ぎ回るアクションアドベン
+チャーです。大竜巻に連れ去ら
+れた仲間の行方を追って、クジ
+ラやシャチと会話しながら、エ
+コーの冒険はいつか時を越え、
+宇宙をも越えていきます。

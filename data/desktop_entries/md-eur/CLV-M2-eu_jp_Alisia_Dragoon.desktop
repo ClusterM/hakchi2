@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_jp_Alisia_Dragoon.bin --preamp=0.27 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_jp_Alisia_Dragoon
+Name=アリシアドラグーン
+CePrefix=JP
+Icon=/var/games/CLV-M2-eu_jp_Alisia_Dragoon/CLV-M2-eu_jp_Alisia_Dragoon.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_jp_Alisia_Dragoon
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=アリシアドラグーン
+SortRawPublisher=UNKNOWN
+Copyright=©1992 GAME ARTS
+
+[m2engage]
+regionTag=EU_JP_AlisiaD
+sortRawGenre=
+index=1
+demo_time=6360
+country=jp
+
+[Description]
+Text = 
+1992年 4月24日発売　
+　　　　　　　　　　
+雷撃を操る少女アリシアの冒険
+の旅を描くゲームアーツのオリ
+ジナル・アクションシューティ
+ングです。全方位の敵を薙ぎ倒
+す全自動照準稲妻の魔法と４種
+類のモンスター召喚の力を駆使
+し、空中神殿を目指します。

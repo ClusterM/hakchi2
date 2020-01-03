@@ -1,0 +1,29 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Marble_Madness.bin --preamp=0 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-jp_jp_Marble_Madness
+Name=Marble Madness
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Marble_Madness/CLV-M2-jp_jp_Marble_Madness.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Marble_Madness
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Marble Madness
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_JP_MMadne
+sortRawGenre=
+index=
+demo_time=
+country=jp
+
+[Description]
+Text = 

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Target_Earth.bin --preamp=1.05 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-jp_jp_Target_Earth
+Name=重装機兵レイノス
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Target_Earth/CLV-M2-jp_jp_Target_Earth.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Target_Earth
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=重装機兵レイノス
+SortRawPublisher=UNKNOWN
+Copyright=©extreme
+
+[m2engage]
+regionTag=JP_JP_TEarth
+sortRawGenre=
+index=18
+demo_time=5640
+country=jp
+
+[Description]
+Text = 
+1990年 3月16日発売　
+　　　　　　　　　　　
+ロボットを駆る爽快感と熱い演
+出に、多くのファンを持つアク
+ションシューティングです。　
+戦績に応じて支給される武装　
+パーツを自由に選択し、ステー
+ジごとに異なるミッションを遂
+行していきましょう。

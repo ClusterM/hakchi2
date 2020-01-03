@@ -1,0 +1,29 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_jp_Sword_of_Vermilion.BIN --preamp=3.99 --mdz80.overclock=0.999
+Path=/var/saves/CLV-M2-us_jp_Sword_of_Vermilion
+Name=Sword of Vermilion
+CePrefix=JP
+Icon=/var/games/CLV-M2-us_jp_Sword_of_Vermilion/CLV-M2-us_jp_Sword_of_Vermilion.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_jp_Sword_of_Vermilion
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Sword of Vermilion
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_JP_Swordof
+sortRawGenre=
+index=
+demo_time=
+country=jp
+
+[Description]
+Text = 

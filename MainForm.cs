@@ -96,7 +96,7 @@ namespace com.clusterrr.hakchi_gui
                     return -1;
                 if (!(o2 is NesApplication))
                     return 1;
-                return ((o1 as NesApplication).SortName.CompareTo((o2 as NesApplication).SortName));
+                return ((o1 as NesApplication).CESortName.CompareTo((o2 as NesApplication).CESortName));
             }
         }
 
@@ -680,14 +680,7 @@ namespace com.clusterrr.hakchi_gui
                         for (int j = 1; j < listViewGames.Items.Count; j++)
                         {
                             var code = (listViewGames.Items[j].Tag as NesApplication).Code;
-                            if (presetSelected.Contains(code))
-                            {
-                                listViewGames.Items[j].Checked = true;
-                            }
-                            else
-                            {
-                                listViewGames.Items[j].Checked = false;
-                            }
+                            listViewGames.Items[j].Checked = presetSelected.Contains(code);
                         }
                         SaveSelectedGames();
                     }));
@@ -1357,12 +1350,13 @@ namespace com.clusterrr.hakchi_gui
             var selected = listViewGames.SelectedItems[0].Tag;
             if (selected == null || !(selected is NesApplication)) return;
             var game = (selected as NesApplication);
-            if (selectedItem.Text != textBoxName.Text)
+            if (game.Name != textBoxName.Text)
             {
                 var newSortName = textBoxName.Text.ToLower();
                 if (newSortName.StartsWith("the "))
                     newSortName = newSortName.Substring(4); // Sorting without "THE"
-                selectedItem.Text = game.Name = textBoxName.Text;
+                game.Name = textBoxName.Text;
+                selectedItem.Text = game.ToString();
                 textBoxSortName.Text = newSortName;
             }
         }

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_ToeJam_Earl.bin --preamp=-2.05 --mdz80.overclock=0.998
+Path=/var/saves/CLV-M2-eu_en_ToeJam_Earl
+Name=ToeJam & Earl
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_ToeJam_Earl/CLV-M2-eu_en_ToeJam_Earl.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_ToeJam_Earl
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ToeJam & Earl
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_ToeJamE
+sortRawGenre=
+index=40
+demo_time=5760
+country=us
+
+[Description]
+Text = 
+Release Year: 1991
+ 
+ToeJam and Earl, the funkiest guys
+in space, explore the bizarre 
+planet Earth in this roguelike 
+action game. Use gift-wrapped 
+powerups to keep yourself out of 
+trouble while you look for parts 
+to repair your spaceship.

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_eu_Light_Crusader.bin --preamp=1 --mdz80.overclock=1.001
+Path=/var/saves/CLV-M2-eu_eu_Light_Crusader
+Name=Light Crusader
+CePrefix=EU
+Icon=/var/games/CLV-M2-eu_eu_Light_Crusader/CLV-M2-eu_eu_Light_Crusader.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_eu_Light_Crusader
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Light Crusader
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EU_LightCr
+sortRawGenre=
+index=19
+demo_time=1800
+country=us
+
+[Description]
+Text = 
+Release Year: 1995
+ 
+The veterans at Treasure poured 
+their hearts into this action RPG. 
+As the swordsman Sir David, 
+venture into a deadly maze full
+of traps to discover the truth 
+behind a kidnapping, and foil the 
+evil wizard Ragno Roke.

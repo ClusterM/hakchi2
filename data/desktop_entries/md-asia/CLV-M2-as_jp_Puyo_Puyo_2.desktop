@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Puyo_Puyo_2.bin --preamp=-4.54 --mdz80.overclock=0.99
+Path=/var/saves/CLV-M2-as_jp_Puyo_Puyo_2
+Name=Puyo Puyo 2
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Puyo_Puyo_2/CLV-M2-as_jp_Puyo_Puyo_2.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Puyo_Puyo_2
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Puyo Puyo 2
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_PuyoPu2
+sortRawGenre=
+index=34
+demo_time=9000
+country=us
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+The sequel to the first Puyo Puyo,
+and an acclaimed fan favorite.
+Introduces new mechanics, such as
+"Neutralize," "Quick Turn," and
+"Hard Puyo." A great game to play
+with friends!

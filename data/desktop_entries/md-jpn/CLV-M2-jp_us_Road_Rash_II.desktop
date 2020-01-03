@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_us_Road_Rash_II.bin --preamp=1.25 --mdz80.overclock=0.999
+Path=/var/saves/CLV-M2-jp_us_Road_Rash_II
+Name=Road Rash II
+CePrefix=US
+Icon=/var/games/CLV-M2-jp_us_Road_Rash_II/CLV-M2-jp_us_Road_Rash_II.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_us_Road_Rash_II
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Road Rash II
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_EN_RRash2
+sortRawGenre=
+index=41
+demo_time=6180
+country=us
+
+[Description]
+Text = 
+Release Year: 1992
+ 
+Road Rashers gather from across
+the globe for a chance to race 
+each other down the highway. A no-
+holds-barred race across five 
+courses spanning Alaska, Arizona, 
+Hawaii, and more. (2- player 
+splitscreen play included.)

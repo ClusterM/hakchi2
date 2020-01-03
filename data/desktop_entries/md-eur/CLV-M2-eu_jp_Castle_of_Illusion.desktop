@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_jp_Castle_of_Illusion.bin --preamp=-1.55 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_jp_Castle_of_Illusion
+Name=アイラブ ミッキーマウス ふしぎのお城大冒険
+CePrefix=JP
+Icon=/var/games/CLV-M2-eu_jp_Castle_of_Illusion/CLV-M2-eu_jp_Castle_of_Illusion.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_jp_Castle_of_Illusion
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=アイラブ ミッキーマウス ふしぎのお城大冒険
+SortRawPublisher=UNKNOWN
+Copyright=© SEGA　© Disney
+
+[m2engage]
+regionTag=EU_JP_CastofI
+sortRawGenre=
+index=3
+demo_time=6060
+country=jp
+
+[Description]
+Text = 
+1990年11月21日発売　
+　　　　　　　　　　　
+みんなの人気者ミッキーマウス
+と一緒に、夢と冒険の世界
+へ！！　かわいいミニーマウス
+が魔女にさらわれてしまいまし
+た。ミッキーは、ミニーをとり
+もどすべく魔女の住むふしぎの
+お城へと足を踏み入れました。

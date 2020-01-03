@@ -177,7 +177,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 try
                 {
                     var game = NesApplication.FromDirectory(gameDir);
-                    items.Add(new ListViewItem(game.Name) { Tag = game });
+                    items.Add(new ListViewItem(game.ToString()) { Tag = game });
                 }
                 catch // remove bad directories if any, no throw
                 {
@@ -187,8 +187,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 tasker.SetProgress(++i, gameDirs.Length);
             }
             sync.items = ConfigIni.Instance.OriginalGamesPosition == MainForm.OriginalGamesPosition.Hidden ?
-                items.Where(item => !(item.Tag as NesApplication).IsOriginalGame).ToArray() :
-                items.ToArray();
+                items.Where(item => !(item.Tag as NesApplication).IsOriginalGame).OrderBy(e => e.ToString()).ToArray() :
+                items.OrderBy(e => e.ToString()).ToArray();
 
             return Tasker.Conclusion.Success;
         }

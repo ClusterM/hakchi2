@@ -1,0 +1,29 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Shining_Force_II.bin --preamp=0.45 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-jp_jp_Shining_Force_II
+Name=Shining Force II
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Shining_Force_II/CLV-M2-jp_jp_Shining_Force_II.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Shining_Force_II
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Shining Force II
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_JP_ShFor2
+sortRawGenre=
+index=
+demo_time=
+country=jp
+
+[Description]
+Text = 

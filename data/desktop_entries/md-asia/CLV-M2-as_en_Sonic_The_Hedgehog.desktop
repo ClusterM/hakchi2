@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_Sonic_The_Hedgehog.bin --preamp=-0.86 --mdz80.overclock=0.989
+Path=/var/saves/CLV-M2-as_en_Sonic_The_Hedgehog
+Name=Sonic The Hedgehog
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_Sonic_The_Hedgehog/CLV-M2-as_en_Sonic_The_Hedgehog.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_Sonic_The_Hedgehog
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Sonic The Hedgehog
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_Sonic1_
+sortRawGenre=
+index=24
+demo_time=6000
+country=us
+
+[Description]
+Text = 
+Release Year: 1991
+ 
+The game that inspired a
+generation of fans around the
+world: the first appearance of
+Sonic the Hedgehog. One button is
+all it takes to play this
+thrilling, high-speed action
+platformer!

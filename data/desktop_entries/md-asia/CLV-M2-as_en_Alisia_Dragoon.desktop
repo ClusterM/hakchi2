@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_Alisia_Dragoon.bin --preamp=0.27 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_en_Alisia_Dragoon
+Name=Alisia Dragoon
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_Alisia_Dragoon/CLV-M2-as_en_Alisia_Dragoon.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_Alisia_Dragoon
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Alisia Dragoon
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_AlisiaD
+sortRawGenre=
+index=4
+demo_time=6360
+country=us
+
+[Description]
+Text = 
+Release Year: 1992
+ 
+Game Arts brings you an action
+shooter featuring Alisia, a girl
+who controls lightning. Wield
+auto-aiming lightning and the
+power of four summons to fight off
+attacks from all sides, and blaze
+a path to the Sky Temple!

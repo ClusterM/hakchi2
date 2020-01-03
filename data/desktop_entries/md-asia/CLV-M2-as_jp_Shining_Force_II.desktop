@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Shining_Force_II.bin --preamp=0.45 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_jp_Shining_Force_II
+Name=シャイニング・フォースII 古えの封印
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Shining_Force_II/CLV-M2-as_jp_Shining_Force_II.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Shining_Force_II
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=シャイニング・フォースII 古えの封印
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=AS_JP_Shinin2
+sortRawGenre=
+index=16
+demo_time=27960
+country=jp
+
+[Description]
+Text = 
+1993年10月 1日発売　
+　　　　　　　　　　　　　　　　　　　　　　　　　　　
+より高度になった戦略を楽しめ
+る、人気タクティカルＲＰＧ第
+２作です。魔族による侵略を阻
+止するため、賢者アストラルの
+弟子ボウイは、さまざまな種族
+の集まる光の軍勢を率いて、世
+界を救う旅に出ます。

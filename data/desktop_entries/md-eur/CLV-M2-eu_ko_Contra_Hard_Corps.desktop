@@ -1,0 +1,36 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_ko_Contra_Hard_Corps.bin --preamp=-1.34 --mdz80.overclock=0.982
+Path=/var/saves/CLV-M2-eu_ko_Contra_Hard_Corps
+Name=혼두라 더 하드코어
+CePrefix=KO
+Icon=/var/games/CLV-M2-eu_ko_Contra_Hard_Corps/CLV-M2-eu_ko_Contra_Hard_Corps.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_ko_Contra_Hard_Corps
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=혼두라 더 하드코어
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_KO_Probote
+sortRawGenre=
+index=24
+demo_time=8880
+country=us
+
+[Description]
+Text = 
+출시 연도: 1994  
+             
+놀라운 전투 능력을 자랑하는 정예부대
+'혼두라'가 흉악한 테러리스트를 상대로
+총격전을 펼치는 논스톱 격파 액션 슈팅.
+4명의 개성적인 캐릭터 중 2명을 골라
+동시 플레이도 가능합니다.

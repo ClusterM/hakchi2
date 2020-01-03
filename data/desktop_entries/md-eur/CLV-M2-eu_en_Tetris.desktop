@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_Tetris.bin --preamp=-1 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_en_Tetris
+Name=Tetris┓
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_Tetris/CLV-M2-eu_en_Tetris.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_Tetris
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Tetris┓
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_Tetris_
+sortRawGenre=
+index=37
+demo_time=5580
+country=us
+
+[Description]
+Text = 
+Release Year: 2019
+ 
+The iconic game that captured the
+hearts of players worldwide and
+defined the falling-block puzzle
+genre. A mega hit in arcades across
+Japan, the fabled Genesis port is
+finally available to play here!

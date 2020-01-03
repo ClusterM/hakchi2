@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_OutRun2019.bin --preamp=2.12 --mdz80.overclock=0.997
+Path=/var/saves/CLV-M2-as_en_OutRun2019
+Name=OutRun 2019
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_OutRun2019/CLV-M2-as_en_OutRun2019.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_OutRun2019
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=OutRun 2019
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_OutRun2
+sortRawGenre=
+index=0
+demo_time=3360
+country=us
+
+[Description]
+Text = 
+Release Year: 1993
+ 
+OutRun races into a futuristic 
+city in the year 2019! The pulse-
+pounding momentum is enhanced even 
+further with Hyper Boost. Aim for 
+first place on 30 stages featuring 
+hidden paths, jumps, pitfalls, and 
+other twists.

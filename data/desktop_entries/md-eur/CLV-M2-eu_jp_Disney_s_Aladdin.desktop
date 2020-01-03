@@ -1,0 +1,29 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_jp_Disney_s_Aladdin.bin --preamp=0 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_jp_Disney_s_Aladdin
+Name=Disney s Aladdin
+CePrefix=JP
+Icon=/var/games/CLV-M2-eu_jp_Disney_s_Aladdin/CLV-M2-eu_jp_Disney_s_Aladdin.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_jp_Disney_s_Aladdin
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Disney s Aladdin
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_JP_Disneys
+sortRawGenre=
+index=
+demo_time=
+country=jp
+
+[Description]
+Text = 

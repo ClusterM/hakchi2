@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_Shining_Force_II.bin --preamp=0.45 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_en_Shining_Force_II
+Name=Shining Force II
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_Shining_Force_II/CLV-M2-as_en_Shining_Force_II.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_Shining_Force_II
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Shining Force II
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_Shinin2
+sortRawGenre=
+index=16
+demo_time=27960
+country=us
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+The second entry in the popular
+tactical RPG series, featuring 
+even more strategic combat. Sir 
+Astral's squire, Bowie, must 
+assemble an army of light from all 
+the world's races to stop evil 
+from overtaking the land.

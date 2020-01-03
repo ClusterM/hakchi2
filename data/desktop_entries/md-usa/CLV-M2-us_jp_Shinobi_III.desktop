@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_jp_Shinobi_III.bin --preamp=-3.04 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_jp_Shinobi_III
+Name=ザ・スーパー忍II
+CePrefix=JP
+Icon=/var/games/CLV-M2-us_jp_Shinobi_III/CLV-M2-us_jp_Shinobi_III.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_jp_Shinobi_III
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ザ・スーパー忍II
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=US_JP_Shinobi
+sortRawGenre=
+index=27
+demo_time=5580
+country=jp
+
+[Description]
+Text = 
+1993年 7月23日発売　　
+　　　　　　　　　　　
+現代に生きる忍者が、テクニカ
+ルな技を駆使して難関をクリア
+していく人気アクションシリー
+ズの１本。正義の忍、ジョー・
+ムサシは、刀と手裏剣を駆使し
+た技で、悪の秘密結社ＮＥＯ　
+ＺＥＥＤと戦います。

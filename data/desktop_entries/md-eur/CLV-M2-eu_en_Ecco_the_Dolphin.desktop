@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_Ecco_the_Dolphin.bin --preamp=-1.42 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_en_Ecco_the_Dolphin
+Name=Ecco the Dolphin
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_Ecco_the_Dolphin/CLV-M2-eu_en_Ecco_the_Dolphin.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_Ecco_the_Dolphin
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Ecco the Dolphin
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_Eccothe
+sortRawGenre=
+index=12
+demo_time=7200
+country=us
+
+[Description]
+Text = 
+Release Year: 1992
+ 
+Explore the seas as Ecco the 
+dolphin in this action-adventure 
+game. After a waterspout takes 
+Ecco's friends, he must meet with 
+ancient whales, learn Atlantean 
+secrets, and transcend both time 
+and space to get them back.

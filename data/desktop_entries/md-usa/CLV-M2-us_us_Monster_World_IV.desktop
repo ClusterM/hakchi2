@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Monster_World_IV.bin --preamp=-0.4 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_us_Monster_World_IV
+Name=Monster World IV
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Monster_World_IV/CLV-M2-us_us_Monster_World_IV.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Monster_World_IV
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Monster World IV
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_MonsWIV
+sortRawGenre=
+index=22
+demo_time=9600
+country=us
+
+[Description]
+Text = 
+Release Year: 2012
+ 
+Asha, our young heroine, teams up
+with the mysterious creature
+Pepelogoo to save the world in
+this action RPG. Enjoy the game's
+charming animation, and a lush
+world reminiscent of Arabian
+Nights.

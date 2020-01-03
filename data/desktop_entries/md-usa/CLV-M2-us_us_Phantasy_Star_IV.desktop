@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Phantasy_Star_IV.bin --preamp=4.56 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_us_Phantasy_Star_IV
+Name=Phantasy Star IV
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Phantasy_Star_IV/CLV-M2-us_us_Phantasy_Star_IV.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Phantasy_Star_IV
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Phantasy Star IV
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_Phantas
+sortRawGenre=
+index=24
+demo_time=7380
+country=us
+
+[Description]
+Text = 
+Release Year: 1995
+ 
+The fourth entry in Sega's iconic 
+RPG series. In a harsh, 
+unforgiving world recovering from 
+an advanced civilization's 
+collapse, the young hunter Chaz 
+challenges a great evil with the 
+help of nine steadfast allies.

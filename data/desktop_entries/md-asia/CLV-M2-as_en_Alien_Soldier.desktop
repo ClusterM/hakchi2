@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_Alien_Soldier.bin --preamp=-3.03 --mdz80.overclock=0.995
+Path=/var/saves/CLV-M2-as_en_Alien_Soldier
+Name=Alien Soldier
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_Alien_Soldier/CLV-M2-as_en_Alien_Soldier.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_Alien_Soldier
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Alien Soldier
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_AlienSo
+sortRawGenre=
+index=5
+demo_time=11520
+country=us
+
+[Description]
+Text = 
+Release Year: 1995
+ 
+Treasure invites all Genesis/Mega 
+Drive fans to try this shooter! 
+Test your skills against 45 
+challenging bosses. Just 
+remember--you can learn new 
+tactics from every defeat...

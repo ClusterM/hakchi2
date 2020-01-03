@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Monster_World_IV.bin --preamp=-0.4 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-jp_jp_Monster_World_IV
+Name=モンスターワールドIV
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Monster_World_IV/CLV-M2-jp_jp_Monster_World_IV.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Monster_World_IV
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=モンスターワールドIV
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA　ORIGINAL GAME©LAT
+
+[m2engage]
+regionTag=JP_JP_MonWoIV
+sortRawGenre=
+index=12
+demo_time=9600
+country=jp
+
+[Description]
+Text = 
+1994年 4月 1日発売　　　
+　　　　　　　　　　　　
+勇者になりたての女の子・アー
+シャと、不思議な動物・ペペロ
+グゥの２人が、力を合わせて世
+界を救うアクションＲＰＧ。
+アラビアンナイト風になった世
+界観と、キャラクターの魅力的
+な動きをお楽しみください。

@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Space_Harrier_II.bin --preamp=5.54 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_us_Space_Harrier_II
+Name=Space Harrier II
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Space_Harrier_II/CLV-M2-us_us_Space_Harrier_II.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Space_Harrier_II
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Space Harrier II
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_SpaceHa
+sortRawGenre=
+index=31
+demo_time=5040
+country=us
+
+[Description]
+Text = 
+Release Year: 1989
+ 
+A celebrated launch title for the
+Genesis/Mega Drive. In this sequel
+to the popular 3D shoot-em-up,
+Harrier takes to the skies once
+more to defend Fantasy Land from
+a mysterious invader.

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_jp_STREET_FIGHTER_II.bin --preamp=7.14 --mdz80.overclock=0.999
+Path=/var/saves/CLV-M2-eu_jp_STREET_FIGHTER_II
+Name=ストリートファイターIIダッシュプラス CHAMPION EDITION
+CePrefix=JP
+Icon=/var/games/CLV-M2-eu_jp_STREET_FIGHTER_II/CLV-M2-eu_jp_STREET_FIGHTER_II.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_jp_STREET_FIGHTER_II
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ストリートファイターIIダッシュプラス CHAMPION EDITION
+SortRawPublisher=UNKNOWN
+Copyright=©CAPCOM U.S.A., INC. 1991, 2019 ALL RIGHTS RESERVED.
+
+[m2engage]
+regionTag=EU_JP_STREETF
+sortRawGenre=
+index=32
+demo_time=7920
+country=jp
+
+[Description]
+Text = 
+1993年 9月28日発売　
+　　　　　　　　
+シリーズ第２作をベースに、追
+加要素を盛り込んだオリジナル
+作。エキサイトモードでは技が
+追加され、１１段階のゲームス
+ピード変更が可能。更に６人ま
+でのキャラを選んで対戦できる
+グループバトルモードも収録。

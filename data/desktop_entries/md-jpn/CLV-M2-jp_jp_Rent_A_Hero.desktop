@@ -1,0 +1,36 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Rent_A_Hero.bin --preamp=0.91 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-jp_jp_Rent_A_Hero
+Name=Rent A Hero
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Rent_A_Hero/CLV-M2-jp_jp_Rent_A_Hero.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Rent_A_Hero
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Rent A Hero
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_JP_RentAH
+sortRawGenre=
+index=19
+demo_time=9240
+country=jp
+
+[Description]
+Text = 
+Release Year: 1991
+ 
+Can anyone really be a hero? This
+unique RPG was lauded for its
+humorous and thrilling story. Rent
+a suit of combat armor, and fight
+crime as a hero of justice.

@@ -1,0 +1,29 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Gauntlet_IV.bin --preamp=0 --md_multitap=1 --player_num=4 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_jp_Gauntlet_IV
+Name=Gauntlet IV
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Gauntlet_IV/CLV-M2-as_jp_Gauntlet_IV.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Gauntlet_IV
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Gauntlet IV
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_JP_Gauntle
+sortRawGenre=
+index=
+demo_time=
+country=jp
+
+[Description]
+Text = 

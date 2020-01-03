@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Game_no_Kanzume.bin --preamp=2.78 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_jp_Game_no_Kanzume
+Name=Value Games in a Can
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Game_no_Kanzume/CLV-M2-as_jp_Game_no_Kanzume.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Game_no_Kanzume
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Value Games in a Can
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_GamenoK
+sortRawGenre=
+index=8
+demo_time=3600
+country=us
+
+[Description]
+Text = 
+Release Year: 1995
+ 
+All titles from the digital game
+service "Games Library" in a
+single app! This title is packed
+full of strange and charming games
+such as Flicky, Teddy Boy Blues,
+and DokiDoki Penguin Land.

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_de_The_Story_of_Thor.bin --preamp=1.09 --mdz80.overclock=0.997
+Path=/var/saves/CLV-M2-us_de_The_Story_of_Thor
+Name=The Story of Thor
+CePrefix=DE
+Icon=/var/games/CLV-M2-us_de_The_Story_of_Thor/CLV-M2-us_de_The_Story_of_Thor.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_de_The_Story_of_Thor
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=The Story of Thor
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_DE_TheSofT
+sortRawGenre=
+index=3
+demo_time=13380
+country=eu
+
+[Description]
+Text = 
+Erscheinungsjahr: 1995
+ 
+Ein junger Mann erhält ein goldenes
+Armband, das vier Geister
+herbeirufen kann, und begibt sich
+auf ein aufregendes Abenteuer. Von
+Ancient, den Machern von Streets of
+Rage II. Mit einem genialen
+Soundtrack von Yuzo Koshiro.

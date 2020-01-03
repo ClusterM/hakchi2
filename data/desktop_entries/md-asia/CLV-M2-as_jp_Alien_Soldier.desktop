@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Alien_Soldier.bin --preamp=-3.03 --mdz80.overclock=0.995
+Path=/var/saves/CLV-M2-as_jp_Alien_Soldier
+Name=エイリアンソルジャー
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Alien_Soldier/CLV-M2-as_jp_Alien_Soldier.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Alien_Soldier
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=エイリアンソルジャー
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=AS_JP_AlienSo
+sortRawGenre=
+index=5
+demo_time=11520
+country=jp
+
+[Description]
+Text = 
+1995年 2月24日発売　
+　　　　　　　　　　　　　　　　　　　　　　　　　　
+メガドライブを愛する人たちへ
+向けた、トレジャーからの挑戦
+状！　４５体にもおよぶボスと
+の戦いの連続が話題を呼んだア
+クションシューティングです。
+敗北を重ねながら、攻略法を見
+つけ出していきましょう。

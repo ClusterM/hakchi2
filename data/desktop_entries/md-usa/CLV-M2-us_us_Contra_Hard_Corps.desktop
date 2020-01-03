@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Contra_Hard_Corps.bin --preamp=-1.34 --mdz80.overclock=0.982
+Path=/var/saves/CLV-M2-us_us_Contra_Hard_Corps
+Name=Contra: Hard Corps
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Contra_Hard_Corps/CLV-M2-us_us_Contra_Hard_Corps.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Contra_Hard_Corps
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Contra: Hard Corps
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_ContraH
+sortRawGenre=
+index=8
+demo_time=8880
+country=us
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+Wage war against your enemies in
+this nonstop action shooter.
+Choose between multiple
+characters, weapons, and even
+paths as you blast your way
+through crazy boss fights alone
+or with a friend.

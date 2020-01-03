@@ -1,0 +1,40 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_jp_Strider.bin --preamp=2.75 --mdz80.overclock=0.993
+Path=/var/saves/CLV-M2-us_jp_Strider
+Name=ストライダー飛竜
+CePrefix=JP
+Icon=/var/games/CLV-M2-us_jp_Strider/CLV-M2-us_jp_Strider.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_jp_Strider
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ストライダー飛竜
+SortRawPublisher=UNKNOWN
+Copyright=©MOTO KIKAKU. 
+©CAPCOM CO., LTD. 1989, 2019 ALL RIGHTS RESERVED. 
+REPROGRAMMED GAME©SEGA
+
+[m2engage]
+regionTag=US_JP_Strider
+sortRawGenre=
+index=34
+demo_time=6720
+country=jp
+
+[Description]
+Text = 
+1990年 9月29日発売　　
+　　　　　　　　　　　
+冒険映画さながらの先の読めな
+い展開とアクロバティックな動
+きが話題となった、カプコンの
+人気アクションゲームです。冥
+王グランドマスターに支配され
+た地球を救うべく、最強の暗殺
+者、飛竜の活躍を描きます。

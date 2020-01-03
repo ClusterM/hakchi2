@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_Ghouls_n_Ghosts.bin --preamp=4.84 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_en_Ghouls_n_Ghosts
+Name=Ghouls 'n Ghosts
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_Ghouls_n_Ghosts/CLV-M2-as_en_Ghouls_n_Ghosts.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_Ghouls_n_Ghosts
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Ghouls 'n Ghosts
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_Ghoulsn
+sortRawGenre=
+index=27
+demo_time=5400
+country=us
+
+[Description]
+Text = 
+Release Year: 1989
+ 
+The powered-up sequel to Ghosts'n
+Goblins returns! Three years after
+the defeat of Satan, Princess Prin
+Prin's soul has fallen to the
+schemes of a new demon. The time
+has come for Arthur to rise again
+and vanquish evil!  

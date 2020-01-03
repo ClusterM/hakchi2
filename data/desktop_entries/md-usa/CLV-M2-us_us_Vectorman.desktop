@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Vectorman.bin --preamp=-1.8 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_us_Vectorman
+Name=Vectorman
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Vectorman/CLV-M2-us_us_Vectorman.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Vectorman
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Vectorman
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_Vectorm
+sortRawGenre=
+index=40
+demo_time=9600
+country=us
+
+[Description]
+Text = 
+Release Year: 1995
+ 
+Play as the robot Vectorman in 
+this action game with must-see 
+fluid animations. The Orbots, 
+Earth's environmental cleanup 
+drones, have rebelled. Vectorman 
+is humanity's last hope to stop 
+the robot revolution.

@@ -1,0 +1,36 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_etc_STREET_FIGHTER_II_SPECIAL_CHAMPION_EDITION.BIN --preamp=7.14 --mdz80.overclock=0.999
+Path=/var/saves/CLV-M2-jp_etc_STREET_FIGHTER_II_SPECIAL_CHAMPION_EDITION
+Name=STREET FIGHTER II': SPECIAL CHAMPION EDITION
+CePrefix=ETC
+Icon=/var/games/CLV-M2-jp_etc_STREET_FIGHTER_II_SPECIAL_CHAMPION_EDITION/CLV-M2-jp_etc_STREET_FIGHTER_II_SPECIAL_CHAMPION_EDITION.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_etc_STREET_FIGHTER_II_SPECIAL_CHAMPION_EDITION
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=STREET FIGHTER II': SPECIAL CHAMPION EDITION
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_EN_SFIIDP
+sortRawGenre=
+index=21
+demo_time=6180
+country=us
+
+[Description]
+Text = 
+Release Year: 1993
+ 
+Based on the second iteration of
+Street Fighter II, this version
+added in even more options, like
+new moves, Hyper Mode, 11 speed
+settings, and Group Battle mode.

@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_Mega_Man.bin --preamp=-2.26 --machine_md.cpu_div=5 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_en_Mega_Man
+Name=Mega Man: The Wily Wars
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_Mega_Man/CLV-M2-eu_en_Mega_Man.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_Mega_Man
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Mega Man: The Wily Wars
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_MegaMan
+sortRawGenre=
+index=20
+demo_time=5580
+country=us
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+The first three games in the
+renowned Mega Man series, compiled
+for the Genesis/Mega Drive! Beat
+all three games to unlock Wily
+Tower, where you can challenge a
+new boss.

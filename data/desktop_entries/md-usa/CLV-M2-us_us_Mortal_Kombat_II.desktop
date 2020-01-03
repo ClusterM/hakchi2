@@ -1,0 +1,29 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Mortal_Kombat_II.bin --preamp=0 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_us_Mortal_Kombat_II
+Name=Mortal Kombat II
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Mortal_Kombat_II/CLV-M2-us_us_Mortal_Kombat_II.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Mortal_Kombat_II
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Mortal Kombat II
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_MortalK
+sortRawGenre=
+index=
+demo_time=
+country=us
+
+[Description]
+Text = 

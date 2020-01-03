@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Sonic_The_Hedgehog_2.bin --preamp=-0.45 --use_subthread=1 --mdz80.overclock=0.987
+Path=/var/saves/CLV-M2-us_us_Sonic_The_Hedgehog_2
+Name=Sonic The Hedgehog 2
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Sonic_The_Hedgehog_2/CLV-M2-us_us_Sonic_The_Hedgehog_2.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Sonic_The_Hedgehog_2
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Sonic The Hedgehog 2
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_Sonic2_
+sortRawGenre=
+index=30
+demo_time=6120
+country=us
+
+[Description]
+Text = 
+Release Year: 1992
+ 
+Sonic returns to save the world in
+his second game, considered by
+many to be a series highlight for
+its enhanced speed and momentum.
+Tails the twin-tailed fox also
+makes his debut, and the game
+features a 2-player mode.

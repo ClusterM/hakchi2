@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_fr_The_Story_of_Thor.bin --preamp=1.09 --mdz80.overclock=0.997
+Path=/var/saves/CLV-M2-as_fr_The_Story_of_Thor
+Name=La Légende de Thor
+CePrefix=FR
+Icon=/var/games/CLV-M2-as_fr_The_Story_of_Thor/CLV-M2-as_fr_The_Story_of_Thor.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_fr_The_Story_of_Thor
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=La Légende de Thor
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_FR_TheStor
+sortRawGenre=
+index=19
+demo_time=13800
+country=eu
+
+[Description]
+Text = 
+Année de sortie: 1995
+ 
+Avec son brassard permettant
+d'invoquer quatre esprits, un jeune
+homme se lance dans une aventure
+RPG rebondissante. Développé par
+Ancient, auteurs de Streets of Rage
+II. Musique de Yuzo Koshiro.

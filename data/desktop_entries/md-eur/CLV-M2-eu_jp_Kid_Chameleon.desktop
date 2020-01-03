@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_jp_Kid_Chameleon.bin --preamp=-4.14 --mdz80.overclock=0.992
+Path=/var/saves/CLV-M2-eu_jp_Kid_Chameleon
+Name=カメレオンキッド
+CePrefix=JP
+Icon=/var/games/CLV-M2-eu_jp_Kid_Chameleon/CLV-M2-eu_jp_Kid_Chameleon.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_jp_Kid_Chameleon
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=カメレオンキッド
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=EU_JP_KidCham
+sortRawGenre=
+index=17
+demo_time=4440
+country=jp
+
+[Description]
+Text = 
+1992年 5月29日発売　
+　　　　　　　　　
+９つの顔を持つヒーロー「カメ
+レオンキッド」が、ホログラム
+世界の中で戦う横スクロールア
+クションゲームです。９つのヘ
+ルメットが持つ特殊能力を駆使
+し、全部で１００以上あるラウ
+ンドをクリアしていきましょう。

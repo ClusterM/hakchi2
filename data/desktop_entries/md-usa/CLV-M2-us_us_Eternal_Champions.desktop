@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Eternal_Champions.bin --preamp=-0.7 --mdz80.overclock=1.001
+Path=/var/saves/CLV-M2-us_us_Eternal_Champions
+Name=Eternal Champions
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Eternal_Champions/CLV-M2-us_us_Eternal_Champions.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Eternal_Champions
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Eternal Champions
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_Eternal
+sortRawGenre=
+index=14
+demo_time=9600
+country=us
+
+[Description]
+Text = 
+Release Year: 1993
+  
+Nine warriors across history, 
+doomed to untimely deaths, must 
+battle each other for a chance at 
+reversing their demise in this 2D 
+fighter. Features a number of 
+modes, including Battle Room 
+Versus and Tournament Mode.

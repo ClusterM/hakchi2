@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_jp_Landstalker.bin --preamp=4.67 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_jp_Landstalker
+Name=ランドストーカー ～皇帝の財宝～
+CePrefix=JP
+Icon=/var/games/CLV-M2-us_jp_Landstalker/CLV-M2-us_jp_Landstalker.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_jp_Landstalker
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ランドストーカー ～皇帝の財宝～
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=US_JP_Landsta
+sortRawGenre=
+index=19
+demo_time=1200
+country=jp
+
+[Description]
+Text = 
+1992年10月30日発売　　
+　　　　　　　　　　　
+トレジャーハンターのライルが
+小さな相棒フライデーと共に、
+幻の財宝を求めて大冒険の旅を
+続ける、大ヒット・アクション
+ＲＰＧです。独特なアングルで
+描かれた３Ｄならではの仕掛け
+の数々が、あなたを悩ませます。

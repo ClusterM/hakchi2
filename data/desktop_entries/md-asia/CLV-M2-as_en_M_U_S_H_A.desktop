@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_M_U_S_H_A.bin --preamp=-0.74 --mdz80.overclock=0.994
+Path=/var/saves/CLV-M2-as_en_M_U_S_H_A
+Name=M.U.S.H.A.
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_M_U_S_H_A/CLV-M2-as_en_M_U_S_H_A.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_M_U_S_H_A
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=M.U.S.H.A.
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_MUSHA__
+sortRawGenre=
+index=37
+demo_time=7200
+country=us
+
+[Description]
+Text = 
+Release Year: 1991
+ 
+Pilot an armored ship, and charge
+forward as a knight of the skies!
+In this exhilarating take on the
+vertically-scrolling shooter,
+three special weapons and six
+formations give you a more
+expansive arsenal than ever!

@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_ch_The_Story_of_Thor.bin --preamp=1.09 --mdz80.overclock=0.997
+Path=/var/saves/CLV-M2-eu_ch_The_Story_of_Thor
+Name=雷神傳說 ～光之繼承者～
+CePrefix=CH
+Icon=/var/games/CLV-M2-eu_ch_The_Story_of_Thor/CLV-M2-eu_ch_The_Story_of_Thor.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_ch_The_Story_of_Thor
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=雷神傳說 ～光之繼承者～
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_CH_TheStor
+sortRawGenre=
+index=38
+demo_time=13380
+country=us
+
+[Description]
+Text = 
+發行年份：1995年  
+                
+握有可召喚4名精靈的「黃金手環」的
+青年，在精靈的隨行下展開冒險旅程，
+是一款玩起來十分爽快的動作RPG遊戲。
+遊戲由『怒之鐵拳II』的遊戲開發商
+Ancient製作。
+Yuzo Koshiro的音樂也很有魅力。

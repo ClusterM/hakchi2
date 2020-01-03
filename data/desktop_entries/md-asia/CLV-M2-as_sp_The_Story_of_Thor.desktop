@@ -1,0 +1,29 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_sp_The_Story_of_Thor.bin --preamp=1.09 --mdz80.overclock=0.997
+Path=/var/saves/CLV-M2-as_sp_The_Story_of_Thor
+Name=The Story of Thor
+CePrefix=SP
+Icon=/var/games/CLV-M2-as_sp_The_Story_of_Thor/CLV-M2-as_sp_The_Story_of_Thor.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_sp_The_Story_of_Thor
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=The Story of Thor
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_SP_TheStor
+sortRawGenre=
+index=
+demo_time=
+country=eu
+
+[Description]
+Text = 

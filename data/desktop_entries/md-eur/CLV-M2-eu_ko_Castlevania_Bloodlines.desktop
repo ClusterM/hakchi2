@@ -1,0 +1,35 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_ko_Castlevania_Bloodlines.bin --preamp=1.75 --mdz80.overclock=0.998
+Path=/var/saves/CLV-M2-eu_ko_Castlevania_Bloodlines
+Name=뱀파이어 킬러
+CePrefix=KO
+Icon=/var/games/CLV-M2-eu_ko_Castlevania_Bloodlines/CLV-M2-eu_ko_Castlevania_Bloodlines.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_ko_Castlevania_Bloodlines
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=뱀파이어 킬러
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_KO_Castlev
+sortRawGenre=
+index=4
+demo_time=6180
+country=us
+
+[Description]
+Text = 
+출시 연도: 1994  
+             
+'악마성 드라큘라' 시리즈의 메가 드라이브
+오리지널 액션입니다. 드라큘라 부활의
+의식을 막기 위해 조니 모리스와 에릭
+리카드가 유럽을 무대로 싸움을 펼칩니다.

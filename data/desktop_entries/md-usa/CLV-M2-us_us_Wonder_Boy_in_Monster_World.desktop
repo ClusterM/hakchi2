@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Wonder_Boy_in_Monster_World.bin --preamp=6.76 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_us_Wonder_Boy_in_Monster_World
+Name=Wonder Boy in Monster World
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Wonder_Boy_in_Monster_World/CLV-M2-us_us_Wonder_Boy_in_Monster_World.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Wonder_Boy_in_Monster_World
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Wonder Boy in Monster World
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_WonderB
+sortRawGenre=
+index=41
+demo_time=3420
+country=us
+
+[Description]
+Text = 
+Release Year: 1992
+ 
+Shion, son of a legendary hero, 
+adventures across multiple worlds 
+in this standout of the Monster 
+World series. He'll cross paths 
+with many companions, including 
+fairies, dwarves, demons, and even 
+the child of a dragon.

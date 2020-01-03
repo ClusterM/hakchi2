@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Comix_Zone.bin --preamp=-2.66 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_jp_Comix_Zone
+Name=コミックスゾーン
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Comix_Zone/CLV-M2-as_jp_Comix_Zone.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Comix_Zone
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=コミックスゾーン
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=AS_JP_ComixZo
+sortRawGenre=
+index=10
+demo_time=8100
+country=jp
+
+[Description]
+Text = 
+1995年 9月 1日発売　
+　　　　　　　　　　　　　　　　　　　　　　　　　　　
+コミックの世界に迷い込んだ人
+気マンガ家が、コマからコマへ
+と渡り歩いて恐ろしいミュータ
+ントたちと戦う、斬新な世界設
+定のアクションゲームです。ア
+メリカンコミックの雰囲気を、
+ゲームの中で楽しめます。

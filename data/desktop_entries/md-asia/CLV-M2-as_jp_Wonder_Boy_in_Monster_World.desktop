@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Wonder_Boy_in_Monster_World.bin --preamp=6.76 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_jp_Wonder_Boy_in_Monster_World
+Name=ワンダーボーイV モンスターワールドIII
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Wonder_Boy_in_Monster_World/CLV-M2-as_jp_Wonder_Boy_in_Monster_World.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Wonder_Boy_in_Monster_World
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ワンダーボーイV モンスターワールドIII
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA　ORIGINAL GAME©LAT
+
+[m2engage]
+regionTag=AS_JP_WonderB
+sortRawGenre=
+index=44
+demo_time=5520
+country=jp
+
+[Description]
+Text = 
+1991年10月25日発売　
+　　　　　　　　　　　　　　　　　　　　　　　　　　　
+伝説の勇者の子孫・シオンが、
+さまざまな世界を冒険するアク
+ションＲＰＧ。『ワンダーボー
+イ』シリーズの集大成となる作
+品です。途中出会った妖精やド
+ワーフ、悪魔やドラゴンの子供
+をお供にすることもできます。

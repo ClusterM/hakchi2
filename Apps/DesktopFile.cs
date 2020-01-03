@@ -90,6 +90,13 @@ namespace com.clusterrr.hakchi_gui
             set { setIf(value, ref name); }
         }
 
+        private string cePrefix = string.Empty;
+        public string CePrefix
+        {
+            get { return cePrefix; }
+            set { setIf(value, ref cePrefix); }
+        }
+
         private string iconPath = string.Empty;
         private string iconFilename = string.Empty;
         public string IconPath
@@ -260,6 +267,9 @@ namespace com.clusterrr.hakchi_gui
                                 case "exec":
                                     Exec = value;
                                     break;
+                                case "ceprefix":
+                                    CePrefix = value;
+                                    break;
                                 case "path":
                                     if (string.IsNullOrEmpty(value))
                                         ProfilePath = string.Empty;
@@ -382,6 +392,7 @@ namespace com.clusterrr.hakchi_gui
                 $"Exec={this.exec}\n" +
                 $"Path={this.profilePath}{(omitProfilePathCode ? "" : "/" + this.code)}\n" +
                 $"Name={this.name ?? this.code}\n" +
+                $"CePrefix={this.cePrefix}\n" +
                 $"Icon={this.iconPath}/{this.code}/{this.iconFilename}\n" +
                 "\n" +
                 $"[X-CLOVER Game]\n" +
@@ -448,6 +459,7 @@ namespace com.clusterrr.hakchi_gui
                 Exec = string.Copy(exec),
                 profilePath = string.Copy(profilePath),
                 name = string.Copy(name),
+                cePrefix = string.Copy(cePrefix),
                 iconPath = string.Copy(iconPath),
                 iconFilename = string.Copy(iconFilename),
                 code = string.Copy(code),

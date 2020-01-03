@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Slap_Fight.bin --preamp=-0.65 --mdz80.overclock=0.995
+Path=/var/saves/CLV-M2-as_jp_Slap_Fight
+Name=Slap Fight
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Slap_Fight/CLV-M2-as_jp_Slap_Fight.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Slap_Fight
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Slap Fight
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_SlapFig
+sortRawGenre=
+index=23
+demo_time=8220
+country=us
+
+[Description]
+Text = 
+Release Year: 1993
+ 
+A Genesis/Mega Drive revival of a
+classic arcade shooter from
+Toaplan, masters of the genre.
+This edition adds a Special Mode
+with new stages and powerups, plus
+the preserved Arcade mode. Must-
+hear music by Yuzo Koshiro.

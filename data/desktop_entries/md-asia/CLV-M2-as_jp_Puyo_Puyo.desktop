@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Puyo_Puyo.bin --preamp=0.14 --mdz80.overclock=0.994
+Path=/var/saves/CLV-M2-as_jp_Puyo_Puyo
+Name=ぷよぷよ
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Puyo_Puyo/CLV-M2-as_jp_Puyo_Puyo.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Puyo_Puyo
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ぷよぷよ
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=AS_JP_PuyoPu1
+sortRawGenre=
+index=33
+demo_time=7200
+country=jp
+
+[Description]
+Text = 
+1992年12月18日発売　
+　　　　　　　　　　　　　　　　　　　　　　　　　　　
+アクションパズルの金字塔であ
+る人気シリーズ第１作。順番に
+降ってくる「ぷよ」を同じ色同
+士で４つ以上くっつけて次々と
+消していこう。連鎖消しをキメ
+れば、相手のフィールドは「お
+じゃまぷよ」でいっぱいに！

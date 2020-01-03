@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Castle_of_Illusion.bin --preamp=-1.55 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_us_Castle_of_Illusion
+Name=Castle of Illusion Starring Mickey Mouse
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Castle_of_Illusion/CLV-M2-us_us_Castle_of_Illusion.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Castle_of_Illusion
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Castle of Illusion Starring Mickey Mouse
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_CastofI
+sortRawGenre=
+index=4
+demo_time=6060
+country=us
+
+[Description]
+Text = 
+Release Year: 1990
+ 
+Adventure to the land of dreams 
+with Mickey Mouse in this action
+platformer! Mickey, beloved icon 
+and plucky hero, ventures into the 
+castle of an evil witch to rescue 
+the kidnapped Minnie.

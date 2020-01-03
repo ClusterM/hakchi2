@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Mado_Monogatari_I.bin --preamp=2.27 --mdz80.overclock=0.999
+Path=/var/saves/CLV-M2-jp_jp_Mado_Monogatari_I
+Name=Mado Monogatari I
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Mado_Monogatari_I/CLV-M2-jp_jp_Mado_Monogatari_I.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Mado_Monogatari_I
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Mado Monogatari I
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_JP_MadoMI
+sortRawGenre=
+index=43
+demo_time=4200
+country=jp
+
+[Description]
+Text = 
+Release Year: 1996
+ 
+Arle Nadja, heroine of the Puyo 
+Puyo series, stars in this 3D 
+dungeon RPG. To pass her exam and 
+graduate from Magic Kindergarten, 
+Arle must ascend the Magic Tower. 
+Features many familiar faces from 
+the Puyo Puyo series.

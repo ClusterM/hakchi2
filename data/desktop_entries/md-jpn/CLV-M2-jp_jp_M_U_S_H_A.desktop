@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_M_U_S_H_A.bin --preamp=-0.74 --mdz80.overclock=0.994
+Path=/var/saves/CLV-M2-jp_jp_M_U_S_H_A
+Name=武者アレスタ
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_M_U_S_H_A/CLV-M2-jp_jp_M_U_S_H_A.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_M_U_S_H_A
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=武者アレスタ
+SortRawPublisher=UNKNOWN
+Copyright=「アレスタ」は有限会社エムツーの登録商標です。
+
+[m2engage]
+regionTag=JP_JP_MUSHAA
+sortRawGenre=
+index=27
+demo_time=7200
+country=jp
+
+[Description]
+Text = 
+1990年12月21日発売　　
+　　　　　　　　　　　　
+鎧武者姿のロボ「アレスタ」
+に搭乗し戦うシューティング
+です。パワーアップする通常
+ショットと３種の特殊兵器、
+６種類のオプション・フォー
+メーションを駆使して、和風
+のメカたちと戦います。

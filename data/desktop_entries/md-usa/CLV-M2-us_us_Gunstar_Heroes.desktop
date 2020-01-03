@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Gunstar_Heroes.bin --preamp=-3.65 --mdz80.overclock=0.983
+Path=/var/saves/CLV-M2-us_us_Gunstar_Heroes
+Name=Gunstar Heroes
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Gunstar_Heroes/CLV-M2-us_us_Gunstar_Heroes.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Gunstar_Heroes
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Gunstar Heroes
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_Gunstar
+sortRawGenre=
+index=17
+demo_time=9000
+country=us
+
+[Description]
+Text = 
+Release Year: 1993
+ 
+A smash hit run-and-gun made by
+Treasure, a group of talented
+industry veterans. Two Gunstars,
+armed with ten different weapons,
+must collect four mythic stones
+to thwart an evil empire's plot to
+resurrect a god of destruction.

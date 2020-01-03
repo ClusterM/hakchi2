@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Contra_Hard_Corps.bin --preamp=-1.34 --mdz80.overclock=0.982
+Path=/var/saves/CLV-M2-jp_jp_Contra_Hard_Corps
+Name=魂斗羅 ザ・ハードコア
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Contra_Hard_Corps/CLV-M2-jp_jp_Contra_Hard_Corps.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Contra_Hard_Corps
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=魂斗羅 ザ・ハードコア
+SortRawPublisher=UNKNOWN
+Copyright=©Konami Digital Entertainment
+
+[m2engage]
+regionTag=JP_JP_ContraT
+sortRawGenre=
+index=15
+demo_time=8880
+country=jp
+
+[Description]
+Text = 
+1994年 9月15日発売　
+　　　　　　　　　　　
+驚異の戦闘能力を誇る精鋭部隊、
+通称"魂斗羅" が、凶悪テロリ
+ストを相手に銃撃戦を展開する
+ノンストップ撃砕アクション
+シューティング。４人の個性的
+なキャラクターから２人を選ん
+で同時プレイも可能です。

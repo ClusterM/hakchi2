@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_Earthworm_Jim.bin --preamp=1.79 --mdz80.overclock=0.999
+Path=/var/saves/CLV-M2-eu_en_Earthworm_Jim
+Name=Earthworm Jim
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_Earthworm_Jim/CLV-M2-eu_en_Earthworm_Jim.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_Earthworm_Jim
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Earthworm Jim
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_Earthwo
+sortRawGenre=
+index=11
+demo_time=7740
+country=us
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+When a superpowered spacesuit falls
+on an ordinary earthworm, he 
+transforms into the head-whipping
+laser-blasting hero, Earthworm Jim! 
+Use Jim's new-found powers to fight
+evil and save the Princess, uh... 
+What's-Her-Name?  Groovy!

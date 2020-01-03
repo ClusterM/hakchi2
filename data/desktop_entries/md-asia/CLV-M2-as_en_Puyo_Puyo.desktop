@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_Puyo_Puyo.bin --preamp=0.14 --mdz80.overclock=0.994
+Path=/var/saves/CLV-M2-as_en_Puyo_Puyo
+Name=Dr. Robotnik's Mean Bean Machine
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_Puyo_Puyo/CLV-M2-as_en_Puyo_Puyo.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_Puyo_Puyo
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Dr. Robotnik's Mean Bean Machine
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_PuyoPu1
+sortRawGenre=
+index=33
+demo_time=10020
+country=jp
+
+[Description]
+Text = 
+Release Year: 1993
+ 
+In this puzzle game, Dr. Robotnik
+is kidnapping the residents of
+Beanville, and only you can save
+them! Match 4 or more beans of the
+same color to free them. Create
+combo chains to thwart Robotnik's
+goons or defeat your friends.

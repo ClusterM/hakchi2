@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Tant_R.bin --preamp=-0.51 --md_multitap=1 --player_num=4 --mdz80.overclock=1.012
+Path=/var/saves/CLV-M2-as_jp_Tant_R
+Name=Puzzle & Action: Tant-R
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Tant_R/CLV-M2-as_jp_Tant_R.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Tant_R
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Puzzle & Action: Tant-R
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_Tant_R_
+sortRawGenre=
+index=29
+demo_time=4800
+country=jp
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+Play through a fun mix of puzzle
+and action minigames in this party
+game anyone can enjoy. The name
+doesn't lie--it's chock full of
+puzzle and action games, perfect
+for up to 4 players.

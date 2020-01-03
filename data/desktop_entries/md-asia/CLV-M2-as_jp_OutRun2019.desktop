@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_OutRun2019.bin --preamp=2.12 --mdz80.overclock=0.997
+Path=/var/saves/CLV-M2-as_jp_OutRun2019
+Name=OutRun2019
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_OutRun2019/CLV-M2-as_jp_OutRun2019.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_OutRun2019
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=OutRun2019
+SortRawPublisher=UNKNOWN
+Copyright=©1993 SIMS　©SEGA
+
+[m2engage]
+regionTag=AS_JP_OutRun2
+sortRawGenre=
+index=0
+demo_time=3360
+country=jp
+
+[Description]
+Text = 
+1993年 3月26日発売　
+　　　　　　　　　　　　　　　　　　　　　　　　　　　
+あの『アウトラン』が２０１９
+年の未来都市を駆け抜ける！　
+ハイパーブーストも加わり、疾
+走感もさらにアップ。隠し通路
+やジャンプ台、落とし穴などの
+ギミックも追加した３０種類の
+個性的なコースが登場します。

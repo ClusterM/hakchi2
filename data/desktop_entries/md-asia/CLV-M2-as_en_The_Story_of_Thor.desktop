@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_The_Story_of_Thor.bin --preamp=1.09 --mdz80.overclock=0.997
+Path=/var/saves/CLV-M2-as_en_The_Story_of_Thor
+Name=Beyond Oasis
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_The_Story_of_Thor/CLV-M2-as_en_The_Story_of_Thor.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_The_Story_of_Thor
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Beyond Oasis
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_TheStor
+sortRawGenre=
+index=19
+demo_time=13800
+country=us
+
+[Description]
+Text = 
+Release Year: 1995
+ 
+A young man obtains a golden
+armband that can summon four
+spirits, and sets out on an
+exhilarating action-RPG adventure.
+Developed by Ancient, makers of
+Streets of Rage 2. Yuzo Koshiro's
+soundtrack will pull you in!

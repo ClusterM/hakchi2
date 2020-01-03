@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Lord_Monarch.bin --preamp=2.86 --mdz80.overclock=1.022
+Path=/var/saves/CLV-M2-jp_jp_Lord_Monarch
+Name=Lord Monarch
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Lord_Monarch/CLV-M2-jp_jp_Lord_Monarch.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Lord_Monarch
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Lord Monarch
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_JP_LordMo
+sortRawGenre=
+index=25
+demo_time=9000
+country=jp
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+Battle for control of castles in
+this popular real-time strategy
+title, with a unique twist added
+by Omiya Soft. Fans of the series
+won't want to miss this title's
+exciting new mechanics.

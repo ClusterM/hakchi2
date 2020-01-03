@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_de_Landstalker.bin --preamp=4.67 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_de_Landstalker
+Name=Landstalker
+CePrefix=DE
+Icon=/var/games/CLV-M2-as_de_Landstalker/CLV-M2-as_de_Landstalker.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_de_Landstalker
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Landstalker
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_DE_Landsta
+sortRawGenre=
+index=40
+demo_time=1200
+country=us
+
+[Description]
+Text = 
+Erscheinungsjahr: 1993
+ 
+In diesem unheimlich erfolgreichen
+RPG begibt Niels der Schatzjäger
+sich mit seiner winzigen Partnerin
+Flora auf die Suche nach einem
+vergessenen Schatz. Die
+isometrische 3D-Welt erfordert
+einiges an Geschick!

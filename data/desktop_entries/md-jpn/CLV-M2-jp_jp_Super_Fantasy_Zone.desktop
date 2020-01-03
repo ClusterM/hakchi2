@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Super_Fantasy_Zone.bin --preamp=-1.03 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-jp_jp_Super_Fantasy_Zone
+Name=Super Fantasy Zone
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Super_Fantasy_Zone/CLV-M2-jp_jp_Super_Fantasy_Zone.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Super_Fantasy_Zone
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Super Fantasy Zone
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_EN_SPFZon
+sortRawGenre=
+index=30
+demo_time=9060
+country=us
+
+[Description]
+Text = 
+Release Year: 1992
+ 
+The final entry in the Fantasy
+Zone shooter series for the
+Genesis/Mega Drive. Defeat enemies
+to collect coins, and power up
+Opa-Opa in the shop. Battle across
+8 new planets!

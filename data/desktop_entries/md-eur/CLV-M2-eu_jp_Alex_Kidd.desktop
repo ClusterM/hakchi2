@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_jp_Alex_Kidd.bin --preamp=3.33 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_jp_Alex_Kidd
+Name=アレックスキッド　天空魔城
+CePrefix=JP
+Icon=/var/games/CLV-M2-eu_jp_Alex_Kidd/CLV-M2-eu_jp_Alex_Kidd.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_jp_Alex_Kidd
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=アレックスキッド　天空魔城
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=EU_JP_ALEXKID
+sortRawGenre=
+index=0
+demo_time=5400
+country=jp
+
+[Description]
+Text = 
+1989年 2月10日発売　
+　　　　　　　　　　　
+ジャンケンと拳法の使い手、ア
+レックスキッドが活躍するアク
+ションです。ジャンケンの弱い
+者は生きていけないという恐ろ
+しい星を舞台に、敵を倒してお
+金を集め、バイクやヘリを買っ
+て冒険します。

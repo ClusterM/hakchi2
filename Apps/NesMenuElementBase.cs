@@ -31,8 +31,21 @@ namespace com.clusterrr.hakchi_gui
             get { return desktop.SortName; }
         }
 
+        public virtual string CESortName
+        {
+            get {
+                if (desktop.CePrefix != null && desktop.CePrefix.Length > 0)
+                    return $"{desktop.CePrefix}: {desktop.SortName}";
+
+                return desktop.SortName;
+            }
+        }
+
         public override string ToString()
         {
+            if (desktop.CePrefix != null && desktop.CePrefix.Length > 0)
+                return $"{desktop.CePrefix}: {(desktop.Name ?? desktop.Code)}";
+
             return desktop.Name ?? desktop.Code;
         }
 

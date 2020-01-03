@@ -1,0 +1,40 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Tetris.bin --preamp=-1 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_jp_Tetris
+Name=テトリス┓
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Tetris/CLV-M2-as_jp_Tetris.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Tetris
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=テトリス┓
+SortRawPublisher=UNKNOWN
+Copyright=Tetris ┓ & © 1985～2019 and Tetris trade dress are
+owned by Tetris Holding.
+© SEGA
+
+[m2engage]
+regionTag=AS_JP_Tetris_
+sortRawGenre=
+index=30
+demo_time=5580
+country=jp
+
+[Description]
+Text = 
+2019年 9月19日発売　　　
+　　　　　　　　　　　　　　　　　　　　　　　　　　　
+全世界のゲームファンを夢中に
+させた、落ちものパズルの元祖
+となるゲームです。日本中の
+ゲームセンターで大ヒットしな
+がら、ついに発売されなかった
+幻のメガドライブへの移植が、
+完全な状態で実現しました。

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Mega_Man.bin --preamp=-2.26 --machine_md.cpu_div=5 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_jp_Mega_Man
+Name=ロックマンメガワールド
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Mega_Man/CLV-M2-as_jp_Mega_Man.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Mega_Man
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ロックマンメガワールド
+SortRawPublisher=UNKNOWN
+Copyright=©CAPCOM CO., LTD. 1994, 2019 ALL RIGHTS RESERVED.
+
+[m2engage]
+regionTag=AS_JP_MegaMan
+sortRawGenre=
+index=43
+demo_time=5580
+country=jp
+
+[Description]
+Text = 
+1994年10月21日発売　
+　　　　　　　　　　　　　　　　　　　　　　　　　　
+大人気のアクションシリーズ
+『ロックマン』の１～３作目が
+メガドライブ向けにアレンジさ
+れて登場！　さらに３作すべて
+をクリアすれば、オリジナルの
+ボスが待つ「ワイリータワー」
+に挑戦できます。

@@ -228,7 +228,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
                 newNode.SelectedImageIndex = newNode.ImageIndex = getImageIndex(nesElement as INesMenuElement);
-                newNode.Text = nesElement.Name;
+                newNode.Text = nesElement.ToString();
                 newNode.Tag = nesElement;
                 treeNodeCollection.Add(newNode);
                 if (nesElement is NesMenuFolder)
@@ -296,7 +296,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     var element = (INesMenuElement)n.Tag;
                     var item = new ListViewItem();
-                    item.Text = element.Name;
+                    item.Text = element.ToString();
                     var transparency = cuttedNodes.Contains(n) ? 1 : 0;
                     item.ImageIndex = getImageIndex(element) + transparency;
                     item.Tag = n;

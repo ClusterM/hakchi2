@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Castlevania_Bloodlines.bin --preamp=1.75 --mdz80.overclock=0.998
+Path=/var/saves/CLV-M2-us_us_Castlevania_Bloodlines
+Name=Castlevania: BLOODLINES
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Castlevania_Bloodlines/CLV-M2-us_us_Castlevania_Bloodlines.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Castlevania_Bloodlines
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Castlevania: BLOODLINES
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_Castlev
+sortRawGenre=
+index=5
+demo_time=6180
+country=us
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+Castlevania, the famed action-
+adventure series, gets a unique 
+entry on the Genesis/Mega Drive. 
+John Morris and Eric Lecarde fight 
+their way across Europe to stop 
+Dracula from being resurrected.

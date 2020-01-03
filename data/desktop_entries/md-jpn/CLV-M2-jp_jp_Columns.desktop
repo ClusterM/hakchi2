@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Columns.bin --preamp=2.83 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-jp_jp_Columns
+Name=Columns
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Columns/CLV-M2-jp_jp_Columns.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Columns
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Columns
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_EN_Colums
+sortRawGenre=
+index=36
+demo_time=4680
+country=us
+
+[Description]
+Text = 
+Release Year: 1990
+ 
+This falling-piece puzzle game
+will captivate you with gorgeous
+jewels and soothing audio. Connect
+gems in horizontal, vertical, or
+diagonal lines to clear them.
+Features many modes, including 2-
+player Doubles or Flash Columns.

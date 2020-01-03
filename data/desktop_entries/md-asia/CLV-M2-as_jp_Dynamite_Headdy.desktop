@@ -1,0 +1,29 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Dynamite_Headdy.bin --preamp=-1.46 --mdz80.overclock=0.99
+Path=/var/saves/CLV-M2-as_jp_Dynamite_Headdy
+Name=Dynamite Headdy
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Dynamite_Headdy/CLV-M2-as_jp_Dynamite_Headdy.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Dynamite_Headdy
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Dynamite Headdy
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_JP_Dynamit
+sortRawGenre=
+index=
+demo_time=
+country=jp
+
+[Description]
+Text = 

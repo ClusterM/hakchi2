@@ -1,0 +1,36 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Party_Quiz_MEGA_Q.bin --preamp=0.86 --md_multitap=2 --player_num=5 --mdz80.overclock=0.976
+Path=/var/saves/CLV-M2-jp_jp_Party_Quiz_MEGA_Q
+Name=Party Quiz Mega Q
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Party_Quiz_MEGA_Q/CLV-M2-jp_jp_Party_Quiz_MEGA_Q.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Party_Quiz_MEGA_Q
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Party Quiz Mega Q
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_EN_PQMEGQ
+sortRawGenre=
+index=34
+demo_time=1800
+country=jp
+
+[Description]
+Text = 
+Release Year: 1993
+ 
+Join in a quiz show, and compete
+with up to 5 players for the top
+prize! To spice things up, the
+quiz format will change as you
+progress.

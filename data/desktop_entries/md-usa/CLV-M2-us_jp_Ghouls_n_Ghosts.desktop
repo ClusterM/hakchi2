@@ -1,0 +1,39 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_jp_Ghouls_n_Ghosts.bin --preamp=4.84 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_jp_Ghouls_n_Ghosts
+Name=大魔界村
+CePrefix=JP
+Icon=/var/games/CLV-M2-us_jp_Ghouls_n_Ghosts/CLV-M2-us_jp_Ghouls_n_Ghosts.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_jp_Ghouls_n_Ghosts
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=大魔界村
+SortRawPublisher=UNKNOWN
+Copyright=©CAPCOM CO., LTD. 1988, 2019 ALL RIGHTS RESERVED.
+REPROGRAMMED GAME©SEGA
+
+[m2engage]
+regionTag=US_JP_Ghoulsn
+sortRawGenre=
+index=15
+demo_time=5400
+country=jp
+
+[Description]
+Text = 
+1989年 8月 3日発売　　
+　　　　　　　　　　　
+名作アクション『魔界村』が、
+強力にパワーアップしたシリー
+ズ第２弾です。魔王を倒して３
+年後、復活した魔界の手の者に
+より命を奪われたプリンセスの
+ため、再びアーサーの戦いが始
+まります。

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_jp_Castlevania_Bloodlines.bin --preamp=1.75 --mdz80.overclock=0.998
+Path=/var/saves/CLV-M2-eu_jp_Castlevania_Bloodlines
+Name=VAMPIRE KILLER（バンパイアキラー）
+CePrefix=JP
+Icon=/var/games/CLV-M2-eu_jp_Castlevania_Bloodlines/CLV-M2-eu_jp_Castlevania_Bloodlines.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_jp_Castlevania_Bloodlines
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=VAMPIRE KILLER（バンパイアキラー）
+SortRawPublisher=UNKNOWN
+Copyright=©Konami Digital Entertainment
+
+[m2engage]
+regionTag=EU_JP_Castlev
+sortRawGenre=
+index=4
+demo_time=6180
+country=jp
+
+[Description]
+Text = 
+1994年 3月18日発売　
+　　　　　　　　　　　
+『悪魔城ドラキュラ』シリーズ
+のメガドライブオリジナル・ア
+クションです。ドラキュラ復活
+の儀式を阻止するために、ジョ
+ニー・モリスと、エリック・リ
+カードが、ヨーロッパ全土をめ
+ぐる戦いを繰り広げます。

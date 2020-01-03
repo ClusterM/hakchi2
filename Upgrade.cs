@@ -207,9 +207,10 @@ namespace com.clusterrr.hakchi_gui
 
                 new Action() {
                     startingVersion = new Version("0.0.0.0"),
-                    targetVersion = new Version("3.6.1.1001"),
+                    targetVersion = new Version("3.6.1.1002"),
                     action = new ActionFunc(() => {
                         mainForm.ResetOriginalGamesForAllSystems(true);
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].MaxGamesPerFolder = 100;
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].FolderImagesSet = "TheWez1981-Genesis";
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].OriginalGames.Clear();
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].OriginalGames.AddRange(new string[] {
@@ -259,6 +260,7 @@ namespace com.clusterrr.hakchi_gui
                             "CLV-M2-us_us_World_of_Illusion"
                         });
 
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].MaxGamesPerFolder = 100;
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].FolderImagesSet = "TheWez1981-MegaDrive";
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].OriginalGames.Clear();
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].OriginalGames.AddRange(new string[] {
@@ -309,7 +311,8 @@ namespace com.clusterrr.hakchi_gui
                             "CLV-M2-eu_en_World_of_Illusion"
                         });
 
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].FolderImagesSet = "TheWez1981-MegaDrive";
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].MaxGamesPerFolder = 100;
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].FolderImagesSet = "TheWez1981-MegaDrive-JP";
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].OriginalGames.Clear();
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].OriginalGames.AddRange(new string[] {
                             "CLV-M2-jp_jp_Alisia_Dragoon",
@@ -362,11 +365,41 @@ namespace com.clusterrr.hakchi_gui
                             "CLV-M2-jp_jp_Yu_Yu_Hakusho"
                         });
 
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].MaxGamesPerFolder = 100;
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].FolderImagesSet = "TheWez1981-MegaDrive";
-                        //ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].OriginalGames.Clear();
-                        //ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].OriginalGames.AddRange(new string[] {
-                        //
-                        //});
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].OriginalGames.Clear();
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].OriginalGames.AddRange(new string[] {
+                            "CLV-M2-as_en_Alien_Soldier",
+                            "CLV-M2-as_en_Alisia_Dragoon",
+                            "CLV-M2-as_en_Castle_of_Illusion",
+                            "CLV-M2-as_en_Castlevania_Bloodlines",
+                            "CLV-M2-as_en_Comix_Zone",
+                            "CLV-M2-as_en_Contra_Hard_Corps",
+                            "CLV-M2-as_en_Disney_s_Aladdin",
+                            "CLV-M2-as_en_Dynamite_Headdy",
+                            "CLV-M2-as_en_Gauntlet_IV",
+                            "CLV-M2-as_en_Ghouls_n_Ghosts",
+                            "CLV-M2-as_en_Gunstar_Heroes",
+                            "CLV-M2-as_en_Landstalker",
+                            "CLV-M2-as_en_M_U_S_H_A",
+                            "CLV-M2-as_en_Mega_Man",
+                            "CLV-M2-as_en_OutRun2019",
+                            "CLV-M2-as_en_Phantasy_Star_IV",
+                            "CLV-M2-as_en_Puyo_Puyo",
+                            "CLV-M2-as_en_Road_Rash_II",
+                            "CLV-M2-as_en_Shining_Force",
+                            "CLV-M2-as_en_Shining_Force_II",
+                            "CLV-M2-as_en_Sonic_The_Hedgehog",
+                            "CLV-M2-as_en_Sonic_The_Hedgehog_2",
+                            "CLV-M2-as_en_Streets_of_Rage_2",
+                            "CLV-M2-as_en_Strider",
+                            "CLV-M2-as_en_Sword_of_Vermilion",
+                            "CLV-M2-as_en_Target_Earth",
+                            "CLV-M2-as_en_Tetris",
+                            "CLV-M2-as_en_The_Story_of_Thor",
+                            "CLV-M2-as_en_Wonder_Boy_in_Monster_World",
+                            "CLV-M2-as_en_World_of_Illusion"
+                        });
 
                         return true;
                     })

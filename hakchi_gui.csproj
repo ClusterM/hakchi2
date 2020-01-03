@@ -907,6 +907,1065 @@
     <None Include="images\reddit.png" />
     <None Include="images\github.png" />
     <None Include="images\paypal.png" />
+    <None Include="art\AC5F4CCA - Xeno Crisis %28Blue%29.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\AC5F4CCA - Xeno Crisis %28Genesis%29.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\AC5F4CCA - Xeno Crisis %28Japan Alt%29.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\AC5F4CCA - Xeno Crisis %28Japan%29.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\AC5F4CCA - Xeno Crisis %28Mega Drive%29.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\AC5F4CCA - Xeno Crisis %28Red%29.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_de_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_de_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Alien_Soldier_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Alisia_Dragoon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Castle_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Comix_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Disney_s_Aladdin_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Dynamite_Headdy_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Gauntlet_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Ghouls_n_Ghosts_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Gunstar_Heroes_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Mega_Man_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_M_U_S_H_A_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_OutRun2019_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Phantasy_Star_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Puyo_Puyo_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Road_Rash_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Shining_Force_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Shining_Force_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Sonic_The_Hedgehog_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Sonic_The_Hedgehog_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Streets_of_Rage_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Strider_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Sword_of_Vermilion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Target_Earth_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Tetris_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_Wonder_Boy_in_Monster_World_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_en_World_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_eu_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_fr_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_fr_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_it_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Alien_Soldier_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Alisia_Dragoon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Castle_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Columns_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Comix_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Darius_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Disney_s_Aladdin_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Dynamite_Headdy_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Game_no_Kanzume_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Gauntlet_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Ghouls_n_Ghosts_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Golden_Axe_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Gunstar_Heroes_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Langrisser_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Marble_Madness_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Mega_Man_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Monster_World_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_M_U_S_H_A_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_OutRun2019_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Phantasy_Star_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Puyo_Puyo_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Puyo_Puyo_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Road_Rash_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Shining_Force_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Shining_Force_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Slap_Fight_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Snow_Bros_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Sonic_The_Hedgehog_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Sonic_The_Hedgehog_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Space_Harrier_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Streets_of_Rage_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Strider_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Super_Fantasy_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Sword_of_Vermilion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Tant_R_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Target_Earth_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Tetris_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_The_Revenge_of_Shinobi_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Thunder_Force_III_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Westlebal_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_Wonder_Boy_in_Monster_World_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_jp_World_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_ko_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_sp_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_sp_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-as_sp_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_ch_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_de_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_de_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Alex_Kidd_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Alisia_Dragoon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Altered_Beast_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Castle_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Columns_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Comix_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Darius_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Disney_s_Aladdin_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Dr_Robotnik_s_Mean_Bean_Machine_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Dynamite_Headdy_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Earthworm_Jim_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Ecco_the_Dolphin_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Eternal_Champions_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Ghouls_n_Ghosts_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Golden_Axe_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Gunstar_Heroes_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Kid_Chameleon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Light_Crusader_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Mega_Man_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Monster_World_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Mortal_Kombat_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Phantasy_Star_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Road_Rash_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Shining_Force_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Shinobi_III_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Sonic_Spinball_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Sonic_The_Hedgehog_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Sonic_The_Hedgehog_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Space_Harrier_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Streets_of_Rage_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_STREET_FIGHTER_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Strider_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Super_Fantasy_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Sword_of_Vermilion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Tetris_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Thunder_Force_III_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_ToeJam_Earl_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Vectorman_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Virtua_Fighter_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_Wonder_Boy_in_Monster_World_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_en_World_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_eu_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_eu_Light_Crusader_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_eu_Sonic_Spinball_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_fr_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_fr_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Alex_Kidd_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Alisia_Dragoon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Altered_Beast_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Castle_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Comix_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Disney_s_Aladdin_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Dr_Robotnik_s_Mean_Bean_Machine_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Dynamite_Headdy_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Ecco_the_Dolphin_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Eternal_Champions_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Ghouls_n_Ghosts_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Gunstar_Heroes_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Kid_Chameleon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Light_Crusader_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Mega_Man_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Phantasy_Star_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Road_Rash_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Shining_Force_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Shinobi_III_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Sonic_Spinball_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Sonic_The_Hedgehog_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Sonic_The_Hedgehog_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_STREET_FIGHTER_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Strider_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Sword_of_Vermilion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Tetris_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_Wonder_Boy_in_Monster_World_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_jp_World_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_ko_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_ko_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_ko_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_sp_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-eu_us_Streets_of_Rage_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_de_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_de_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Alisia_Dragoon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Comix_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Disney_s_Aladdin_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Dynamite_Headdy_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Gauntlet_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Ghouls_n_Ghosts_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Gunstar_Heroes_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Mega_Man_The_Wily_Wars_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Monster_World_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_M_U_S_H_A_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Phantasy_Star_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Puyo_Puyo_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Shining_Force_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Shining_Force_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Sonic_The_Hedgehog_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Sonic_The_Hedgehog_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Streets_of_Rage_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_STREET_FIGHTER_II_SPECIAL_CHAMPION_EDITION_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Target_Earth_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_Tetris_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_etc_World_of_Illusion_Starring_Mickey_Mouse_and_Donald_Duck_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_eu_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_fr_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_fr_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_it_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Alisia_Dragoon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Columns_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Comix_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Darius_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Disney_s_Aladdin_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Dynamite_Headdy_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Dyna_Brothers_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Game_no_Kanzume_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Gauntlet_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Ghouls_n_Ghosts_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Golden_Axe_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Gunstar_Heroes_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Langrisser_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Lord_Monarch_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Mado_Monogatari_I_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Marble_Madness_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Mega_Man_The_Wily_Wars_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Monster_World_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_M_U_S_H_A_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Party_Quiz_MEGA_Q_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Phantasy_Star_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Puyo_Puyo_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Puyo_Puyo_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Rent_A_Hero_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Road_Rash_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Shining_Force_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Shining_Force_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Slap_Fight_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Snow_Bros_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Sonic_The_Hedgehog_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Sonic_The_Hedgehog_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Space_Harrier_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Streets_of_Rage_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_STREET_FIGHTER_II_SPECIAL_CHAMPION_EDITION_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Super_Fantasy_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Tant_R_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Target_Earth_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Tetris_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_The_Hybrid_Front_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_The_Revenge_of_Shinobi_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Thunder_Force_III_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_World_of_Illusion_Starring_Mickey_Mouse_and_Donald_Duc_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Wrestleball_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_jp_Yu_Yu_Hakusho_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_ko_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_sp_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_sp_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_sp_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-jp_us_Road_Rash_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_de_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_de_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_eu_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_eu_Light_Crusader_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_eu_Sonic_Spinball_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_fr_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_fr_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_it_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Alex_Kidd_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Alisia_Dragoon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Altered_Beast_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Castle_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Comix_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Dr_Robotnik_s_Mean_Bean_Machine_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Dynamite_Headdy_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Ecco_the_Dolphin_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Eternal_Champions_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Ghouls_n_Ghosts_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Gunstar_Heroes_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Kid_Chameleon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Light_Crusader_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Mega_Man_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Phantasy_Star_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Road_Rash_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Shining_Force_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Shinobi_III_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Sonic_Spinball_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Sonic_The_Hedgehog_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Streets_of_Rage_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_STREET_FIGHTER_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Strider_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Sword_of_Vermilion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Tetris_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_Wonder_Boy_in_Monster_World_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_jp_World_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_ko_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_sp_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_sp_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_sp_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Alex_Kidd_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Alisia_Dragoon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Altered_Beast_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Castlevania_Bloodlines_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Castle_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Columns_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Comix_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Contra_Hard_Corps_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Darius_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Dr_Robotnik_s_Mean_Bean_Machine_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Dynamite_Headdy_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Earthworm_Jim_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Ecco_the_Dolphin_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Eternal_Champions_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Ghouls_n_Ghosts_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Golden_Axe_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Gunstar_Heroes_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Kid_Chameleon_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Landstalker_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Light_Crusader_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Mega_Man_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Monster_World_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Mortal_Kombat_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Phantasy_Star_IV_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Road_Rash_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Shining_Force_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Shinobi_III_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Sonic_Spinball_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Sonic_The_Hedgehog_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Sonic_The_Hedgehog_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Space_Harrier_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Streets_of_Rage_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_STREET_FIGHTER_II_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Strider_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Super_Fantasy_Zone_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Sword_of_Vermilion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Tetris_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_The_Story_of_Thor_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Thunder_Force_III_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_ToeJam_Earl_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Vectorman_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Virtua_Fighter_2_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_Wonder_Boy_in_Monster_World_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="art\originals\CLV-M2-us_us_World_of_Illusion_mdmini.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="folderlist.css" />
     <None Include="hakchi.png" />
     <None Include="hakchi-spine.png" />
@@ -947,6 +2006,339 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="folder_images\TheWez1981-MegaDrive\spines\folder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\README.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\README.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_d.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_e.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_f.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_g.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_h.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_i.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_j.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_k.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_l.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_m.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_n.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_number.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_o.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_p.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_q.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_r.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_retroarch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_2600.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_32x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_arcade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_dreamcast.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_famicom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_fds.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_gb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_gba.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_gbc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_genesis.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_gg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_n64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_neogeo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_neogeopocket.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_nes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_nintendods.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_pce.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_playstation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_psp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_segacd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_sms.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_snes_eu_jp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_snes_usa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_superfamicom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_t.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_u.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_v.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_w.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_y.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_z.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\README.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_d.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_e.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_f.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_g.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_h.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_i.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_j.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_k.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_l.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_m.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_n.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_number.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_o.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_p.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_q.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_r.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_retroarch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_s.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_2600.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_32x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_arcade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_dreamcast.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_famicom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_fds.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_gb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_gba.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_gbc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_genesis.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_gg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_n64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_neogeo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_neogeopocket.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_nes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_nintendods.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_pce.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_playstation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_psp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_segacd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_sms.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_snes_eu_jp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_snes_usa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_superfamicom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_t.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_u.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_v.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_w.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_y.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_z.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="ModHub\snes-dots.png" />

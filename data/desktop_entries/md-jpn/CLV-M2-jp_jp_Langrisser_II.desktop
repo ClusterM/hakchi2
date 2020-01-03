@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Langrisser_II.bin --preamp=1.38 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-jp_jp_Langrisser_II
+Name=Langrisser II
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Langrisser_II/CLV-M2-jp_jp_Langrisser_II.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Langrisser_II
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Langrisser II
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_JP_Langr2
+sortRawGenre=
+index=24
+demo_time=4800
+country=jp
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+This wildly popular tactical RPG
+chronicles a clash between two
+swords: the holy blade known as
+Langrisser, and its diabolic twin,
+Alhazard. Enjoy tactical battles,
+and a piece of a dramatic saga two
+decades in the telling.

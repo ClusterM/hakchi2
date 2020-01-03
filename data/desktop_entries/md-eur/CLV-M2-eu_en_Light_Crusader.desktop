@@ -1,0 +1,36 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_Light_Crusader.bin --preamp=1 --mdz80.overclock=1.001
+Path=/var/saves/CLV-M2-eu_en_Light_Crusader
+Name=光之十字軍戰士
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_Light_Crusader/CLV-M2-eu_en_Light_Crusader.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_Light_Crusader
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=光之十字軍戰士
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_LightCr
+sortRawGenre=
+index=19
+demo_time=1800
+country=us
+
+[Description]
+Text = 
+發行年份：1995年  
+                
+由專業製作團隊TREASURE所研發的
+動作RPG遊戲。化身為劍士戴維特．
+朗達，闖過遍布在迷宮中的各種陷阱
+機關，查明魔法師公會不懷好意的
+詭異事件真相，不斷展開冒險。

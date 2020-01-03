@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Snow_Bros.bin --preamp=4.48 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_jp_Snow_Bros
+Name=Snow Bros.
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Snow_Bros/CLV-M2-as_jp_Snow_Bros.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Snow_Bros
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Snow Bros.
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_SnowBro
+sortRawGenre=
+index=21
+demo_time=5220
+country=us
+
+[Description]
+Text = 
+Release Year: 1993
+ 
+Toaplan's fixed-screen action game
+gets a tune-up for the Genesis/
+Mega Drive. Snowman brothers Nick
+and Tom fight monsters with snowballs
+to rescue their princess
+from the claws of monsters.
+(Supports up to 2 players.)

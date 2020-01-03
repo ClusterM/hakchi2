@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_Alex_Kidd.bin --preamp=3.33 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_en_Alex_Kidd
+Name=Alex Kidd in the Enchanted Castle
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_Alex_Kidd/CLV-M2-eu_en_Alex_Kidd.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_Alex_Kidd
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Alex Kidd in the Enchanted Castle
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_ALEXKID
+sortRawGenre=
+index=0
+demo_time=5400
+country=us
+
+[Description]
+Text = 
+Release Year: 1990
+ 
+Alex Kidd, master of rock-paper-
+scissors and kung fu, stars in 
+this action game. On a frightening 
+planet where losing at rock-paper-
+scissors means death, Alex Kidd 
+must earn money, buy vehicles, and 
+explore the world.

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_Darius.bin --preamp=-1.22 --dev.mdpad.enable_6b_toejam2_hack=1 --mdz80.overclock=0.945
+Path=/var/saves/CLV-M2-as_jp_Darius
+Name=Darius
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_Darius/CLV-M2-as_jp_Darius.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_Darius
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Darius
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_JP_Darius_
+sortRawGenre=
+index=28
+demo_time=7200
+country=jp
+
+[Description]
+Text = 
+Release Year: 2019
+ 
+Taito's 1986 hit arcade shooter
+Darius makes its official debut
+on the Genesis/Mega Drive. This
+faithful port comes with a brand-
+new special mode where you can
+face off against all 26 huge
+battleships!

@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_Comix_Zone.bin --preamp=-2.66 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_en_Comix_Zone
+Name=Comix Zone
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_Comix_Zone/CLV-M2-as_en_Comix_Zone.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_Comix_Zone
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Comix Zone
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_ComixZo
+sortRawGenre=
+index=10
+demo_time=8100
+country=us
+
+[Description]
+Text = 
+Release Year: 1995
+ 
+Experience an action game in a
+unique setting based on American
+comic books. A comic artist finds
+himself lost in the Comix Zone,
+and must battle his way through
+panels of mutants to escape it!

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_jp_Sonic_The_Hedgehog.bin --preamp=-0.86 --mdz80.overclock=0.989
+Path=/var/saves/CLV-M2-us_jp_Sonic_The_Hedgehog
+Name=ソニック・ザ・ヘッジホッグ
+CePrefix=JP
+Icon=/var/games/CLV-M2-us_jp_Sonic_The_Hedgehog/CLV-M2-us_jp_Sonic_The_Hedgehog.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_jp_Sonic_The_Hedgehog
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ソニック・ザ・ヘッジホッグ
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=US_JP_Sonic1_
+sortRawGenre=
+index=29
+demo_time=6000
+country=jp
+
+[Description]
+Text = 
+1991年 7月26日発売　　
+　　　　　　　　　　　
+世界中のゲームファンが夢中に
+なった音速ハリネズミ「ソニッ
+ク」の、すべてのはじまりとな
+る第１作。ボタン１つと移動だ
+けで楽しめるシンプルな操作で
+くり広げられる、スピード感満
+点のアクションを楽しもう！

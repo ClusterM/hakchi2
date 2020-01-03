@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_us_Shining_Force.bin --preamp=1.59 --mdz80.overclock=1.001
+Path=/var/saves/CLV-M2-us_us_Shining_Force
+Name=Shining Force
+CePrefix=US
+Icon=/var/games/CLV-M2-us_us_Shining_Force/CLV-M2-us_us_Shining_Force.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_us_Shining_Force
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Shining Force
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EN_Shining
+sortRawGenre=
+index=26
+demo_time=7380
+country=us
+
+[Description]
+Text = 
+Release Year: 1993
+ 
+The first entry in the ever-
+popular tactical RPG series. A 
+millennium after the Dark Dragon 
+was sealed, thirty warriors of 
+light band together to stop the 
+invading forces of Runefaust.

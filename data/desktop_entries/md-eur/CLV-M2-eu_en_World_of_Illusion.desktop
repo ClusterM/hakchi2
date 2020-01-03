@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_World_of_Illusion.bin --preamp=6.08 --machine_md.cpu_div=5 --mdz80.overclock=0.999
+Path=/var/saves/CLV-M2-eu_en_World_of_Illusion
+Name=World of Illusion Starring Mickey Mouse and Donald Duck
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_World_of_Illusion/CLV-M2-eu_en_World_of_Illusion.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_World_of_Illusion
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=World of Illusion Starring Mickey Mouse and Donald Duck
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_Worldof
+sortRawGenre=
+index=43
+demo_time=7440
+country=us
+
+[Description]
+Text = 
+Release Year: 1992
+ 
+When Mickey and Donald travel to
+the World of Illusion, they find a
+mysterious and fantastical world
+waiting for them. Share moments of
+tension and wonder with Mickey and
+Donald as you explore a new land
+together.

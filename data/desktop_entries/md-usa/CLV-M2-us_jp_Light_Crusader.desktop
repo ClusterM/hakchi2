@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_jp_Light_Crusader.bin --preamp=1 --mdz80.overclock=1.001
+Path=/var/saves/CLV-M2-us_jp_Light_Crusader
+Name=ライトクルセイダー
+CePrefix=JP
+Icon=/var/games/CLV-M2-us_jp_Light_Crusader/CLV-M2-us_jp_Light_Crusader.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_jp_Light_Crusader
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ライトクルセイダー
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=US_JP_LightCr
+sortRawGenre=
+index=20
+demo_time=1800
+country=jp
+
+[Description]
+Text = 
+1995年 5月26日発売　　
+　　　　　　　　　　　
+職人集団トレジャーが手掛けた
+アクションＲＰＧ。剣士デビッ
+ド・ランダーとなって、迷宮に
+仕掛けられたさまざまなトラッ
+プをかいくぐり、魔法使いギル
+ドがたくらむ怪事件の真相を究
+明する冒険を繰り広げます。

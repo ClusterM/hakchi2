@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_Target_Earth.bin --preamp=1.05 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_en_Target_Earth
+Name=Target Earth
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_Target_Earth/CLV-M2-as_en_Target_Earth.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_Target_Earth
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Target Earth
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_TargetE
+sortRawGenre=
+index=17
+demo_time=5640
+country=us
+
+[Description]
+Text = 
+Release Year: 1990
+ 
+This action-packed shooter won
+many fans for its exhilarating mix
+of mechsuit platforming and
+shooting. Earn equipment based on
+your performance in each stage,
+and customize your loadout for
+eight different levels.

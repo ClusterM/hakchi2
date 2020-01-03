@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_jp_The_Revenge_of_Shinobi.bin --preamp=4.29 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-as_jp_The_Revenge_of_Shinobi
+Name=The Revenge of Shinobi
+CePrefix=JP
+Icon=/var/games/CLV-M2-as_jp_The_Revenge_of_Shinobi/CLV-M2-as_jp_The_Revenge_of_Shinobi.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_jp_The_Revenge_of_Shinobi
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=The Revenge of Shinobi
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_TheReve
+sortRawGenre=
+index=13
+demo_time=5160
+country=us
+
+[Description]
+Text = 
+Release Year: 1990
+ 
+An action game starring Joe 
+Musashi of the Oboro Clan, a 
+modern-day ninja. Battle the evil 
+group Neo Zeed with his deadly 
+Hassou Shuriken attack and potent 
+ninjutsu. Features an acclaimed
+soundtrack by Yuzo Koshiro.

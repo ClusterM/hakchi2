@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Streets_of_Rage_2.bin --preamp=-2.45 --mdz80.overclock=0.992
+Path=/var/saves/CLV-M2-jp_jp_Streets_of_Rage_2
+Name=ベア・ナックルII 死闘への鎮魂歌
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Streets_of_Rage_2/CLV-M2-jp_jp_Streets_of_Rage_2.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Streets_of_Rage_2
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ベア・ナックルII 死闘への鎮魂歌
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA　MUSIC©YUZO KOSHIRO
+
+[m2engage]
+regionTag=JP_JP_StrofR2
+sortRawGenre=
+index=8
+demo_time=7800
+country=jp
+
+[Description]
+Text = 
+1993年 1月14日発売　　
+　　　　　　　　　　　　
+メガドライブ史上特に高い評価
+を得ている、ベルトスクロール
+格闘アクションです。悪のシン
+ジケートから友を救うため、４
+人の戦いが始まります。２人同
+時プレイも可能。古代祐三の音
+楽がゲームを盛り上げます。

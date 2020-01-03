@@ -1,0 +1,36 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_Landstalker.bin --preamp=4.67 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_en_Landstalker
+Name=秘境魔寶 ～皇帝財寶 ～
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_Landstalker/CLV-M2-eu_en_Landstalker.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_Landstalker
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=秘境魔寶 ～皇帝財寶 ～
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_Landsta
+sortRawGenre=
+index=18
+demo_time=1200
+country=us
+
+[Description]
+Text = 
+發行年份：1993年  
+                
+寶藏獵人萊爾和小小的搭檔佛萊戴，為了
+尋找夢幻寶物而不斷展開大冒險之旅，
+是一款大為暢銷的動作RPG遊戲。
+以特別的角度打造出許多3D才能呈現的
+機關謎題，讓玩家們絞盡了腦汁。

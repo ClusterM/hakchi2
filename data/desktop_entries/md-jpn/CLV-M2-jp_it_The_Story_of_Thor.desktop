@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_it_The_Story_of_Thor.bin --preamp=1.09 --mdz80.overclock=0.997
+Path=/var/saves/CLV-M2-jp_it_The_Story_of_Thor
+Name=The Story of Thor
+CePrefix=IT
+Icon=/var/games/CLV-M2-jp_it_The_Story_of_Thor/CLV-M2-jp_it_The_Story_of_Thor.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_it_The_Story_of_Thor
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=The Story of Thor
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_IT_TSofTho
+sortRawGenre=
+index=13
+demo_time=13380
+country=eu
+
+[Description]
+Text = 
+Anno di pubblicazione: 1995
+ 
+Un giovane ottiene un bracciale
+d'oro che può evocare quattro
+spiriti: comincia così l'esilarante
+RPG tattico sviluppato da Ancient,
+i creatori di Streets of Rage II. La
+colonna sonora di Yuzo Koshiro è
+imperdibile!

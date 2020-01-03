@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Thunder_Force_III.bin --preamp=-0.61 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-jp_jp_Thunder_Force_III
+Name=Thunder Force III
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Thunder_Force_III/CLV-M2-jp_jp_Thunder_Force_III.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Thunder_Force_III
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Thunder Force III
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_EN_TFoIII
+sortRawGenre=
+index=32
+demo_time=4920
+country=us
+
+[Description]
+Text = 
+Release Year: 1990
+ 
+The third side-scrolling shooter
+from the legendary Technosoft.
+Pilot the Styx and equip five
+different weapons in your war
+against the ORN Empire, a
+genocidal cyborg army bent on
+conquering the universe.

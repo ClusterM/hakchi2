@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_Golden_Axe.bin --preamp=3.08 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_en_Golden_Axe
+Name=Golden Axe
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_Golden_Axe/CLV-M2-eu_en_Golden_Axe.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_Golden_Axe
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Golden Axe
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_GoldenA
+sortRawGenre=
+index=15
+demo_time=7800
+country=us
+
+[Description]
+Text = 
+Release Year: 1990
+ 
+A definitive work in the swords-
+and-sorcery fantasy action genre.
+Three staunch allies set out to
+defeat Death Adder and avenge
+their parents. Features not only
+2-player cooperative play, but
+also a competitive Duel Mode.

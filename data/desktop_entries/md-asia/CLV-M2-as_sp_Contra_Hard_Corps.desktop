@@ -1,0 +1,37 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_sp_Contra_Hard_Corps.bin --preamp=-1.34 --mdz80.overclock=0.982
+Path=/var/saves/CLV-M2-as_sp_Contra_Hard_Corps
+Name=Probotector
+CePrefix=SP
+Icon=/var/games/CLV-M2-as_sp_Contra_Hard_Corps/CLV-M2-as_sp_Contra_Hard_Corps.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_sp_Contra_Hard_Corps
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Probotector
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_FR_ContraH
+sortRawGenre=
+index=12
+demo_time=8700
+country=us
+
+[Description]
+Text = 
+Année de sortie: 1994
+ 
+Combats tes ennemis dans ce jeu de
+tir intense. Choisis parmi une
+pléthore de personnages, d'armes et
+même de chemins différents tandis
+que tu élimines les boss un par un
+en solo ou en coop.

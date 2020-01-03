@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_eu_Sonic_Spinball.bin --preamp=-4.45 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-us_eu_Sonic_Spinball
+Name=Sonic The Hedgehog Spinball
+CePrefix=EU
+Icon=/var/games/CLV-M2-us_eu_Sonic_Spinball/CLV-M2-us_eu_Sonic_Spinball.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_eu_Sonic_Spinball
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Sonic The Hedgehog Spinball
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=US_EU_SonicSp
+sortRawGenre=
+index=28
+demo_time=4080
+country=jp
+
+[Description]
+Text = 
+Anno di pubblicazione: 1993
+ 
+Il porcospino più veloce del mondo
+arriva nel mondo del flipper in una
+nuovissima avventura! In questo
+gioco d'azione il divertimento è
+assicurato: trova i Chaos Emerald e
+salva quattro mondi dalle grinfie
+del Dr. Eggman.

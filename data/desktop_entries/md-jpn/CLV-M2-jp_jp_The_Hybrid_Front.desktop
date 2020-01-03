@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_The_Hybrid_Front.bin --preamp=1.02 --machine_md.cpu_div=5 --mdz80.overclock=0.985
+Path=/var/saves/CLV-M2-jp_jp_The_Hybrid_Front
+Name=The Hybrid Front
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_The_Hybrid_Front/CLV-M2-jp_jp_The_Hybrid_Front.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_The_Hybrid_Front
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=The Hybrid Front
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_JP_THFron
+sortRawGenre=
+index=26
+demo_time=8100
+country=jp
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+Enter 26th-century Earth, ravaged
+by war and starved of resources,
+in this sci-fi strategy game.
+Directed by Masahiro Noda, one of
+Japan's foremost science fiction
+writers, it boasts a cyberpunk
+world worth getting lost in.

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_en_Shinobi_III.bin --preamp=-3.04 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_en_Shinobi_III
+Name=Shinobi III: Return of the Ninja Master
+CePrefix=EN
+Icon=/var/games/CLV-M2-eu_en_Shinobi_III/CLV-M2-eu_en_Shinobi_III.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_en_Shinobi_III
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Shinobi III: Return of the Ninja Master
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=EU_EN_Shinobi
+sortRawGenre=
+index=27
+demo_time=5580
+country=us
+
+[Description]
+Text = 
+Release Year: 1993
+ 
+In the Shinobi series, players 
+must survive dangers in a modern 
+setting using ninja skills both 
+exotic and technical. Joe Musashi, 
+ninja of justice, takes up sword 
+and shuriken to oppose the evil 
+syndicate Neo Zeed.

@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/eu_jp_Altered_Beast.bin --preamp=-3.45 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-eu_jp_Altered_Beast
+Name=獣王記
+CePrefix=JP
+Icon=/var/games/CLV-M2-eu_jp_Altered_Beast/CLV-M2-eu_jp_Altered_Beast.png
+
+[X-CLOVER Game]
+Code=CLV-M2-eu_jp_Altered_Beast
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=獣王記
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=EU_JP_Altered
+sortRawGenre=
+index=2
+demo_time=4380
+country=jp
+
+[Description]
+Text = 
+1988年11月27日発売　
+　　　　　　　　　　　
+魔人に捕らえられた女神アテナ
+を救い出すために戦うアクショ
+ンです。「スピリットボール」
+を手に入れることで進化を遂げ
+る獣人族の２人は、究極の獣人
+形態へと変身を遂げ、超人的な
+力でモンスターと戦います。

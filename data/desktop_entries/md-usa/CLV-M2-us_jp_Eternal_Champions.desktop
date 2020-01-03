@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/us_jp_Eternal_Champions.bin --preamp=-0.7 --mdz80.overclock=1.001
+Path=/var/saves/CLV-M2-us_jp_Eternal_Champions
+Name=エターナルチャンピオンズ
+CePrefix=JP
+Icon=/var/games/CLV-M2-us_jp_Eternal_Champions/CLV-M2-us_jp_Eternal_Champions.png
+
+[X-CLOVER Game]
+Code=CLV-M2-us_jp_Eternal_Champions
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=エターナルチャンピオンズ
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=US_JP_Eternal
+sortRawGenre=
+index=14
+demo_time=9600
+country=jp
+
+[Description]
+Text = 
+1994年 2月18日発売　
+　　　　　　　　　　
+時代を越えた戦士たちが闘いを
+繰り広げる、異色２Ｄ対戦格闘
+ゲームです。９人の戦士たちが
+世界を救うため、特殊能力を駆
+使して闘います。仕掛け満載の
+バトルルーム対戦やトーナメン
+トモードも用意されています。

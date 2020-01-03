@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/as_en_Strider.bin --preamp=2.75 --mdz80.overclock=0.993
+Path=/var/saves/CLV-M2-as_en_Strider
+Name=Strider
+CePrefix=EN
+Icon=/var/games/CLV-M2-as_en_Strider/CLV-M2-as_en_Strider.png
+
+[X-CLOVER Game]
+Code=CLV-M2-as_en_Strider
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Strider
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=AS_EN_Strider
+sortRawGenre=
+index=20
+demo_time=6840
+country=us
+
+[Description]
+Text = 
+Release Year: 1990
+ 
+This popular action game from 
+Capcom was famed for its acrobatic 
+gameplay, used to traverse 
+cinematic and unpredictable 
+stages. Hiryu, an elite Strider 
+agent, must save Earth from the 
+Grandmaster's reign.

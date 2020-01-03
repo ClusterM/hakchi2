@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Yu_Yu_Hakusho.bin --preamp=-0.89 --md_multitap=2 --player_num=4 --mdz80.overclock=1
+Path=/var/saves/CLV-M2-jp_jp_Yu_Yu_Hakusho
+Name=Yu Yu Hakusho: Battle to Unite the Demon Plane
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Yu_Yu_Hakusho/CLV-M2-jp_jp_Yu_Yu_Hakusho.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Yu_Yu_Hakusho
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Yu Yu Hakusho: Battle to Unite the Demon Plane
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_EN_YYHaku
+sortRawGenre=
+index=22
+demo_time=6420
+country=jp
+
+[Description]
+Text = 
+Release Year: 1994
+ 
+A cast of eleven Yu Yu Hakusho
+favorites--including Yusuke,
+Kuwabara, Kurama, and Hiei--face
+off in this up-to-4-player
+fighter! Master their techniques,
+and aim for the top! (Requires hub 
+adapter, sold separately.)

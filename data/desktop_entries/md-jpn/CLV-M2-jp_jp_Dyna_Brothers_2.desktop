@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Dyna_Brothers_2.bin --preamp=-0.62 --mdz80.overclock=0.997
+Path=/var/saves/CLV-M2-jp_jp_Dyna_Brothers_2
+Name=Dyna Brothers 2
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Dyna_Brothers_2/CLV-M2-jp_jp_Dyna_Brothers_2.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Dyna_Brothers_2
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Dyna Brothers 2
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_JP_DyBro2
+sortRawGenre=
+index=23
+demo_time=13920
+country=jp
+
+[Description]
+Text = 
+Release Year: 1993
+ 
+In this real-time simulation,
+become a planet-protecting god,
+raise dinosaurs, and fight alien
+invaders. Enjoy a map exclusive
+to the digital version, and a
+heartwarming story of dinosaurs.
+You'll laugh! You'll cry!

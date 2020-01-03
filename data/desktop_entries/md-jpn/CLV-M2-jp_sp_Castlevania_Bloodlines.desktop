@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_sp_Castlevania_Bloodlines.bin --preamp=1.75 --mdz80.overclock=0.998
+Path=/var/saves/CLV-M2-jp_sp_Castlevania_Bloodlines
+Name=Castlevania: The New Generation
+CePrefix=SP
+Icon=/var/games/CLV-M2-jp_sp_Castlevania_Bloodlines/CLV-M2-jp_sp_Castlevania_Bloodlines.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_sp_Castlevania_Bloodlines
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=Castlevania: The New Generation
+SortRawPublisher=UNKNOWN
+Copyright=
+
+[m2engage]
+regionTag=JP_SP_CastleB
+sortRawGenre=
+index=0
+demo_time=6180
+country=us
+
+[Description]
+Text = 
+Année de sortie: 1994
+ 
+Castlevania, la célèbre série
+d'action-aventure, fait son entrée
+sur la Mega Drive/Genesis. John
+Morris et Eric Lecarde combattent
+une flopée de monstres à travers
+l'Europe afin d'empêcher Dracula de
+ressusciter.

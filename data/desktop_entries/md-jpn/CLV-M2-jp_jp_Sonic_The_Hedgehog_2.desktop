@@ -1,0 +1,38 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/m2engage /usr/game/system/roms/jp_jp_Sonic_The_Hedgehog_2.bin --preamp=-0.45 --use_subthread=1 --mdz80.overclock=0.987
+Path=/var/saves/CLV-M2-jp_jp_Sonic_The_Hedgehog_2
+Name=ソニック・ザ・ヘッジホッグ2
+CePrefix=JP
+Icon=/var/games/CLV-M2-jp_jp_Sonic_The_Hedgehog_2/CLV-M2-jp_jp_Sonic_The_Hedgehog_2.png
+
+[X-CLOVER Game]
+Code=CLV-M2-jp_jp_Sonic_The_Hedgehog_2
+TestID=0
+ID=0
+Players=1
+Simultaneous=0
+ReleaseDate=
+SaveCount=0
+SortRawTitle=ソニック・ザ・ヘッジホッグ2
+SortRawPublisher=UNKNOWN
+Copyright=©SEGA
+
+[m2engage]
+regionTag=JP_JP_SonicT2
+sortRawGenre=
+index=7
+demo_time=6120
+country=jp
+
+[Description]
+Text = 
+1992年11月21日発売　　
+　　　　　　　　　　　　
+世界のヒーロー、ソニックのシ
+リーズ第２弾。スピード感、爽
+快感ともにパワーアップし、シ
+リーズ中屈指の傑作として名高
+いタイトルです。新たに２本の
+シッポを持つキツネ、テイルス
+も登場。２人プレイも可能です。
