@@ -88,8 +88,18 @@ namespace com.clusterrr.hakchi_gui.Controls
             }
 
             // For some reason Google returns different data for dirrefent users (IPs?)
-            // There is alternative method
+            // This is an alternative method
             search = @"imgurl=(.*?)&";
+            matches = Regex.Matches(responseFromServer, search);
+            foreach (Match match in matches)
+            {
+                // Not sure about it.
+                urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
+            }
+
+            // For some reason Google returns different data for dirrefent users (IPs?)
+            // This is alternative method 2
+            search = "\\]\\n,\\[\"([^\"]+)\",\\d+,\\d+]";
             matches = Regex.Matches(responseFromServer, search);
             foreach (Match match in matches)
             {
