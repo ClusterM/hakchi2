@@ -1542,4 +1542,19 @@ This will erase all data present on the card!</value>
   <data name="Three" xml:space="preserve">
     <value>Three</value>
   </data>
+  <data name="SystemFilesModifiedMessage" xml:space="preserve">
+    <value>The system files appear to have been modified:\n\nVersion: {0}\nHash: {1}\n\nDo you want to continue?</value>
+  </data>
+  <data name="SystemFilesUnknownMessage" xml:space="preserve">
+    <value>The system files are an unknown version:\n\nVersion: {0}\nHash: {1}\n\nDo you want to continue?</value>
+  </data>
+  <data name="UnknownSystemVersionDetected" xml:space="preserve">
+    <value>Unknown System Version Detected</value>
+  </data>
+  <data name="SystemModificationDetected" xml:space="preserve">
+    <value>System Modification Detected</value>
+  </data>
+  <data name="ProjectLunarHasBeenDetected" xml:space="preserve">
+    <value>Project Lunar has been detected, installation cannot continue until it is removed.</value>
+  </data>
 </root>

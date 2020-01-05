@@ -525,7 +525,8 @@ namespace com.clusterrr.hakchi_gui
             "67342a75cf192c361f57e6a3bdbe0682  MOON-mass-moon-es1-v0.8.3-1085AS-1f2365d", // Never Booted
             "121babdd900ba8573e36c98ae51c48bf  MOON-mass-moon-es1-v0.8.3-1085EU-1f2365d", // Never Booted
             "8454dd4c8fdcdbed5563d68992248976  MOON-mass-moon-es1-v0.8.3-1085JP-1f2365d", // Never Booted
-            "c5d31c389940744ac94153935b949503  _MOON-mass-moon-es1-v0.8.1-1080US-e0c1975" // Never Booted
+            "c5d31c389940744ac94153935b949503  _MOON-mass-moon-es1-v0.8.1-1080US-e0c1975", // Never Booted
+            "63a5f47e844ac6cc604f575e496e9ee9  _MOON-rework-moon-es1-v0.8.1-1080US-71571fe" // Never Booted
         };
 
 

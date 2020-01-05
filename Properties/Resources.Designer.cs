@@ -3131,6 +3131,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project Lunar has been detected, installation cannot continue until it is removed..
+        /// </summary>
+        internal static string ProjectLunarHasBeenDetected {
+            get {
+                return ResourceManager.GetString("ProjectLunarHasBeenDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap pt {
@@ -3941,6 +3950,33 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The system files appear to have been modified:\n\nVersion: {0}\nHash: {1}\n\nDo you want to continue?.
+        /// </summary>
+        internal static string SystemFilesModifiedMessage {
+            get {
+                return ResourceManager.GetString("SystemFilesModifiedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The system files are an unknown version:\n\nVersion: {0}\nHash: {1}\n\nDo you want to continue?.
+        /// </summary>
+        internal static string SystemFilesUnknownMessage {
+            get {
+                return ResourceManager.GetString("SystemFilesUnknownMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System Modification Detected.
+        /// </summary>
+        internal static string SystemModificationDetected {
+            get {
+                return ResourceManager.GetString("SystemModificationDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your system&apos;s custom kernel is out of date and requires a reflash before you can use this program. Would you like to flash the custom kernel now?.
         /// </summary>
         internal static string SystemRequiresReflash {
@@ -4173,6 +4209,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string UnknownGame {
             get {
                 return ResourceManager.GetString("UnknownGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown System Version Detected.
+        /// </summary>
+        internal static string UnknownSystemVersionDetected {
+            get {
+                return ResourceManager.GetString("UnknownSystemVersionDetected", resourceCulture);
             }
         }
         

@@ -684,11 +684,19 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);
 
                         var squashfs = hakchi.Shell.ExecuteSimple("hakchi get squashfs").Trim();
-                        var version = hakchi.Shell.ExecuteSimple($"cat \"{squashfs}/version\"", 0, true).Trim();
+
+                        if (hakchi.Shell.Execute($"[ \"$(find {Shared.EscapeShellArgument($"{squashfs}/etc/init.d")} -name \"*_PL_*\" | wc -l)\" == \"0\" ]") != 0)
+                        {
+                            // Project lunar detected
+                            MessageForm.Show(tasker.HostForm, Resources.SystemModificationDetected, com.clusterrr.hakchi_gui.Properties.Resources.ProjectLunarHasBeenDetected, Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.OK }, MessageForm.DefaultButton.Button1);
+                            return Conclusion.Abort;
+                        }
+
+                        var version = hakchi.Shell.ExecuteSimple($"cat {Shared.EscapeShellArgument($"{squashfs}/version")}", 0, true).Trim();
                         using (var versionMemoryStream = new MemoryStream())
                         using (var hasher = new MD5CryptoServiceProvider())
                         {
-                            hakchi.Shell.Execute($"cd \"{squashfs}\" && (echo \"$(cat version)\"; find -type d | sort; find -type l | sort | while read link; do echo \"$link -> $(readlink \"$link\")\"; done; find -type f | sort | while read file; do md5sum \"$file\"; done)", null, versionMemoryStream, versionMemoryStream, 0, true);
+                            hakchi.Shell.Execute($"cd \"{squashfs}\" && (echo \"$(cat {Shared.EscapeShellArgument($"{squashfs}/version")})\"; find -type d | sort; find -type l | sort | while read link; do echo \"$link -> $(readlink \"$link\")\"; done; find -type f | sort | while read file; do md5sum \"$file\"; done)", null, versionMemoryStream, versionMemoryStream, 0, true);
                             versionMemoryStream.Seek(0, SeekOrigin.Begin);
                             var hash = BitConverter.ToString(hasher.ComputeHash(versionMemoryStream)).Replace("-", "").ToLower();
                             versionMemoryStream.Seek(0, SeekOrigin.Begin);
@@ -728,7 +736,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                     File.WriteAllBytes(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes", $"mismatched_{version}_{hash}"), versionMemoryStream.ToArray());
 
                                     Trace.WriteLine(Encoding.UTF8.GetString(versionMemoryStream.ToArray()));
-                                    if (MessageForm.Show("System Modification Detected", $"The system files appear to have been modified:\n\nVersion: {version}\nHash: {hash}\n\nDo you want to continue?", Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) != MessageForm.Button.Yes)
+                                    if (MessageForm.Show(tasker.HostForm, Resources.SystemModificationDetected, string.Format(Resources.SystemFilesModifiedMessage, version, hash), Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) != MessageForm.Button.Yes)
                                     {
                                         return Conclusion.Abort;
                                     }
@@ -743,7 +751,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                 File.WriteAllBytes(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes", $"unknown_{version}_{hash}"), versionMemoryStream.ToArray());
 
                                 Trace.WriteLine(Encoding.UTF8.GetString(versionMemoryStream.ToArray()));
-                                if (MessageForm.Show("Unknown System Version Detected", $"The system files are an unknown version:\n\nVersion: {version}\nHash: {hash}\n\nDo you want to continue?", Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) != MessageForm.Button.Yes){
+                                if (MessageForm.Show(tasker.HostForm, Resources.UnknownSystemVersionDetected, string.Format(Resources.SystemFilesUnknownMessage, version, hash), Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) != MessageForm.Button.Yes){
                                     return Conclusion.Abort;
                                 }
                             }
