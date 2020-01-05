@@ -26,7 +26,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 new ImageGoogler.SearchQuery()
                 {
-                    Query = $"{App.Name} {App.Metadata.AppInfo.GoogleSuffix} Clear Logo -\"project lunar\" site:thecoverproject.net",
+                    Query = $"{App.Name} {App.Metadata.AppInfo.GoogleSuffix} Clear Logo -\"project lunar\" site:thegamesdb.net",
                     AdditionalVariables = "tbs=ift:png,ic:trans"
                 },
                 new ImageGoogler.SearchQuery()

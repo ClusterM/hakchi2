@@ -148,6 +148,8 @@ namespace com.clusterrr.hakchi_gui.Controls
                     Invoke(new Action<Image>(ShowImage), new object[] { image });
                     return;
                 }
+
+                
                 int i = imageList.Images.Count;
                 const int side = 256;
                 var imageRect = new Bitmap(side, side, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
@@ -160,11 +162,14 @@ namespace com.clusterrr.hakchi_gui.Controls
                     gr.DrawImage(image, new Rectangle(0, (side - side * image.Height / image.Width) / 2, side, side * image.Height / image.Width),
                         new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
                 gr.Flush();
+                listView.BeginUpdate();
                 imageList.Images.Add(imageRect);
                 var item = new ListViewItem(image.Width + "x" + image.Height);
                 item.ImageIndex = i;
                 item.Tag = image;
                 listView.Items.Add(item);
+                listView.EndUpdate();
+                listView.Update();
             }
             catch { }
         }
