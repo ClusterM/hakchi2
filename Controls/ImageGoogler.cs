@@ -15,14 +15,19 @@ namespace com.clusterrr.hakchi_gui.Controls
 {
     public partial class ImageGoogler : UserControl, IDisposable
     {
+        public struct SearchQuery
+        {
+            public string Query;
+            public string AdditionalVariables;
+        }
         public delegate void ImageReceived(Image image);
         public delegate void ImageDeselected();
         public event ImageReceived OnImageSelected;
         public event ImageReceived OnImageDoubleClicked;
         public event ImageDeselected OnImageDeselected;
-        public string Query { get; set; } = "";
-        public string AdditionalVariables { get; set; } = "";
+        public List<SearchQuery> Queries { get; } = new List<SearchQuery>();
         private Thread searchThread;
+        private List<string> downloadedUrls = new List<string>();
 
         public void Deselect()
         {
@@ -33,10 +38,11 @@ namespace com.clusterrr.hakchi_gui.Controls
                     item.Selected = false;
             }
         }
-        public void RunQuery()
+        public void RunQuery(params Bitmap[] customResults)
         {
             imageList.Images.Clear();
             listView.Items.Clear();
+            downloadedUrls.Clear();
 
             if (searchThread != null)
             {
@@ -48,7 +54,11 @@ namespace com.clusterrr.hakchi_gui.Controls
             }
             searchThread = new Thread(() =>
             {
-                SearchThread(Query, AdditionalVariables);
+                foreach (var image in customResults)
+                    ShowImage(image);
+
+                foreach (var query in Queries)
+                    SearchThread(query.Query, query.AdditionalVariables);
             });
             searchThread.Start();
         }
@@ -87,6 +97,11 @@ namespace com.clusterrr.hakchi_gui.Controls
                 urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
             }
 
+            if (urls.Count == 0)
+            {
+                Trace.WriteLine("No results found");
+            }
+
             return urls.ToArray();
         }
 
@@ -99,9 +114,13 @@ namespace com.clusterrr.hakchi_gui.Controls
                 {
                     try
                     {
-                        Trace.WriteLine("Downloading image: " + url);
-                        var image = DownloadImage(url);
-                        ShowImage(image);
+                        if (!downloadedUrls.Contains(url))
+                        {
+                            downloadedUrls.Add(url);
+                            Trace.WriteLine("Downloading image: " + url);
+                            var image = DownloadImage(url);
+                            ShowImage(image);
+                        }
                     }
                     catch { }
                 }
@@ -120,7 +139,7 @@ namespace com.clusterrr.hakchi_gui.Controls
                     return;
                 }
                 int i = imageList.Images.Count;
-                const int side = 204;
+                const int side = 256;
                 var imageRect = new Bitmap(side, side, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
                 var gr = Graphics.FromImage(imageRect);
                 gr.Clear(Color.White);

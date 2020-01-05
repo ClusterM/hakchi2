@@ -1343,8 +1343,21 @@ namespace com.clusterrr.hakchi_gui
 
             using (var spineForm = new SpineForm(app))
             {
+                var logoPath = Path.Combine(app.BasePath, $"{app.Code}_logo.png");
+
+                if (File.Exists(logoPath))
+                {
+                    using (var file = File.OpenRead(logoPath))
+                        spineForm.ClearLogo = new Bitmap(file);
+                }
+
                 if (spineForm.ShowDialog() == DialogResult.OK)
                 {
+                    if (spineForm.ClearLogo != null)
+                    {
+                        spineForm.ClearLogo.Save(logoPath, ImageFormat.Png);
+                    }
+
                     app.SetMdMini(spineForm.Spine as Bitmap, NesMenuElementBase.MdMiniImageType.Spine);
                     spineForm.Spine?.Dispose();
                     spineForm.ClearLogo?.Dispose();

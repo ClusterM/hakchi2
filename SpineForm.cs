@@ -1,4 +1,5 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.hakchi_gui.Controls;
+using com.clusterrr.hakchi_gui.Properties;
 using SpineGen.DrawingBitmaps;
 using SpineGen.JSON;
 using System;
@@ -11,7 +12,7 @@ namespace com.clusterrr.hakchi_gui
     public partial class SpineForm : Form
     {
         public Image Spine { get => pictureBoxSpine.Image; }
-        public Image ClearLogo { get; private set; }
+        public Image ClearLogo { get; set; }
         private NesApplication App { get; set; }
         public SpineForm(NesApplication app)
         {
@@ -21,9 +22,32 @@ namespace com.clusterrr.hakchi_gui
 
         private void SpineForm_Shown(object sender, EventArgs e)
         {
-            imageGoogler1.Query = $"{App.Name} {App.Metadata.AppInfo.GoogleSuffix} Clear Logo -\"project lunar\"";
-            imageGoogler1.AdditionalVariables = "tbs=ift:png,ic:trans"; // Transparent PNG files
-            imageGoogler1.RunQuery();
+            imageGoogler1.Queries.AddRange(new ImageGoogler.SearchQuery[]
+            {
+                new ImageGoogler.SearchQuery()
+                {
+                    Query = $"{App.Name} {App.Metadata.AppInfo.GoogleSuffix} Clear Logo -\"project lunar\" site:thecoverproject.net",
+                    AdditionalVariables = "tbs=ift:png,ic:trans"
+                },
+                new ImageGoogler.SearchQuery()
+                {
+                    Query = $"{App.Name} {App.Metadata.AppInfo.GoogleSuffix} Clear Logo -\"project lunar\" site:gamesdb.launchbox-app.com",
+                    AdditionalVariables = "tbs=ift:png,ic:trans"
+                },
+                new ImageGoogler.SearchQuery()
+                {
+                    Query = $"{App.Name} {App.Metadata.AppInfo.GoogleSuffix} Clear Logo -\"project lunar\"",
+                    AdditionalVariables = "tbs=ift:png,ic:trans"
+                }
+            });
+            if (ClearLogo != null)
+            {
+                imageGoogler1.RunQuery(ClearLogo as Bitmap);
+            } 
+            else
+            {
+                imageGoogler1.RunQuery();
+            }
         }
 
         private void SpineForm_Load(object sender, EventArgs e)

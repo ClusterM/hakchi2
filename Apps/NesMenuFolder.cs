@@ -1,9 +1,7 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Resources;
 
@@ -268,6 +266,7 @@ namespace com.clusterrr.hakchi_gui
             iconPath = Path.Combine(path, desktop.Code + ".png");
             smallIconPath = Path.Combine(path, desktop.Code + "_small.png");
             spinePath = Path.Combine(path, desktop.Code + "_spine.png");
+            logoPath = Path.Combine(path, desktop.Code + "_logo.png");
             originalArtPath = Path.Combine(path, desktop.Code + "_original.png");
             mdMiniIconPath = Path.Combine(path, desktop.Code + "_mdmini.png");
         }

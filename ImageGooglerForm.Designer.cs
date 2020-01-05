@@ -34,10 +34,8 @@
             // 
             // imageGoogler
             // 
-            this.imageGoogler.AdditionalVariables = "";
             resources.ApplyResources(this.imageGoogler, "imageGoogler");
             this.imageGoogler.Name = "imageGoogler";
-            this.imageGoogler.Query = "";
             this.imageGoogler.OnImageDoubleClicked += new com.clusterrr.hakchi_gui.Controls.ImageGoogler.ImageReceived(this.imageGoogler_OnImageDoubleClicked);
             // 
             // ImageGooglerForm

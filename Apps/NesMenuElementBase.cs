@@ -53,6 +53,7 @@ namespace com.clusterrr.hakchi_gui
         protected string iconPath = string.Empty;
         protected string smallIconPath = string.Empty;
         protected string spinePath = string.Empty;
+        protected string logoPath = string.Empty;
         protected string originalArtPath = string.Empty;
         protected string mdMiniIconPath = string.Empty;
 
@@ -78,6 +79,7 @@ namespace com.clusterrr.hakchi_gui
                 iconPath = Path.Combine(basePath, desktop.IconFilename);
                 smallIconPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_small" + Path.GetExtension(desktop.IconFilename));
                 spinePath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_spine" + Path.GetExtension(desktop.IconFilename));
+                logoPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_logo" + Path.GetExtension(desktop.IconFilename));
                 originalArtPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_original" + Path.GetExtension(desktop.IconFilename));
                 mdMiniIconPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_mdmini" + Path.GetExtension(desktop.IconFilename));
             }
@@ -97,6 +99,7 @@ namespace com.clusterrr.hakchi_gui
                 iconPath = Path.Combine(basePath, desktop.IconFilename);
                 smallIconPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_small" + Path.GetExtension(desktop.IconFilename));
                 spinePath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_spine" + Path.GetExtension(desktop.IconFilename));
+                logoPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_logo" + Path.GetExtension(desktop.IconFilename));
                 originalArtPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_original" + Path.GetExtension(desktop.IconFilename));
                 mdMiniIconPath = Path.Combine(basePath, Path.GetFileNameWithoutExtension(desktop.IconFilename) + "_mdmini" + Path.GetExtension(desktop.IconFilename));
             }
@@ -122,7 +125,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 return Shared.DirectorySize(basePath, hakchi.BLOCK_SIZE, new string[] {
                     $"{desktop.Code}_original.png",
-                    $"{desktop.Code}_spine.png"
+                    $"{desktop.Code}_spine.png",
+                    $"{desktop.Code}_logo.png"
                 });
             }
             catch { }

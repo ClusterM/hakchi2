@@ -219,6 +219,11 @@ namespace com.clusterrr.hakchi_gui
                     case ConsoleType.SuperFamicom:
                     case ConsoleType.ShonenJump:
                         return "/usr/share/games";
+                    case ConsoleType.MD_ASIA:
+                    case ConsoleType.MD_EUR:
+                    case ConsoleType.MD_JPN:
+                    case ConsoleType.MD_USA:
+                        return "";
                 }
             }
         }

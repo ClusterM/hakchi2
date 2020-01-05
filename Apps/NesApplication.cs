@@ -1210,7 +1210,8 @@ namespace com.clusterrr.hakchi_gui
                 new string[] {
                     desktop.Code + ".desktop",
                     $"{desktop.Code}_original.png",
-                    $"{desktop.Code}_spine.png"
+                    $"{desktop.Code}_spine.png",
+                    $"{desktop.Code}_logo.png"
                 });
 
             string mediaGamePath = hakchi.GamesPath;
@@ -1229,7 +1230,8 @@ namespace com.clusterrr.hakchi_gui
                             new string[] {
                                 desktop.Code + ".desktop",
                                 $"{desktop.Code}_original.png",
-                                $"{desktop.Code}_spine.png"
+                                $"{desktop.Code}_spine.png",
+                                $"{desktop.Code}_logo.png"
                             });
 
                         gameSet = gameSet.CopyFilesTo(supplementalGameSet, false);
@@ -1238,7 +1240,7 @@ namespace com.clusterrr.hakchi_gui
                 else
                 {
                     mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                    if (!File.Exists(this.iconPath))
+                    if (!File.Exists(this.iconPath) && !hakchi.IsMd())
                         iconPath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
                 }
             }
@@ -1260,7 +1262,8 @@ namespace com.clusterrr.hakchi_gui
                 new string[] {
                     desktop.Code + ".desktop",
                     $"{desktop.Code}_original.png",
-                    $"{desktop.Code}_spine.png"
+                    $"{desktop.Code}_spine.png",
+                    $"{desktop.Code}_logo.png"
                 });
 
             string mediaGamePath = hakchi.GetRemoteGameSyncPath(ConfigIni.Instance.ConsoleType) + "/.storage";
@@ -1275,7 +1278,8 @@ namespace com.clusterrr.hakchi_gui
                         List<string> skipFiles = new List<string>() {
                             desktop.Code + ".desktop",
                             $"{desktop.Code}_original.png",
-                            $"{desktop.Code}_spine.png"
+                            $"{desktop.Code}_spine.png",
+                            $"{desktop.Code}_logo.png"
                         };
                         if (Directory.Exists(Path.Combine(basePath, "autoplay")) || Directory.Exists(Path.Combine(basePath, "pixelart")))
                         {
@@ -1295,7 +1299,7 @@ namespace com.clusterrr.hakchi_gui
                 else
                 {
                     mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                    if (!File.Exists(this.iconPath))
+                    if (!File.Exists(this.iconPath) && !hakchi.IsMd())
                         iconPath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
                 }
             }
@@ -1319,7 +1323,8 @@ namespace com.clusterrr.hakchi_gui
                 new string[] {
                     desktop.Code + ".desktop",
                     $"{desktop.Code}_original.png",
-                    $"{desktop.Code}_spine.png"
+                    $"{desktop.Code}_spine.png",
+                    $"{desktop.Code}_logo.png"
                 });
 
             if (IsOriginalGame)
@@ -1333,8 +1338,9 @@ namespace com.clusterrr.hakchi_gui
                         true,
                         new string[] {
                             desktop.Code + ".desktop",
-                            $"{desktop.Code}_original.png", 
-                            $"{desktop.Code}_spine.png"
+                            $"{desktop.Code}_original.png",
+                            $"{desktop.Code}_spine.png",
+                            $"{desktop.Code}_logo.png"
                         });
 
                     gameSet = gameSet.CopyFilesTo(supplementalGameSet, false);
@@ -1405,18 +1411,26 @@ namespace com.clusterrr.hakchi_gui
                     if (Directory.Exists(Path.Combine(originalCacheBasePath, "autoplay")))
                     {
                         gameSet.UnionWith(ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                            Path.Combine(originalCacheBasePath, "autoplay"), $"{targetDir}/autoplay", skipFiles: new string[] { $"{desktop.Code}_original.png", $"{desktop.Code}_spine.png" }));
+                            Path.Combine(originalCacheBasePath, "autoplay"), $"{targetDir}/autoplay", skipFiles: new string[] { 
+                                $"{desktop.Code}_original.png", 
+                                $"{desktop.Code}_spine.png",
+                                $"{desktop.Code}_logo.png"
+                            }));
                     }
                     if (Directory.Exists(Path.Combine(originalCacheBasePath, "pixelart")))
                     {
                         gameSet.UnionWith(ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                            Path.Combine(originalCacheBasePath, "pixelart"), $"{targetDir}/pixelart", skipFiles: new string[] { $"{desktop.Code}_original.png", $"{desktop.Code}_spine.png" }));
+                            Path.Combine(originalCacheBasePath, "pixelart"), $"{targetDir}/pixelart", skipFiles: new string[] { 
+                                $"{desktop.Code}_original.png",
+                                $"{desktop.Code}_spine.png",
+                                $"{desktop.Code}_logo.png"
+                            }));
                     }
                 }
 
                 if (!foundRom)
                     mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                if (!foundIcon)
+                if (!foundIcon && !hakchi.IsMd())
                     iconPath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
             }
             else
@@ -1425,12 +1439,20 @@ namespace com.clusterrr.hakchi_gui
                 if (Directory.Exists(Path.Combine(basePath, "autoplay")))
                 {
                     gameSet.UnionWith(ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                        Path.Combine(basePath, "autoplay"), $"{targetDir}/autoplay", skipFiles: new string[] { $"{Code}_original.png", $"{Code}_spine.png" }));
+                        Path.Combine(basePath, "autoplay"), $"{targetDir}/autoplay", skipFiles: new string[] { 
+                            $"{Code}_original.png",
+                            $"{Code}_spine.png",
+                            $"{Code}_logo.png"
+                        }));
                 }
                 if (Directory.Exists(Path.Combine(basePath, "pixelart")))
                 {
                     gameSet.UnionWith(ApplicationFileInfo.GetApplicationFileInfoForDirectory(
-                        Path.Combine(basePath, "pixelart"), $"{targetDir}/pixelart", skipFiles: new string[] { $"{Code}_original.png", $"{Code}_spine.png" }));
+                        Path.Combine(basePath, "pixelart"), $"{targetDir}/pixelart", skipFiles: new string[] { 
+                            $"{Code}_original.png",
+                            $"{Code}_spine.png",
+                            $"{Code}_logo.png"
+                        }));
                 }
 
                 if (File.Exists(Path.Combine(basePath, GameGenieFileName)))

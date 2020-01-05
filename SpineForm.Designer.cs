@@ -38,10 +38,8 @@
             // 
             // imageGoogler1
             // 
-            this.imageGoogler1.AdditionalVariables = "";
             this.imageGoogler1.Location = new System.Drawing.Point(12, 12);
             this.imageGoogler1.Name = "imageGoogler1";
-            this.imageGoogler1.Query = "";
             this.imageGoogler1.Size = new System.Drawing.Size(583, 454);
             this.imageGoogler1.TabIndex = 0;
             this.imageGoogler1.OnImageSelected += new com.clusterrr.hakchi_gui.Controls.ImageGoogler.ImageReceived(this.imageGoogler1_OnImageSelected);

@@ -36,7 +36,11 @@ namespace com.clusterrr.hakchi_gui
 
         private void ImageGooglerForm_Shown(object sender, System.EventArgs e)
         {
-            imageGoogler.Query = query;
+            imageGoogler.Queries.Add(new ImageGoogler.SearchQuery()
+            {
+                Query = query,
+                AdditionalVariables = ""
+            });
             imageGoogler.RunQuery();
         }
     }
