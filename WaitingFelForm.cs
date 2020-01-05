@@ -58,12 +58,12 @@ namespace com.clusterrr.hakchi_gui
         public WaitingFelForm()
         {
             InitializeComponent();
-            buttonDriver.Left = labelDriver.Left + labelDriver.Width;
+
             if (DriverInstalled() || InstallDriver() == 0)
             {
-                labelDriver.Visible = false;
-                buttonDriver.Visible = false;
+                tableLayoutPanelDriver.Visible = false;
             }
+
             timer.Enabled = true;
         }
 
@@ -116,6 +116,11 @@ namespace com.clusterrr.hakchi_gui
         private void WaitingForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             timer.Enabled = false;
+        }
+
+        private void WaitingFelForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

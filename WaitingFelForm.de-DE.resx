@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,25 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Bitte führe folgende Schritte aus:</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>1. Vergewissere dich, dass die POWER-Taste am mini ausgeschaltet ist.</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>2. Verbinde dein mini mit deinem PC mit einem USB Kabel.</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>3. Halte die RESET-Taste gedrückt und drücke den POWER-Schalter.</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>4. Nach wenigen Sekunden die RESET-Taste loslassen, die POWER-LED sollte nicht eingeschaltet sein.</value>
-  </data>
-  <data name="buttonDriver.Text" xml:space="preserve">
-    <value>Installiere Treiber</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Warte auf Dein mini...</value>
-  </data>
 </root>

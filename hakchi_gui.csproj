@@ -2877,6 +2877,9 @@
     <EmbeddedResource Include="WaitingFelForm.de-DE.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.fr-FR.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingShellCycleForm.de-DE.resx">
       <DependentUpon>WaitingShellCycleForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -2894,9 +2897,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingShellForm.resx">
       <DependentUpon>WaitingShellForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WaitingFelForm.fr-FR.resx">
-      <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
