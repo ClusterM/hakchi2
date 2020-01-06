@@ -845,14 +845,9 @@ namespace com.clusterrr.hakchi_gui
                             crcMatches.Add(cover);
                         }
                     }
-                    if (crcMatches.Count == 1)
+                    if (crcMatches.Count > 0)
                     {
                         SetImageFile(crcMatches[0], ConfigIni.Instance.CompressCover);
-                        CoverArtMatches = crcMatches.ToArray();
-                        return CoverArtMatchSuccess = true;
-                    }
-                    else if (crcMatches.Count > 1)
-                    {
                         CoverArtMatches = crcMatches.ToArray();
                         return CoverArtMatchSuccess = true;
                     }

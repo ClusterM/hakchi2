@@ -403,6 +403,19 @@ namespace com.clusterrr.hakchi_gui
 
                         return true;
                     })
+                },
+                new Action() {
+                    startingVersion = new Version("0.0.0.0"),
+                    targetVersion = new Version("3.6.1.1008"),
+                    action = new ActionFunc(() => {
+                        mainForm.ResetOriginalGamesForAllSystems(true);
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].MaxGamesPerFolder = 42;
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].MaxGamesPerFolder = 42;
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].MaxGamesPerFolder = 42;
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].MaxGamesPerFolder = 42;
+
+                        return true;
+                    })
                 }
 
             });

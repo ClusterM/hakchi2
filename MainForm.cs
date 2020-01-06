@@ -84,7 +84,10 @@ namespace com.clusterrr.hakchi_gui
         }
 
         public static bool? DownloadCover;
-        public const int MaxGamesPerFolder = 50;
+        public static int MaxGamesPerFolder
+        {
+            get => hakchi.IsMd() ? 103 : 50;
+        }
         public static MainForm StaticRef;
 
         private class GamesSorter : IComparer
@@ -601,7 +604,9 @@ namespace com.clusterrr.hakchi_gui
 
             // items per folder
             maximumGamesPerFolderToolStripMenuItem.DropDownItems.Clear();
-            for (byte f = 20; f <= 100; f += ((f < 50) ? (byte)5 : (byte)10))
+            var numbers = new List<byte>();
+            
+            for (byte f = (byte)(hakchi.IsMd() ? 24 : 20); f <= (byte)(hakchi.IsMd() ? 102 : 100); f += ((f < (byte)(hakchi.IsMd() ? 49 : 50)) ? (byte)(hakchi.IsMd() ? 6 : 5) : (byte)(hakchi.IsMd() ? 12 : 10)))
             {
                 var item = new ToolStripMenuItem();
                 item.Name = "folders" + f.ToString();
