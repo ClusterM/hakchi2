@@ -1,0 +1,825 @@
+_MOON-mass-moon-es1-v0.8.0-1062US-d9de80c
+.
+./bin
+./dev
+./dev/pts
+./dev/shm
+./etc
+./etc/default
+./etc/init.d
+./etc/network
+./etc/network/if-down.d
+./etc/network/if-post-down.d
+./etc/network/if-pre-up.d
+./etc/network/if-up.d
+./etc/openal
+./etc/profile.d
+./etc/request-key.d
+./etc/ssl
+./etc/ssl/certs
+./etc/ssl/man
+./etc/ssl/man/man1
+./etc/ssl/man/man3
+./etc/ssl/man/man5
+./etc/ssl/man/man7
+./etc/ssl/misc
+./etc/ssl/private
+./etc/udev
+./etc/udev/hwdb.d
+./etc/udev/rules.d
+./lib
+./lib/modules
+./lib/modules/3.4.113
+./lib/modules/3.4.113/extra
+./lib/modules/3.4.113/kernel
+./lib/modules/3.4.113/kernel/drivers
+./lib/modules/3.4.113/kernel/drivers/input
+./lib/modules/3.4.113/kernel/drivers/input/keyboard
+./lib/modules/3.4.113/kernel/drivers/scsi
+./lib/udev
+./lib/udev/rules.d
+./lost+found
+./media
+./mnt
+./mnt/misc
+./opt
+./proc
+./root
+./rootfs_data
+./run
+./sbin
+./sys
+./tmp
+./usr
+./usr/bin
+./usr/game
+./usr/lib
+./usr/lib/alsa-lib
+./usr/lib/alsa-lib/smixer
+./usr/lib/libzip
+./usr/lib/libzip/include
+./usr/local
+./usr/local/bin
+./usr/local/res
+./usr/local/res/fonts
+./usr/sbin
+./usr/share
+./usr/share/alsa
+./usr/share/alsa/alsa.conf.d
+./usr/share/alsa/cards
+./usr/share/alsa/cards/SI7018
+./usr/share/alsa/init
+./usr/share/alsa/pcm
+./usr/share/alsa/speaker-test
+./usr/share/alsa/topology
+./usr/share/alsa/topology/broadwell
+./usr/share/alsa/ucm
+./usr/share/alsa/ucm/DAISY-I2S
+./usr/share/alsa/ucm/GoogleNyan
+./usr/share/alsa/ucm/PAZ00
+./usr/share/alsa/ucm/PandaBoard
+./usr/share/alsa/ucm/PandaBoardES
+./usr/share/alsa/ucm/SDP4430
+./usr/share/alsa/ucm/broadwell-rt286
+./usr/share/alsa/ucm/tegraalc5632
+./usr/share/dev-android-tools
+./usr/share/keyutils
+./usr/share/locale
+./usr/share/locale/de
+./usr/share/locale/de/LC_MESSAGES
+./usr/share/locale/fr
+./usr/share/locale/fr/LC_MESSAGES
+./usr/share/openal
+./usr/share/openal/hrtf
+./usr/share/terminfo
+./usr/share/terminfo/a
+./usr/share/terminfo/l
+./usr/share/terminfo/s
+./usr/share/terminfo/v
+./usr/share/terminfo/x
+./usr/share/udhcpc
+./usr/share/udhcpc/default.script.d
+./var
+./var/lib
+./var/lib/alsa
+./var/lib/save
+./var/www
+./bin/ash -> busybox
+./bin/cat -> busybox
+./bin/catv -> busybox
+./bin/chgrp -> busybox
+./bin/chmod -> busybox
+./bin/chown -> busybox
+./bin/cp -> busybox
+./bin/cpio -> busybox
+./bin/date -> busybox
+./bin/dd -> busybox
+./bin/df -> busybox
+./bin/dmesg -> busybox
+./bin/dnsdomainname -> busybox
+./bin/dumpkmap -> busybox
+./bin/echo -> busybox
+./bin/egrep -> busybox
+./bin/false -> busybox
+./bin/fdflush -> busybox
+./bin/fgrep -> busybox
+./bin/getopt -> busybox
+./bin/grep -> busybox
+./bin/gunzip -> busybox
+./bin/gzip -> busybox
+./bin/hostname -> busybox
+./bin/kill -> busybox
+./bin/linux32 -> busybox
+./bin/linux64 -> busybox
+./bin/ln -> busybox
+./bin/login -> busybox
+./bin/ls -> busybox
+./bin/mkdir -> busybox
+./bin/mknod -> busybox
+./bin/mktemp -> busybox
+./bin/more -> busybox
+./bin/mount -> busybox
+./bin/mountpoint -> busybox
+./bin/mt -> busybox
+./bin/mv -> busybox
+./bin/netstat -> busybox
+./bin/nice -> busybox
+./bin/pidof -> busybox
+./bin/ping -> busybox
+./bin/pipe_progress -> busybox
+./bin/printenv -> busybox
+./bin/ps -> busybox
+./bin/pwd -> busybox
+./bin/rm -> busybox
+./bin/rmdir -> busybox
+./bin/run-parts -> busybox
+./bin/sed -> busybox
+./bin/setarch -> busybox
+./bin/setserial -> busybox
+./bin/sh -> busybox
+./bin/sleep -> busybox
+./bin/stat -> busybox
+./bin/stty -> busybox
+./bin/su -> busybox
+./bin/sync -> busybox
+./bin/tar -> busybox
+./bin/touch -> busybox
+./bin/true -> busybox
+./bin/umount -> busybox
+./bin/uname -> busybox
+./bin/usleep -> busybox
+./bin/vi -> busybox
+./bin/watch -> busybox
+./bin/zcat -> busybox
+./dev/log -> ../tmp/log
+./etc/dropbear -> /var/run/dropbear
+./etc/mtab -> /proc/mounts
+./etc/resolv.conf -> ../tmp/resolv.conf
+./lib/ld-linux-armhf.so.3 -> ld-2.22.so
+./lib/libatomic.so -> libatomic.so.1.1.0
+./lib/libatomic.so.1 -> libatomic.so.1.1.0
+./lib/libblkid.so.1 -> libblkid.so.1.1.0
+./lib/libc.so.6 -> libc-2.22.so
+./lib/libcrypt.so.1 -> libcrypt-2.22.so
+./lib/libdl.so.2 -> libdl-2.22.so
+./lib/libm.so.6 -> libm-2.22.so
+./lib/libnsl.so.1 -> libnsl-2.22.so
+./lib/libnss_dns.so.2 -> libnss_dns-2.22.so
+./lib/libnss_files.so.2 -> libnss_files-2.22.so
+./lib/libpthread.so.0 -> libpthread-2.22.so
+./lib/libresolv.so.2 -> libresolv-2.22.so
+./lib/librt.so.1 -> librt-2.22.so
+./lib/libudev.so.1 -> libudev.so.1.6.3
+./lib/libutil.so.1 -> libutil-2.22.so
+./lib/libuuid.so.1 -> libuuid.so.1.3.0
+./lib/modules/3.4.113/build -> /var/jenkins_home/workspace/MOON-build-mass-moon-es1-all/linux-r16
+./lib/modules/3.4.113/source -> /var/jenkins_home/workspace/MOON-build-mass-moon-es1-all/linux-r16
+./lib32 -> lib
+./linuxrc -> bin/busybox
+./sbin/arp -> ../bin/busybox
+./sbin/blkid -> ../bin/busybox
+./sbin/devmem -> ../bin/busybox
+./sbin/fdisk -> ../bin/busybox
+./sbin/freeramdisk -> ../bin/busybox
+./sbin/fsck -> ../usr/sbin/fsck
+./sbin/fstrim -> ../bin/busybox
+./sbin/getty -> ../bin/busybox
+./sbin/halt -> ../bin/busybox
+./sbin/hdparm -> ../bin/busybox
+./sbin/hwclock -> ../bin/busybox
+./sbin/ifconfig -> ../bin/busybox
+./sbin/ifdown -> ../bin/busybox
+./sbin/ifup -> ../bin/busybox
+./sbin/init -> ../bin/busybox
+./sbin/insmod -> ../bin/busybox
+./sbin/ip -> ../bin/busybox
+./sbin/ipaddr -> ../bin/busybox
+./sbin/iplink -> ../bin/busybox
+./sbin/iproute -> ../bin/busybox
+./sbin/iprule -> ../bin/busybox
+./sbin/iptunnel -> ../bin/busybox
+./sbin/klogd -> ../bin/busybox
+./sbin/loadkmap -> ../bin/busybox
+./sbin/losetup -> ../bin/busybox
+./sbin/lsmod -> ../bin/busybox
+./sbin/makedevs -> ../bin/busybox
+./sbin/mdev -> ../bin/busybox
+./sbin/mkswap -> ../bin/busybox
+./sbin/modprobe -> ../bin/busybox
+./sbin/nameif -> ../bin/busybox
+./sbin/pivot_root -> ../bin/busybox
+./sbin/poweroff -> ../bin/busybox
+./sbin/reboot -> ../bin/busybox
+./sbin/rmmod -> ../bin/busybox
+./sbin/route -> ../bin/busybox
+./sbin/runlevel -> ../bin/busybox
+./sbin/setconsole -> ../bin/busybox
+./sbin/start-stop-daemon -> ../bin/busybox
+./sbin/sulogin -> ../bin/busybox
+./sbin/swapoff -> ../bin/busybox
+./sbin/swapon -> ../bin/busybox
+./sbin/switch_root -> ../bin/busybox
+./sbin/sysctl -> ../bin/busybox
+./sbin/syslogd -> ../bin/busybox
+./sbin/udevadm -> /usr/bin/udevadm
+./sbin/udhcpc -> ../bin/busybox
+./sbin/uevent -> ../bin/busybox
+./sbin/vconfig -> ../bin/busybox
+./sbin/watchdog -> ../bin/busybox
+./usr/bin/[ -> ../../bin/busybox
+./usr/bin/[[ -> ../../bin/busybox
+./usr/bin/ar -> ../../bin/busybox
+./usr/bin/assy-test -> factory-test
+./usr/bin/awk -> ../../bin/busybox
+./usr/bin/basename -> ../../bin/busybox
+./usr/bin/bzcmp -> bzdiff
+./usr/bin/bzegrep -> bzgrep
+./usr/bin/bzfgrep -> bzgrep
+./usr/bin/bzless -> bzmore
+./usr/bin/chrt -> ../../bin/busybox
+./usr/bin/chvt -> ../../bin/busybox
+./usr/bin/cksum -> ../../bin/busybox
+./usr/bin/clear -> ../../bin/busybox
+./usr/bin/cmp -> ../../bin/busybox
+./usr/bin/crontab -> ../../bin/busybox
+./usr/bin/cut -> ../../bin/busybox
+./usr/bin/dbclient -> ../sbin/dropbear
+./usr/bin/dc -> ../../bin/busybox
+./usr/bin/deallocvt -> ../../bin/busybox
+./usr/bin/diag-test -> factory-test
+./usr/bin/diff -> ../../bin/busybox
+./usr/bin/dirname -> ../../bin/busybox
+./usr/bin/dos2unix -> ../../bin/busybox
+./usr/bin/dropbearconvert -> ../sbin/dropbear
+./usr/bin/dropbearkey -> ../sbin/dropbear
+./usr/bin/du -> ../../bin/busybox
+./usr/bin/dumpleases -> ../../bin/busybox
+./usr/bin/eject -> ../../bin/busybox
+./usr/bin/env -> ../../bin/busybox
+./usr/bin/expr -> ../../bin/busybox
+./usr/bin/find -> ../../bin/busybox
+./usr/bin/flock -> ../../bin/busybox
+./usr/bin/fold -> ../../bin/busybox
+./usr/bin/free -> ../../bin/busybox
+./usr/bin/fuser -> ../../bin/busybox
+./usr/bin/head -> ../../bin/busybox
+./usr/bin/hexdump -> ../../bin/busybox
+./usr/bin/hostid -> ../../bin/busybox
+./usr/bin/id -> ../../bin/busybox
+./usr/bin/install -> ../../bin/busybox
+./usr/bin/ipcrm -> ../../bin/busybox
+./usr/bin/ipcs -> ../../bin/busybox
+./usr/bin/killall -> ../../bin/busybox
+./usr/bin/last -> ../../bin/busybox
+./usr/bin/less -> ../../bin/busybox
+./usr/bin/logger -> ../../bin/busybox
+./usr/bin/logname -> ../../bin/busybox
+./usr/bin/lsof -> ../../bin/busybox
+./usr/bin/lspci -> ../../bin/busybox
+./usr/bin/lsusb -> ../../bin/busybox
+./usr/bin/lzcat -> ../../bin/busybox
+./usr/bin/lzma -> ../../bin/busybox
+./usr/bin/md5sum -> ../../bin/busybox
+./usr/bin/mesg -> ../../bin/busybox
+./usr/bin/microcom -> ../../bin/busybox
+./usr/bin/mkfifo -> ../../bin/busybox
+./usr/bin/nohup -> ../../bin/busybox
+./usr/bin/nslookup -> ../../bin/busybox
+./usr/bin/od -> ../../bin/busybox
+./usr/bin/openvt -> ../../bin/busybox
+./usr/bin/passwd -> ../../bin/busybox
+./usr/bin/patch -> ../../bin/busybox
+./usr/bin/pcba-test -> factory-test
+./usr/bin/printf -> ../../bin/busybox
+./usr/bin/readlink -> ../../bin/busybox
+./usr/bin/realpath -> ../../bin/busybox
+./usr/bin/renice -> ../../bin/busybox
+./usr/bin/reset -> ../../bin/busybox
+./usr/bin/resize -> ../../bin/busybox
+./usr/bin/scp -> ../sbin/dropbear
+./usr/bin/seq -> ../../bin/busybox
+./usr/bin/setkeycodes -> ../../bin/busybox
+./usr/bin/setsid -> ../../bin/busybox
+./usr/bin/sha1sum -> ../../bin/busybox
+./usr/bin/sha256sum -> ../../bin/busybox
+./usr/bin/sha3sum -> ../../bin/busybox
+./usr/bin/sha512sum -> ../../bin/busybox
+./usr/bin/sort -> ../../bin/busybox
+./usr/bin/ssh -> ../sbin/dropbear
+./usr/bin/strings -> ../../bin/busybox
+./usr/bin/tail -> ../../bin/busybox
+./usr/bin/tee -> ../../bin/busybox
+./usr/bin/telnet -> ../../bin/busybox
+./usr/bin/test -> ../../bin/busybox
+./usr/bin/tftp -> ../../bin/busybox
+./usr/bin/time -> ../../bin/busybox
+./usr/bin/top -> ../../bin/busybox
+./usr/bin/tr -> ../../bin/busybox
+./usr/bin/traceroute -> ../../bin/busybox
+./usr/bin/truncate -> ../../bin/busybox
+./usr/bin/tty -> ../../bin/busybox
+./usr/bin/uniq -> ../../bin/busybox
+./usr/bin/unix2dos -> ../../bin/busybox
+./usr/bin/unlink -> ../../bin/busybox
+./usr/bin/unlzma -> ../../bin/busybox
+./usr/bin/unxz -> ../../bin/busybox
+./usr/bin/unzip -> ../../bin/busybox
+./usr/bin/uptime -> ../../bin/busybox
+./usr/bin/uudecode -> ../../bin/busybox
+./usr/bin/uuencode -> ../../bin/busybox
+./usr/bin/vlock -> ../../bin/busybox
+./usr/bin/wc -> ../../bin/busybox
+./usr/bin/wget -> ../../bin/busybox
+./usr/bin/which -> ../../bin/busybox
+./usr/bin/who -> ../../bin/busybox
+./usr/bin/whoami -> ../../bin/busybox
+./usr/bin/xargs -> ../../bin/busybox
+./usr/bin/xsparameterget -> xsparamservice
+./usr/bin/xsparameterset -> xsparamservice
+./usr/bin/xz -> ../../bin/busybox
+./usr/bin/xzcat -> ../../bin/busybox
+./usr/bin/yes -> ../../bin/busybox
+./usr/game/save -> /rootfs_data
+./usr/lib/libEGL.so -> libEGL.so.1
+./usr/lib/libEGL.so.1 -> libEGL.so.1.4
+./usr/lib/libEGL.so.1.4 -> libMali.so
+./usr/lib/libGLESv1_CM.so -> libGLESv1_CM.so.1
+./usr/lib/libGLESv1_CM.so.1 -> libGLESv1_CM.so.1.1
+./usr/lib/libGLESv1_CM.so.1.1 -> libMali.so
+./usr/lib/libGLESv2.so -> libGLESv2.so.2
+./usr/lib/libGLESv2.so.2 -> libGLESv2.so.2.0
+./usr/lib/libGLESv2.so.2.0 -> libMali.so
+./usr/lib/libSDL2-2.0.so.0 -> libSDL2-2.0.so.0.8.0
+./usr/lib/libSDL2.so -> libSDL2-2.0.so.0.8.0
+./usr/lib/libSDL2_image-2.0.so.0 -> libSDL2_image-2.0.so.0.2.1
+./usr/lib/libSDL2_image.so -> libSDL2_image-2.0.so.0.2.1
+./usr/lib/libSDL2_mixer-2.0.so.0 -> libSDL2_mixer-2.0.so.0.2.0
+./usr/lib/libSDL2_mixer.so -> libSDL2_mixer-2.0.so.0.2.0
+./usr/lib/libSDL2_ttf-2.0.so.0 -> libSDL2_ttf-2.0.so.0.14.0
+./usr/lib/libSDL2_ttf.so -> libSDL2_ttf-2.0.so.0.14.0
+./usr/lib/libasound.so -> libasound.so.2.0.0
+./usr/lib/libasound.so.2 -> libasound.so.2.0.0
+./usr/lib/libattr.so.1 -> libattr.so.1.1.0
+./usr/lib/libblkid.so -> ../../lib/libblkid.so.1.1.0
+./usr/lib/libbsd.so -> libbsd.so.0.8.2
+./usr/lib/libbsd.so.0 -> libbsd.so.0.8.2
+./usr/lib/libbz2.so -> libbz2.so.1.0.6
+./usr/lib/libbz2.so.1.0 -> libbz2.so.1.0.6
+./usr/lib/libcom_err.so -> libcom_err.so.2
+./usr/lib/libcom_err.so.2 -> libcom_err.so.2.1
+./usr/lib/libcrypto.so -> libcrypto.so.1.0.0
+./usr/lib/libe2p.so -> libe2p.so.2
+./usr/lib/libe2p.so.2 -> libe2p.so.2.3
+./usr/lib/libext2fs.so -> libext2fs.so.2
+./usr/lib/libext2fs.so.2 -> libext2fs.so.2.4
+./usr/lib/libform.so -> libform.so.5
+./usr/lib/libform.so.5 -> libform.so.5.9
+./usr/lib/libfreetype.so -> libfreetype.so.6.12.3
+./usr/lib/libfreetype.so.6 -> libfreetype.so.6.12.3
+./usr/lib/libjson-c.so -> libjson-c.so.2.0.1
+./usr/lib/libjson-c.so.2 -> libjson-c.so.2.0.1
+./usr/lib/libkeyutils.so -> libkeyutils.so.1
+./usr/lib/libkeyutils.so.1 -> libkeyutils.so.1.5
+./usr/lib/libkmod.so -> libkmod.so.2.3.0
+./usr/lib/libkmod.so.2 -> libkmod.so.2.3.0
+./usr/lib/libmenu.so -> libmenu.so.5
+./usr/lib/libmenu.so.5 -> libmenu.so.5.9
+./usr/lib/libncurses.so -> libncurses.so.5
+./usr/lib/libncurses.so.5 -> libncurses.so.5.9
+./usr/lib/libopenal.so -> libopenal.so.1
+./usr/lib/libopenal.so.1 -> libopenal.so.1.17.2
+./usr/lib/libpanel.so -> libpanel.so.5
+./usr/lib/libpanel.so.5 -> libpanel.so.5.9
+./usr/lib/libpng.so -> libpng16.so
+./usr/lib/libpng16.so -> libpng16.so.16.21.0
+./usr/lib/libpng16.so.16 -> libpng16.so.16.21.0
+./usr/lib/libsqlite3.so -> libsqlite3.so.0.8.6
+./usr/lib/libsqlite3.so.0 -> libsqlite3.so.0.8.6
+./usr/lib/libss.so -> libss.so.2
+./usr/lib/libss.so.2 -> libss.so.2.0
+./usr/lib/libssl.so -> libssl.so.1.0.0
+./usr/lib/libstdc++.so -> libstdc++.so.6.0.20
+./usr/lib/libstdc++.so.6 -> libstdc++.so.6.0.20
+./usr/lib/libudev.so -> ../../lib/libudev.so.1.6.3
+./usr/lib/libuuid.so -> ../../lib/libuuid.so.1.3.0
+./usr/lib/libxsbase.so -> libxsbase.so.1.0.1
+./usr/lib/libxsbase.so.1 -> libxsbase.so.1.0.1
+./usr/lib/libxsdispatcher.so -> libxsdispatcher.so.1.0.1
+./usr/lib/libxsdispatcher.so.1 -> libxsdispatcher.so.1.0.1
+./usr/lib/libz.so -> libz.so.1.2.8
+./usr/lib/libz.so.1 -> libz.so.1.2.8
+./usr/lib/libzip.so -> libzip.so.2.1.0
+./usr/lib/libzip.so.2 -> libzip.so.2.1.0
+./usr/lib/terminfo -> /usr/share/terminfo
+./usr/lib32 -> lib
+./usr/sbin/addgroup -> ../../bin/busybox
+./usr/sbin/adduser -> ../../bin/busybox
+./usr/sbin/arping -> ../../bin/busybox
+./usr/sbin/chroot -> ../../bin/busybox
+./usr/sbin/crond -> ../../bin/busybox
+./usr/sbin/delgroup -> ../../bin/busybox
+./usr/sbin/deluser -> ../../bin/busybox
+./usr/sbin/dhcprelay -> ../../bin/busybox
+./usr/sbin/dnsd -> ../../bin/busybox
+./usr/sbin/ether-wake -> ../../bin/busybox
+./usr/sbin/fbset -> ../../bin/busybox
+./usr/sbin/fdformat -> ../../bin/busybox
+./usr/sbin/fsck.ext2 -> e2fsck
+./usr/sbin/fsck.ext3 -> e2fsck
+./usr/sbin/fsck.ext4 -> e2fsck
+./usr/sbin/fsck.ext4dev -> e2fsck
+./usr/sbin/i2cdetect -> ../../bin/busybox
+./usr/sbin/i2cdump -> ../../bin/busybox
+./usr/sbin/i2cget -> ../../bin/busybox
+./usr/sbin/i2cset -> ../../bin/busybox
+./usr/sbin/inetd -> ../../bin/busybox
+./usr/sbin/killall5 -> ../../bin/busybox
+./usr/sbin/loadfont -> ../../bin/busybox
+./usr/sbin/mkfs.ext2 -> mke2fs
+./usr/sbin/mkfs.ext3 -> mke2fs
+./usr/sbin/mkfs.ext4 -> mke2fs
+./usr/sbin/mkfs.ext4dev -> mke2fs
+./usr/sbin/rdate -> ../../bin/busybox
+./usr/sbin/readprofile -> ../../bin/busybox
+./usr/sbin/setlogcons -> ../../bin/busybox
+./usr/sbin/tune2fs -> e2label
+./usr/sbin/udhcpd -> ../../bin/busybox
+./var/cache -> ../tmp
+./var/lib/misc -> ../../tmp
+./var/lock -> ../tmp
+./var/log -> ../tmp
+./var/run -> ../run
+./var/spool -> ../tmp
+./var/tmp -> ../tmp
+c07b108155159eb7519bff5572cba40a  ./bin/busybox
+6fe2cb7ba56d9f6d3ed7c08c050bfd80  ./bin/keyctl
+471f7e3b88567699a4f5e69d710a6603  ./bin/rootfs_rw
+d63c5971603623927105300ae6d10cc0  ./etc/VERSION
+c361df7db40bb8c89b8eef86152c2e20  ./etc/default/dropbear
+3235c79ebcb27160fc871c44b9ae153f  ./etc/disableconsole.sh
+71900412e8fed049a82d0f78fd01bb99  ./etc/fstab
+c5c1368a11e1021f8525f65d1b1aeed3  ./etc/group
+456b9ff26ebf570c783b5de1e5e501a8  ./etc/hostname
+fe07a57a2f8b55024a10e81be5932e58  ./etc/hosts
+fb635260b61bcbddd954c3621317ccbd  ./etc/init.d/S01logging
+7ec79ae73f28bb54050f730db1a5c3f4  ./etc/init.d/S10udev
+711c6a4e5ec3f5e7088688d4aad01b75  ./etc/init.d/S20urandom
+c445390118f5d058dd372a8b2beb25a8  ./etc/init.d/S50dropbear
+62758674d15119ad7eb78ff6dde787b0  ./etc/init.d/S80mali
+6d39122b505e2ad8c4fbb2cbca88238f  ./etc/init.d/S95hdmi_trans
+a584ef838939e3b7402c8c090dad6ac7  ./etc/init.d/S99first_startup
+525368ccaf89f7afc316a540f265b9fb  ./etc/init.d/factory-test
+19b5ac9040e163640eb785e901a5e285  ./etc/init.d/moon-game
+6b31f620c36bb2d6c54cfaf71cc5a086  ./etc/init.d/rcK
+35de7807c905cdf69f319e3455dc72a3  ./etc/init.d/rcS
+ef8aa6288ab98d15f65575711718a6d8  ./etc/init.d/watchdog_soft
+df56a6d0e69c14a7c19f414bfe4da935  ./etc/inittab
+7eaef96496de6fef5c13b18eed4a5d2f  ./etc/issue
+f3de4385c498ee9e01d1d703f0c3795d  ./etc/mke2fs.conf
+f0c6c4cd97dbe4dfb2d7e1db90c12697  ./etc/network/if-pre-up.d/wait_iface
+3ddc9e6cbaa6ac1e55c1e37ba840c6c8  ./etc/network/interfaces
+f632f5cbce86412e9d973653b05e700d  ./etc/nsswitch.conf
+326b8176cd274b1c9f7d83fe0980e975  ./etc/openal/alsoft.conf
+a0adc94894e61476970aca49c7265d47  ./etc/os-release
+8300322913389193821109147aa3f63d  ./etc/passwd
+65553a1d0273070536b3daf91618c372  ./etc/profile
+359ec096fae48c11cdb9adb8e113bc3c  ./etc/profile.d/umask.sh
+a15e99b47a5596f2593399c71bf3bade  ./etc/protocols
+bf33ebef2dd99b739d06c67976d549fd  ./etc/request-key.conf
+9ebdc6f90a6070a1cdac5ecde97fbd33  ./etc/services
+64e773ef4caddf0d62258f4851181a7c  ./etc/shadow
+7df26c55291b33344dc15e3935dabaf3  ./etc/ssl/openssl.cnf
+71e7ea9514656c70e872bdf498b63da8  ./etc/udev/hwdb.d/20-OUI.hwdb
+bb7e486aff51fd1b4b1b87500d6f8f0f  ./etc/udev/hwdb.d/20-acpi-vendor.hwdb
+7b02a0d173d596354cd651aa6f7ed5b4  ./etc/udev/hwdb.d/20-bluetooth-vendor-product.hwdb
+0497dc16c58a7031ff7ce114b5f7eb25  ./etc/udev/hwdb.d/20-net-ifname.hwdb
+0b21b9c1a35b4a744b2d8e5de14bcb13  ./etc/udev/hwdb.d/20-pci-classes.hwdb
+a18bfd161d4725e31a34448c7a473dd8  ./etc/udev/hwdb.d/20-pci-vendor-model.hwdb
+583ae45bd6b67a86a78e6e0d1c309974  ./etc/udev/hwdb.d/20-sdio-classes.hwdb
+3ad0d3fa6c2e95cffb232034c684cdd3  ./etc/udev/hwdb.d/20-sdio-vendor-model.hwdb
+3727dbda5c60aacc54312dc392fcdc8e  ./etc/udev/hwdb.d/20-usb-classes.hwdb
+9b0d61b2715efb4a8308f1429b8fff24  ./etc/udev/hwdb.d/20-usb-vendor-model.hwdb
+bccf02ff4c39c95cafd7b92ab891c6b5  ./etc/udev/hwdb.d/60-evdev.hwdb
+18a413a3ee15782e7007c8ff3b740e18  ./etc/udev/hwdb.d/60-keyboard.hwdb
+ca849ba6fc8b4d5e0390cbc7345152df  ./etc/udev/hwdb.d/70-mouse.hwdb
+9fd8e9d0b62ccfb18a277574f5be6334  ./etc/udev/hwdb.d/70-pointingstick.hwdb
+de00a74b3ff9eb0f042a769cff55f1a2  ./etc/udev/rules.d/95-hdmi_trans.rules
+14ceda6dd42428117c0286499ac77c47  ./etc/udev/udev.conf
+1a9f75fde49d3deaf5bd1104688d0c0a  ./lib/ld-2.22.so
+f654ab9d096e8bc28268c2ed06f520d6  ./lib/libatomic.so.1.1.0
+32044371e2f8c60d9ce1fadc618cbeec  ./lib/libblkid.so.1.1.0
+04d7c3f03deaeab79a86bb744ab9a8f5  ./lib/libc-2.22.so
+42ae3d138e160255be67cf463f924392  ./lib/libcrypt-2.22.so
+cdcf7716072904ffa55ee71457513d86  ./lib/libdl-2.22.so
+e90f13d2c5b8c878ee56fb1bf00004be  ./lib/libgcc_s.so
+6f74c6a6aaa6cefa6429002f88ef66cb  ./lib/libgcc_s.so.1
+63d0b9030b82805091e05fea73e2da68  ./lib/libm-2.22.so
+a93d6db9aaa6640098af9394c98ce301  ./lib/libnsl-2.22.so
+069bddf3e915ec9c4b8f2eec7114796f  ./lib/libnss_dns-2.22.so
+0260b90eabe2c555f7069a645432e7e1  ./lib/libnss_files-2.22.so
+df7068cb424c3c024786a838dbfa62bc  ./lib/libpthread-2.22.so
+9b9e6b03263c28013b30f8da1e59d927  ./lib/libresolv-2.22.so
+f6b4c0410f35a058bf38be489b07ed0f  ./lib/librt-2.22.so
+fb12ba7db4ccbbe362f5ee6f02a61278  ./lib/libudev.so.1.6.3
+61145b32afbd49acfd2371c01e4d8076  ./lib/libutil-2.22.so
+0a8ddfe96df60fb249d513135fa63ee1  ./lib/libuuid.so.1.3.0
+a8ea1d2977aad49935a4c7c9012c33f6  ./lib/modules/3.4.113/extra/mali.ko
+13f54d9556c5860e1445bacd6a6d66a9  ./lib/modules/3.4.113/kernel/drivers/input/keyboard/sunxi-knob.ko
+eab7c2c18b26cd94888b468ff472dde3  ./lib/modules/3.4.113/kernel/drivers/scsi/scsi_wait_scan.ko
+3904f0e60c63c2cd694e49296f1df719  ./lib/modules/3.4.113/modules.alias
+fd92b549ca8d27dd7db6666f3695558a  ./lib/modules/3.4.113/modules.alias.bin
+be834ff3318ad97030a5c78d5ef06acd  ./lib/modules/3.4.113/modules.builtin
+a7a5af9e99038b4ec9a7a95b1d339698  ./lib/modules/3.4.113/modules.builtin.bin
+4362c8bf1a31970b50cbaa1b52e760ff  ./lib/modules/3.4.113/modules.dep
+910e44ae78666db611abce63ef58fe4d  ./lib/modules/3.4.113/modules.dep.bin
+d41d8cd98f00b204e9800998ecf8427e  ./lib/modules/3.4.113/modules.devname
+56767194ebf5ffa3e1683eb9e2473b8e  ./lib/modules/3.4.113/modules.order
+ccf8f3611141656ba5594771bec06202  ./lib/modules/3.4.113/modules.softdep
+2ea7ea311bf4b86503c99367f8cd8eaa  ./lib/modules/3.4.113/modules.symbols
+8e82b9fcaff01c7eb6dd971be4e348e7  ./lib/modules/3.4.113/modules.symbols.bin
+2bb24b6c4ee6b6398480d60057467299  ./lib/udev/ata_id
+50aa026afa64b544b075aec7b0f914e7  ./lib/udev/cdrom_id
+62aeaa86e7349703ebbe7900baba7e1f  ./lib/udev/collect
+ac8d050402a27c55f1bcaee9f336740f  ./lib/udev/mtd_probe
+870fa6b180bb6b9527905da2cf85e170  ./lib/udev/rules.d/50-udev-default.rules
+1b3ebefb401eea3cfce783101d727542  ./lib/udev/rules.d/60-block.rules
+6bb023b201a42cbd5cfb54cca6ac6faf  ./lib/udev/rules.d/60-cdrom_id.rules
+e929ad4690ee3a60c9329ccbf91f61c4  ./lib/udev/rules.d/60-drm.rules
+d620e8f899d5a387376e7817ba50df41  ./lib/udev/rules.d/60-evdev.rules
+e71ccf38b789ea73e0ee3571ede5aba2  ./lib/udev/rules.d/60-persistent-alsa.rules
+550177631fc8d6f9f995c185e3795e83  ./lib/udev/rules.d/60-persistent-input.rules
+253508fa0e776f79160b21b592a357d1  ./lib/udev/rules.d/60-persistent-storage-tape.rules
+e19474dc022e272168aac9967e03cab5  ./lib/udev/rules.d/60-persistent-storage.rules
+59e61ac54ad82f56c3e1b9c89302c9a1  ./lib/udev/rules.d/60-persistent-v4l.rules
+5c1f73706301219b79d48adfa2d160e3  ./lib/udev/rules.d/60-serial.rules
+25cdceeff924a427f048a5fd8e792a89  ./lib/udev/rules.d/64-btrfs.rules
+66ce3672661be6b25d8042260e138a09  ./lib/udev/rules.d/70-mouse.rules
+c98bfda9da596d019b9ae7a183e2b66c  ./lib/udev/rules.d/75-net-description.rules
+6232721ea0ff73419f6bda7c903cf175  ./lib/udev/rules.d/75-probe_mtd.rules
+9c33a2de5e8cbcec5c57aec288731fc9  ./lib/udev/rules.d/78-sound-card.rules
+a198f2f2e12e30e150beb1b4e9aadef3  ./lib/udev/rules.d/80-drivers.rules
+c983d7eb98422d4ee3e28fbb16436265  ./lib/udev/rules.d/80-net-name-slot.rules
+1c418c2a124980d1b8cc0342cadd5684  ./lib/udev/scsi_id
+3430744e0a18922bf99eec9f4f57d513  ./lib/udev/v4l_id
+d41d8cd98f00b204e9800998ecf8427e  ./run/utmp
+86e0416a9c7707ebeaa26234403c266b  ./sbin/key.dns_resolver
+74baff1e38f15e9d0afc8d26b686ac47  ./sbin/request-key
+b6ccb7bec16a4233209f7bfc843e0b62  ./sbin/udevd
+2f75961462152691490a01117a5a5de9  ./usr/bin/alsamixer
+88168eda134dbcab1a2760c2edc25fe8  ./usr/bin/altonegen
+5adf71cef9f15634db213065f3351fbe  ./usr/bin/amixer
+59a30e7e510c9ad20c69823764ff9bb3  ./usr/bin/aplay
+59a30e7e510c9ad20c69823764ff9bb3  ./usr/bin/arecord
+9caf41651a11b976245ba3b0d844c7ed  ./usr/bin/aserver
+12ab9cd0bae056c9029f4c72286e1a79  ./usr/bin/attr
+727a3924e204f748df93847e27d61e35  ./usr/bin/bunzip2
+7cc216ed466ebc16353a2d7c48880caf  ./usr/bin/button-detection
+727a3924e204f748df93847e27d61e35  ./usr/bin/bzcat
+fc15271b1df9d9e574e200d7cc625802  ./usr/bin/bzdiff
+a05c9b42d07fd069359c38cb6c62fb16  ./usr/bin/bzgrep
+727a3924e204f748df93847e27d61e35  ./usr/bin/bzip2
+69e78392d0cd0ff71921ae29d11fa562  ./usr/bin/bzip2recover
+81d379d5a10e88f28d2733c10fbdd3ed  ./usr/bin/bzmore
+f3f229541b9f11a213fc151b70ebf877  ./usr/bin/change-mode
+5b7345d9763ed77a46f05f8ceee97d61  ./usr/bin/chattr
+061a9f645669d960e741aeef8705fd86  ./usr/bin/factory-test
+a801d883845f8a8dd2de9c4734c79b2e  ./usr/bin/font-generator
+43e88998f7f7b5dbac620db1732b5211  ./usr/bin/game_hangup_detect.sh
+00c74371130b3a838ed65bc52e2dc2f3  ./usr/bin/getfattr
+da374e03ddb15986b0a580a11250c08a  ./usr/bin/hdmi_trans
+134f4651b5cee4115479c4916aeb98ad  ./usr/bin/joystick-test
+45a4cde3a794ae74fb86dac5f2ced267  ./usr/bin/lsattr
+8676b5e00418924e2a58ed87390c4a65  ./usr/bin/sdl2-config
+304d1d46eb1cfebc2024d2518ace6f36  ./usr/bin/sdl_test_graphics
+14b4b06ec7c4d15ad2b780b444c97dd6  ./usr/bin/sdl_test_stress
+7ae5cd31970228ee01145bca33022880  ./usr/bin/setfattr
+ecb6f3433acdec6b504df4f15d27afd4  ./usr/bin/shutdown-detection
+13e02be8cf4f323ebbf8fdc2dd35d05b  ./usr/bin/sqlite3
+e7a236fb63a6e9835c2b3630cde64184  ./usr/bin/stress-ng
+cdc48a8770883b7e7c51058621b99294  ./usr/bin/udevadm
+ba1a7ca86ef0fd4c112813aa9839f83b  ./usr/bin/xsdispatcher
+c4fa45a5384d70c8927ebd021795a2ff  ./usr/bin/xslog
+4ea8f23a04938ad71305d3a375dfc8f7  ./usr/bin/xsparamservice
+2805ec5086160b2b1fd5772edd41d53a  ./usr/bin/xspstree
+414cecbf399341080a673c9dfe90333d  ./usr/bin/zipcmp
+a867815f7c01612166fe7576129dd468  ./usr/bin/zipmerge
+2c5479a277e94cf3d1305e4343762b94  ./usr/bin/ziptorrent
+e08519f07f2b1cdc4ad88c7916717ae1  ./usr/game/alldata.bin
+7fdb51cf77565d2911788008621d9453  ./usr/game/alldata.psb.m
+c9ca272ecd5f79e458aa456edab2ef2d  ./usr/game/m2engage
+71247e6147c6ee59b94a77507807681f  ./usr/game/version
+25513b7d0b8b9a9e3b4914e740767b92  ./usr/lib/alsa-lib/smixer/smixer-ac97.so
+926bbbc0a048211bd25d938d1a198399  ./usr/lib/alsa-lib/smixer/smixer-hda.so
+15cc4487b692c07a74023a01891b7309  ./usr/lib/alsa-lib/smixer/smixer-sbase.so
+334f38ea69a59b99c787502461bcb1cc  ./usr/lib/libMali.so
+449b9f4e92136147c4955de407906382  ./usr/lib/libSDL2-2.0.so.0.8.0
+f9dd4d3cc569eaf34cbfe28022da4cbd  ./usr/lib/libSDL2_image-2.0.so.0.2.1
+47767ec283c6442e2e0a10b26c165a15  ./usr/lib/libSDL2_mixer-2.0.so.0.2.0
+d6e420268ca81b38696d08c3079eae5f  ./usr/lib/libSDL2_ttf-2.0.so.0.14.0
+cd0d744d0cdc3990e4b2e976f660d9b3  ./usr/lib/libasound.so.2.0.0
+4090fc2fbd21563cb765cd91882cfe8e  ./usr/lib/libattr.so.1.1.0
+bb74c5c5430586f134ba902b29ddf24f  ./usr/lib/libbsd.so.0.8.2
+6417f6cab2415447fe69c37e58880dbf  ./usr/lib/libbz2.so.1.0.6
+f60acff4493dc1fb71837e01f8a7d692  ./usr/lib/libcom_err.so.2.1
+c08446c74b7aeff20f1133ce642f301f  ./usr/lib/libcrypto.so.1.0.0
+efaefaf467667a2a0bf30863f1c13010  ./usr/lib/libe2p.so.2.3
+64f39384d9a2f2b0f52981c0857335da  ./usr/lib/libext2fs.so.2.4
+0fb5f65e50e330494345127faff9e5b9  ./usr/lib/libform.so.5.9
+66dc49e9a2f311217c5dacf11f74682d  ./usr/lib/libfreetype.so.6.12.3
+b964126a0c773ad15dfc8c9fd55444e2  ./usr/lib/libjson-c.so.2.0.1
+6ca51e8d5dc6838e51213903b6978119  ./usr/lib/libkeyutils.so.1.5
+247b32bf4a1ca0b5c94f93f32dcbacf7  ./usr/lib/libkmod.so.2.3.0
+4a69c7cc494fca73286dbeea39db090b  ./usr/lib/libmenu.so.5.9
+2e1d7bb3c3babd79a55f84996d201406  ./usr/lib/libncurses.so.5.9
+1d6178960976062688ad8c991675fb6e  ./usr/lib/libopenal.so.1.17.2
+ee5d83a5f9366a647365608c21ecb364  ./usr/lib/libopus.so.0
+5fa4ea36278ea09ef015390c5ce44341  ./usr/lib/libpanel.so.5.9
+a7cdab550ecfa3535198e2c7c5f4f2b9  ./usr/lib/libpng16.so.16.21.0
+a2003ed72a14df20347f4845e75b96a5  ./usr/lib/libsqlite3.so.0.8.6
+3905e8c2a4c902082ef5d6a486098efd  ./usr/lib/libss.so.2.0
+da54964dfbc83cfcd17758ae6103cc29  ./usr/lib/libssl.so.1.0.0
+e23ab7f45bb74dd195337963bd39dc74  ./usr/lib/libstdc++.so.6.0.20
+dd527aa4f60dc2b6f350f702519ddbcc  ./usr/lib/libstdc++.so.6.0.20-gdb.py
+50c829b95fd20f6f3078ca5f42719082  ./usr/lib/libxsbase.so.1.0.1
+329795529f95624d74d3744a7aca0048  ./usr/lib/libxsdispatcher.so.1.0.1
+8cea9de3cdff758f16cc8eafe92b1e2b  ./usr/lib/libz.so.1.2.8
+8a472f86c200960e9e3d6d6bafccb043  ./usr/lib/libzip.so.2.1.0
+baf7543487e6b9cdb26c788d2e68310b  ./usr/lib/libzip/include/zipconf.h
+309d2d192409837da859c78f3add1549  ./usr/local/bin/usb_port_num.sh
+681280dcd81973d8d61b6dd816fd072b  ./usr/local/res/fonts/NotoSansMonoCJKsc-Regular.otf
+6597f3bca89d889b4032a112d5401963  ./usr/sbin/alsactl
+c24def423397ba9e2c2cfd64909e8d40  ./usr/sbin/badblocks
+f562af0a83aeab8cdb163cde48b26254  ./usr/sbin/dropbear
+36956ce3191daf3d68ab1db7e3f57d52  ./usr/sbin/dumpe2fs
+5e57e4717c0b631ac7d0d10e3f0f4e55  ./usr/sbin/e2freefrag
+f6da3abe9d2eb28dd0471148f4d4f14a  ./usr/sbin/e2fsck
+f3c6f8457688e9024b790fd5cbc49633  ./usr/sbin/e2label
+ab47412eda684a2839e3567efa36071a  ./usr/sbin/e2undo
+23a639b0aba6a98d06dc1f836f6e9c71  ./usr/sbin/filefrag
+d95f0403601ff1344d3d37a28ae0f90a  ./usr/sbin/fsck
+6fc14079f88718ff955298d78c533c99  ./usr/sbin/logsave
+68dc52b3e04a7f5820d96ab02cde65dc  ./usr/sbin/mke2fs
+741fde1ab99cbca371510b022a193e81  ./usr/sbin/mklost+found
+a98a08106a6e89a19e95ade4a22a4679  ./usr/sbin/resize2fs
+2c2df1b9cb603f9c31c46162d6ac307f  ./usr/share/alsa/alsa.conf
+7c708db5587cf53a6b4da28fb3118c01  ./usr/share/alsa/alsa.conf.d/README
+ed1423f966d181095a576dd2cc0f53ae  ./usr/share/alsa/cards/AACI.conf
+78523c087c9a8c87cbf75df388fc6b60  ./usr/share/alsa/cards/ATIIXP-MODEM.conf
+ce29e72b078978222f56828ed9f0a904  ./usr/share/alsa/cards/ATIIXP-SPDMA.conf
+affccadcedc40d4f0b98ec2e1077230c  ./usr/share/alsa/cards/ATIIXP.conf
+218e0321b6a2cb27864d18834380f201  ./usr/share/alsa/cards/AU8810.conf
+dfb5dff22e7db68e5b7bc1b12fd8d155  ./usr/share/alsa/cards/AU8820.conf
+662558aa6933002d5d4e63018e293ad7  ./usr/share/alsa/cards/AU8830.conf
+29f68994c641fe4b1700d661eaf48d28  ./usr/share/alsa/cards/Audigy.conf
+9ceb37badbc7870d320f2210b64b6242  ./usr/share/alsa/cards/Audigy2.conf
+bab8daf32c0a604b08d8a06d52d0c001  ./usr/share/alsa/cards/Aureon51.conf
+3f3567b546158d9dfda52d69c45d606f  ./usr/share/alsa/cards/Aureon71.conf
+e1b033dcbbd122cf88f2fd03ef403d55  ./usr/share/alsa/cards/CA0106.conf
+fc1cc2be8a4062f0263c152c424a3684  ./usr/share/alsa/cards/CMI8338-SWIEC.conf
+fee3644c92735b3dbd736a63b1f1d8bd  ./usr/share/alsa/cards/CMI8338.conf
+3ce34797a1f01ebecdc86f4f68ce0237  ./usr/share/alsa/cards/CMI8738-MC6.conf
+1af0d2b3b63e57d2a32ed6f1f7203ad1  ./usr/share/alsa/cards/CMI8738-MC8.conf
+abf95b72cfd78d1f4ec9b5083105fba4  ./usr/share/alsa/cards/CMI8788.conf
+f6fe06101e8056b64f6024e9ceb41cb3  ./usr/share/alsa/cards/CS46xx.conf
+735b1722b2d3bc7b3d5920966279f888  ./usr/share/alsa/cards/EMU10K1.conf
+65541d1b3ceee25cefac39f95c3b9b40  ./usr/share/alsa/cards/EMU10K1X.conf
+7c200bd842745c4c789a1396eeebf6db  ./usr/share/alsa/cards/ENS1370.conf
+b9581f156e0f3c8c2c1b45a674dc042f  ./usr/share/alsa/cards/ENS1371.conf
+88d2957c29b72c341645dfff729ad078  ./usr/share/alsa/cards/ES1968.conf
+99ec89843d154a619b6ce615a25b0603  ./usr/share/alsa/cards/Echo_Echo3G.conf
+15777f2c684ae84c0024ba4bcadb7ddb  ./usr/share/alsa/cards/FM801.conf
+9a2f16ef24c59e19ef78243bec11cbfd  ./usr/share/alsa/cards/FWSpeakers.conf
+e4111984063aec5feb2f0ed4ebe1a098  ./usr/share/alsa/cards/FireWave.conf
+1a78fbc2f9a7f33e83676f30dd3990e3  ./usr/share/alsa/cards/GUS.conf
+95926cc32b581605465c7e3a5b515e9a  ./usr/share/alsa/cards/HDA-Intel.conf
+19001a1f98e733cb03da6908b8b831e6  ./usr/share/alsa/cards/ICE1712.conf
+ed1093b7d573caba3a233afc6dc47009  ./usr/share/alsa/cards/ICE1724.conf
+1837782a0132e61065179c8ceb1172b6  ./usr/share/alsa/cards/ICH-MODEM.conf
+dc866136f58d37621be73f1f0d8c8443  ./usr/share/alsa/cards/ICH.conf
+132f6976651aa6f8b56e73d015bf4da2  ./usr/share/alsa/cards/ICH4.conf
+218e1b705fa98a3bf0b7a9048073727e  ./usr/share/alsa/cards/Loopback.conf
+8faacf40a1e42e3089111d3cf64533dc  ./usr/share/alsa/cards/Maestro3.conf
+323ff2d327fcb45402a6d1d2a48f7072  ./usr/share/alsa/cards/NFORCE.conf
+f755412d12bbc6970131fc9880dd5762  ./usr/share/alsa/cards/PC-Speaker.conf
+4fcd0cc4b6d8c6f121fa9420ab7a95ab  ./usr/share/alsa/cards/PMac.conf
+44fab56e772b1da4a9160a866d396833  ./usr/share/alsa/cards/PMacToonie.conf
+571ace2d72440b17ba2ea8d1568b6131  ./usr/share/alsa/cards/PS3.conf
+b240423f9484099f7cb276d6b78b8fb8  ./usr/share/alsa/cards/RME9636.conf
+f26497f940e6f4237a3b9727df750cb0  ./usr/share/alsa/cards/RME9652.conf
+d3a9be1669e401e83e04cba82ef65f3e  ./usr/share/alsa/cards/SB-XFi.conf
+3b9fcbe59b633711d68173789a4a42d8  ./usr/share/alsa/cards/SI7018.conf
+377a968489a2e822eab7ae9518d62097  ./usr/share/alsa/cards/SI7018/sndoc-mixer.alisp
+29f31d24345d79f75703e9f7e44d5b80  ./usr/share/alsa/cards/SI7018/sndop-mixer.alisp
+e4975c042c661ad8921996c9df2a6b84  ./usr/share/alsa/cards/TRID4DWAVENX.conf
+a1b52bd8139424509fb64a8e7968bd66  ./usr/share/alsa/cards/USB-Audio.conf
+ce023f2a7542adc65b1aadb71103bd24  ./usr/share/alsa/cards/VIA686A.conf
+9531074fdcbf5fb106567f5113a08cdb  ./usr/share/alsa/cards/VIA8233.conf
+3a7bcb7e3aca96c0f0e0ede436677e26  ./usr/share/alsa/cards/VIA8233A.conf
+7277980cb323f7dcdcf4e89c7c0de379  ./usr/share/alsa/cards/VIA8237.conf
+035ab192ff65e43c0d2f9afd94484117  ./usr/share/alsa/cards/VX222.conf
+a854970c4f1e10a985affc5dcbfcb4ba  ./usr/share/alsa/cards/VXPocket.conf
+d7950ce70c99d01c024288f6e78a7eb9  ./usr/share/alsa/cards/VXPocket440.conf
+25bdf86baca90aa75cd41ddfce94579b  ./usr/share/alsa/cards/YMF744.conf
+05a1f97b4d9334371aea13710d72d024  ./usr/share/alsa/cards/aliases.alisp
+c6cf6f239e257c242a808e0a1fdc26e3  ./usr/share/alsa/cards/aliases.conf
+897306b2f40bf7f1366aaf80001ddc8e  ./usr/share/alsa/init/00main
+6cb822c5baa87c0112813be59ad7ff67  ./usr/share/alsa/init/ca0106
+84b05375889f2213644e3ac24820c5c4  ./usr/share/alsa/init/default
+11eeee86df9bfb1edcd2f5ac558ed871  ./usr/share/alsa/init/hda
+1aefd1542930af5f60dfd687685896d8  ./usr/share/alsa/init/help
+cfd25aeec5652fae1e7148eaf49666ce  ./usr/share/alsa/init/info
+2ba852ea108988355e997fd7f485b15e  ./usr/share/alsa/init/test
+a0e8f0de39f34acf809a0b8110a65ade  ./usr/share/alsa/pcm/center_lfe.conf
+487e82468bb038522279d2c1459a2120  ./usr/share/alsa/pcm/default.conf
+8a4528eabeaad816d7b4656376b3f982  ./usr/share/alsa/pcm/dmix.conf
+ae6d7db349c2da7f0ddd38035e162166  ./usr/share/alsa/pcm/dpl.conf
+dfd4f6359acd5c1b32ad03bb5d72bea4  ./usr/share/alsa/pcm/dsnoop.conf
+cbf8eddf89a7325b61575268044990c9  ./usr/share/alsa/pcm/front.conf
+6f33c79f46f584cee3171dc20fe898fe  ./usr/share/alsa/pcm/hdmi.conf
+11579a5b50f3b370e902afd460cb149a  ./usr/share/alsa/pcm/iec958.conf
+d9aab39c652ff63dfca3a5828713cb34  ./usr/share/alsa/pcm/modem.conf
+fa515b54411bb81540c66a0d8e7fc479  ./usr/share/alsa/pcm/rear.conf
+0ff98410642ae96284cedfe843df8079  ./usr/share/alsa/pcm/side.conf
+7feb11842e928999726b8fcb785c7238  ./usr/share/alsa/pcm/surround21.conf
+b3527d37194edfe0dbead04018ecb6b7  ./usr/share/alsa/pcm/surround40.conf
+cd2efc1268bafa3004235595bc5b34dc  ./usr/share/alsa/pcm/surround41.conf
+ce700c7fc2e9dea1bcc19ed216adb469  ./usr/share/alsa/pcm/surround50.conf
+9628e4d002cb60ca601b84e402170407  ./usr/share/alsa/pcm/surround51.conf
+9410a0c1f086b78eb7c1cbd584d93787  ./usr/share/alsa/pcm/surround71.conf
+b43faf4629b503260f65abfd0a25800f  ./usr/share/alsa/smixer.conf
+0b375c3957371c0ac5f2bbcb5100c845  ./usr/share/alsa/sndo-mixer.alisp
+3e1714fbe385fd21c95c75237766055d  ./usr/share/alsa/speaker-test/sample_map.csv
+e2f38bed53b65c9a00306042a120135a  ./usr/share/alsa/topology/broadwell/broadwell.conf
+751ca3865f2b0bc1467099f7919ec9b7  ./usr/share/alsa/ucm/DAISY-I2S/DAISY-I2S.conf
+6110ebdd56759c3c525eb7707009ed99  ./usr/share/alsa/ucm/DAISY-I2S/HiFi.conf
+b6dafb57b9fdebe9827e3c8d12dfa52f  ./usr/share/alsa/ucm/GoogleNyan/GoogleNyan.conf
+b9de29b647038e2f22d9b6671a8bcafb  ./usr/share/alsa/ucm/GoogleNyan/HiFi.conf
+3ee6334fe2e6557eb85d748bbb23dd50  ./usr/share/alsa/ucm/PAZ00/HiFi.conf
+78669b30fab539d092021b534e07e8a6  ./usr/share/alsa/ucm/PAZ00/PAZ00.conf
+a81fae4ed8d1aa129e0412575bfa3ffa  ./usr/share/alsa/ucm/PAZ00/Record.conf
+19a5f2f42aa2a86eca1365c491877ea0  ./usr/share/alsa/ucm/PandaBoard/FMAnalog
+75ff0869b3f20382ebd5f629e0629bb8  ./usr/share/alsa/ucm/PandaBoard/PandaBoard.conf
+68f280ddb7dcaeb23bcdb6ec344d6f39  ./usr/share/alsa/ucm/PandaBoard/hifi
+ac91545c5aee04892c03900dd933d4fd  ./usr/share/alsa/ucm/PandaBoard/hifiLP
+d7e7bcd59a397890b717536d863bd0e2  ./usr/share/alsa/ucm/PandaBoard/record
+cc483958cd9471c830742ab261078b97  ./usr/share/alsa/ucm/PandaBoard/voice
+65867601a12b7d422f6691587be46ca6  ./usr/share/alsa/ucm/PandaBoard/voiceCall
+8745e35fc02eb0c3830de728394681b2  ./usr/share/alsa/ucm/PandaBoardES/FMAnalog
+79422c541750efcba29132115d4207a7  ./usr/share/alsa/ucm/PandaBoardES/PandaBoardES.conf
+0fed7b03412669f1daaf03cd15260e0c  ./usr/share/alsa/ucm/PandaBoardES/hifi
+125b886122712510e527bbd2e211a5a0  ./usr/share/alsa/ucm/PandaBoardES/hifiLP
+d051a92017a865432db1f3fbdf1037e3  ./usr/share/alsa/ucm/PandaBoardES/record
+bed8278341f90f6124d1e8523a4a1a40  ./usr/share/alsa/ucm/PandaBoardES/voice
+229bd6a21777499d446c359beea2b6e2  ./usr/share/alsa/ucm/PandaBoardES/voiceCall
+6f0d8d5b0ed81c21725da1024a9cf0e9  ./usr/share/alsa/ucm/SDP4430/FMAnalog
+0297048659feb06aac253a1287c252f4  ./usr/share/alsa/ucm/SDP4430/SDP4430.conf
+aaedd7d9cb211efdc93f2f9028b9a667  ./usr/share/alsa/ucm/SDP4430/hifi
+7ec0863f1342719c134d2d7115fe6a6f  ./usr/share/alsa/ucm/SDP4430/hifiLP
+43e05287858104e07d062ed5a68d7293  ./usr/share/alsa/ucm/SDP4430/record
+675b078c1d6e90cd6b95c71a58d47209  ./usr/share/alsa/ucm/SDP4430/voice
+1c08ebdc8396f3bc30f7b42cd5862064  ./usr/share/alsa/ucm/SDP4430/voiceCall
+458a10c34b46416c77745e47b8713a0d  ./usr/share/alsa/ucm/broadwell-rt286/HiFi
+34a68ba0a48b8422e89264296fcea8e5  ./usr/share/alsa/ucm/broadwell-rt286/broadwell-rt286.conf
+26eecc0de2eba76bd2d31d0c02e14078  ./usr/share/alsa/ucm/tegraalc5632/tegraalc5632.conf
+d41d8cd98f00b204e9800998ecf8427e  ./usr/share/dev-android-tools/README
+738c1d4c2c763040c6e47e5b19861292  ./usr/share/keyutils/request-key-debug.sh
+2996c030689336d8ac4e8a4d09eb0dc6  ./usr/share/locale/de/LC_MESSAGES/e2fsprogs.mo
+5580851c14ab30e9dac404e31b1d605c  ./usr/share/locale/de/LC_MESSAGES/util-linux.mo
+394ba0a1dbc5fd0099da2cad0215e150  ./usr/share/locale/fr/LC_MESSAGES/e2fsprogs.mo
+45bee4b0f5ca130becc96167151edb2c  ./usr/share/locale/fr/LC_MESSAGES/util-linux.mo
+327a1154b79a53f1b0abfd4c4fbd40c9  ./usr/share/openal/alsoftrc.sample
+a687ea1378364ad6025ca63d2f67b6c1  ./usr/share/openal/hrtf/default-44100.mhr
+18891c0a4fadb32e4986a261f1a65dea  ./usr/share/openal/hrtf/default-48000.mhr
+1e43e61b0e4fba70d63b5b6d3dce2a7c  ./usr/share/terminfo/a/ansi
+61bf6417bc2be49e93fa4fe33d076e97  ./usr/share/terminfo/l/linux
+e7c13cbe323910511f2778328b406d16  ./usr/share/terminfo/s/screen
+96300e9c1b0dea5f61383f5d22342ef3  ./usr/share/terminfo/v/vt100
+5fe25a4370c02f4ddee6285eac2ab974  ./usr/share/terminfo/v/vt102
+b2c90e2aaf7dc659c448d503a928bd05  ./usr/share/terminfo/v/vt200
+b2c90e2aaf7dc659c448d503a928bd05  ./usr/share/terminfo/v/vt220
+da21eeaa42ab75031addfee97b59befc  ./usr/share/terminfo/x/xterm
+d3be0607500338711912112f0cb3d690  ./usr/share/terminfo/x/xterm-color
+03f6550323c6c484e7d77f818bebb499  ./usr/share/terminfo/x/xterm-xfree86
+a881925139729153a82420a80a6b763f  ./usr/share/udhcpc/default.script
+76c3d04cbd624bfc50cc2963aa183752  ./var/lib/save/.readme
+2e471ef319d43efb7a77cbfa79b05b25  ./version
