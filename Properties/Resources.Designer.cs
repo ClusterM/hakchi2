@@ -3950,7 +3950,12 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The system files appear to have been modified:\n\nVersion: {0}\nHash: {1}\n\nDo you want to continue?.
+        ///   Looks up a localized string similar to The system files appear to have been modified:
+        ///
+        ///Version: {0}
+        ///Hash: {1}
+        ///
+        ///Do you want to continue?.
         /// </summary>
         internal static string SystemFilesModifiedMessage {
             get {
@@ -3959,7 +3964,12 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The system files are an unknown version:\n\nVersion: {0}\nHash: {1}\n\nDo you want to continue?.
+        ///   Looks up a localized string similar to The system files are an unknown version:
+        ///
+        ///Version: {0}
+        ///Hash: {1}
+        ///
+        ///Do you want to continue?.
         /// </summary>
         internal static string SystemFilesUnknownMessage {
             get {

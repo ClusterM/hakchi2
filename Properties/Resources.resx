@@ -1543,10 +1543,20 @@ This will erase all data present on the card!</value>
     <value>Three</value>
   </data>
   <data name="SystemFilesModifiedMessage" xml:space="preserve">
-    <value>The system files appear to have been modified:\n\nVersion: {0}\nHash: {1}\n\nDo you want to continue?</value>
+    <value>The system files appear to have been modified:
+
+Version: {0}
+Hash: {1}
+
+Do you want to continue?</value>
   </data>
   <data name="SystemFilesUnknownMessage" xml:space="preserve">
-    <value>The system files are an unknown version:\n\nVersion: {0}\nHash: {1}\n\nDo you want to continue?</value>
+    <value>The system files are an unknown version:
+
+Version: {0}
+Hash: {1}
+
+Do you want to continue?</value>
   </data>
   <data name="UnknownSystemVersionDetected" xml:space="preserve">
     <value>Unknown System Version Detected</value>
