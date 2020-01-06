@@ -9,7 +9,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
 using System.Windows.Forms;
-using static System.Windows.Forms.ImageList;
 
 namespace com.clusterrr.hakchi_gui.Controls
 {
@@ -63,56 +62,80 @@ namespace com.clusterrr.hakchi_gui.Controls
             searchThread.Start();
         }
 
-        public static string[] GetImageUrls(string query, string additionalVariables = "")
+        public static string[] GetImageUrls(string query, string additionalVariables = "", int tryCount = 0)
         {
-            var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch{1}", HttpUtility.UrlEncode(query), additionalVariables.Length > 0 ? $"&{additionalVariables}" : "");
-            Trace.WriteLine("Web request: " + url);
-            var request = WebRequest.Create(url);
-            request.Credentials = CredentialCache.DefaultCredentials;
-            (request as HttpWebRequest).UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36";
-            request.Timeout = 10000;
-            var response = request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            response.Close();
-            //Trace.WriteLine("Web response: " + responseFromServer);
-
-            var urls = new List<string>();
-            string search = @"\""ou\""\:\""(?<url>.+?)\""";
-            MatchCollection matches = Regex.Matches(responseFromServer, search);
-            foreach (Match match in matches)
+            try
             {
-                urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
-            }
+                if (tryCount > 0)
+                {
+                    Trace.WriteLine($"Retry #{tryCount}");
+                }
 
-            // For some reason Google returns different data for dirrefent users (IPs?)
-            // This is an alternative method
-            search = @"imgurl=(.*?)&";
-            matches = Regex.Matches(responseFromServer, search);
-            foreach (Match match in matches)
+                var url = string.Format("https://www.google.com/search?q={0}&source=lnms&tbm=isch{1}", HttpUtility.UrlEncode(query), additionalVariables.Length > 0 ? $"&{additionalVariables}" : "");
+                Trace.WriteLine("Web request: " + url);
+                var request = WebRequest.Create(url);
+                request.Credentials = CredentialCache.DefaultCredentials;
+                (request as HttpWebRequest).UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36";
+                request.Timeout = 10000;
+                var response = request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                //Trace.WriteLine("Web response: " + responseFromServer);
+
+                var urls = new List<string>();
+                string search = @"\""ou\""\:\""(?<url>.+?)\""";
+                MatchCollection matches = Regex.Matches(responseFromServer, search);
+                foreach (Match match in matches)
+                {
+                    urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
+                }
+
+                // For some reason Google returns different data for different users (IPs?)
+                // This is an alternative method
+                search = @"imgurl=(.*?)&";
+                matches = Regex.Matches(responseFromServer, search);
+                foreach (Match match in matches)
+                {
+                    // Not sure about it.
+                    urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
+                }
+
+                // For some reason Google returns different data for different users (IPs?)
+                // This is alternative method #2
+                search = "\\]\\n,\\[\"([^\"]+)\",\\d+,\\d+]";
+                matches = Regex.Matches(responseFromServer, search);
+                foreach (Match match in matches)
+                {
+                    // Not sure about it.
+                    urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
+                }
+
+                if (urls.Count == 0)
+                {
+                    Trace.WriteLine("No results found");
+                }
+
+                return urls.ToArray();
+            }
+            catch(Exception ex)
             {
-                // Not sure about it.
-                urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
+                if (tryCount < 5)
+                {
+                    Trace.WriteLine(ex?.Message);
+                    Trace.WriteLine(ex?.InnerException?.Message);
+                    return GetImageUrls(query, additionalVariables, tryCount + 1);
+                }
+                else
+                {
+                    Trace.WriteLine(ex?.Message);
+                    Trace.WriteLine(ex?.InnerException?.Message);
+                    return new string[] { };
+                }
             }
-
-            // For some reason Google returns different data for dirrefent users (IPs?)
-            // This is alternative method 2
-            search = "\\]\\n,\\[\"([^\"]+)\",\\d+,\\d+]";
-            matches = Regex.Matches(responseFromServer, search);
-            foreach (Match match in matches)
-            {
-                // Not sure about it.
-                urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
-            }
-
-            if (urls.Count == 0)
-            {
-                Trace.WriteLine("No results found");
-            }
-
-            return urls.ToArray();
+            
         }
 
         private void SearchThread(string query, string additionalVariables)
