@@ -2,17 +2,13 @@
 using com.clusterrr.util;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static com.clusterrr.hakchi_gui.Tasks.Tasker;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
-    
-    public class ModTasks
+
+    public class ModTasks: ITaskCollection
     {
         public class ModObject
         {
@@ -21,7 +17,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             public List<string> HmodsToLoad = new List<string>();
         }
 
-        public TaskFunc[] Tasks;
+        public TaskFunc[] Tasks { get; private set; }
         public ModTasks(string[] hmodsInstall = null, string[] hmodsUninstall = null, bool transferOnly = false, string transferPath = "/tmp/hmods", string uninstallFile = "/var/lib/hakchi/transfer/uninstall")
         {
             List<TaskFunc> tasksList = new List<TaskFunc>();

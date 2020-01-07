@@ -15,7 +15,7 @@ using static com.clusterrr.hakchi_gui.Tasks.Tasker;
 namespace com.clusterrr.hakchi_gui.Tasks
 {
     public enum UbootType { Normal, SD }
-    public class MembootTasks
+    public class MembootTasks: Tasker.ITaskCollection
     {
         // Constants
         public const int MembootWaitDelay = 120000;
@@ -56,7 +56,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         public static readonly IReadOnlyDictionary<hakchi.ConsoleType, string[]> correctKernels = Shared.CorrectKernels();
         public static readonly IReadOnlyDictionary<hakchi.ConsoleType, string[]> correctKeys = Shared.CorrectKeys();
 
-        public readonly TaskFunc[] Tasks;
+        public TaskFunc[] Tasks { get; private set; }
 
         public MembootTasks(MembootTaskType type, string[] hmodsInstall = null, string[] hmodsUninstall = null, string dumpPath = null, bool forceRecoveryReload = false, bool ignoreBackupKernel = false, bool requireSD = false)
         {

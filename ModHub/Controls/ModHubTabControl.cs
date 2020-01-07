@@ -247,7 +247,7 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
                 if (install && selectedMods.Count > 0)
                 {
                     tasker.AddTask(ShellTasks.MountBase);
-                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ProcessMods, selectedMods.ToArray()).Tasks);
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ProcessMods, selectedMods.ToArray()));
                 }
 
                 tasker.Start();

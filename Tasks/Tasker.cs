@@ -1,20 +1,23 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
     public class Tasker : IDisposable
     {
+        public interface ITaskCollection
+        {
+            TaskFunc[] Tasks { get; }
+        }
+
         public enum State { Undefined, Starting, Running, Waiting, Paused, Error, Finishing, Done }
         public enum Conclusion { Undefined, Error, Abort, Success }
 
@@ -43,6 +46,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 this.weight = 1;
                 this.task = null;
             }
+
+            public static implicit operator TaskFunc(Task t) => t.task;
+            public static implicit operator Task(TaskFunc t) => new Task(t);
         }
 
         // public properties
@@ -254,6 +260,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
             {
                 AddTask(func);
             }
+            return this;
+        }
+
+        public Tasker AddTasks(params ITaskCollection[] collection)
+        {
+            foreach (var task in collection)
+                AddTasks(task.Tasks);
+
             return this;
         }
 

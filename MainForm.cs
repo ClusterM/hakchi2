@@ -324,7 +324,7 @@ namespace com.clusterrr.hakchi_gui
                         tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                         tasker.SetStatusImage(Resources.sign_sync);
                         tasker.SetTitle(Resources.Rebooting);
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot));
                         tasker.AddTask(Tasker.Wait(1000, Resources.WaitingForDevice));
                         tasker.Start();
                     }
@@ -1823,39 +1823,39 @@ namespace com.clusterrr.hakchi_gui
                         if (!DumpDialog(FileAccess.Write, "nand.bin", "bin", out dumpFilename))
                             return false;
 
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNand, dumpPath: dumpFilename).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpNand, dumpPath: dumpFilename));
                         break;
 
                     case MembootTasks.NandTasks.DumpSystemPartition:
                         if (!DumpDialog(FileAccess.Write, "system_software.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
                             return false;
 
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpSystemPartition, dumpPath: dumpFilename).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpSystemPartition, dumpPath: dumpFilename));
                         break;
 
                     case MembootTasks.NandTasks.DumpUserPartition:
                         if (!DumpDialog(FileAccess.Write, "user_data.tar", "tar", out dumpFilename, $"{Resources.UserDataBackup}|*.tar"))
                             return false;
 
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpUserPartition, dumpPath: dumpFilename).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpUserPartition, dumpPath: dumpFilename));
                         break;
 
                     case MembootTasks.NandTasks.FlashSystemPartition:
                         if (!DumpDialog(FileAccess.Read, "system_software.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
                             return false;
 
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashSystemPartition, dumpPath: dumpFilename).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashSystemPartition, dumpPath: dumpFilename));
                         break;
 
                     case MembootTasks.NandTasks.FlashUserPartition:
                         if (!DumpDialog(FileAccess.Read, "user_data.tar", "tar", out dumpFilename, $"{Resources.UserDataBackup}|*.tar;*.hsqs"))
                             return false;
 
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashUserPartition, dumpPath: dumpFilename).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashUserPartition, dumpPath: dumpFilename));
                         break;
 
                     case MembootTasks.NandTasks.FormatUserPartition:
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FormatUserPartition).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FormatUserPartition));
                         break;
 
                     default:
@@ -1874,11 +1874,11 @@ namespace com.clusterrr.hakchi_gui
                 tasker.SetStatusImage(reset ? Resources.sign_sync : Resources.sign_keyring);
                 if (reset)
                 {
-                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ResetHakchi).Tasks);
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ResetHakchi));
                 }
                 else
                 {
-                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.InstallHakchi).Tasks);
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.InstallHakchi));
                 }
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
@@ -1910,7 +1910,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_keyring);
                 tasker.SetTitle(Resources.Membooting);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot));
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
@@ -1947,7 +1947,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AddTasks(new MembootTasks(
                     MembootTasks.MembootTaskType.UninstallHakchi,
                     ignoreBackupKernel: ignoreBackupKernel
-                ).Tasks);
+                ));
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
         }
@@ -1959,10 +1959,10 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(Resources.InstallingMods);
                 tasker.SetStatusImage(Resources.sign_brick);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery));
                 tasker.AddTask(ShellTasks.MountBase);
                 tasker.AddTask(ShellTasks.ShowSplashScreen);
-                tasker.AddTasks(new ModTasks(mods).Tasks);
+                tasker.AddTasks(new ModTasks(mods));
                 tasker.AddFinalTask(MembootTasks.BootHakchi);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
@@ -1975,10 +1975,10 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetTitle(Resources.UninstallingMods);
                 tasker.SetStatusImage(Resources.sign_brick);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery));
                 tasker.AddTask(ShellTasks.MountBase);
                 tasker.AddTask(ShellTasks.ShowSplashScreen);
-                tasker.AddTasks(new ModTasks(null, mods).Tasks);
+                tasker.AddTasks(new ModTasks(null, mods));
                 tasker.AddFinalTask(MembootTasks.BootHakchi);
                 return tasker.Start() == Tasker.Conclusion.Success;
             }
@@ -2006,7 +2006,7 @@ namespace com.clusterrr.hakchi_gui
                     tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                     tasker.SetTitle(Resources.FlashingUboot);
                     tasker.SetStatusImage(Resources.sign_cogs);
-                    tasker.AddTasks(new MembootTasks(tag).Tasks);
+                    tasker.AddTasks(new MembootTasks(tag));
                     if (tasker.Start() == Tasker.Conclusion.Success)
                         if (!ConfigIni.Instance.DisablePopups)
                             Tasks.MessageForm.Show(Resources.FlashingUboot, Resources.Done, Resources.sign_check);
@@ -2090,7 +2090,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_keyring);
                 tasker.SetTitle(((ToolStripMenuItem)sender).Text);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootOriginal).Tasks);
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootOriginal));
                 tasker.Start();
             }
         }
@@ -2113,7 +2113,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_life_buoy);
                 tasker.SetTitle(((ToolStripMenuItem)sender).Text);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery, forceRecoveryReload: forceRecoveryReload).Tasks);
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery, forceRecoveryReload: forceRecoveryReload));
                 tasker.AddTask(ShellTasks.ShellCommand("touch /user-recovery.flag"));
                 if (tasker.Start() == Tasker.Conclusion.Success)
                     Tasks.MessageForm.Show(Resources.RecoveryKernel, Resources.RecoveryModeMessage, Resources.sign_life_buoy);
@@ -2144,7 +2144,7 @@ namespace com.clusterrr.hakchi_gui
                     tasker.AddTasks(new MembootTasks(
                         MembootTasks.MembootTaskType.FactoryReset,
                         ignoreBackupKernel: ignoreBackupKernel
-                    ).Tasks);
+                    ));
                     if (tasker.Start() == Tasker.Conclusion.Success)
                         if (!ConfigIni.Instance.DisablePopups)
                             Tasks.MessageForm.Show(Resources.Done, Resources.FactoryResetNote, Resources.sign_check);
@@ -3207,7 +3207,7 @@ namespace com.clusterrr.hakchi_gui
                     tasker.SetStatusImage(Resources.sign_sync);
                     tasker.SetTitle(Resources.Rebooting);
                     if (justBoot)
-                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot).Tasks);
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot));
                     else
                         tasker.AddTask(Tasks.ShellTasks.Reboot);
                     tasker.Start();
@@ -3254,7 +3254,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new TaskerTaskbar(), new TaskerForm());
                 tasker.SetStatusImage(Resources.sign_cogs);
                 tasker.SetTitle(Resources.DumpingKernel);
-                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpStockKernel, dumpPath: dumpFilename).Tasks);
+                tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpStockKernel, dumpPath: dumpFilename));
                 if (tasker.Start() == Tasker.Conclusion.Success)
                     MessageForm.Show(this, Resources.DumpOriginalKernelCompleteTitle, Resources.DumpOriginalKernelCompleteMessage, Resources.sign_check);
             }

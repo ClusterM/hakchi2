@@ -6,7 +6,7 @@ using static com.clusterrr.hakchi_gui.Tasks.Tasker;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
-    public class GrowTask
+    public class GrowTask: ITaskCollection
     {
         private bool shouldGrow = false;
         private bool rebootToRecovery = false;
