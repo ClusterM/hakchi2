@@ -160,6 +160,7 @@
     <Compile Include="SpineForm.Designer.cs">
       <DependentUpon>SpineForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tasks\GrowTask.cs" />
     <Compile Include="Wireless\Bluetooth\BluetoothMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>

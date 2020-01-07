@@ -1111,6 +1111,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to expand the data partition?.
+        /// </summary>
+        internal static string DoYouWantToExpandTheDataPartition {
+            get {
+                return ResourceManager.GetString("DoYouWantToExpandTheDataPartition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dumping kernel....
         /// </summary>
         internal static string DumpingKernel {
@@ -3003,6 +3012,30 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string PairedDevicesClickToUnpair {
             get {
                 return ResourceManager.GetString("PairedDevicesClickToUnpair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to expand the data partition, this will give you approximately {0} of additional free space.
+        ///
+        ///There is a small chance of data loss, please make sure you have your saves backed up..
+        /// </summary>
+        internal static string PartitionExpandQ {
+            get {
+                return ResourceManager.GetString("PartitionExpandQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to expand the data partition, this will give you approximately {0} of additional free space.
+        ///
+        ///There is a small chance of data loss, please make sure you have your saves backed up.
+        ///
+        ///This may affect the compatibility of other hacks..
+        /// </summary>
+        internal static string PartitionExpandQMd {
+            get {
+                return ResourceManager.GetString("PartitionExpandQMd", resourceCulture);
             }
         }
         

@@ -72,9 +72,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 taskList.Add(WaitForShellCycle(-1));
                 taskList.Add(ShellTasks.ShowSplashScreen);
             }
+
             switch (type)
             {
                 case MembootTaskType.InstallHakchi:
+                    taskList.Add(CheckMdRootfs);
+                    taskList.AddRange(new GrowTask(true, true).Tasks);
                     taskList.AddRange(new TaskFunc[]
                     {
                         HandleHakchi(HakchiTasks.Install),
@@ -87,6 +90,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     break;
 
                 case MembootTaskType.ResetHakchi:
+                    taskList.Add(CheckMdRootfs);
+                    taskList.AddRange(new GrowTask(true, true).Tasks);
                     taskList.AddRange(new TaskFunc[]
                     {
                         HandleHakchi(HakchiTasks.Reset),
@@ -337,7 +342,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return (Tasker tasker, Object syncObject) => WaitForShellCycle(tasker, syncObject, maxWaitTime, title, message);
         }
 
-        public Conclusion Memboot(Tasker tasker, Object syncObject = null)
+        public static Conclusion Memboot(Tasker tasker, Object syncObject = null)
         {
             tasker.SetStatus(Resources.Membooting);
             if (!hakchi.Shell.IsOnline)
@@ -649,6 +654,92 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
+        public Conclusion CheckMdRootfs(Tasker tasker, object syncObject)
+        {
+            if (hakchi.IsMdPartitioning)
+            {
+                hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);
+
+                var squashfs = hakchi.Shell.ExecuteSimple("hakchi get squashfs").Trim();
+
+                if (hakchi.Shell.Execute($"[ \"$(find {Shared.EscapeShellArgument($"{squashfs}/etc/init.d")} -name \"*_PL_*\" | wc -l)\" == \"0\" ]") != 0)
+                {
+                    // Project lunar detected
+                    MessageForm.Show(tasker.HostForm, Resources.SystemModificationDetected, com.clusterrr.hakchi_gui.Properties.Resources.ProjectLunarHasBeenDetected, Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.OK }, MessageForm.DefaultButton.Button1);
+                    return Conclusion.Abort;
+                }
+
+                var version = hakchi.Shell.ExecuteSimple($"cat {Shared.EscapeShellArgument($"{squashfs}/version")}", 0, true).Trim();
+                using (var versionMemoryStream = new MemoryStream())
+                using (var hasher = new MD5CryptoServiceProvider())
+                {
+                    hakchi.Shell.Execute($"cd \"{squashfs}\" && (echo \"$(cat {Shared.EscapeShellArgument($"{squashfs}/version")})\"; find -type d | sort; find -type l | sort | while read link; do echo \"$link -> $(readlink \"$link\")\"; done; find -type f | sort | while read file; do md5sum \"$file\"; done)", null, versionMemoryStream, versionMemoryStream, 0, true);
+                    versionMemoryStream.Seek(0, SeekOrigin.Begin);
+                    var hash = BitConverter.ToString(hasher.ComputeHash(versionMemoryStream)).Replace("-", "").ToLower();
+                    versionMemoryStream.Seek(0, SeekOrigin.Begin);
+
+                    bool knownHash = false;
+                    bool knownVersion = false;
+
+                    foreach (var moon in Shared.MoonHashes)
+                    {
+                        if (moon.Substring(0, 32) == hash)
+                        {
+                            knownHash = true;
+                        }
+
+                        if (moon.Substring(34) == version)
+                        {
+                            knownVersion = true;
+                        }
+
+                        if (knownHash && knownVersion)
+                            break;
+                    }
+
+                    if (knownVersion)
+                    {
+                        if (knownHash)
+                        {
+                            // Hash good
+                            Trace.WriteLine(version);
+                        }
+                        else
+                        {
+                            // Hash doesn't match for version
+                            if (!Directory.Exists(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes")))
+                                Directory.CreateDirectory(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes"));
+
+                            File.WriteAllBytes(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes", $"mismatched_{version}_{hash}"), versionMemoryStream.ToArray());
+
+                            Trace.WriteLine(Encoding.UTF8.GetString(versionMemoryStream.ToArray()));
+                            if (MessageForm.Show(tasker.HostForm, Resources.SystemModificationDetected, string.Format(Resources.SystemFilesModifiedMessage, version, hash), Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) != MessageForm.Button.Yes)
+                            {
+                                return Conclusion.Abort;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // Unknown version
+                        if (!Directory.Exists(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes")))
+                            Directory.CreateDirectory(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes"));
+
+                        File.WriteAllBytes(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes", $"unknown_{version}_{hash}"), versionMemoryStream.ToArray());
+
+                        Trace.WriteLine(Encoding.UTF8.GetString(versionMemoryStream.ToArray()));
+                        if (MessageForm.Show(tasker.HostForm, Resources.UnknownSystemVersionDetected, string.Format(Resources.SystemFilesUnknownMessage, version, hash), Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) != MessageForm.Button.Yes)
+                        {
+                            return Conclusion.Abort;
+                        }
+                    }
+                }
+
+                hakchi.Shell.Execute("hakchi umount_base", null, null, null, 0, true);
+            }
+            return Conclusion.Success;
+        }
+
         public TaskFunc HandleHakchi(HakchiTasks task)
         {
             var instance = this;
@@ -679,86 +770,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     hakchi.Shell.Execute("echo \"cf_install=y\" >> /hakchi/config");
                     hakchi.Shell.Execute("echo \"cf_update=y\" >> /hakchi/config");
                     hakchi.Shell.Execute("mkdir -p /hakchi/transfer/");
-                    if (hakchi.IsMdPartitioning)
-                    {
-                        hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);
-
-                        var squashfs = hakchi.Shell.ExecuteSimple("hakchi get squashfs").Trim();
-
-                        if (hakchi.Shell.Execute($"[ \"$(find {Shared.EscapeShellArgument($"{squashfs}/etc/init.d")} -name \"*_PL_*\" | wc -l)\" == \"0\" ]") != 0)
-                        {
-                            // Project lunar detected
-                            MessageForm.Show(tasker.HostForm, Resources.SystemModificationDetected, com.clusterrr.hakchi_gui.Properties.Resources.ProjectLunarHasBeenDetected, Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.OK }, MessageForm.DefaultButton.Button1);
-                            return Conclusion.Abort;
-                        }
-
-                        var version = hakchi.Shell.ExecuteSimple($"cat {Shared.EscapeShellArgument($"{squashfs}/version")}", 0, true).Trim();
-                        using (var versionMemoryStream = new MemoryStream())
-                        using (var hasher = new MD5CryptoServiceProvider())
-                        {
-                            hakchi.Shell.Execute($"cd \"{squashfs}\" && (echo \"$(cat {Shared.EscapeShellArgument($"{squashfs}/version")})\"; find -type d | sort; find -type l | sort | while read link; do echo \"$link -> $(readlink \"$link\")\"; done; find -type f | sort | while read file; do md5sum \"$file\"; done)", null, versionMemoryStream, versionMemoryStream, 0, true);
-                            versionMemoryStream.Seek(0, SeekOrigin.Begin);
-                            var hash = BitConverter.ToString(hasher.ComputeHash(versionMemoryStream)).Replace("-", "").ToLower();
-                            versionMemoryStream.Seek(0, SeekOrigin.Begin);
-
-                            bool knownHash = false;
-                            bool knownVersion = false;
-
-                            foreach (var moon in Shared.MoonHashes)
-                            {
-                                if (moon.Substring(0, 32) == hash)
-                                {
-                                    knownHash = true;
-                                }
-
-                                if (moon.Substring(34) == version)
-                                {
-                                    knownVersion = true;
-                                }
-
-                                if (knownHash && knownVersion)
-                                    break;
-                            }
-
-                            if (knownVersion)
-                            {
-                                if (knownHash)
-                                {
-                                    // Hash good
-                                    Trace.WriteLine(version);
-                                }
-                                else
-                                {
-                                    // Hash doesn't match for version
-                                    if (!Directory.Exists(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes")))
-                                        Directory.CreateDirectory(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes"));
-
-                                    File.WriteAllBytes(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes", $"mismatched_{version}_{hash}"), versionMemoryStream.ToArray());
-
-                                    Trace.WriteLine(Encoding.UTF8.GetString(versionMemoryStream.ToArray()));
-                                    if (MessageForm.Show(tasker.HostForm, Resources.SystemModificationDetected, string.Format(Resources.SystemFilesModifiedMessage, version, hash), Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) != MessageForm.Button.Yes)
-                                    {
-                                        return Conclusion.Abort;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                // Unknown version
-                                if (!Directory.Exists(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes")))
-                                    Directory.CreateDirectory(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes"));
-
-                                File.WriteAllBytes(Path.Combine(Program.BaseDirectoryExternal, "moon_hashes", $"unknown_{version}_{hash}"), versionMemoryStream.ToArray());
-
-                                Trace.WriteLine(Encoding.UTF8.GetString(versionMemoryStream.ToArray()));
-                                if (MessageForm.Show(tasker.HostForm, Resources.UnknownSystemVersionDetected, string.Format(Resources.SystemFilesUnknownMessage, version, hash), Resources.sign_error, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button1) != MessageForm.Button.Yes){
-                                    return Conclusion.Abort;
-                                }
-                            }
-                        }
-                        
-                        hakchi.Shell.Execute("hakchi umount_base", null, null, null, 0, true);
-                    }
                 }
 
                 return Conclusion.Success;

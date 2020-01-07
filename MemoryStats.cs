@@ -21,12 +21,6 @@ namespace com.clusterrr.hakchi_gui
         {
             get
             {
-                if (ExternalSaves)
-                    return 5 * 1024 * 1024;
-                if (hakchi.IsNes(hakchi.DetectedConsoleType ?? hakchi.ConsoleType.Unknown))
-                    return 10 * 1024 * 1024;
-                if (hakchi.IsSnes(hakchi.DetectedConsoleType ?? hakchi.ConsoleType.Unknown))
-                    return 30 * 1024 * 1024;
                 return 0;
             }
         }

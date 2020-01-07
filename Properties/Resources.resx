@@ -1567,4 +1567,19 @@ Do you want to continue?</value>
   <data name="ProjectLunarHasBeenDetected" xml:space="preserve">
     <value>Project Lunar has been detected, installation cannot continue until it is removed.</value>
   </data>
+  <data name="PartitionExpandQMd" xml:space="preserve">
+    <value>Would you like to expand the data partition, this will give you approximately {0} of additional free space.
+
+There is a small chance of data loss, please make sure you have your saves backed up.
+
+This may affect the compatibility of other hacks.</value>
+  </data>
+  <data name="PartitionExpandQ" xml:space="preserve">
+    <value>Would you like to expand the data partition, this will give you approximately {0} of additional free space.
+
+There is a small chance of data loss, please make sure you have your saves backed up.</value>
+  </data>
+  <data name="DoYouWantToExpandTheDataPartition" xml:space="preserve">
+    <value>Do you want to expand the data partition?</value>
+  </data>
 </root>
