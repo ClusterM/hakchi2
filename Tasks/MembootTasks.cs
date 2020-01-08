@@ -761,7 +761,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 if (task == HakchiTasks.Reset || task == HakchiTasks.Uninstall)
                 {
                     hakchi.Shell.Execute("hakchi mount_base", null, null, null, 0, true);
-                    hakchi.Shell.Execute("hakchi mod_uninstall");
+                    hakchi.Shell.Execute("hakchi mod_uninstall" + (task == HakchiTasks.Reset ? " reset" : ""));
                     hakchi.Shell.Execute("hakchi umount_base", null, null, null, 0, true);
                 }
 

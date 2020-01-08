@@ -2,7 +2,7 @@
 Type=Application
 Exec=/bin/m2engage /usr/game/system/roms/eu_us_Streets_of_Rage_2.bin --preamp=-2.45 --mdz80.overclock=0.992
 Path=/var/saves/CLV-M2-eu_us_Streets_of_Rage_2
-Name=베어 너클 2
+Name=Streets of Rage II
 CePrefix=US
 Icon=/var/games/CLV-M2-eu_us_Streets_of_Rage_2/CLV-M2-eu_us_Streets_of_Rage_2.png
 
@@ -14,7 +14,7 @@ Players=1
 Simultaneous=0
 ReleaseDate=
 SaveCount=0
-SortRawTitle=베어 너클 2
+SortRawTitle=Streets of Rage II
 SortRawPublisher=UNKNOWN
 Copyright=
 
@@ -27,11 +27,12 @@ country=us
 
 [Description]
 Text = 
-출시 연도: 1992  
-             
-메가 드라이브 사상 최고로 높은 평가를
-받은 벨트 스크롤 격투 액션 게임입니다.
-악의 신디케이트로부터 친구를 구하기 위해
-4명의 싸움이 시작됩니다. 2인 동시
-플레이도 가능. Yuzo Koshiro에 의한
-게임 뮤직 또한 게임을 더욱 고조시킵니다.
+Release Year: 1993
+ 
+This beat-em-up was one of the
+highest-rated games on the
+Genesis/Mega Drive. Four fighters
+battle to rescue a friend captured
+by an evil syndicate. Yuzo
+Koshiro's soundtrack will pump you
+up! Supports up to 2 players.

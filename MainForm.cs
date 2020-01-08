@@ -2258,6 +2258,27 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public void CheckOriginalGames(hakchi.ConsoleType c)
+        {
+            ConfigIni.Instance.SelectedOriginalGamesForConsole(c).Clear();
+            switch (c)
+            {
+                case hakchi.ConsoleType.MD_ASIA:
+                case hakchi.ConsoleType.MD_EUR:
+                case hakchi.ConsoleType.MD_USA:
+                    ConfigIni.Instance.SelectedOriginalGamesForConsole(c).AddRange(NesApplication.DefaultGames[c].Where(e => e.Contains("_en_") || e.Contains("_us_") || e.Contains("eu_eu_")));
+                    break;
+
+                case hakchi.ConsoleType.MD_JPN:
+                    ConfigIni.Instance.SelectedOriginalGamesForConsole(c).AddRange(NesApplication.DefaultGames[c].Where(e => e.Contains("_jp_")));
+                    break;
+
+                default:
+                    ConfigIni.Instance.SelectedOriginalGamesForConsole(c).AddRange(NesApplication.DefaultGames[c]);
+                    break;
+            }
+        }
+
         public void ResetOriginalGamesForCurrentSystem(bool nonDestructiveSync = false)
         {
             SaveConfig();
@@ -2274,6 +2295,7 @@ namespace com.clusterrr.hakchi_gui
                 var conclusion = tasker.Start();
                 if (conclusion == Tasks.Tasker.Conclusion.Success && !ConfigIni.Instance.DisablePopups)
                 {
+                    CheckOriginalGames(ConfigIni.Instance.ConsoleType);
                     Tasks.MessageForm.Show(Resources.Default30games, Resources.Done, Resources.sign_check);
                 }
             }
@@ -2299,8 +2321,7 @@ namespace com.clusterrr.hakchi_gui
                     {
                         if (c != hakchi.ConsoleType.Unknown)
                         {
-                            ConfigIni.Instance.SelectedOriginalGamesForConsole(c).Clear();
-                            ConfigIni.Instance.SelectedOriginalGamesForConsole(c).AddRange(NesApplication.DefaultGames[c]);
+                            CheckOriginalGames(c);
                         }
                     }
                 }

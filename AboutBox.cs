@@ -1,5 +1,4 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
-using System;
+﻿using System;
 using System.Reflection;
 using System.Windows.Forms;
 

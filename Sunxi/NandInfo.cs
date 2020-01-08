@@ -43,9 +43,9 @@ namespace com.clusterrr.hakchi_gui.Sunxi
             this.Partitions = partitions;
         }
 
-        public static NandInfo GetNandInfo()
+        public static NandInfo GetNandInfo(string partCommand = "sunxi-part")
         {
-            string partInfo = hakchi.Shell.ExecuteSimple("sunxi-part");
+            string partInfo = hakchi.Shell.ExecuteSimple(partCommand);
             string[] nandInfo = hakchi.Shell.ExecuteSimple("sunxi-flash nandinfo").Split(' ');
 
             var partitions = new List<PartitionInfo>();

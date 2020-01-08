@@ -34,19 +34,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
             if (info != null)
             {
                 var partUdisk = info.Partitions.Where(e => e.Label == "UDISK");
-                var partPrivate = info.Partitions.Where(e => e.Label == "private");
-                var partMisc = info.Partitions.Where(e => e.Label == "misc");
 
                 if (partUdisk.Count() == 0)
                     return Conclusion.Success;
 
-                estimatedSize = partUdisk.First().Size;
+                var newInfo = NandInfo.GetNandInfo("sunxi-part grow --dry-run");
 
-                if (partPrivate.Count() > 0)
-                    estimatedSize += partPrivate.First().Size;
-
-                if (partMisc.Count() > 0)
-                    estimatedSize += partMisc.First().Size - (256 * 1024);
+                estimatedSize = newInfo.GetDataPartition().Size - info.GetDataPartition().Size;
 
                 if (shouldGrow)
                     return Conclusion.Success;

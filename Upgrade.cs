@@ -23,7 +23,7 @@ namespace com.clusterrr.hakchi_gui
         {
             this.mainForm = mainForm;
             actions = new List<Action>();
-            fillActions();
+            fillActions(new Version(ConfigIni.Instance.LastVersion), Shared.AppVersion);
         }
 
         public bool Run()
@@ -73,7 +73,7 @@ namespace com.clusterrr.hakchi_gui
             return true;
         }
 
-        private void fillActions()
+        private void fillActions(Version lastVersion, Version currentVersion)
         {
             actions.AddRange(new Action[] {
 
@@ -204,215 +204,24 @@ namespace com.clusterrr.hakchi_gui
                         return true;
                     })
                 },
-
-                new Action() {
-                    startingVersion = new Version("0.0.0.0"),
-                    targetVersion = new Version("3.6.1.1002"),
-                    action = new ActionFunc(() => {
-                        mainForm.ResetOriginalGamesForAllSystems(true);
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].MaxGamesPerFolder = 100;
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].FolderImagesSet = "TheWez1981-Genesis";
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].OriginalGames.Clear();
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].OriginalGames.AddRange(new string[] {
-                            "CLV-M2-us_us_Alex_Kidd",
-                            "CLV-M2-us_us_Alisia_Dragoon",
-                            "CLV-M2-us_us_Altered_Beast",
-                            "CLV-M2-us_us_Castle_of_Illusion",
-                            "CLV-M2-us_us_Castlevania_Bloodlines",
-                            "CLV-M2-us_us_Columns",
-                            "CLV-M2-us_us_Comix_Zone",
-                            "CLV-M2-us_us_Contra_Hard_Corps",
-                            "CLV-M2-us_us_Darius",
-                            "CLV-M2-us_us_Dr_Robotnik_s_Mean_Bean_Machine",
-                            "CLV-M2-us_us_Dynamite_Headdy",
-                            "CLV-M2-us_us_Earthworm_Jim",
-                            "CLV-M2-us_us_Ecco_the_Dolphin",
-                            "CLV-M2-us_us_Eternal_Champions",
-                            "CLV-M2-us_us_Ghouls_n_Ghosts",
-                            "CLV-M2-us_us_Golden_Axe",
-                            "CLV-M2-us_us_Gunstar_Heroes",
-                            "CLV-M2-us_us_Kid_Chameleon",
-                            "CLV-M2-us_us_Landstalker",
-                            "CLV-M2-us_us_Light_Crusader",
-                            "CLV-M2-us_us_Mega_Man",
-                            "CLV-M2-us_us_Monster_World_IV",
-                            "CLV-M2-us_us_Mortal_Kombat_II",
-                            "CLV-M2-us_us_Phantasy_Star_IV",
-                            "CLV-M2-us_us_Road_Rash_II",
-                            "CLV-M2-us_us_STREET_FIGHTER_II",
-                            "CLV-M2-us_us_Shining_Force",
-                            "CLV-M2-us_us_Shinobi_III",
-                            "CLV-M2-us_us_Sonic_Spinball",
-                            "CLV-M2-us_us_Sonic_The_Hedgehog",
-                            "CLV-M2-us_us_Sonic_The_Hedgehog_2",
-                            "CLV-M2-us_us_Space_Harrier_II",
-                            "CLV-M2-us_us_Streets_of_Rage_2",
-                            "CLV-M2-us_us_Strider",
-                            "CLV-M2-us_us_Super_Fantasy_Zone",
-                            "CLV-M2-us_us_Sword_of_Vermilion",
-                            "CLV-M2-us_us_Tetris",
-                            "CLV-M2-us_us_The_Story_of_Thor",
-                            "CLV-M2-us_us_Thunder_Force_III",
-                            "CLV-M2-us_us_ToeJam_Earl",
-                            "CLV-M2-us_us_Vectorman",
-                            "CLV-M2-us_us_Virtua_Fighter_2",
-                            "CLV-M2-us_us_Wonder_Boy_in_Monster_World",
-                            "CLV-M2-us_us_World_of_Illusion"
-                        });
-
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].MaxGamesPerFolder = 100;
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].FolderImagesSet = "TheWez1981-MegaDrive";
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].OriginalGames.Clear();
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].OriginalGames.AddRange(new string[] {
-                            "CLV-M2-eu_en_Alex_Kidd",
-                            "CLV-M2-eu_en_Alisia_Dragoon",
-                            "CLV-M2-eu_en_Altered_Beast",
-                            "CLV-M2-eu_en_Castle_of_Illusion",
-                            "CLV-M2-eu_en_Castlevania_Bloodlines",
-                            "CLV-M2-eu_en_Columns",
-                            "CLV-M2-eu_en_Comix_Zone",
-                            "CLV-M2-eu_en_Contra_Hard_Corps",
-                            "CLV-M2-eu_en_Darius",
-                            "CLV-M2-eu_en_Disney_s_Aladdin",
-                            "CLV-M2-eu_en_Dr_Robotnik_s_Mean_Bean_Machine",
-                            "CLV-M2-eu_en_Dynamite_Headdy",
-                            "CLV-M2-eu_en_Earthworm_Jim",
-                            "CLV-M2-eu_en_Ecco_the_Dolphin",
-                            "CLV-M2-eu_en_Eternal_Champions",
-                            "CLV-M2-eu_en_Ghouls_n_Ghosts",
-                            "CLV-M2-eu_en_Golden_Axe",
-                            "CLV-M2-eu_en_Gunstar_Heroes",
-                            "CLV-M2-eu_en_Kid_Chameleon",
-                            "CLV-M2-eu_en_Landstalker",
-                            "CLV-M2-eu_en_Light_Crusader",
-                            "CLV-M2-eu_en_Mega_Man",
-                            "CLV-M2-eu_en_Monster_World_IV",
-                            "CLV-M2-eu_en_Mortal_Kombat_II",
-                            "CLV-M2-eu_en_Phantasy_Star_IV",
-                            "CLV-M2-eu_en_Road_Rash_II",
-                            "CLV-M2-eu_en_STREET_FIGHTER_II",
-                            "CLV-M2-eu_en_Shining_Force",
-                            "CLV-M2-eu_en_Shinobi_III",
-                            "CLV-M2-eu_en_Sonic_Spinball",
-                            "CLV-M2-eu_en_Sonic_The_Hedgehog",
-                            "CLV-M2-eu_en_Sonic_The_Hedgehog_2",
-                            "CLV-M2-eu_en_Space_Harrier_II",
-                            "CLV-M2-eu_en_Streets_of_Rage_2",
-                            "CLV-M2-eu_en_Strider",
-                            "CLV-M2-eu_en_Super_Fantasy_Zone",
-                            "CLV-M2-eu_en_Sword_of_Vermilion",
-                            "CLV-M2-eu_en_Tetris",
-                            "CLV-M2-eu_en_The_Story_of_Thor",
-                            "CLV-M2-eu_en_Thunder_Force_III",
-                            "CLV-M2-eu_en_ToeJam_Earl",
-                            "CLV-M2-eu_en_Vectorman",
-                            "CLV-M2-eu_en_Virtua_Fighter_2",
-                            "CLV-M2-eu_en_Wonder_Boy_in_Monster_World",
-                            "CLV-M2-eu_en_World_of_Illusion"
-                        });
-
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].MaxGamesPerFolder = 100;
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].FolderImagesSet = "TheWez1981-MegaDrive-JP";
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].OriginalGames.Clear();
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].OriginalGames.AddRange(new string[] {
-                            "CLV-M2-jp_jp_Alisia_Dragoon",
-                            "CLV-M2-jp_jp_Castlevania_Bloodlines",
-                            "CLV-M2-jp_jp_Columns",
-                            "CLV-M2-jp_jp_Comix_Zone",
-                            "CLV-M2-jp_jp_Contra_Hard_Corps",
-                            "CLV-M2-jp_jp_Darius",
-                            "CLV-M2-jp_jp_Disney_s_Aladdin",
-                            "CLV-M2-jp_jp_Dyna_Brothers_2",
-                            "CLV-M2-jp_jp_Dynamite_Headdy",
-                            "CLV-M2-jp_jp_Game_no_Kanzume",
-                            "CLV-M2-jp_jp_Gauntlet_IV",
-                            "CLV-M2-jp_jp_Ghouls_n_Ghosts",
-                            "CLV-M2-jp_jp_Golden_Axe",
-                            "CLV-M2-jp_jp_Gunstar_Heroes",
-                            "CLV-M2-jp_jp_Landstalker",
-                            "CLV-M2-jp_jp_Langrisser_II",
-                            "CLV-M2-jp_jp_Lord_Monarch",
-                            "CLV-M2-jp_jp_M_U_S_H_A",
-                            "CLV-M2-jp_jp_Mado_Monogatari_I",
-                            "CLV-M2-jp_jp_Marble_Madness",
-                            "CLV-M2-jp_jp_Mega_Man_The_Wily_Wars",
-                            "CLV-M2-jp_jp_Monster_World_IV",
-                            "CLV-M2-jp_jp_Party_Quiz_MEGA_Q",
-                            "CLV-M2-jp_jp_Phantasy_Star_IV",
-                            "CLV-M2-jp_jp_Puyo_Puyo",
-                            "CLV-M2-jp_jp_Puyo_Puyo_2",
-                            "CLV-M2-jp_jp_Rent_A_Hero",
-                            "CLV-M2-jp_jp_Road_Rash_II",
-                            "CLV-M2-jp_jp_STREET_FIGHTER_II_SPECIAL_CHAMPION_EDITION",
-                            "CLV-M2-jp_jp_Shining_Force",
-                            "CLV-M2-jp_jp_Shining_Force_II",
-                            "CLV-M2-jp_jp_Slap_Fight",
-                            "CLV-M2-jp_jp_Snow_Bros",
-                            "CLV-M2-jp_jp_Sonic_The_Hedgehog",
-                            "CLV-M2-jp_jp_Sonic_The_Hedgehog_2",
-                            "CLV-M2-jp_jp_Space_Harrier_II",
-                            "CLV-M2-jp_jp_Streets_of_Rage_2",
-                            "CLV-M2-jp_jp_Super_Fantasy_Zone",
-                            "CLV-M2-jp_jp_Tant_R",
-                            "CLV-M2-jp_jp_Target_Earth",
-                            "CLV-M2-jp_jp_Tetris",
-                            "CLV-M2-jp_jp_The_Hybrid_Front",
-                            "CLV-M2-jp_jp_The_Revenge_of_Shinobi",
-                            "CLV-M2-jp_jp_The_Story_of_Thor",
-                            "CLV-M2-jp_jp_Thunder_Force_III",
-                            "CLV-M2-jp_jp_World_of_Illusion_Starring_Mickey_Mouse_and_Donald_Duc",
-                            "CLV-M2-jp_jp_Wrestleball",
-                            "CLV-M2-jp_jp_Yu_Yu_Hakusho"
-                        });
-
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].MaxGamesPerFolder = 100;
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].FolderImagesSet = "TheWez1981-MegaDrive";
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].OriginalGames.Clear();
-                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].OriginalGames.AddRange(new string[] {
-                            "CLV-M2-as_en_Alien_Soldier",
-                            "CLV-M2-as_en_Alisia_Dragoon",
-                            "CLV-M2-as_en_Castle_of_Illusion",
-                            "CLV-M2-as_en_Castlevania_Bloodlines",
-                            "CLV-M2-as_en_Comix_Zone",
-                            "CLV-M2-as_en_Contra_Hard_Corps",
-                            "CLV-M2-as_en_Disney_s_Aladdin",
-                            "CLV-M2-as_en_Dynamite_Headdy",
-                            "CLV-M2-as_en_Gauntlet_IV",
-                            "CLV-M2-as_en_Ghouls_n_Ghosts",
-                            "CLV-M2-as_en_Gunstar_Heroes",
-                            "CLV-M2-as_en_Landstalker",
-                            "CLV-M2-as_en_M_U_S_H_A",
-                            "CLV-M2-as_en_Mega_Man",
-                            "CLV-M2-as_en_OutRun2019",
-                            "CLV-M2-as_en_Phantasy_Star_IV",
-                            "CLV-M2-as_en_Puyo_Puyo",
-                            "CLV-M2-as_en_Road_Rash_II",
-                            "CLV-M2-as_en_Shining_Force",
-                            "CLV-M2-as_en_Shining_Force_II",
-                            "CLV-M2-as_en_Sonic_The_Hedgehog",
-                            "CLV-M2-as_en_Sonic_The_Hedgehog_2",
-                            "CLV-M2-as_en_Streets_of_Rage_2",
-                            "CLV-M2-as_en_Strider",
-                            "CLV-M2-as_en_Sword_of_Vermilion",
-                            "CLV-M2-as_en_Target_Earth",
-                            "CLV-M2-as_en_Tetris",
-                            "CLV-M2-as_en_The_Story_of_Thor",
-                            "CLV-M2-as_en_Wonder_Boy_in_Monster_World",
-                            "CLV-M2-as_en_World_of_Illusion"
-                        });
-
-                        return true;
-                    })
-                },
                 new Action() {
                     startingVersion = new Version("0.0.0.0"),
                     targetVersion = new Version("3.6.1.1008"),
                     action = new ActionFunc(() => {
-                        mainForm.ResetOriginalGamesForAllSystems(true);
+                        if (lastVersion.CompareTo(new Version(0,0,0,0)) != 0)
+                            mainForm.ResetOriginalGamesForAllSystems(true);
+
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].MaxGamesPerFolder = 42;
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_USA].FolderImagesSet = "TheWez1981-Genesis";
+
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].MaxGamesPerFolder = 42;
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_EUR].FolderImagesSet = "TheWez1981-MegaDrive";
+
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].MaxGamesPerFolder = 42;
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_JPN].FolderImagesSet = "TheWez1981-MegaDrive-JP";
+
                         ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].MaxGamesPerFolder = 42;
+                        ConfigIni.Instance.gamesCollectionSettings[hakchi.ConsoleType.MD_ASIA].FolderImagesSet = "TheWez1981-MegaDrive";
 
                         return true;
                     })
