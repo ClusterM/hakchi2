@@ -11,6 +11,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         private bool shouldGrow = false;
         private bool rebootToRecovery = false;
         private long estimatedSize = 0;
+        private bool noReboot = false;
         public TaskFunc[] Tasks
         {
             get => new TaskFunc[]
@@ -36,7 +37,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 var partUdisk = info.Partitions.Where(e => e.Label == "UDISK");
 
                 if (partUdisk.Count() == 0)
+                {
+                    shouldGrow = false;
                     return Conclusion.Success;
+                }
 
                 var newInfo = NandInfo.GetNandInfo("sunxi-part grow --dry-run");
 
@@ -78,6 +82,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
             if (!shouldGrow)
                 return Conclusion.Success;
 
+            if (hakchi.Shell.Execute("sntool ismd") == 0)
+            {
+                noReboot = true;
+                return Conclusion.Success;
+            }
+
             if (rebootToRecovery)
                 return MembootTasks.Memboot(tasker, syncObject);
 
@@ -86,7 +96,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public Conclusion WaitForReboot(Tasker tasker, object syncObject)
         {
-            if (!shouldGrow)
+            if (noReboot || !shouldGrow)
                 return Conclusion.Success;
 
             return MembootTasks.WaitForShellCycle(-1)(tasker, syncObject);
