@@ -2684,6 +2684,32 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;html&gt;
+        ///  &lt;head&gt;
+        ///    &lt;title&gt;Modules Report&lt;/title&gt;
+        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///      html,
+        ///      body {
+        ///        padding: 0;
+        ///        margin: 0;
+        ///        font-family: Lato, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;
+        ///        background-color: #001000;
+        ///      }
+        ///
+        ///      h1 {
+        ///        padding: 12px 20px;
+        ///        margin: 2px;
+        ///        background-color: #44603a;
+        ///        color: #fff;
+        ///        font-siz [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string mod_report_template {
+            get {
+                return ResourceManager.GetString("mod_report_template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to @font-face {
         ///  font-family: octicons-link;
         ///  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQg [rest of string was truncated]&quot;;.

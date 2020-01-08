@@ -1329,6 +1329,7 @@
     <None Include="spine_templates\Megadrive_JP_Wavy\template.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="mod_report_template.html" />
     <Content Include="tools\putty\puttytel.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

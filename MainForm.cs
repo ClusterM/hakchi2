@@ -14,6 +14,7 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Resources;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -3331,13 +3332,14 @@ namespace com.clusterrr.hakchi_gui
         {
             foreach (var mod in mods)
             {
-                list.Add($"  {mod.RawName}");
-                list.Add("  --------------------");
+                list.Add("<div class=\"Mod\">");
+                list.Add($"<h2>{WebUtility.HtmlEncode(mod.RawName)}</h2>");
+                
                 foreach (var fmKey in mod.Readme.frontMatter.Keys)
                 {
-                    list.Add($"    {fmKey}: {mod.Readme.frontMatter[fmKey]}");
+                    list.Add($"<div><strong>{WebUtility.HtmlEncode(fmKey)}:</strong> {WebUtility.HtmlEncode(mod.Readme.frontMatter[fmKey])}</div>");
                 }
-                list.Add("");
+                list.Add("</div>");
             }
         }
 
@@ -3345,8 +3347,8 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var sfd = new SaveFileDialog()
             {
-                Filter = "Text File|*.txt",
-                FileName = "hmod_audit.txt"
+                Filter = "HTML File|*.html",
+                FileName = "hmod_audit.html"
             })
             {
                 if (sfd.ShowDialog(this) != DialogResult.OK)
@@ -3354,29 +3356,27 @@ namespace com.clusterrr.hakchi_gui
 
                 var installedMods = Hmod.Hmod.GetMods(true, null, this).OrderBy(o => o.RawName).ToList();
                 var availableMods = Hmod.Hmod.GetMods(false, null, this).OrderBy(o => o.RawName).ToList();
-                var separatorLine = "--------------------";
 
                 var outLines = new List<string>();
 
                 if (hakchi.CanInteract)
                 {
-                    outLines.Add("Installed Mods:");
-                    outLines.Add(separatorLine);
-                    outLines.Add("");
+                    outLines.Add("<h1>Installed Mods</h1>");
+                    outLines.Add("<div class=\"ModList\">");
                     addModInfoToReport(ref outLines, ref installedMods);
+                    outLines.Add("</div>");
                 }
                 else
                 {
-                    outLines.Add("System Not Online");
-                    outLines.Add("");
+                    outLines.Add("<h1>System Not Online</h1>");
                 }
 
-                outLines.Add("Available Mods:");
-                outLines.Add(separatorLine);
-                outLines.Add("");
+                outLines.Add("<h1>Available Mods</h1>");
+                outLines.Add("<div class=\"ModList\">");
                 addModInfoToReport(ref outLines, ref availableMods);
+                outLines.Add("</div>");
 
-                File.WriteAllText(sfd.FileName, String.Join("\r\n", outLines.ToArray()));
+                File.WriteAllText(sfd.FileName, Resources.mod_report_template.Replace("<body></body>", $"<body>{String.Join("", outLines.ToArray())}</body>"));
             }
         }
 
