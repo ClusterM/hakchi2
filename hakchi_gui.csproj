@@ -1304,6 +1304,42 @@
     <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_z.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_5200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_7800.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_5200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_7800.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_5200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_7800.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_5200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_7800.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_5200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_7800.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_5200.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_7800.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="ModHub\snes-dots.png" />
     <None Include="spine_templates\Custom_Black_Grid\template.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
