@@ -3485,7 +3485,6 @@ namespace com.clusterrr.hakchi_gui
 
             epilepsyProtectionToolStripMenuItem.Visible =
             cloverconHackToolStripMenuItem.Visible =
-            globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Visible =
             saveSettingsToNESMiniNowToolStripMenuItem.Visible = !hakchi.IsMdPartitioning;
         }
 

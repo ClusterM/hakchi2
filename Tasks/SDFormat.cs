@@ -107,13 +107,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             var splitStream = new SplitterStream(Program.debugStreams);
             hakchi.Shell.Execute("mkdir -p /squashtools /tmp", null, null, null, 0, true);
-            hakchi.Shell.Execute("umount /newroot");
-            hakchi.Shell.Execute("losetup -d /dev/loop2");
-            hakchi.Shell.Execute("umount /firmware");
-            hakchi.Shell.Execute("mkdir -p /sd-temp/", null, null, null, 0, true);
-            tasker.SetStatus(Resources.ExtractingHakchiToTemporaryFolder);
-            hakchi.Shell.Execute("tar -xzvf - -C /sd-temp/", hakchi.Hmod.GetHmodStream(), null, null, 0, true); // 16
-            tasker.SetProgress(16, 161);
+            //hakchi.Shell.Execute("umount /newroot");
+            //hakchi.Shell.Execute("losetup -d /dev/loop2");
+            //hakchi.Shell.Execute("umount /firmware");
+            //hakchi.Shell.Execute("mkdir -p /sd-temp/", null, null, null, 0, true);
+            //tasker.SetStatus(Resources.ExtractingHakchiToTemporaryFolder);
+            //hakchi.Shell.Execute("tar -xzvf - -C /sd-temp/", hakchi.Hmod.GetHmodStream(), null, null, 0, true); // 16
+            //tasker.SetProgress(16, 161);
             tasker.SetStatus(Resources.ClearingTheFirst32MBOfSDCard);
             hakchi.Shell.Execute("dd if=/dev/zero of=/dev/mmcblk0 bs=1M count=32", null, null, null, 0, true); // 32
             tasker.SetProgress(48, 161);
@@ -150,8 +150,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
             else
             {
                 hakchi.Shell.Execute("echo sdprep | dd \"of=/dev/mmcblk0\"", null, null, null, 0, true);
-                hakchi.Shell.Execute("mount /sd-temp/sd/squash.hsqs /squashtools", null, null, null, 0, true);
-                hakchi.Shell.Execute("/squashtools/sfdisk /dev/mmcblk0", new MemoryStream(Encoding.ASCII.GetBytes("128M,,L\n")), splitStream, splitStream, 0, true);
+                //hakchi.Shell.Execute("mount /sd-temp/sd/squash.hsqs /squashtools", null, null, null, 0, true);
+                using (var sfdisk = File.OpenRead(Path.Combine(Program.BaseDirectoryInternal, "tools", "arm", "sfdisk.static")))
+                    hakchi.Shell.Execute("cat > /tmp/sfdisk", sfdisk, throwOnNonZero: true);
+
+                hakchi.Shell.Execute("chmod +x /tmp/sfdisk", throwOnNonZero: true);
+                hakchi.Shell.Execute("/tmp/sfdisk /dev/mmcblk0", new MemoryStream(Encoding.ASCII.GetBytes("128M,,L\n")), splitStream, splitStream, 0, true);
+                hakchi.Shell.Execute("rm /tmp/sfdisk", throwOnNonZero: true);
             }
 
             return Tasker.Conclusion.Success;
@@ -185,10 +190,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     var userDataDeviceName = Sunxi.NandInfo.GetNandInfo().GetDataPartition().Device;
                     splitStream.AddStreams(copyDataProgress);
-                    copyDataProgress.OnData += (byte[] buffer) =>
-                    {
-                        tasker.SetStatus(System.Text.Encoding.ASCII.GetString(buffer));
-                    };
+                    copyDataProgress.OnData += (byte[] buffer) => tasker.SetStatus(Encoding.ASCII.GetString(buffer));
                     tasker.SetStatus(Resources.CopyingNandDataToSDCard);
                     hakchi.Shell.Execute($"mkdir -p /{userDataDeviceName} && mount /dev/{userDataDeviceName} /{userDataDeviceName}", null, null, null, 0, true);
 

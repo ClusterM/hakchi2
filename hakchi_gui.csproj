@@ -2653,6 +2653,9 @@
     <None Include="tools\arm\kexec.static">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="tools\arm\sfdisk.static">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="tools\arm\unpackbootimg.static">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
