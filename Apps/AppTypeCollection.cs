@@ -151,7 +151,7 @@ namespace com.clusterrr.hakchi_gui
                 Class = typeof(MegaDriveGame),
                 DefaultCore = "m2engage",
                 LegacyApps = new string[] {"/bin/m2engage" },
-                Extensions = new string[] {".md", ".mdx", ".smd", ".gen", ".68k" },
+                Extensions = new string[] {".md", ".mdx", ".smd", ".gen", ".68k", ".bin" },
                 Prefix = 'G',
                 DefaultCover = Resources.blank_genesis,
                 GoogleSuffix = "(genesis | mega drive)"
