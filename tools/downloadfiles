@@ -13,7 +13,8 @@ download(){
 
 printf "" > "$downloadedFileListName"
 
-download "https://github.com/TeamShinkansen/Hakchi2-CE/releases/download/supplemental/hakchi-v1.0.4-124.Thu.24.Oct.2019.11_55_48.PM.GMT.hmod" "mods/hmods/hakchi.hmod" || exit 1
+download "https://github.com/TeamShinkansen/Hakchi2-CE/releases/download/supplemental/bluetooth.Sun.Nov.17.14-27-14.CST.2019.hmod" "user_mods/bluetooth.hmod"
+download "https://github.com/TeamShinkansen/Hakchi2-CE/releases/download/supplemental/hakchi-v1.0.4-125.Sat.11.Jan.2020.01_43.hmod" "mods/hmods/hakchi.hmod" || exit 1
 download "https://hakchi.net/hakchi/detached-fallback" "tools/arm/detached-fallback" || exit 1
 download "https://github.com/TeamShinkansen/libwdi/releases/download/classic_driver_1/classic_driver.exe" "driver/classic_driver.exe" || exit 1
 download "https://the.earth.li/~sgtatham/putty/latest/w32/puttytel.exe" "tools/putty/puttytel.exe" || exit 1

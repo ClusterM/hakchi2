@@ -83,9 +83,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         HandleHakchi(HakchiTasks.Install),
                         ModTasks.TransferBaseHmods("/hakchi/transfer"),
                         ModTasks.TransferHakchiHmod("/hakchi/transfer")
-                    }); ;
+                    });
+
                     if (!userRecovery)
+                    {
                         taskList.Add(BootHakchi);
+                        taskList.Add(WaitForShellCycle(-1));
+                    }
 
                     break;
 
@@ -98,8 +102,12 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         ModTasks.TransferBaseHmods("/hakchi/transfer"),
                         ModTasks.TransferHakchiHmod("/hakchi/transfer")
                     });
+
                     if (!userRecovery)
+                    {
                         taskList.Add(BootHakchi);
+                        taskList.Add(WaitForShellCycle(-1));
+                    }
 
                     break;
 
