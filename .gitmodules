@@ -22,4 +22,4 @@
 	url = https://github.com/TeamShinkansen/CueSharp.git
 [submodule "Libraries/SpineGen"]
 	path = Libraries/SpineGen
-	url = git@github.com:DanTheMan827/SpineGen.git
+url=https://github.com/DanTheMan827/SpineGen.git
