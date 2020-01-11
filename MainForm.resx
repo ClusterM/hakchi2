@@ -499,6 +499,36 @@
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="autoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="autoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="unitedStatesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="unitedStatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>United States</value>
+  </data>
+  <data name="europeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="europeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Europe</value>
+  </data>
+  <data name="japanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="japanToolStripMenuItem.Text" xml:space="preserve">
+    <value>Japan</value>
+  </data>
+  <data name="segaUiThemeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="segaUiThemeToolStripMenuItem.Text" xml:space="preserve">
+    <value>SEGA UI Theme</value>
+  </data>
   <data name="enableSFROMToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
   </data>
@@ -3418,6 +3448,36 @@
     <value>languageToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;languageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;segaUiThemeToolStripMenuItem.Name" xml:space="preserve">
+    <value>segaUiThemeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;segaUiThemeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;autoToolStripMenuItem.Name" xml:space="preserve">
+    <value>autoToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;autoToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;unitedStatesToolStripMenuItem.Name" xml:space="preserve">
+    <value>unitedStatesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;unitedStatesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;europeToolStripMenuItem.Name" xml:space="preserve">
+    <value>europeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;europeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;japanToolStripMenuItem.Name" xml:space="preserve">
+    <value>japanToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;japanToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;sFROMToolToolStripMenuItem.Name" xml:space="preserve">

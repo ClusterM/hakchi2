@@ -96,6 +96,11 @@ namespace com.clusterrr.hakchi_gui
             this.showGamesWithoutBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.segaUiThemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unitedStatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.europeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.japanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableSFROMToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usePCMPatchWhenAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -730,6 +735,7 @@ namespace com.clusterrr.hakchi_gui
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem,
+            this.segaUiThemeToolStripMenuItem,
             this.sFROMToolToolStripMenuItem,
             this.convertSNESROMSToSFROMToolStripMenuItem,
             this.separateGamesStorageToolStripMenuItem,
@@ -755,6 +761,44 @@ namespace com.clusterrr.hakchi_gui
             // 
             resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            // 
+            // segaUiThemeToolStripMenuItem
+            // 
+            this.segaUiThemeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autoToolStripMenuItem,
+            this.unitedStatesToolStripMenuItem,
+            this.europeToolStripMenuItem,
+            this.japanToolStripMenuItem});
+            this.segaUiThemeToolStripMenuItem.Name = "segaUiThemeToolStripMenuItem";
+            resources.ApplyResources(this.segaUiThemeToolStripMenuItem, "segaUiThemeToolStripMenuItem");
+            // 
+            // autoToolStripMenuItem
+            // 
+            this.autoToolStripMenuItem.Name = "autoToolStripMenuItem";
+            resources.ApplyResources(this.autoToolStripMenuItem, "autoToolStripMenuItem");
+            this.autoToolStripMenuItem.Tag = "auto";
+            this.autoToolStripMenuItem.Click += new System.EventHandler(this.changeM2Theme);
+            // 
+            // unitedStatesToolStripMenuItem
+            // 
+            this.unitedStatesToolStripMenuItem.Name = "unitedStatesToolStripMenuItem";
+            resources.ApplyResources(this.unitedStatesToolStripMenuItem, "unitedStatesToolStripMenuItem");
+            this.unitedStatesToolStripMenuItem.Tag = "us";
+            this.unitedStatesToolStripMenuItem.Click += new System.EventHandler(this.changeM2Theme);
+            // 
+            // europeToolStripMenuItem
+            // 
+            this.europeToolStripMenuItem.Name = "europeToolStripMenuItem";
+            resources.ApplyResources(this.europeToolStripMenuItem, "europeToolStripMenuItem");
+            this.europeToolStripMenuItem.Tag = "eu";
+            this.europeToolStripMenuItem.Click += new System.EventHandler(this.changeM2Theme);
+            // 
+            // japanToolStripMenuItem
+            // 
+            this.japanToolStripMenuItem.Name = "japanToolStripMenuItem";
+            resources.ApplyResources(this.japanToolStripMenuItem, "japanToolStripMenuItem");
+            this.japanToolStripMenuItem.Tag = "jp";
+            this.japanToolStripMenuItem.Click += new System.EventHandler(this.changeM2Theme);
             // 
             // sFROMToolToolStripMenuItem
             // 
@@ -1093,7 +1137,6 @@ namespace com.clusterrr.hakchi_gui
             // 
             // disableBootImageToolStripMenuItem
             // 
-            this.disableBootImageToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.github;
             this.disableBootImageToolStripMenuItem.Name = "disableBootImageToolStripMenuItem";
             resources.ApplyResources(this.disableBootImageToolStripMenuItem, "disableBootImageToolStripMenuItem");
             this.disableBootImageToolStripMenuItem.Click += new System.EventHandler(this.disableBootImageToolStripMenuItem_Click);
@@ -2311,6 +2354,11 @@ namespace com.clusterrr.hakchi_gui
         private System.Windows.Forms.ComboBox comboBoxGenre;
         private System.Windows.Forms.Label labelCountry;
         private System.Windows.Forms.ComboBox comboBoxCountry;
+        private System.Windows.Forms.ToolStripMenuItem segaUiThemeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unitedStatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem europeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem japanToolStripMenuItem;
     }
 }
 

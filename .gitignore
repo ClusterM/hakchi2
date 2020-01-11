@@ -23,3 +23,4 @@ data/libretro_cores.tar
 data/desktop_entries.tar
 data/original_art.tar
 !user_mods/snes_custom_filters.hmod/usr/bin/
+user_mods/bluetooth.hmod

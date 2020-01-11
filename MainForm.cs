@@ -429,6 +429,13 @@ namespace com.clusterrr.hakchi_gui
                     }
                     SyncConsoleType();
 
+                    string mdUiType = hakchi.Shell.ExecuteSimple("hakchi get cfg_mdui_region");
+
+                    this.Invoke(new Action(() =>
+                    {
+                        checkM2ThemeMenuItem(mdUiType);
+                    }), new object[] { });
+
                     if (hakchi.SystemEligibleForRootfsUpdate())
                     {
                         if (Tasks.MessageForm.Show(this, Resources.OutdatedScripts, Resources.SystemEligibleForRootfsUpdate, Resources.sign_warning, new Tasks.MessageForm.Button[] { Tasks.MessageForm.Button.Yes, Tasks.MessageForm.Button.No }, Tasks.MessageForm.DefaultButton.Button1) == Tasks.MessageForm.Button.Yes)
@@ -3486,6 +3493,8 @@ namespace com.clusterrr.hakchi_gui
             epilepsyProtectionToolStripMenuItem.Visible =
             cloverconHackToolStripMenuItem.Visible =
             saveSettingsToNESMiniNowToolStripMenuItem.Visible = !hakchi.IsMdPartitioning;
+
+            segaUiThemeToolStripMenuItem.Visible = hakchi.Shell.IsOnline && !hakchi.MinimalMemboot && hakchi.IsMd();
         }
 
         private void DownloadLatestHakchiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3543,6 +3552,48 @@ namespace com.clusterrr.hakchi_gui
         private void tableLayoutPanelGameInfo_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void checkM2ThemeMenuItem(string theme)
+        {
+            autoToolStripMenuItem.Checked =
+            unitedStatesToolStripMenuItem.Checked = 
+            europeToolStripMenuItem.Checked = 
+            japanToolStripMenuItem.Checked = false;
+            switch (theme ?? "")
+            {
+                case "us":
+                    unitedStatesToolStripMenuItem.Checked = true;
+                    break;
+
+                case "eu":
+                    europeToolStripMenuItem.Checked = true;
+                    break;
+
+                case "jp":
+                    japanToolStripMenuItem.Checked = true;
+                    break;
+
+                default:
+                    autoToolStripMenuItem.Checked = true;
+                    break;
+            }
+        }
+
+        private void changeM2Theme(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem)
+            {
+                var menu = (ToolStripMenuItem)sender;
+                if (menu.Tag is string && !string.IsNullOrWhiteSpace((string)menu.Tag))
+                {
+                    if (hakchi.Shell.IsOnline)
+                    {
+                        hakchi.Shell.Execute($"uistop; hakchi set cfg_mdui_region {((string)menu.Tag)}; uistart");
+                        checkM2ThemeMenuItem((string)menu.Tag);
+                    }
+                }
+            }
         }
     }
 }
