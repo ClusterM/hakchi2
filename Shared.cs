@@ -514,6 +514,7 @@ namespace com.clusterrr.hakchi_gui
 
         public readonly static IReadOnlyList<string> MoonHashes = new List<string>()
         {
+            "27132f57f5e2848c6a6f93ff1bce4804  MOON-mass-moon-es1-v0.8.1-1080US-e0c1975", // Booted
             "80e6df2cdf27e024f19cf3804ca956cb  MOON-mass-moon-es1-v0.8.3-1080US-0d16385", // Booted
             "e9f1ed8378db818f477a75c462916782  MOON-mass-moon-es1-v0.8.3-1085AS-1f2365d", // Booted
             "4d0dc84296b576f3b7fa30772b36a71b  MOON-mass-moon-es1-v0.8.3-1085EU-1f2365d", // Booted
@@ -522,6 +523,7 @@ namespace com.clusterrr.hakchi_gui
             "102e1104a9af8fc88c6cc2f521c70584  _MOON-mass-moon-es1-v0.8.1-1080US-e0c1975", // Booted
             "fbcae55f319b5c6300a87e360e3af92a  _MOON-rework-moon-es1-v0.8.1-1080US-71571fe", // Booted
 
+            "b047d3c6bfa764483af09b0336a77069  MOON-mass-moon-es1-v0.8.1-1080US-e0c1975", // Never Booted
             "7d24875fd69a8690e6b7bf298eac5d0e  MOON-mass-moon-es1-v0.8.3-1080US-0d16385", // Never Booted
             "67342a75cf192c361f57e6a3bdbe0682  MOON-mass-moon-es1-v0.8.3-1085AS-1f2365d", // Never Booted
             "121babdd900ba8573e36c98ae51c48bf  MOON-mass-moon-es1-v0.8.3-1085EU-1f2365d", // Never Booted
