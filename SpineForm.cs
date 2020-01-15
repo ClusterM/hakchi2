@@ -42,7 +42,7 @@ namespace com.clusterrr.hakchi_gui
             });
             if (ClearLogo != null)
             {
-                imageGoogler1.RunQuery(ClearLogo as Bitmap);
+                imageGoogler1.RunQuery(new Bitmap(ClearLogo));
             } 
             else
             {
