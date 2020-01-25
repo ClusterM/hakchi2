@@ -1585,4 +1585,13 @@ There is a small chance of data loss, please make sure you have your saves backe
   <data name="mod_report_template" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\mod_report_template.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="GenreRacingSports" xml:space="preserve">
+    <value>Racing / Sports</value>
+  </data>
+  <data name="GenreFighting" xml:space="preserve">
+    <value>Fighting</value>
+  </data>
+  <data name="GenreActionShooting" xml:space="preserve">
+    <value>Action / Shooting</value>
+  </data>
 </root>

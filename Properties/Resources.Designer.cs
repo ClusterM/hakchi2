@@ -2088,6 +2088,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action / Shooting.
+        /// </summary>
+        internal static string GenreActionShooting {
+            get {
+                return ResourceManager.GetString("GenreActionShooting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adventure.
         /// </summary>
         internal static string GenreAdventure {
@@ -2106,6 +2115,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fighting.
+        /// </summary>
+        internal static string GenreFighting {
+            get {
+                return ResourceManager.GetString("GenreFighting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Puzzle.
         /// </summary>
         internal static string GenrePuzzle {
@@ -2120,6 +2138,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string GenreRacing {
             get {
                 return ResourceManager.GetString("GenreRacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Racing / Sports.
+        /// </summary>
+        internal static string GenreRacingSports {
+            get {
+                return ResourceManager.GetString("GenreRacingSports", resourceCulture);
             }
         }
         

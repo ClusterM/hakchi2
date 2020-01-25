@@ -129,20 +129,22 @@ namespace com.clusterrr.hakchi_gui
                 });
 
                 comboBoxGenre.Items.Clear();
-                comboBoxGenre.Items.AddRange(new object[]
-                {
-                    new NameValuePair<string>("", ""),
+                comboBoxGenre.Items.Add(new NameValuePair<string>("", ""));
+                comboBoxGenre.Items.AddRange(new NameValuePair<string>[] {
                     new NameValuePair<string>(Resources.GenreAction, "Action"),
+                    new NameValuePair<string>(Resources.GenreActionShooting, "ActionShooting"),
                     new NameValuePair<string>(Resources.GenreAdventure, "Adventure"),
                     new NameValuePair<string>(Resources.GenreEducational, "Educational"),
+                    new NameValuePair<string>(Resources.GenreFighting, "Fighting"),
                     new NameValuePair<string>(Resources.GenrePuzzle, "Puzzle"),
                     new NameValuePair<string>(Resources.GenreRacing, "Racing"),
+                    new NameValuePair<string>(Resources.GenreRacingSports, "RacingSports"),
                     new NameValuePair<string>(Resources.GenreRPG, "RPG"),
                     new NameValuePair<string>(Resources.GenreShootEmUp, "Shoot-'em-Up"),
-                    new NameValuePair<string>(Resources.GenreSports, "Sports"),
                     new NameValuePair<string>(Resources.GenreSimulation, "Simulation"),
+                    new NameValuePair<string>(Resources.GenreSports, "Sports"),
                     new NameValuePair<string>(Resources.GenreTable, "Table")
-                });
+                }.OrderBy(e => e.Name).Cast<object>().ToArray());
 
                 comboBoxCountry.Items.Clear();
                 comboBoxCountry.Items.AddRange(new object[]
