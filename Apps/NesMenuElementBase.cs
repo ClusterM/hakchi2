@@ -341,7 +341,7 @@ namespace com.clusterrr.hakchi_gui
                 LogoRotation = SpineGen.Drawing.Rotation.RotateNone,
                 LogoHorizontalAlignment = SpineGen.Drawing.HorizontalAlignment.Middle,
                 LogoVerticalAlignment = SpineGen.Drawing.VerticalAlignment.Middle,
-                AspectRange = type == GameImageType.MdFront ? 0.04 : 0.006
+                AspectRange = type == GameImageType.MdFront ? 0.04 : 0.01
             }) {
                 if (stretch)
                 {
