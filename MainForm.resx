@@ -500,25 +500,25 @@
     <value>Language</value>
   </data>
   <data name="autoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>143, 22</value>
   </data>
   <data name="autoToolStripMenuItem.Text" xml:space="preserve">
     <value>Auto</value>
   </data>
   <data name="unitedStatesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>143, 22</value>
   </data>
   <data name="unitedStatesToolStripMenuItem.Text" xml:space="preserve">
     <value>United States</value>
   </data>
   <data name="europeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>143, 22</value>
   </data>
   <data name="europeToolStripMenuItem.Text" xml:space="preserve">
     <value>Europe</value>
   </data>
   <data name="japanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>143, 22</value>
   </data>
   <data name="japanToolStripMenuItem.Text" xml:space="preserve">
     <value>Japan</value>
@@ -1350,6 +1350,69 @@
   <data name="&gt;&gt;labelID.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="textBoxName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 65</value>
+  </data>
+  <data name="textBoxName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="textBoxName.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;textBoxName.Name" xml:space="preserve">
+    <value>textBoxName</value>
+  </data>
+  <data name="&gt;&gt;textBoxName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxName.Parent" xml:space="preserve">
+    <value>tableLayoutPanelGameInfo</value>
+  </data>
+  <data name="&gt;&gt;textBoxName.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="labelPublisher.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelPublisher.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="labelPublisher.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="labelPublisher.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelPublisher.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 127</value>
+  </data>
+  <data name="labelPublisher.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 3, 0</value>
+  </data>
+  <data name="labelPublisher.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 13</value>
+  </data>
+  <data name="labelPublisher.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelPublisher.Text" xml:space="preserve">
+    <value>Publisher</value>
+  </data>
+  <data name="labelPublisher.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;labelPublisher.Name" xml:space="preserve">
+    <value>labelPublisher</value>
+  </data>
+  <data name="&gt;&gt;labelPublisher.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelPublisher.Parent" xml:space="preserve">
+    <value>tableLayoutPanelGameInfo</value>
+  </data>
+  <data name="&gt;&gt;labelPublisher.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
   <data name="tableLayoutPanelGameInfo.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -1776,30 +1839,6 @@
   <data name="&gt;&gt;labelMaxPlayers.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="textBoxPublisher.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="textBoxPublisher.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 143</value>
-  </data>
-  <data name="textBoxPublisher.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 20</value>
-  </data>
-  <data name="textBoxPublisher.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;textBoxPublisher.Name" xml:space="preserve">
-    <value>textBoxPublisher</value>
-  </data>
-  <data name="&gt;&gt;textBoxPublisher.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxPublisher.Parent" xml:space="preserve">
-    <value>tableLayoutPanelGameInfo</value>
-  </data>
-  <data name="&gt;&gt;textBoxPublisher.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
   <data name="labelSaveCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1976,48 +2015,6 @@
   </data>
   <data name="&gt;&gt;labelCompress.ZOrder" xml:space="preserve">
     <value>15</value>
-  </data>
-  <data name="labelPublisher.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelPublisher.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="labelPublisher.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
-  </data>
-  <data name="labelPublisher.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelPublisher.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 127</value>
-  </data>
-  <data name="labelPublisher.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 3, 0</value>
-  </data>
-  <data name="labelPublisher.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 13</value>
-  </data>
-  <data name="labelPublisher.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="labelPublisher.Text" xml:space="preserve">
-    <value>Publisher</value>
-  </data>
-  <data name="labelPublisher.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;labelPublisher.Name" xml:space="preserve">
-    <value>labelPublisher</value>
-  </data>
-  <data name="&gt;&gt;labelPublisher.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelPublisher.Parent" xml:space="preserve">
-    <value>tableLayoutPanelGameInfo</value>
-  </data>
-  <data name="&gt;&gt;labelPublisher.ZOrder" xml:space="preserve">
-    <value>16</value>
   </data>
   <data name="maskedTextBoxReleaseDate.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
@@ -2281,7 +2278,7 @@
     <value>0, 0, 3, 0</value>
   </data>
   <data name="labelCountry.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
+    <value>47, 13</value>
   </data>
   <data name="labelCountry.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -2395,31 +2392,31 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanelGameInfo.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label10" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel1" Row="20" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="textBoxArguments" Row="18" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelCommandLine" Row="17" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="numericUpDownSaveCount" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="maxPlayersComboBox" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanelGameID" Row="0" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="tableLayoutPanelGameGenie" Row="16" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelMaxPlayers" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxPublisher" Row="8" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelSaveCount" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelGameGenie" Row="15" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="textBoxSortName" Row="6" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="checkBoxCompressed" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxName" Row="4" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelCompress" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelPublisher" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="maskedTextBoxReleaseDate" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelSortName" Row="5" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelDescription" Row="19" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelReleaseDate" Row="9" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelName" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelGenre" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="comboBoxGenre" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCountry" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="comboBoxCountry" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelSize" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label10" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel1" Row="20" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="textBoxArguments" Row="18" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelCommandLine" Row="17" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="numericUpDownSaveCount" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="maxPlayersComboBox" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanelGameID" Row="0" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="tableLayoutPanelGameGenie" Row="16" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelMaxPlayers" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxPublisher" Row="8" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelSaveCount" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelGameGenie" Row="15" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="textBoxSortName" Row="6" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="checkBoxCompressed" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxName" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelCompress" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelPublisher" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="maskedTextBoxReleaseDate" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelSortName" Row="5" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelDescription" Row="19" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelReleaseDate" Row="9" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="labelName" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelGenre" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="comboBoxGenre" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCountry" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="comboBoxCountry" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelSize" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <data name="textBoxName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="textBoxPublisher.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="textBoxName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 65</value>
+  <data name="textBoxPublisher.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 143</value>
   </data>
-  <data name="textBoxName.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="textBoxPublisher.Size" type="System.Drawing.Size, System.Drawing">
     <value>308, 20</value>
   </data>
-  <data name="textBoxName.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="textBoxPublisher.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
   </data>
-  <data name="&gt;&gt;textBoxName.Name" xml:space="preserve">
-    <value>textBoxName</value>
+  <data name="&gt;&gt;textBoxPublisher.Name" xml:space="preserve">
+    <value>textBoxPublisher</value>
   </data>
-  <data name="&gt;&gt;textBoxName.Type" xml:space="preserve">
+  <data name="&gt;&gt;textBoxPublisher.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;textBoxName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;textBoxPublisher.Parent" xml:space="preserve">
     <value>tableLayoutPanelGameInfo</value>
   </data>
-  <data name="&gt;&gt;textBoxName.ZOrder" xml:space="preserve">
-    <value>14</value>
+  <data name="&gt;&gt;textBoxPublisher.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="label4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3790,7 +3787,7 @@
     <value>bluetoothToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;bluetoothToolStripMenuItem.Type" xml:space="preserve">
-    <value>com.clusterrr.hakchi_gui.Wireless.Bluetooth.BluetoothMenuItem, hakchi, Version=3.6.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>com.clusterrr.hakchi_gui.Wireless.Bluetooth.BluetoothMenuItem, hakchi, Version=3.7.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">
     <value>helpToolStripMenuItem</value>

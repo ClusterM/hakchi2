@@ -327,12 +327,12 @@ namespace com.clusterrr.hakchi_gui
                 iconStream = ProcessImageFileToStream(sourcePath, maxX, maxY, true, false, false);
                 smallIconStream = ProcessImageFileToStream(smallSourcePath, 40, 40, true, false, false);
 
-                SetMdMini(sourcePath, MdMiniImageType.Front, mdMiniStream);
+                SetMdMini(sourcePath, GameImageType.MdFront, mdMiniStream);
                 var spinePath = getSpinePath(imageId);
 
                 if (spinePath != null)
                 {
-                    SetMdMini(spinePath, MdMiniImageType.Spine, mdMiniStream);
+                    SetMdMini(spinePath, GameImageType.MdSpine, mdMiniStream);
                 }
 
 
@@ -345,7 +345,7 @@ namespace com.clusterrr.hakchi_gui
                 iconStream = ProcessImageToStream(Image, maxX, maxY, true, false, false);
                 smallIconStream = ProcessImageToStream(Image, 40, 40, true, false, false);
 
-                SetMdMini(Image as Bitmap, MdMiniImageType.Front, mdMiniStream);
+                SetMdMini(Image as Bitmap, GameImageType.MdFront, mdMiniStream);
 
                 localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}.png", DateTime.UtcNow, iconStream));
                 localGameSet.Add(new ApplicationFileInfo($"./{targetDir}/{desktop.Code}_small.png", DateTime.UtcNow, smallIconStream));

@@ -1266,72 +1266,129 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void buttonBrowseImage_Click(object sender, EventArgs e)
+        private void pictureBoxArt_MouseClick(object sender, MouseEventArgs e)
         {
             var app = GetSelectedGame();
             if (app == null) return;
 
-            openFileDialogImage.Filter = Resources.Images + "|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif;*.tiff|" + Resources.AllFiles + "|*.*";
-            if (openFileDialogImage.ShowDialog() == DialogResult.OK)
+            var type = (GameImageType)((Control)sender).Tag;
+
+            if (e.Button == MouseButtons.Right)
             {
-                app.SetImageFile(openFileDialogImage.FileName, ConfigIni.Instance.CompressCover);
-                ShowSelected();
-                timerCalculateGames.Enabled = true;
+                var menu = new ContextMenuStrip();
+                var paste = new ToolStripMenuItem()
+                {
+                    Text = Resources.Paste,
+                    Enabled = Clipboard.ContainsImage()
+                };
+                var pasteStretch = new ToolStripMenuItem()
+                {
+                    Text = Resources.PasteStretchToFit,
+                    Enabled = Clipboard.ContainsImage()
+                };
+                var file = new ToolStripMenuItem()
+                {
+                    Text = Resources.SelectFile
+                };
+
+                paste.Click += (object pasteSender, EventArgs pasteE) =>
+                {
+                    using (var image = Clipboard.GetImage())
+                    {
+                        SetGameImage((Bitmap)image, type);
+                    }
+
+                    ShowSelected();
+                    timerCalculateGames.Enabled = true;
+                };
+
+                pasteStretch.Click += (object pasteSender, EventArgs pasteE) =>
+                {
+                    using (var image = Clipboard.GetImage())
+                    {
+                        SetGameImage((Bitmap)image, type, true);
+                    }
+
+                    ShowSelected();
+                    timerCalculateGames.Enabled = true;
+                };
+
+                file.Click += (object pasteSender, EventArgs pasteE) =>
+                {
+                    SetGameImageFile(type);
+                    ShowSelected();
+                    timerCalculateGames.Enabled = true;
+                };
+
+                menu.Items.Add(file);
+                menu.Items.Add(paste);
+
+                if (type == GameImageType.MdFront || type == GameImageType.MdSpine)
+                {
+                    menu.Items.Add(pasteStretch);
+                }
+
+                menu.Show(Cursor.Position);
+                return;
             }
+
+            SetGameImageFile(type);
         }
 
-        private void pictureBoxThumbnail_Click(object sender, EventArgs e)
+        private void SetGameImageFile(GameImageType type)
         {
-            var app = GetSelectedGame();
-            if (app == null) return;
-
-            openFileDialogImage.Filter = Resources.Images + "|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif;*.tiff|" + Resources.AllFiles + "|*.*";
-            if (openFileDialogImage.ShowDialog() == DialogResult.OK)
-            {
-                app.SetThumbnailFile(openFileDialogImage.FileName, ConfigIni.Instance.CompressCover);
-                ShowSelected();
-                timerCalculateGames.Enabled = true;
-            }
-        }
-
-        private void pictureBoxM2_Click(object sender, EventArgs e)
-        {
-            var app = GetSelectedGame();
-            if (app == null) return;
-
             openFileDialogImage.Filter = Resources.Images + "|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif;*.tiff|" + Resources.AllFiles + "|*.*";
             if (openFileDialogImage.ShowDialog() == DialogResult.OK)
             {
                 using (var file = File.OpenRead(openFileDialogImage.FileName))
                 using (var img = new Bitmap(file))
                 {
-                    if (img.Size.Width == 182 && img.Size.Height == 216)
+                    SetGameImage(img, type);
+                }
+            }
+        }
+        private void SetGameImage(Bitmap image, GameImageType type, bool stretch = false)
+        {
+            var app = GetSelectedGame();
+            if (app == null) return;
+
+            switch (type)
+            {
+                case GameImageType.AllFront:
+                case GameImageType.CloverFront:
+                    app.SetImage(image, ConfigIni.Instance.CompressCover);
+                    break;
+
+                case GameImageType.CloverThumbnail:
+                    app.SetThumbnail(image, ConfigIni.Instance.CompressCover);
+                    break;
+
+                case GameImageType.MdFront:
+                case GameImageType.MdSpine:
+                    if (image.Size.Width == 182 && image.Size.Height == 216)
                     {
-                        using (var bImage = new SystemDrawingBitmap(img.Clone() as Bitmap))
+                        using (var bImage = new SystemDrawingBitmap(image.Clone() as Bitmap))
                         {
                             if (bImage.EmptyRow(0) && bImage.EmptyRow(215) && bImage.EmptyColumn(0) && bImage.EmptyColumn(181) && bImage.EmptyColumn(29) && bImage.EmptyColumn(30))
                             {
                                 using (var spine = bImage.Bitmap.Clone(new Rectangle(1, 1, 28, 214), PixelFormat.Format32bppArgb))
                                 using (var front = bImage.Bitmap.Clone(new Rectangle(31, 1, 150, 214), PixelFormat.Format32bppArgb))
                                 {
-                                    app.SetMdMini(spine, MdMiniImageType.Spine);
-                                    app.SetMdMini(front, MdMiniImageType.Front);
+                                    app.SetMdMini(spine, GameImageType.MdSpine);
+                                    app.SetMdMini(front, GameImageType.MdFront);
                                 }
-                            } 
+                            }
                             else
                             {
-                                app.SetMdMini(img, (MdMiniImageType)((PictureBox)sender).Tag);
+                                app.SetMdMini(image, type, stretch: stretch);
                             }
                         }
                     }
                     else
                     {
-                        app.SetMdMini(img, (MdMiniImageType)((PictureBox)sender).Tag);
+                        app.SetMdMini(image, type, stretch: stretch);
                     }
-                }
-                
-                ShowSelected();
-                timerCalculateGames.Enabled = true;
+                    break;
             }
         }
 
@@ -1373,7 +1430,7 @@ namespace com.clusterrr.hakchi_gui
                         spineForm.ClearLogo.Save(logoPath, ImageFormat.Png);
                     }
 
-                    app.SetMdMini(spineForm.Spine as Bitmap, NesMenuElementBase.MdMiniImageType.Spine);
+                    app.SetMdMini(spineForm.Spine as Bitmap, NesMenuElementBase.GameImageType.MdSpine);
                     spineForm.Spine?.Dispose();
                     spineForm.ClearLogo?.Dispose();
                     ShowSelected();
@@ -3169,8 +3226,7 @@ namespace com.clusterrr.hakchi_gui
                 selectCoreDialog.Games.AddRange(listViewGames.SelectedItems.Cast<ListViewItem>().
                     Select(item => item.Tag).
                     Where(tag => tag != null && tag is NesApplication).
-                    Select(tag => tag as NesApplication).
-                    Where(game => !game.IsOriginalGame));
+                    Select(tag => tag as NesApplication));
                 if (selectCoreDialog.Games.Count == 0)
                     return;
                 if (selectCoreDialog.ShowDialog(this) == DialogResult.OK)
@@ -3597,5 +3653,7 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
+
+
     }
 }

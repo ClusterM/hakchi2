@@ -1594,4 +1594,13 @@ There is a small chance of data loss, please make sure you have your saves backe
   <data name="GenreActionShooting" xml:space="preserve">
     <value>Action / Shooting</value>
   </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="PasteStretchToFit" xml:space="preserve">
+    <value>Paste (Stretch to Fit)</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select File</value>
+  </data>
 </root>

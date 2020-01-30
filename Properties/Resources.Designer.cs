@@ -2711,10 +2711,11 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;html&gt;
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot;&gt;
         ///  &lt;head&gt;
         ///    &lt;title&gt;Modules Report&lt;/title&gt;
-        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///    &lt;style&gt;
         ///      html,
         ///      body {
         ///        padding: 0;
@@ -2728,7 +2729,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         ///        margin: 2px;
         ///        background-color: #44603a;
         ///        color: #fff;
-        ///        font-siz [rest of string was truncated]&quot;;.
+        ///        font-size: 24px [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string mod_report_template {
             get {
@@ -3089,6 +3090,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string PartitionExpandQMd {
             get {
                 return ResourceManager.GetString("PartitionExpandQMd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        internal static string Paste {
+            get {
+                return ResourceManager.GetString("Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste (Stretch to Fit).
+        /// </summary>
+        internal static string PasteStretchToFit {
+            get {
+                return ResourceManager.GetString("PasteStretchToFit", resourceCulture);
             }
         }
         
@@ -3597,6 +3616,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string SelectDrive {
             get {
                 return ResourceManager.GetString("SelectDrive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select File.
+        /// </summary>
+        internal static string SelectFile {
+            get {
+                return ResourceManager.GetString("SelectFile", resourceCulture);
             }
         }
         

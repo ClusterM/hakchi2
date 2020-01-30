@@ -211,14 +211,14 @@ namespace com.clusterrr.hakchi_gui
             if (!File.Exists(mdMiniIconPath))
             {
                 if (File.Exists(originalArtPath))
-                    SetMdMini(originalArtPath, MdMiniImageType.Front);
+                    SetMdMini(originalArtPath, GameImageType.MdFront);
 
                 if (File.Exists(spinePath))
-                    SetMdMini(spinePath, MdMiniImageType.Spine);
+                    SetMdMini(spinePath, GameImageType.MdSpine);
             }
         }
 
-        protected virtual void SetImage(Image img, bool EightBitCompression = false)
+        public virtual void SetImage(Image img, bool EightBitCompression = false)
         {
             // full-size image ratio
             int maxX = 228;
@@ -249,7 +249,7 @@ namespace com.clusterrr.hakchi_gui
                 copy.Save(file, ImageFormat.Png);
 
             if (!mdminiFormatted)
-                SetMdMini(img as Bitmap, MdMiniImageType.Front);
+                SetMdMini(img as Bitmap, GameImageType.MdFront);
 
             ProcessImage(img, iconPath, maxX, maxY, false, true, EightBitCompression);
 
@@ -269,8 +269,14 @@ namespace com.clusterrr.hakchi_gui
 
         public virtual void SetThumbnailFile(string path, bool EightBitCompression = false)
         {
-            // thumbnail image ratio
-            ProcessImageFile(path, smallIconPath, 40, 40, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
+            using (var file = File.OpenRead(path))
+            using (var image = new Bitmap(file))
+                SetThumbnail(image, EightBitCompression);
+        }
+
+        public virtual void SetThumbnail(Image image, bool EightBitCompression = false)
+        {
+            ProcessImage(image, smallIconPath, 40, 40, ConfigIni.Instance.CenterThumbnail, false, EightBitCompression);
         }
         
         private SystemDrawingBitmap GetMdMiniBitmap(MemoryStream bitmapStream = null)
@@ -293,13 +299,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        public enum MdMiniImageType { Spine, Front }
+        public enum GameImageType { AllFront, CloverFront, CloverThumbnail, MdSpine, MdFront }
         public virtual void ClearMdMini()
         {
             if (File.Exists(mdMiniIconPath))
                 File.Delete(mdMiniIconPath);
         }
-        public virtual void SetMdMini(string path, MdMiniImageType type, MemoryStream bitmapStream = null)
+        public virtual void SetMdMini(string path, GameImageType type, MemoryStream bitmapStream = null)
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException($"File Not Found: {path}");
@@ -312,9 +318,9 @@ namespace com.clusterrr.hakchi_gui
             SetMdMini(image, type, bitmapStream);
         }
 
-        public virtual void SetMdMini(Bitmap image, MdMiniImageType type, MemoryStream bitmapStream = null)
+        public virtual void SetMdMini(Bitmap image, GameImageType type, MemoryStream bitmapStream = null, bool stretch = false)
         {
-            if (type == MdMiniImageType.Spine)
+            if (type == GameImageType.MdSpine)
             {
                 if (bitmapStream == null)
                 {
@@ -331,12 +337,16 @@ namespace com.clusterrr.hakchi_gui
             using (var template = new SpineGen.Spine.Template<Bitmap>()
             {
                 Image = GetMdMiniBitmap(bitmapStream),
-                LogoArea = new Rectangle(type == MdMiniImageType.Front ? 31 : 1, 1, type == MdMiniImageType.Front ? 150 : 28, 214),
+                LogoArea = new Rectangle(type == GameImageType.MdFront ? 31 : 1, 1, type == GameImageType.MdFront ? 150 : 28, 214),
                 LogoRotation = SpineGen.Drawing.Rotation.RotateNone,
                 LogoHorizontalAlignment = SpineGen.Drawing.HorizontalAlignment.Middle,
                 LogoVerticalAlignment = SpineGen.Drawing.VerticalAlignment.Middle,
-                AspectRange = type == MdMiniImageType.Front ? 0.04 : 0.006
+                AspectRange = type == GameImageType.MdFront ? 0.04 : 0.006
             }) {
+                if (stretch)
+                {
+                    template.AspectRange = 100;
+                }
 
                 template.Image.ClearRegion(template.LogoArea);
 

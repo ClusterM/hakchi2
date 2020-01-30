@@ -1,6 +1,4 @@
-﻿using static com.clusterrr.hakchi_gui.NesMenuElementBase;
-
-namespace com.clusterrr.hakchi_gui
+﻿namespace com.clusterrr.hakchi_gui
 {
     partial class MainForm
     {
@@ -229,9 +227,9 @@ namespace com.clusterrr.hakchi_gui
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanelGameInfo = new System.Windows.Forms.TableLayoutPanel();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.maxPlayersComboBox = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanelGameID = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
@@ -1527,12 +1525,8 @@ namespace com.clusterrr.hakchi_gui
             // 
             // textBoxName
             // 
-            this.textBoxName.BackColor = System.Drawing.SystemColors.Window;
-            this.tableLayoutPanelGameInfo.SetColumnSpan(this.textBoxName, 2);
             resources.ApplyResources(this.textBoxName, "textBoxName");
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
-            this.textBoxName.Leave += new System.EventHandler(this.textBoxName_Leave);
             // 
             // labelPublisher
             // 
@@ -1572,14 +1566,16 @@ namespace com.clusterrr.hakchi_gui
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
-            this.pictureBoxArt.Click += new System.EventHandler(this.buttonBrowseImage_Click);
+            this.pictureBoxArt.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.CloverFront;
+            this.pictureBoxArt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
             // 
             // buttonBrowseImage
             // 
             resources.ApplyResources(this.buttonBrowseImage, "buttonBrowseImage");
             this.buttonBrowseImage.Name = "buttonBrowseImage";
+            this.buttonBrowseImage.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.AllFront;
             this.buttonBrowseImage.UseVisualStyleBackColor = true;
-            this.buttonBrowseImage.Click += new System.EventHandler(this.buttonBrowseImage_Click);
+            this.buttonBrowseImage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
             // 
             // buttonGoogle
             // 
@@ -1651,7 +1647,8 @@ namespace com.clusterrr.hakchi_gui
             resources.ApplyResources(this.pictureBoxThumbnail, "pictureBoxThumbnail");
             this.pictureBoxThumbnail.Name = "pictureBoxThumbnail";
             this.pictureBoxThumbnail.TabStop = false;
-            this.pictureBoxThumbnail.Click += new System.EventHandler(this.pictureBoxThumbnail_Click);
+            this.pictureBoxThumbnail.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.CloverThumbnail;
+            this.pictureBoxThumbnail.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
             // 
             // labelSortName
             // 
@@ -1735,6 +1732,11 @@ namespace com.clusterrr.hakchi_gui
             this.tableLayoutPanelGameInfo.Name = "tableLayoutPanelGameInfo";
             this.tableLayoutPanelGameInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanelGameInfo_Paint);
             // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
             // panel1
             // 
             resources.ApplyResources(this.panel1, "panel1");
@@ -1747,11 +1749,6 @@ namespace com.clusterrr.hakchi_gui
             resources.ApplyResources(this.textBoxDescription, "textBoxDescription");
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.TextChanged += new System.EventHandler(this.textBoxDescription_TextChanged);
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
             // 
             // maxPlayersComboBox
             // 
@@ -1864,8 +1861,8 @@ namespace com.clusterrr.hakchi_gui
             resources.ApplyResources(this.pictureBoxM2Spine, "pictureBoxM2Spine");
             this.pictureBoxM2Spine.Name = "pictureBoxM2Spine";
             this.pictureBoxM2Spine.TabStop = false;
-            this.pictureBoxM2Spine.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.MdMiniImageType.Spine;
-            this.pictureBoxM2Spine.Click += new System.EventHandler(this.pictureBoxM2_Click);
+            this.pictureBoxM2Spine.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.MdSpine;
+            this.pictureBoxM2Spine.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
             // 
             // pictureBoxM2Front
             // 
@@ -1873,8 +1870,8 @@ namespace com.clusterrr.hakchi_gui
             resources.ApplyResources(this.pictureBoxM2Front, "pictureBoxM2Front");
             this.pictureBoxM2Front.Name = "pictureBoxM2Front";
             this.pictureBoxM2Front.TabStop = false;
-            this.pictureBoxM2Front.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.MdMiniImageType.Front;
-            this.pictureBoxM2Front.Click += new System.EventHandler(this.pictureBoxM2_Click);
+            this.pictureBoxM2Front.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.MdFront;
+            this.pictureBoxM2Front.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
             // 
             // groupBox1
             // 

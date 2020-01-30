@@ -796,7 +796,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        protected override void SetImage(Image img, bool EightBitCompression = false)
+        public override void SetImage(Image img, bool EightBitCompression = false)
         {
             base.SetImage(img, EightBitCompression);
             Metadata.CustomCoverArt = true; SaveMetadata();
