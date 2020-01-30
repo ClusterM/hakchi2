@@ -1567,6 +1567,9 @@
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
             this.pictureBoxArt.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.CloverFront;
+            this.pictureBoxArt.AllowDrop = true;
+            this.pictureBoxArt.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragDrop);
+            this.pictureBoxArt.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragEnter);
             this.pictureBoxArt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
             // 
             // buttonBrowseImage
@@ -1646,8 +1649,11 @@
             this.pictureBoxThumbnail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.pictureBoxThumbnail, "pictureBoxThumbnail");
             this.pictureBoxThumbnail.Name = "pictureBoxThumbnail";
+            this.pictureBoxThumbnail.AllowDrop = true;
             this.pictureBoxThumbnail.TabStop = false;
             this.pictureBoxThumbnail.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.CloverThumbnail;
+            this.pictureBoxThumbnail.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragDrop);
+            this.pictureBoxThumbnail.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragEnter);
             this.pictureBoxThumbnail.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
             // 
             // labelSortName
@@ -1860,8 +1866,11 @@
             this.pictureBoxM2Spine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.pictureBoxM2Spine, "pictureBoxM2Spine");
             this.pictureBoxM2Spine.Name = "pictureBoxM2Spine";
+            this.pictureBoxM2Spine.AllowDrop = true;
             this.pictureBoxM2Spine.TabStop = false;
             this.pictureBoxM2Spine.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.MdSpine;
+            this.pictureBoxM2Spine.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragDrop);
+            this.pictureBoxM2Spine.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragEnter);
             this.pictureBoxM2Spine.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
             // 
             // pictureBoxM2Front
@@ -1869,8 +1878,11 @@
             this.pictureBoxM2Front.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.pictureBoxM2Front, "pictureBoxM2Front");
             this.pictureBoxM2Front.Name = "pictureBoxM2Front";
+            this.pictureBoxM2Front.AllowDrop = true;
             this.pictureBoxM2Front.TabStop = false;
             this.pictureBoxM2Front.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.MdFront;
+            this.pictureBoxM2Front.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragDrop);
+            this.pictureBoxM2Front.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragEnter);
             this.pictureBoxM2Front.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
             // 
             // groupBox1

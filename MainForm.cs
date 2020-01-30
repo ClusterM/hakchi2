@@ -1335,6 +1335,48 @@ namespace com.clusterrr.hakchi_gui
             SetGameImageFile(type);
         }
 
+        private void pictureBoxArt_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = ((string[])e.Data.GetData(DataFormats.FileDrop, false));
+                var validExtensions = ".bmp,.png,.jpg,.jpeg,.gif,.tif,.tiff".Split(',');
+                foreach (var fileName in files)
+                {
+                    if (validExtensions.Contains(new FileInfo(fileName).Extension.ToLower()))
+                    {
+                        e.Effect = DragDropEffects.All;
+                        return;
+                    }
+                } 
+            } 
+            
+            e.Effect = DragDropEffects.None;
+        }
+
+        private void pictureBoxArt_DragDrop(object sender, DragEventArgs e)
+        {
+            var type = (GameImageType)((Control)sender).Tag;
+            var validExtensions = ".bmp,.png,.jpg,.jpeg,.gif,.tif,.tiff".Split(',');
+            var files = ((string[])e.Data.GetData(DataFormats.FileDrop, false));
+
+            foreach (var fileName in files)
+            {
+                if (validExtensions.Contains(new FileInfo(fileName).Extension.ToLower()))
+                {
+                    using (var file = File.OpenRead(fileName))
+                    using (var img = new Bitmap(file))
+                    {
+                        SetGameImage(img, type);
+                        ShowSelected();
+                        timerCalculateGames.Enabled = true;
+                    }
+                    return;
+                }
+            }
+            e.Effect = DragDropEffects.None;
+        }
+
         private void SetGameImageFile(GameImageType type)
         {
             openFileDialogImage.Filter = Resources.Images + "|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif;*.tiff|" + Resources.AllFiles + "|*.*";
@@ -3653,7 +3695,5 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
         }
-
-
     }
 }
