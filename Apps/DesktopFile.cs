@@ -173,7 +173,7 @@ namespace com.clusterrr.hakchi_gui
             set { setIf(value, ref sortRawPublisher); }
         }
 
-        private string copyright = "hakchi2 CE ©2018";
+        private string copyright = "hakchi2 CE";
         public string Copyright
         {
             get { return copyright; }

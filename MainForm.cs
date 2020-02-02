@@ -940,6 +940,7 @@ namespace com.clusterrr.hakchi_gui
 
                 maskedTextBoxReleaseDate.Text = "";
                 textBoxPublisher.Text = "";
+                textBoxCopyright.Text = "";
                 textBoxArguments.Text = "";
                 textBoxDescription.Text = "";
                 comboBoxGenre.SelectedIndex = 0;
@@ -981,6 +982,7 @@ namespace com.clusterrr.hakchi_gui
 
                 maskedTextBoxReleaseDate.Text = app.Desktop.ReleaseDate;
                 textBoxPublisher.Text = app.Desktop.Publisher;
+                textBoxCopyright.Text = app.Desktop.Copyright;
                 textBoxArguments.Text = app.Desktop.Exec;
                 textBoxDescription.Text = app.Desktop.Description;
 
@@ -3694,6 +3696,16 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
+        }
+
+        private void textBoxCopyright_TextChanged(object sender, EventArgs e)
+        {
+            if (showingSelected) return;
+            if (listViewGames.SelectedItems.Count != 1) return;
+            var selected = listViewGames.SelectedItems[0].Tag;
+            if (selected == null || !(selected is NesApplication)) return;
+            var game = (selected as NesApplication);
+            game.Desktop.Copyright = textBoxCopyright.Text;
         }
     }
 }

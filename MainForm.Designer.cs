@@ -241,6 +241,8 @@
             this.comboBoxGenre = new System.Windows.Forms.ComboBox();
             this.labelCountry = new System.Windows.Forms.Label();
             this.comboBoxCountry = new System.Windows.Forms.ComboBox();
+            this.labelCopyright = new System.Windows.Forms.Label();
+            this.textBoxCopyright = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSpine = new System.Windows.Forms.Button();
@@ -1488,12 +1490,12 @@
             // 
             // listViewGames
             // 
+            resources.ApplyResources(this.listViewGames, "listViewGames");
             this.listViewGames.CheckBoxes = true;
             this.listViewGames.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.gameName});
             this.listViewGames.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewGames.HideSelection = false;
-            resources.ApplyResources(this.listViewGames, "listViewGames");
             this.listViewGames.Name = "listViewGames";
             this.listViewGames.UseCompatibleStateImageBehavior = false;
             this.listViewGames.View = System.Windows.Forms.View.Details;
@@ -1531,6 +1533,7 @@
             // labelPublisher
             // 
             resources.ApplyResources(this.labelPublisher, "labelPublisher");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelPublisher, 2);
             this.labelPublisher.Name = "labelPublisher";
             // 
             // textBoxPublisher
@@ -1562,12 +1565,12 @@
             // 
             // pictureBoxArt
             // 
+            this.pictureBoxArt.AllowDrop = true;
             this.pictureBoxArt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.pictureBoxArt, "pictureBoxArt");
             this.pictureBoxArt.Name = "pictureBoxArt";
             this.pictureBoxArt.TabStop = false;
             this.pictureBoxArt.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.CloverFront;
-            this.pictureBoxArt.AllowDrop = true;
             this.pictureBoxArt.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragDrop);
             this.pictureBoxArt.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragEnter);
             this.pictureBoxArt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
@@ -1646,10 +1649,10 @@
             // 
             // pictureBoxThumbnail
             // 
+            this.pictureBoxThumbnail.AllowDrop = true;
             this.pictureBoxThumbnail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.pictureBoxThumbnail, "pictureBoxThumbnail");
             this.pictureBoxThumbnail.Name = "pictureBoxThumbnail";
-            this.pictureBoxThumbnail.AllowDrop = true;
             this.pictureBoxThumbnail.TabStop = false;
             this.pictureBoxThumbnail.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.CloverThumbnail;
             this.pictureBoxThumbnail.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragDrop);
@@ -1709,32 +1712,34 @@
             // 
             resources.ApplyResources(this.tableLayoutPanelGameInfo, "tableLayoutPanelGameInfo");
             this.tableLayoutPanelGameInfo.Controls.Add(this.label10, 1, 1);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.panel1, 0, 20);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxArguments, 0, 18);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.labelCommandLine, 0, 17);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.numericUpDownSaveCount, 0, 14);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.maxPlayersComboBox, 0, 12);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.panel1, 0, 22);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxArguments, 0, 20);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelCommandLine, 0, 19);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.numericUpDownSaveCount, 0, 16);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.maxPlayersComboBox, 0, 14);
             this.tableLayoutPanelGameInfo.Controls.Add(this.tableLayoutPanelGameID, 0, 0);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.tableLayoutPanelGameGenie, 0, 16);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.labelMaxPlayers, 0, 11);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.tableLayoutPanelGameGenie, 0, 18);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelMaxPlayers, 0, 13);
             this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxPublisher, 0, 8);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.labelSaveCount, 0, 13);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.labelGameGenie, 0, 15);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelSaveCount, 0, 15);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelGameGenie, 0, 17);
             this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxSortName, 0, 6);
             this.tableLayoutPanelGameInfo.Controls.Add(this.checkBoxCompressed, 0, 2);
             this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxName, 0, 4);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelCompress, 0, 1);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelPublisher, 0, 7);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.maskedTextBoxReleaseDate, 0, 10);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.maskedTextBoxReleaseDate, 0, 12);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelSortName, 0, 5);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.labelDescription, 0, 19);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.labelReleaseDate, 0, 9);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelDescription, 0, 21);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelReleaseDate, 0, 11);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelName, 0, 3);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.labelGenre, 1, 13);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.comboBoxGenre, 1, 14);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.labelCountry, 1, 11);
-            this.tableLayoutPanelGameInfo.Controls.Add(this.comboBoxCountry, 1, 12);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelGenre, 1, 15);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.comboBoxGenre, 1, 16);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelCountry, 1, 13);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.comboBoxCountry, 1, 14);
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelSize, 1, 2);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.labelCopyright, 0, 9);
+            this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxCopyright, 0, 10);
             this.tableLayoutPanelGameInfo.Name = "tableLayoutPanelGameInfo";
             this.tableLayoutPanelGameInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanelGameInfo_Paint);
             // 
@@ -1827,6 +1832,19 @@
             this.comboBoxCountry.Name = "comboBoxCountry";
             this.comboBoxCountry.SelectedValueChanged += new System.EventHandler(this.comboBoxCountry_SelectedValueChanged);
             // 
+            // labelCopyright
+            // 
+            resources.ApplyResources(this.labelCopyright, "labelCopyright");
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelCopyright, 2);
+            this.labelCopyright.Name = "labelCopyright";
+            // 
+            // textBoxCopyright
+            // 
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.textBoxCopyright, 2);
+            resources.ApplyResources(this.textBoxCopyright, "textBoxCopyright");
+            this.textBoxCopyright.Name = "textBoxCopyright";
+            this.textBoxCopyright.TextChanged += new System.EventHandler(this.textBoxCopyright_TextChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tableLayoutPanel1);
@@ -1855,18 +1873,18 @@
             // 
             // groupBox2
             // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.pictureBoxM2Spine);
             this.groupBox2.Controls.Add(this.pictureBoxM2Front);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
             // pictureBoxM2Spine
             // 
+            this.pictureBoxM2Spine.AllowDrop = true;
             this.pictureBoxM2Spine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.pictureBoxM2Spine, "pictureBoxM2Spine");
             this.pictureBoxM2Spine.Name = "pictureBoxM2Spine";
-            this.pictureBoxM2Spine.AllowDrop = true;
             this.pictureBoxM2Spine.TabStop = false;
             this.pictureBoxM2Spine.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.MdSpine;
             this.pictureBoxM2Spine.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragDrop);
@@ -1875,10 +1893,10 @@
             // 
             // pictureBoxM2Front
             // 
+            this.pictureBoxM2Front.AllowDrop = true;
             this.pictureBoxM2Front.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.pictureBoxM2Front, "pictureBoxM2Front");
             this.pictureBoxM2Front.Name = "pictureBoxM2Front";
-            this.pictureBoxM2Front.AllowDrop = true;
             this.pictureBoxM2Front.TabStop = false;
             this.pictureBoxM2Front.Tag = com.clusterrr.hakchi_gui.NesMenuElementBase.GameImageType.MdFront;
             this.pictureBoxM2Front.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragDrop);
@@ -2368,6 +2386,8 @@
         private System.Windows.Forms.ToolStripMenuItem unitedStatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem europeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem japanToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxCopyright;
+        private System.Windows.Forms.Label labelCopyright;
     }
 }
 
