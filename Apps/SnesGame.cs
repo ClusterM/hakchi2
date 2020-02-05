@@ -651,61 +651,27 @@ namespace com.clusterrr.hakchi_gui
         {
             try
             {
-                var xmlDataBasePath = Path.Combine(Path.Combine(Program.BaseDirectoryInternal, "data"), "snescarts.xml");
-                Trace.WriteLine("Loading " + xmlDataBasePath);
+                Trace.WriteLine("Loading SNES Cartridge Cache");
 
-                if (File.Exists(xmlDataBasePath))
+                if (gameInfoCache == null)
                 {
-                    var xpath = new XPathDocument(xmlDataBasePath);
-                    var navigator = xpath.CreateNavigator();
-                    var iterator = navigator.Select("/Data");
                     gameInfoCache = new Dictionary<uint, CachedGameInfo>();
-                    while (iterator.MoveNext())
-                    {
-                        XPathNavigator game = iterator.Current;
-                        var cartridges = game.Select("Game");
-                        while (cartridges.MoveNext())
-                        {
-                            var cartridge = cartridges.Current;
-                            uint crc = 0;
-                            var info = new CachedGameInfo();
-
-                            try
-                            {
-                                var v = cartridge.Select("name");
-                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
-                                    info.Name = v.Current.Value;
-                                v = cartridge.Select("players");
-                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
-                                    info.Players = byte.Parse(v.Current.Value);
-                                v = cartridge.Select("simultaneous");
-                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
-                                    info.Simultaneous = byte.Parse(v.Current.Value) != 0;
-                                v = cartridge.Select("crc");
-                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
-                                    crc = Convert.ToUInt32(v.Current.Value, 16);
-                                v = cartridge.Select("date");
-                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
-                                    info.ReleaseDate = v.Current.Value;
-                                v = cartridge.Select("publisher");
-                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
-                                    info.Publisher = v.Current.Value;
-                                v = cartridge.Select("region");
-                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
-                                    info.Region = v.Current.Value;
-                                v = cartridge.Select("cover");
-                                if (v.MoveNext() && !string.IsNullOrEmpty(v.Current.Value))
-                                    info.CoverUrl = v.Current.Value;
-                            }
-                            catch
-                            {
-                                Trace.WriteLine($"Invalid XML record for game: {cartridge.OuterXml}");
-                            }
-
-                            gameInfoCache[crc] = info;
-                        };
-                    }
                 }
+
+                foreach (var cart in data.SnesCarts.Deserialize())
+                {
+                    gameInfoCache[cart.Crc32] = new CachedGameInfo()
+                    {
+                        Name = cart.Name,
+                        Players = cart.Players,
+                        Simultaneous = cart.Simultaneous,
+                        ReleaseDate = cart.Date,
+                        Publisher = cart.Publisher,
+                        Region = cart.Region,
+                        CoverUrl = cart.Cover
+                    };
+                }
+
                 Trace.WriteLine(string.Format("SNES XML loading done, {0} roms total", gameInfoCache.Count));
             }
             catch (Exception ex)
