@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1991-07-26
 SaveCount=0
 SortRawTitle=ソニック・ザ・ヘッジホッグ
-SortRawPublisher=UNKNOWN
+SortRawPublisher=SEGA
 Copyright=©SEGA
 
 [m2engage]
 regionTag=US_JP_Sonic1_
-sortRawGenre=
+sortRawGenre=Action
 index=29
 demo_time=6000
 country=jp

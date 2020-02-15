@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_Virtua_Fighter_2/CLV-M2-us_us_Virtua_Fighter_2.png
 Code=CLV-M2-us_us_Virtua_Fighter_2
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1997-  -
 SaveCount=0
 SortRawTitle=virtua fighter 2
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_EN_Virtua2
-sortRawGenre=
+sortRawGenre=Fighting
 index=43
 demo_time=4500
 country=us

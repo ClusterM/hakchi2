@@ -12,18 +12,27 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1995-  -
 SaveCount=0
 SortRawTitle=the story of thor
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=©SEGA　MUSIC©YUZO KOSHIRO
 
 [m2engage]
 regionTag=JP_SP_TSofTho
-sortRawGenre=
-index=
-demo_time=
+sortRawGenre=RPG
+index=13
+demo_time=13380
 country=eu
 
 [Description]
 Text = 
+Año de lanzamiento: 1995
+
+Un joven decide emprender una gran
+aventura tras obtener un brazalete
+dorado con el que invoca a cuatro
+espíritus en este juego de rol.
+¡Desarrollado por Ancient, los
+creadores de Streets of Rage 2,
+y con música de Yuzo Koshiro!

@@ -10,12 +10,12 @@ Icon=/var/games/CLV-M2-jp_sp_Contra_Hard_Corps/CLV-M2-jp_sp_Contra_Hard_Corps.pn
 Code=CLV-M2-jp_sp_Contra_Hard_Corps
 TestID=0
 ID=0
-Players=1
+Players=2
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1994-  -
 SaveCount=0
 SortRawTitle=probotector
-SortRawPublisher=UNKNOWN
+SortRawPublisher=KONAMI
 Copyright=
 
 [m2engage]

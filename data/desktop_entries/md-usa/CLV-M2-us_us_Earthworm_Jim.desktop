@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1994-  -
 SaveCount=0
 SortRawTitle=earthworm jim
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=PLAYMATES
+Copyright=┏1994-2019 Interplay Entertainment Corp.\nEarthworm Jim┓ is a registered trademark of\nInterplay Entertainment Corp. All rights reserved.
 
 [m2engage]
 regionTag=US_EN_Earthwo
-sortRawGenre=
+sortRawGenre=Action
 index=12
 demo_time=7740
 country=us

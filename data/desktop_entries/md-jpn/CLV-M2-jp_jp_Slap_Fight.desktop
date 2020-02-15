@@ -12,15 +12,14 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1993-  -
 SaveCount=0
 SortRawTitle=slap fight
-SortRawPublisher=UNKNOWN
-Copyright=
-
+SortRawPublisher=TENGEN 
+Copyright=┏TOAPLAN Co., Ltd. ┏TATSUJIN Co., Ltd. \n MUSIC┏YUZO KOSHIRO
 [m2engage]
 regionTag=JP_EN_SlapFi
-sortRawGenre=
+sortRawGenre=Shoot-'em-Up
 index=28
 demo_time=8220
 country=us

@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_Streets_of_Rage_2/CLV-M2-us_us_Streets_of_Rage_2.pn
 Code=CLV-M2-us_us_Streets_of_Rage_2
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1992-  -
 SaveCount=0
 SortRawTitle=streets of rage 2
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA　MUSIC┏YUZO KOSHIRO
 
 [m2engage]
 regionTag=US_EN_Streets
-sortRawGenre=
+sortRawGenre=Action
 index=33
 demo_time=7800
 country=us

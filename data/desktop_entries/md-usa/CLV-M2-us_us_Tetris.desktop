@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_Tetris/CLV-M2-us_us_Tetris.png
 Code=CLV-M2-us_us_Tetris
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=2019-  -
 SaveCount=0
 SortRawTitle=tetris┓
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=Tetris ┓ & ┏ 1985～2019 and Tetris trade dress are\nowned by Tetris Holding.\n┏ SEGA
 
 [m2engage]
 regionTag=US_EN_Tetris_
-sortRawGenre=
+sortRawGenre=Puzzle
 index=37
 demo_time=5580
 country=us

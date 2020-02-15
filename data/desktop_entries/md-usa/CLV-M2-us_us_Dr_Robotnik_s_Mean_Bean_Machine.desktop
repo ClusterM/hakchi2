@@ -10,20 +10,20 @@ Icon=/var/games/CLV-M2-us_us_Dr_Robotnik_s_Mean_Bean_Machine/CLV-M2-us_us_Dr_Rob
 Code=CLV-M2-us_us_Dr_Robotnik_s_Mean_Bean_Machine
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1993-  -
 SaveCount=0
 SortRawTitle=dr. robotnik's mean bean machine
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_EN_DrRobot
-sortRawGenre=
+sortRawGenre=Puzzle
 index=10
 demo_time=10020
-country=jp
+country=us
 
 [Description]
 Text = 

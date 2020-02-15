@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1990-  -
 SaveCount=0
 SortRawTitle=thunder force iii
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_EN_Thunder
-sortRawGenre=
+sortRawGenre=Shoot-'em-Up
 index=38
 demo_time=4920
 country=us

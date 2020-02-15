@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-jp_jp_Contra_Hard_Corps/CLV-M2-jp_jp_Contra_Hard_Corps.pn
 Code=CLV-M2-jp_jp_Contra_Hard_Corps
 TestID=0
 ID=0
-Players=1
+Players=2
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1994-09-15
 SaveCount=0
 SortRawTitle=魂斗羅 ザ・ハードコア
-SortRawPublisher=UNKNOWN
+SortRawPublisher=KONAMI
 Copyright=©Konami Digital Entertainment
 
 [m2engage]
 regionTag=JP_JP_ContraT
-sortRawGenre=
+sortRawGenre=ActionShooting
 index=15
 demo_time=8880
 country=jp

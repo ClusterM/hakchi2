@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1994-10-21
 SaveCount=0
 SortRawTitle=ロックマンメガワールド
-SortRawPublisher=UNKNOWN
+SortRawPublisher=CAPCOM
 Copyright=©CAPCOM CO., LTD. 1994, 2019 ALL RIGHTS RESERVED.
 
 [m2engage]
 regionTag=US_JP_MegaMan
-sortRawGenre=
+sortRawGenre=Action
 index=21
 demo_time=5580
 country=jp

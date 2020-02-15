@@ -12,7 +12,7 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1994-  -
 SaveCount=0
 SortRawTitle=the hybrid front
 SortRawPublisher=UNKNOWN
@@ -20,7 +20,7 @@ Copyright=
 
 [m2engage]
 regionTag=JP_JP_THFron
-sortRawGenre=
+sortRawGenre=Simulation
 index=26
 demo_time=8100
 country=jp

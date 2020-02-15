@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1995-  -
 SaveCount=0
 SortRawTitle=beyond oasis
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=©SEGA　MUSIC©YUZO KOSHIRO
 
 [m2engage]
 regionTag=JP_EN_TSofTho
-sortRawGenre=
+sortRawGenre=RPG
 index=13
 demo_time=13380
 country=us

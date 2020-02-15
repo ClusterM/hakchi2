@@ -10,18 +10,17 @@ Icon=/var/games/CLV-M2-us_jp_Road_Rash_II/CLV-M2-us_jp_Road_Rash_II.png
 Code=CLV-M2-us_jp_Road_Rash_II
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1993-07-23
 SaveCount=0
 SortRawTitle=ロード・ラッシュii
-SortRawPublisher=UNKNOWN
+SortRawPublisher=ELECTRONIC ARTS
 Copyright=© 1993, 2019 Electronic Arts Inc.
-Road Rash is a trademark of Electronic Arts Inc.
 
 [m2engage]
 regionTag=US_JP_RoadRas
-sortRawGenre=
+sortRawGenre=RacingSports
 index=25
 demo_time=6180
 country=jp

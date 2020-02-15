@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_Sonic_Spinball/CLV-M2-us_us_Sonic_Spinball.png
 Code=CLV-M2-us_us_Sonic_Spinball
 TestID=0
 ID=0
-Players=1
+Players=4
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1993-  -
 SaveCount=0
 SortRawTitle=sonic the hedgehog spinball
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_EN_SonicSp
-sortRawGenre=
+sortRawGenre=Action
 index=28
 demo_time=4080
 country=us

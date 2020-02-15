@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1994-08-05
 SaveCount=0
 SortRawTitle=ダイナマイトヘッディー
-SortRawPublisher=UNKNOWN
+SortRawPublisher=SEGA
 Copyright=©SEGA
 
 [m2engage]
 regionTag=US_JP_Dynamit
-sortRawGenre=
+sortRawGenre=Action
 index=11
 demo_time=7800
 country=jp

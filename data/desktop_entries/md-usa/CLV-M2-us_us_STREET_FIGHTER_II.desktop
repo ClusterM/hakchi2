@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_STREET_FIGHTER_II/CLV-M2-us_us_STREET_FIGHTER_II.pn
 Code=CLV-M2-us_us_STREET_FIGHTER_II
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1993-  -
 SaveCount=0
 SortRawTitle=street fighter ii' : special champion edition
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=CAPCOM
+Copyright=┏CAPCOM U.S.A., INC. 1991, 2019 ALL RIGHTS RESERVED.
 
 [m2engage]
 regionTag=US_EN_STREETF
-sortRawGenre=
+sortRawGenre=Fighting
 index=32
 demo_time=6180
 country=us

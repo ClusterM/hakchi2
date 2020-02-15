@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_Eternal_Champions/CLV-M2-us_us_Eternal_Champions.pn
 Code=CLV-M2-us_us_Eternal_Champions
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1993-  -
 SaveCount=0
 SortRawTitle=eternal champions
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_EN_Eternal
-sortRawGenre=
+sortRawGenre=Fighting
 index=14
 demo_time=9600
 country=us

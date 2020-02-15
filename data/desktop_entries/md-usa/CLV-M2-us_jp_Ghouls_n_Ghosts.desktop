@@ -10,18 +10,17 @@ Icon=/var/games/CLV-M2-us_jp_Ghouls_n_Ghosts/CLV-M2-us_jp_Ghouls_n_Ghosts.png
 Code=CLV-M2-us_jp_Ghouls_n_Ghosts
 TestID=0
 ID=0
-Players=1
+Players=2
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1989-08-03
 SaveCount=0
 SortRawTitle=大魔界村
-SortRawPublisher=UNKNOWN
+SortRawPublisher=CAPCOM
 Copyright=©CAPCOM CO., LTD. 1988, 2019 ALL RIGHTS RESERVED.
-REPROGRAMMED GAME©SEGA
 
 [m2engage]
 regionTag=US_JP_Ghoulsn
-sortRawGenre=
+sortRawGenre=Action
 index=15
 demo_time=5400
 country=jp

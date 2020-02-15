@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1994-  -
 SaveCount=0
 SortRawTitle=langrisser ii
-SortRawPublisher=UNKNOWN
+SortRawPublisher=NCS
 Copyright=
 
 [m2engage]
 regionTag=JP_JP_Langr2
-sortRawGenre=
+sortRawGenre=Simulation
 index=24
 demo_time=4800
 country=jp

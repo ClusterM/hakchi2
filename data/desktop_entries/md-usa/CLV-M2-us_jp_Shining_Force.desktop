@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1992-03-20
 SaveCount=0
 SortRawTitle=シャイニング・フォース ～神々の遺産～
-SortRawPublisher=UNKNOWN
+SortRawPublisher=SEGA
 Copyright=©SEGA
 
 [m2engage]
 regionTag=US_JP_Shining
-sortRawGenre=
+sortRawGenre=RPG
 index=26
 demo_time=6300
 country=jp

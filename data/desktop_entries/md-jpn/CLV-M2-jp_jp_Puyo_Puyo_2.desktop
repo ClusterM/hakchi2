@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-jp_jp_Puyo_Puyo_2/CLV-M2-jp_jp_Puyo_Puyo_2.png
 Code=CLV-M2-jp_jp_Puyo_Puyo_2
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1994-  -
 SaveCount=0
 SortRawTitle=puyo puyo 2
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=JP_EN_Puyo2
-sortRawGenre=
+sortRawGenre=Puzzle
 index=40
 demo_time=9000
 country=us

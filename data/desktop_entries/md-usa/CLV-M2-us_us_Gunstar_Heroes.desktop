@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_Gunstar_Heroes/CLV-M2-us_us_Gunstar_Heroes.png
 Code=CLV-M2-us_us_Gunstar_Heroes
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1993-  -
 SaveCount=0
 SortRawTitle=gunstar heroes
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_EN_Gunstar
-sortRawGenre=
+sortRawGenre=ActionShooting
 index=17
 demo_time=9000
 country=us

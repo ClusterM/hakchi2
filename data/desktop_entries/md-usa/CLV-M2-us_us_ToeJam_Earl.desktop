@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_ToeJam_Earl/CLV-M2-us_us_ToeJam_Earl.png
 Code=CLV-M2-us_us_ToeJam_Earl
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1991-  -
 SaveCount=0
 SortRawTitle=toejam & earl
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏ToeJam&Earl Productions,Inc.\n┏SEGA
 
 [m2engage]
 regionTag=US_EN_ToeJamE
-sortRawGenre=
+sortRawGenre=Action
 index=39
 demo_time=5760
 country=us

@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1991-  -
 SaveCount=0
 SortRawTitle=rent a hero
-SortRawPublisher=UNKNOWN
+SortRawPublisher=SEGA
 Copyright=
 
 [m2engage]
 regionTag=JP_JP_RentAH
-sortRawGenre=
+sortRawGenre=RPG
 index=19
 demo_time=9240
 country=jp

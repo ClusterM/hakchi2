@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_jp_Altered_Beast/CLV-M2-us_jp_Altered_Beast.png
 Code=CLV-M2-us_jp_Altered_Beast
 TestID=0
 ID=0
-Players=1
+Players=2
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1988-11-27
 SaveCount=0
 SortRawTitle=獣王記
-SortRawPublisher=UNKNOWN
+SortRawPublisher=SEGA
 Copyright=©SEGA
 
 [m2engage]
 regionTag=US_JP_Altered
-sortRawGenre=
+sortRawGenre=Action
 index=2
 demo_time=4380
 country=jp

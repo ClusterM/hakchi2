@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_Columns/CLV-M2-us_us_Columns.png
 Code=CLV-M2-us_us_Columns
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1990-  -
 SaveCount=0
 SortRawTitle=columns
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_EN_Columns
-sortRawGenre=
+sortRawGenre=Puzzle
 index=6
 demo_time=4680
 country=us

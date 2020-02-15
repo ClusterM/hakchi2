@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1990-11-21
 SaveCount=0
 SortRawTitle=アイラブ ミッキーマウス ふしぎのお城大冒険
-SortRawPublisher=UNKNOWN
+SortRawPublisher=SEGA
 Copyright=© SEGA　© Disney
 
 [m2engage]
 regionTag=US_JP_CastofI
-sortRawGenre=
+sortRawGenre=Action
 index=4
 demo_time=6060
 country=jp

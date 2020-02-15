@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=2012-  -
 SaveCount=0
 SortRawTitle=monster world iv
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA　ORIGINAL GAME┏LAT
 
 [m2engage]
 regionTag=US_EN_MonsWIV
-sortRawGenre=
+sortRawGenre=Action
 index=22
 demo_time=9600
 country=us

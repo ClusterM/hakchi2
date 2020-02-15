@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1992-  -
 SaveCount=0
 SortRawTitle=alisia dragoon
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=GAME ARTS
+Copyright=┏1992 GAME ARTS
 
 [m2engage]
 regionTag=US_EN_AlisiaD
-sortRawGenre=
+sortRawGenre=ActionShooting
 index=1
 demo_time=6360
 country=us

@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1992-10-30
 SaveCount=0
 SortRawTitle=ランドストーカー ～皇帝の財宝～
-SortRawPublisher=UNKNOWN
+SortRawPublisher=SEGA
 Copyright=©SEGA
 
 [m2engage]
 regionTag=US_JP_Landsta
-sortRawGenre=
+sortRawGenre=Action
 index=19
 demo_time=1200
 country=jp

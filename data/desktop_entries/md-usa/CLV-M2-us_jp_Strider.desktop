@@ -12,17 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1990-09-29
 SaveCount=0
 SortRawTitle=ストライダー飛竜
-SortRawPublisher=UNKNOWN
-Copyright=©MOTO KIKAKU. 
-©CAPCOM CO., LTD. 1989, 2019 ALL RIGHTS RESERVED. 
-REPROGRAMMED GAME©SEGA
+SortRawPublisher=SEGA
+Copyright=©MOTO KIKAKU.
 
 [m2engage]
 regionTag=US_JP_Strider
-sortRawGenre=
+sortRawGenre=Action
 index=34
 demo_time=6720
 country=jp

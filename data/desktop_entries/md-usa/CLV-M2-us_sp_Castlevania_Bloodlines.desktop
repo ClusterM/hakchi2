@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1994-  -
 SaveCount=0
 SortRawTitle=castlevania: the new generation
-SortRawPublisher=UNKNOWN
+SortRawPublisher=KONAMI
 Copyright=
 
 [m2engage]
 regionTag=US_IT_Castlev
-sortRawGenre=
+sortRawGenre=Action
 index=5
 demo_time=6180
 country=us

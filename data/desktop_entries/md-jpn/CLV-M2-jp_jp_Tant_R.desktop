@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-jp_jp_Tant_R/CLV-M2-jp_jp_Tant_R.png
 Code=CLV-M2-jp_jp_Tant_R
 TestID=0
 ID=0
-Players=1
+Players=4
 Simultaneous=0
 ReleaseDate=
 SaveCount=0
 SortRawTitle=puzzle & action: tant-r
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=JP_EN_TantR
-sortRawGenre=
+sortRawGenre=Puzzle
 index=35
 demo_time=4800
 country=jp

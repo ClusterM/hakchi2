@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_Kid_Chameleon/CLV-M2-us_us_Kid_Chameleon.png
 Code=CLV-M2-us_us_Kid_Chameleon
 TestID=0
 ID=0
-Players=1
+Players=2
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1992-  -
 SaveCount=0
 SortRawTitle=kid chameleon
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_EN_KidCham
-sortRawGenre=
+sortRawGenre=Action
 index=18
 demo_time=4440
 country=us

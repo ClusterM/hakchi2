@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1995-  -
 SaveCount=0
 SortRawTitle=value games in a can
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=JP_EN_GnoKan
-sortRawGenre=
+sortRawGenre=HomeTable
 index=33
 demo_time=3600
 country=us

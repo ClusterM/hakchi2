@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1991
 SaveCount=0
 SortRawTitle=m.u.s.h.a.
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEISMIC
+Copyright=「アレスタ」は有限会社エムツーの登録商標です。
 
 [m2engage]
 regionTag=JP_EN_MUSHAA
-sortRawGenre=
+sortRawGenre=Shoot-'em-Up
 index=27
 demo_time=7200
 country=us

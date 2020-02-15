@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-jp_jp_Wrestleball/CLV-M2-jp_jp_Wrestleball.png
 Code=CLV-M2-jp_jp_Wrestleball
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1991-  -
 SaveCount=0
 SortRawTitle=wrestleball
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=NAMCO
+Copyright=©2019 BANDAI NAMCO Entertainment Inc.
 
 [m2engage]
 regionTag=JP_EN_Westle
-sortRawGenre=
+sortRawGenre=RacingSport
 index=42
 demo_time=5460
 country=us

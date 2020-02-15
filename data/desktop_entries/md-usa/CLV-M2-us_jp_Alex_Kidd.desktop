@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1989-02-10
 SaveCount=0
 SortRawTitle=アレックスキッド　天空魔城
-SortRawPublisher=UNKNOWN
-Copyright=©SEGA
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_JP_ALEXKID
-sortRawGenre=
+sortRawGenre=Action
 index=0
 demo_time=5400
 country=jp

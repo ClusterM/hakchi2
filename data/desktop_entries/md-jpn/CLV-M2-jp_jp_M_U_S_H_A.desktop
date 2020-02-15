@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1990-12-21
 SaveCount=0
 SortRawTitle=武者アレスタ
-SortRawPublisher=UNKNOWN
+SortRawPublisher=TOAPLAN
 Copyright=「アレスタ」は有限会社エムツーの登録商標です。
 
 [m2engage]
 regionTag=JP_JP_MUSHAA
-sortRawGenre=
+sortRawGenre=Shoot-'em-Up
 index=27
 demo_time=7200
 country=jp

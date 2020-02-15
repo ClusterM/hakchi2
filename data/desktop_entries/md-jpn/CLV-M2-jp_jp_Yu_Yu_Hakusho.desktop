@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-jp_jp_Yu_Yu_Hakusho/CLV-M2-jp_jp_Yu_Yu_Hakusho.png
 Code=CLV-M2-jp_jp_Yu_Yu_Hakusho
 TestID=0
 ID=0
-Players=1
+Players=4
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1994-  -
 SaveCount=0
 SortRawTitle=yu yu hakusho: battle to unite the demon plane
-SortRawPublisher=UNKNOWN
+SortRawPublisher=SEGA
 Copyright=
 
 [m2engage]
 regionTag=JP_EN_YYHaku
-sortRawGenre=
+sortRawGenre=Fighting
 index=22
 demo_time=6420
 country=jp

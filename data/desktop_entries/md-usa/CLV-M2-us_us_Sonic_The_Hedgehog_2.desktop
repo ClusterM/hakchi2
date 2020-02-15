@@ -10,17 +10,17 @@ Icon=/var/games/CLV-M2-us_us_Sonic_The_Hedgehog_2/CLV-M2-us_us_Sonic_The_Hedgeho
 Code=CLV-M2-us_us_Sonic_The_Hedgehog_2
 TestID=0
 ID=0
-Players=1
-Simultaneous=0
-ReleaseDate=
+Players=2
+Simultaneous=1
+ReleaseDate=1992-  -
 SaveCount=0
 SortRawTitle=sonic the hedgehog 2
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_EN_Sonic2_
-sortRawGenre=
+sortRawGenre=Action
 index=30
 demo_time=6120
 country=us

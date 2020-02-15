@@ -12,15 +12,15 @@ TestID=0
 ID=0
 Players=1
 Simultaneous=0
-ReleaseDate=
+ReleaseDate=1995-  -
 SaveCount=0
 SortRawTitle=light crusader
-SortRawPublisher=UNKNOWN
-Copyright=
+SortRawPublisher=SEGA
+Copyright=┏SEGA
 
 [m2engage]
 regionTag=US_EN_LightCr
-sortRawGenre=
+sortRawGenre=Action
 index=20
 demo_time=1800
 country=us
