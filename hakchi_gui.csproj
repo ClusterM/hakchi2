@@ -1359,6 +1359,366 @@
     <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_jaguar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_amiga.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_amigacd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_amstradcpc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_atarist.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_c64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_colecovision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_gameandwatch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_intellivision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_lynx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_msdos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_msx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_msx2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_neogeocd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_odyssey2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_scummvm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_sg1000.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_vectrex.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_virtualboy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_wonderswan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\folder_system_wonderswancolor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_amiga.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_amigacd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_amstradcpc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_atarist.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_c64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_colecovision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_gameandwatch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_intellivision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_lynx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_msdos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_msx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_msx2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_neogeocd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_odyssey2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_scummvm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_sg1000.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_vectrex.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_virtualboy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_wonderswan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\folder_system_wonderswancolor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_amiga.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_amigacd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_amstradcpc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_atarist.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_c64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_colecovision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_gameandwatch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_intellivision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_lynx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_msdos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_msx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_msx2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_neogeocd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_odyssey2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_scummvm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_sg1000.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_vectrex.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_virtualboy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_wonderswan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\folder_system_wonderswancolor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_amiga.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_amigacd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_amstradcpc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_atarist.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_c64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_colecovision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_gameandwatch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_intellivision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_lynx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_msdos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_msx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_msx2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_neogeocd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_odyssey2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_scummvm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_sg1000.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_vectrex.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_virtualboy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_wonderswan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\folder_system_wonderswancolor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_amiga.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_amigacd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_amstradcpc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_atarist.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_c64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_colecovision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_gameandwatch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_intellivision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_lynx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_msdos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_msx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_msx2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_neogeocd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_odyssey2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_scummvm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_sg1000.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_vectrex.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_virtualboy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_wonderswan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\folder_system_wonderswancolor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_amiga.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_amigacd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_amstradcpc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_atarist.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_c64.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_colecovision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_gameandwatch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_intellivision.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_lynx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_msdos.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_msx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_msx2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_neogeocd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_odyssey2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_scummvm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_sg1000.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_vectrex.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_virtualboy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_wonderswan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_wonderswancolor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="ModHub\snes-dots.png" />
     <None Include="spine_templates\Custom_Black_Grid\template.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
