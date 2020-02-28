@@ -212,6 +212,17 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void UpdateHakchi()
+        {
+            var hmod = hakchi.Hmod.Get();
+            using (var tasker = new Tasker(this))
+            {
+                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                tasker.SetTitle(Resources.DownloadingLatestHakchi);
+                tasker.AddTask(Tasks.WebClientTasks.DownloadFile(ConfigIni.Instance.HakchiUpdateURL, hakchi.latestHmodFile, true, true, hmod.LastModified));
+                tasker.Start();
+            }
+        }
         private void UpdateMOTD()
         {
             try
@@ -287,10 +298,15 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            SetWindowTitle();
 
             // centralized upgrade actions system
             new Upgrade(this).Run();
             populateRepos();
+
+            // nothing else will call this at the moment, so need to do it
+            SyncConsoleSettings(true);
+            SyncConsoleType(true);
 
             // welcome message, only run for new new users
             if (ConfigIni.Instance.RunCount++ == 0)
@@ -298,9 +314,7 @@ namespace com.clusterrr.hakchi_gui
                 Tasks.MessageForm.Show(Resources.Hello, Resources.FirstRun, Resources.Nintendo_NES_icon);
             }
 
-            // nothing else will call this at the moment, so need to do it
-            SyncConsoleSettings(true);
-            SyncConsoleType(true);
+            UpdateHakchi();
 
             // setup system shell
             hakchi.OnConnected += Shell_OnConnected;
