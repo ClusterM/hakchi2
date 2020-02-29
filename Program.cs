@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
+using TeamShinkansen.Scrapers.Interfaces;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -45,10 +46,34 @@ namespace com.clusterrr.hakchi_gui
         public static bool isPortable = false;
         public static List<Stream> debugStreams = new List<Stream>();
         private static Dictionary<string, SpineTemplate<Bitmap>> _SpineTemplates;
-        public static IReadOnlyDictionary<string, SpineTemplate<Bitmap>> SpineTemplates {
+        public static IReadOnlyDictionary<string, SpineTemplate<Bitmap>> SpineTemplates
+        {
             get => _SpineTemplates;
         }
+
+        private static List<IScraper> _Scrapers = new List<IScraper>();
+        public static IReadOnlyList<IScraper> Scrapers
+        {
+            get => _Scrapers;
+        }
+
         public static MultiFormContext FormContext = new MultiFormContext();
+        internal static TeamShinkansen.Scrapers.TheGamesDB.Scraper TheGamesDBAPI = null;
+        static void SetupScrapers()
+        {
+            if (Resources.TheGamesDBKey != "")
+            {
+                TheGamesDBAPI = new TeamShinkansen.Scrapers.TheGamesDB.Scraper()
+                {
+                    ApiKey = Resources.TheGamesDBKey,
+                    CachePath = Path.Combine(Program.BaseDirectoryExternal, "cache", "thegamesdb"),
+                    ArtSize = TeamShinkansen.Scrapers.TheGamesDB.ArtSize.Thumb
+                };
+
+                _Scrapers.Add(TheGamesDBAPI);
+                TeamShinkansen.Scrapers.TheGamesDB.API.TraceURLs = true;
+            }
+        }
 
         /// <summary>
         /// The main entry point for the application.
@@ -56,7 +81,6 @@ namespace com.clusterrr.hakchi_gui
         [STAThread]
         static void Main(string[] args)
         {
-
             var versionFileArgIndex = -1;
             if (args != null && (versionFileArgIndex = Array.IndexOf(args, "--versionFile")) != -1)
             {
@@ -213,6 +237,8 @@ namespace com.clusterrr.hakchi_gui
                                 }
                             }
                         }
+
+                        SetupScrapers();
 
                         Trace.WriteLine("Starting, version: " + Shared.AppDisplayVersion);
 

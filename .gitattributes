@@ -2,4 +2,5 @@
 *.resx text eol=crlf
 *.sln text eol=crlf
 *.desktop text eol=lf
+*.ai binary
 data/moon_hashes/* text eol=lf

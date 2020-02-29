@@ -241,9 +241,6 @@
   <data name="uninstallToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 22</value>
   </data>
-  <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
-    <value>Désinstaller</value>
-  </data>
   <data name="toolStripMenuItem11.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 6</value>
   </data>
@@ -338,9 +335,6 @@
   </data>
   <data name="factoryResetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>353, 22</value>
-  </data>
-  <data name="factoryResetToolStripMenuItem.Text" xml:space="preserve">
-    <value>Restaurer aux paramètres d'usine</value>
   </data>
   <data name="installModulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>290, 22</value>
@@ -713,9 +707,6 @@
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 13</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Collections de jeux:</value>
-  </data>
   <data name="buttonAddGames.Text" xml:space="preserve">
     <value>Ajouter des jeux supplémentaires</value>
   </data>
@@ -833,29 +824,14 @@
   <data name="radioButtonOne.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 17</value>
   </data>
-  <data name="radioButtonOne.Text" xml:space="preserve">
-    <value>Un joueur</value>
-  </data>
   <data name="radioButtonTwo.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 17</value>
-  </data>
-  <data name="radioButtonTwo.Text" xml:space="preserve">
-    <value>Deux joueurs non simultanés</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 13</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Éditeur :</value>
-  </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>275, 13</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Arguments de ligne de commande (utilisateurs avancés !)</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Illustration :</value>
   </data>
   <data name="buttonBrowseImage.Text" xml:space="preserve">
     <value>Parcourir</value>
@@ -863,26 +839,14 @@
   <data name="radioButtonTwoSim.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 17</value>
   </data>
-  <data name="radioButtonTwoSim.Text" xml:space="preserve">
-    <value>Deux joueurs simultanés</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Joueurs max :</value>
-  </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 13</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Codes Game Genie (séparés par une virgule) :</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Date de sortie (AAAA-MM-JJ) :</value>
   </data>
   <data name="checkBoxCompressed.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>
-  </data>
-  <data name="checkBoxCompressed.Text" xml:space="preserve">
-    <value>Compressser</value>
   </data>
   <data name="labelSize.Text" xml:space="preserve">
     <value>Taille :</value>
@@ -895,12 +859,6 @@
   </data>
   <data name="labelSortName.Text" xml:space="preserve">
     <value>Nom de tri:</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Nb de save</value>
-  </data>
-  <data name="groupBoxOptions.Text" xml:space="preserve">
-    <value>Options du jeu</value>
   </data>
   <data name="foldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>457, 330</value>
@@ -1066,5 +1024,11 @@
   </data>
   <data name="forceNetworkMembootsToolStripMenuItem.Text" xml:space="preserve">
     <value>Forcer memboots mode réseau</value>
+  </data>
+  <data name="labelGameGenie.Text" xml:space="preserve">
+    <value>Codes Game Genie (séparés par une virgule)</value>
+  </data>
+  <data name="labelCompress.Text" xml:space="preserve">
+    <value>Compressser</value>
   </data>
 </root>

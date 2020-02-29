@@ -1603,4 +1603,37 @@ There is a small chance of data loss, please make sure you have your saves backe
   <data name="SelectFile" xml:space="preserve">
     <value>Select File</value>
   </data>
+  <data name="TheGamesDBKey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\apikeys\thegamesdb.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="LoadingFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\LoadingFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LoadingSpine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\LoadingSpine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoBoxArtMdFront" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\NoBoxArtMdFront.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoBoxArtSpine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\NoBoxArtSpine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ApplyingChanges" xml:space="preserve">
+    <value>Applying Changes</value>
+  </data>
+  <data name="DownloadingLatestHakchi" xml:space="preserve">
+    <value>Downloading latest hakchi</value>
+  </data>
+  <data name="EnterAPrefix" xml:space="preserve">
+    <value>Enter a prefix</value>
+  </data>
+  <data name="AddPrefixMessage" xml:space="preserve">
+    <value>Enter a prefix to prepend to the name of all selected games, a colon and space will automatically be added to the end of the prefix.</value>
+  </data>
+  <data name="RemovePrefixMessage" xml:space="preserve">
+    <value>Enter a prefix to remove from the start of all selected games, a colon and space will automatically be added to the end of the prefix.</value>
+  </data>
 </root>

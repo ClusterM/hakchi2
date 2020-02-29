@@ -162,9 +162,6 @@
   <data name="resetToolStripMenuItem.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="uninstallToolStripMenuItem.Text" xml:space="preserve">
-    <value>Deinstallieren</value>
-  </data>
   <data name="flashUbootToolStripMenuItem.Text" xml:space="preserve">
     <value>uboot flashen</value>
   </data>
@@ -209,9 +206,6 @@
   </data>
   <data name="formatNANDCToolStripMenuItem.Text" xml:space="preserve">
     <value>Benutzerdaten-Bereich löschen</value>
-  </data>
-  <data name="factoryResetToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zurücksetzen auf Werkseinstellung</value>
   </data>
   <data name="modulesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Module</value>
@@ -393,9 +387,6 @@
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>Über...</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Spiel auswählen:</value>
-  </data>
   <data name="buttonAddGames.Text" xml:space="preserve">
     <value>Mehr Spiele hinzufügen</value>
   </data>
@@ -468,41 +459,14 @@
   <data name="labelName.Text" xml:space="preserve">
     <value>Name:</value>
   </data>
-  <data name="radioButtonOne.Text" xml:space="preserve">
-    <value>Ein Spieler</value>
-  </data>
-  <data name="radioButtonTwo.Text" xml:space="preserve">
-    <value>Zwei Spieler, abwechselnd</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Herausgeber:</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Kommandozeilenargumente (nur für fortgeschrittene Benutzer!):</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Cover:</value>
-  </data>
   <data name="buttonBrowseImage.Text" xml:space="preserve">
     <value>Durchsuchen</value>
   </data>
   <data name="buttonGoogle.Text" xml:space="preserve">
     <value>Google</value>
   </data>
-  <data name="radioButtonTwoSim.Text" xml:space="preserve">
-    <value>Zwei Spieler, gleichzeitig</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Max Spieler:</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Game Genie Codes (getrennt mit Komma):</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Veröffentlichungsdatum (JJJJ-MM-TT):</value>
-  </data>
-  <data name="checkBoxCompressed.Text" xml:space="preserve">
-    <value>Komprimieren</value>
   </data>
   <data name="labelSize.Text" xml:space="preserve">
     <value>Größe:</value>
@@ -512,12 +476,6 @@
   </data>
   <data name="labelSortName.Text" xml:space="preserve">
     <value>Name:</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Anzahl Speicherplätze</value>
-  </data>
-  <data name="groupBoxOptions.Text" xml:space="preserve">
-    <value>Spieloptionen</value>
   </data>
   <data name="structureButton.Text" xml:space="preserve">
     <value>Struktur</value>
@@ -572,5 +530,11 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Hakchi2 CE</value>
+  </data>
+  <data name="labelGameGenie.Text" xml:space="preserve">
+    <value>Game Genie Codes (getrennt mit Komma)</value>
+  </data>
+  <data name="labelCompress.Text" xml:space="preserve">
+    <value>Komprimieren</value>
   </data>
 </root>

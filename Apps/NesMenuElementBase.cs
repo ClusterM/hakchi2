@@ -182,7 +182,13 @@ namespace com.clusterrr.hakchi_gui
             {
                 GenerateMdMiniPng();
 
-                return GetMdMiniBitmap().Crop(new Rectangle(1, 1, 28, 214)).Bitmap;
+                var image = GetMdMiniBitmap().Crop(new Rectangle(1, 1, 28, 214));
+                bool hasImage = false;
+
+                for (var y = 0; y < 214; y++)
+                    hasImage = hasImage || !image.EmptyRow(y);
+
+                return hasImage ? image.Bitmap : null;
             }
         }
         public virtual Image M2Front
@@ -191,7 +197,13 @@ namespace com.clusterrr.hakchi_gui
             {
                 GenerateMdMiniPng();
 
-                return GetMdMiniBitmap().Crop(new Rectangle(31, 1, 150, 214)).Bitmap;
+                var image = GetMdMiniBitmap().Crop(new Rectangle(31, 1, 150, 214));
+                bool hasImage = false;
+
+                for (var y = 0; y < 214; y++)
+                    hasImage = hasImage || !image.EmptyRow(y);
+
+                return hasImage ? image.Bitmap : null;
             }
         }
 

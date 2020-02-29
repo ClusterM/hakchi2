@@ -153,8 +153,15 @@
     <Compile Include="Controls\ImageGoogler.Designer.cs">
       <DependentUpon>ImageGoogler.cs</DependentUpon>
     </Compile>
+    <Compile Include="data\GamesDB.cs" />
     <Compile Include="data\SnesCarts.cs" />
     <Compile Include="NameValuePair.cs" />
+    <Compile Include="ScraperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScraperForm.Designer.cs">
+      <DependentUpon>ScraperForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SpineForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -930,6 +937,9 @@
     <None Include="art\AC5F4CCA - Xeno Crisis %28Red%29.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="ApiKeys\TheGamesDB.txt">
+      <SubType>Form</SubType>
+    </Content>
     <Content Include="folderlist.css" />
     <None Include="hakchi.png" />
     <None Include="hakchi-spine.png" />
@@ -1359,6 +1369,10 @@
     <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_jaguar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="images\LoadingFront.png" />
+    <None Include="images\LoadingSpine.png" />
+    <None Include="images\NoBoxArtMdFront.png" />
+    <None Include="images\NoBoxArtSpine.png" />
     <None Include="folder_images\TheWez1981-Genesis\folder_system_amiga.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1835,6 +1849,9 @@
     <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
     <EmbeddedResource Include="SaveStateManager.de-DE.resx">
       <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScraperForm.resx">
+      <DependentUpon>ScraperForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScreenshotForm.de-DE.resx">
       <DependentUpon>ScreenshotForm.cs</DependentUpon>
@@ -3749,7 +3766,8 @@
 "./busybox" rm -rf "../$(OutDir)user_mods/hakchi.hmod"
 "./busybox" cp -R "../user_mods/" "../$(OutDir)/"
 "./busybox" sh -e "./gitcommit" &gt; "../commit.txt"
-
+"./busybox" mkdir -p "../ApiKeys"
+"./busybox" touch "../ApiKeys/TheGamesDB.txt"
 "./busybox" rm "../data/libretro_cores.tar"
 "./busybox" rm "../data/desktop_entries.tar"
 "./busybox" rm "../data/original_art.tar"

@@ -106,6 +106,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter a prefix to prepend to the name of all selected games, a colon and space will automatically be added to the end of the prefix..
+        /// </summary>
+        internal static string AddPrefixMessage {
+            get {
+                return ResourceManager.GetString("AddPrefixMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All files.
         /// </summary>
         internal static string AllFiles {
@@ -147,6 +156,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string ApplyChangesQ {
             get {
                 return ResourceManager.GetString("ApplyChangesQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applying Changes.
+        /// </summary>
+        internal static string ApplyingChanges {
+            get {
+                return ResourceManager.GetString("ApplyingChanges", resourceCulture);
             }
         }
         
@@ -1068,6 +1086,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading latest hakchi.
+        /// </summary>
+        internal static string DownloadingLatestHakchi {
+            get {
+                return ResourceManager.GetString("DownloadingLatestHakchi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Downloading: {0} / {1}.
         /// </summary>
         internal static string DownloadingProgress {
@@ -1188,6 +1215,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string EnableAutoRefresh {
             get {
                 return ResourceManager.GetString("EnableAutoRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a prefix.
+        /// </summary>
+        internal static string EnterAPrefix {
+            get {
+                return ResourceManager.GetString("EnterAPrefix", resourceCulture);
             }
         }
         
@@ -2612,6 +2648,25 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LoadingFront {
+            get {
+                object obj = ResourceManager.GetObject("LoadingFront", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading games....
         /// </summary>
         internal static string LoadingGames {
@@ -2626,6 +2681,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string LoadingHmods {
             get {
                 return ResourceManager.GetString("LoadingHmods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LoadingSpine {
+            get {
+                object obj = ResourceManager.GetObject("LoadingSpine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -2894,6 +2959,26 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static System.Drawing.Bitmap noboxart {
             get {
                 object obj = ResourceManager.GetObject("noboxart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NoBoxArtMdFront {
+            get {
+                object obj = ResourceManager.GetObject("NoBoxArtMdFront", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NoBoxArtSpine {
+            get {
+                object obj = ResourceManager.GetObject("NoBoxArtSpine", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3359,6 +3444,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("reddit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a prefix to remove from the start of all selected games, a colon and space will automatically be added to the end of the prefix..
+        /// </summary>
+        internal static string RemovePrefixMessage {
+            get {
+                return ResourceManager.GetString("RemovePrefixMessage", resourceCulture);
             }
         }
         
@@ -4133,6 +4227,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string TelnetServerOn {
             get {
                 return ResourceManager.GetString("TelnetServerOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a14d982753518ea3438fe788e214ae1640f837dc2f076c2f6f1cf8b243e2ceb7.
+        /// </summary>
+        internal static string TheGamesDBKey {
+            get {
+                return ResourceManager.GetString("TheGamesDBKey", resourceCulture);
             }
         }
         

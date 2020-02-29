@@ -154,25 +154,21 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gitHubPageWithActualReleasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.joinOurDiscordServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rminisnesmodsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rRockinTheClassicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripSeparator();
             this.technicalInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.messageOfTheDayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label5 = new System.Windows.Forms.Label();
             this.buttonAddGames = new System.Windows.Forms.Button();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusConnectionIcon = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelShell = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelSelected = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelSize = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.openFileDialogNes = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.explorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addPrefixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removePrefixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
+            this.scrapeSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scanForNewBoxArtForSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadBoxArtForSelectedGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedGamesBoxArtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -205,7 +201,6 @@
             this.textBoxPublisher = new System.Windows.Forms.TextBox();
             this.labelCommandLine = new System.Windows.Forms.Label();
             this.textBoxArguments = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.pictureBoxArt = new System.Windows.Forms.PictureBox();
             this.buttonBrowseImage = new System.Windows.Forms.Button();
             this.buttonGoogle = new System.Windows.Forms.Button();
@@ -223,9 +218,6 @@
             this.textBoxSortName = new System.Windows.Forms.TextBox();
             this.labelSaveCount = new System.Windows.Forms.Label();
             this.numericUpDownSaveCount = new System.Windows.Forms.NumericUpDown();
-            this.groupBoxOptions = new System.Windows.Forms.GroupBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanelGameInfo = new System.Windows.Forms.TableLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -243,13 +235,10 @@
             this.comboBoxCountry = new System.Windows.Forms.ComboBox();
             this.labelCopyright = new System.Windows.Forms.Label();
             this.textBoxCopyright = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelArtButtons = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSpine = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBoxM2Spine = new System.Windows.Forms.PictureBox();
             this.pictureBoxM2Front = new System.Windows.Forms.PictureBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.structureButton = new System.Windows.Forms.Button();
             this.foldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.disablePagefoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -273,28 +262,52 @@
             this.syncStructureForAllGamesCollectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesConsoleComboBox = new System.Windows.Forms.ComboBox();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
-            this.tableLayoutPanelBottomButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBoxButtons = new System.Windows.Forms.GroupBox();
+            this.groupBoxCurrentGamesCollection = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBoxArtSega = new System.Windows.Forms.GroupBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.groupBoxArtNintendo = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBoxGameInfo = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanelStatusBar = new System.Windows.Forms.TableLayoutPanel();
+            this.toolStripStatusConnectionIcon = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanelStatusBarInner = new System.Windows.Forms.TableLayoutPanel();
+            this.toolStripStatusLabelShell = new System.Windows.Forms.Label();
+            this.toolStripStatusLabelSelected = new System.Windows.Forms.Label();
+            this.toolStripStatusLabelSize = new System.Windows.Forms.Label();
+            this.toolStripProgressBar = new System.Windows.Forms.ProgressBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSaveCount)).BeginInit();
-            this.groupBoxOptions.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tableLayoutPanelGameInfo.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanelGameID.SuspendLayout();
             this.tableLayoutPanelGameGenie.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.tableLayoutPanelArtButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxM2Spine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxM2Front)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.foldersContextMenuStrip.SuspendLayout();
-            this.tableLayoutPanelBottomButtons.SuspendLayout();
+            this.tableLayoutPanelMain.SuspendLayout();
+            this.groupBoxButtons.SuspendLayout();
+            this.groupBoxCurrentGamesCollection.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.groupBoxArtSega.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.groupBoxArtNintendo.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.groupBoxGameInfo.SuspendLayout();
+            this.tableLayoutPanelStatusBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toolStripStatusConnectionIcon)).BeginInit();
+            this.tableLayoutPanelStatusBarInner.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -1187,7 +1200,7 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gitHubPageWithActualReleasesToolStripMenuItem,
             this.joinOurDiscordServerToolStripMenuItem,
-            this.rminisnesmodsToolStripMenuItem,
+            this.rRockinTheClassicsToolStripMenuItem,
             this.donateToolStripMenuItem,
             this.fAQToolStripMenuItem,
             this.toolStripMenuItem22,
@@ -1213,13 +1226,13 @@
             this.joinOurDiscordServerToolStripMenuItem.Tag = "https://discord.gg/C9EDFyg";
             this.joinOurDiscordServerToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
             // 
-            // rminisnesmodsToolStripMenuItem
+            // rRockinTheClassicsToolStripMenuItem
             // 
-            this.rminisnesmodsToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.reddit;
-            this.rminisnesmodsToolStripMenuItem.Name = "rminisnesmodsToolStripMenuItem";
-            resources.ApplyResources(this.rminisnesmodsToolStripMenuItem, "rminisnesmodsToolStripMenuItem");
-            this.rminisnesmodsToolStripMenuItem.Tag = "https://www.reddit.com/r/minisnesmods/";
-            this.rminisnesmodsToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
+            this.rRockinTheClassicsToolStripMenuItem.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.reddit;
+            this.rRockinTheClassicsToolStripMenuItem.Name = "rRockinTheClassicsToolStripMenuItem";
+            resources.ApplyResources(this.rRockinTheClassicsToolStripMenuItem, "rRockinTheClassicsToolStripMenuItem");
+            this.rRockinTheClassicsToolStripMenuItem.Tag = "https://www.reddit.com/r/RockinTheClassics/";
+            this.rRockinTheClassicsToolStripMenuItem.Click += new System.EventHandler(this.openWebsiteLink);
             // 
             // donateToolStripMenuItem
             // 
@@ -1259,69 +1272,12 @@
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            // 
             // buttonAddGames
             // 
             resources.ApplyResources(this.buttonAddGames, "buttonAddGames");
             this.buttonAddGames.Name = "buttonAddGames";
             this.buttonAddGames.UseVisualStyleBackColor = true;
             this.buttonAddGames.Click += new System.EventHandler(this.buttonAddGames_Click);
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusConnectionIcon,
-            this.toolStripStatusLabelShell,
-            this.toolStripStatusLabelSelected,
-            this.toolStripStatusLabelSize,
-            this.toolStripProgressBar});
-            resources.ApplyResources(this.statusStrip, "statusStrip");
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.SizingGrip = false;
-            // 
-            // toolStripStatusConnectionIcon
-            // 
-            resources.ApplyResources(this.toolStripStatusConnectionIcon, "toolStripStatusConnectionIcon");
-            this.toolStripStatusConnectionIcon.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.red;
-            this.toolStripStatusConnectionIcon.Margin = new System.Windows.Forms.Padding(2, 3, 2, 2);
-            this.toolStripStatusConnectionIcon.Name = "toolStripStatusConnectionIcon";
-            // 
-            // toolStripStatusLabelShell
-            // 
-            resources.ApplyResources(this.toolStripStatusLabelShell, "toolStripStatusLabelShell");
-            this.toolStripStatusLabelShell.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.toolStripStatusLabelShell.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.toolStripStatusLabelShell.Name = "toolStripStatusLabelShell";
-            // 
-            // toolStripStatusLabelSelected
-            // 
-            resources.ApplyResources(this.toolStripStatusLabelSelected, "toolStripStatusLabelSelected");
-            this.toolStripStatusLabelSelected.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.toolStripStatusLabelSelected.Name = "toolStripStatusLabelSelected";
-            // 
-            // toolStripStatusLabelSize
-            // 
-            resources.ApplyResources(this.toolStripStatusLabelSize, "toolStripStatusLabelSize");
-            this.toolStripStatusLabelSize.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.toolStripStatusLabelSize.Name = "toolStripStatusLabelSize";
-            // 
-            // toolStripProgressBar
-            // 
-            this.toolStripProgressBar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.toolStripProgressBar.Name = "toolStripProgressBar";
-            resources.ApplyResources(this.toolStripProgressBar, "toolStripProgressBar");
-            this.toolStripProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.toolStripProgressBar.Value = 50;
             // 
             // openFileDialogNes
             // 
@@ -1333,7 +1289,11 @@
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.explorerToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.addPrefixToolStripMenuItem,
+            this.removePrefixToolStripMenuItem,
             this.toolStripMenuItem14,
+            this.scrapeSelectedGamesToolStripMenuItem,
             this.scanForNewBoxArtForSelectedGamesToolStripMenuItem,
             this.downloadBoxArtForSelectedGamesToolStripMenuItem,
             this.deleteSelectedGamesBoxArtToolStripMenuItem,
@@ -1356,10 +1316,28 @@
             this.explorerToolStripMenuItem.Name = "explorerToolStripMenuItem";
             this.explorerToolStripMenuItem.Click += new System.EventHandler(this.explorerToolStripMenuItem_Click);
             // 
+            // addPrefixToolStripMenuItem
+            // 
+            resources.ApplyResources(this.addPrefixToolStripMenuItem, "addPrefixToolStripMenuItem");
+            this.addPrefixToolStripMenuItem.Name = "addPrefixToolStripMenuItem";
+            this.addPrefixToolStripMenuItem.Click += new System.EventHandler(this.addPrefixToolStripMenuItem_Click);
+            // 
+            // removePrefixToolStripMenuItem
+            // 
+            resources.ApplyResources(this.removePrefixToolStripMenuItem, "removePrefixToolStripMenuItem");
+            this.removePrefixToolStripMenuItem.Name = "removePrefixToolStripMenuItem";
+            this.removePrefixToolStripMenuItem.Click += new System.EventHandler(this.removePrefixToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem14
             // 
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
             resources.ApplyResources(this.toolStripMenuItem14, "toolStripMenuItem14");
+            // 
+            // scrapeSelectedGamesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.scrapeSelectedGamesToolStripMenuItem, "scrapeSelectedGamesToolStripMenuItem");
+            this.scrapeSelectedGamesToolStripMenuItem.Name = "scrapeSelectedGamesToolStripMenuItem";
+            this.scrapeSelectedGamesToolStripMenuItem.Click += new System.EventHandler(this.scrapeSelectedGamesToolStripMenuItem_Click);
             // 
             // scanForNewBoxArtForSelectedGamesToolStripMenuItem
             // 
@@ -1490,10 +1468,11 @@
             // 
             // listViewGames
             // 
-            resources.ApplyResources(this.listViewGames, "listViewGames");
             this.listViewGames.CheckBoxes = true;
             this.listViewGames.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.gameName});
+            this.tableLayoutPanel3.SetColumnSpan(this.listViewGames, 2);
+            resources.ApplyResources(this.listViewGames, "listViewGames");
             this.listViewGames.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewGames.HideSelection = false;
             this.listViewGames.Name = "listViewGames";
@@ -1503,6 +1482,7 @@
             this.listViewGames.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewGames_ItemSelectionChanged);
             this.listViewGames.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewGames_KeyDown);
             this.listViewGames.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listViewGames_MouseDown);
+            this.listViewGames.Resize += new System.EventHandler(this.listViewGames_Resize);
             // 
             // gameName
             // 
@@ -1527,18 +1507,18 @@
             // 
             // textBoxName
             // 
+            this.tableLayoutPanelGameInfo.SetColumnSpan(this.textBoxName, 2);
             resources.ApplyResources(this.textBoxName, "textBoxName");
             this.textBoxName.Name = "textBoxName";
+            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
             // labelPublisher
             // 
             resources.ApplyResources(this.labelPublisher, "labelPublisher");
-            this.tableLayoutPanelGameInfo.SetColumnSpan(this.labelPublisher, 2);
             this.labelPublisher.Name = "labelPublisher";
             // 
             // textBoxPublisher
             // 
-            this.textBoxPublisher.BackColor = System.Drawing.SystemColors.Window;
             this.tableLayoutPanelGameInfo.SetColumnSpan(this.textBoxPublisher, 2);
             resources.ApplyResources(this.textBoxPublisher, "textBoxPublisher");
             this.textBoxPublisher.Name = "textBoxPublisher";
@@ -1557,11 +1537,6 @@
             resources.ApplyResources(this.textBoxArguments, "textBoxArguments");
             this.textBoxArguments.Name = "textBoxArguments";
             this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
             // 
             // pictureBoxArt
             // 
@@ -1686,28 +1661,6 @@
             this.numericUpDownSaveCount.Name = "numericUpDownSaveCount";
             this.numericUpDownSaveCount.ValueChanged += new System.EventHandler(this.numericUpDownSaveCount_ValueChanged);
             // 
-            // groupBoxOptions
-            // 
-            resources.ApplyResources(this.groupBoxOptions, "groupBoxOptions");
-            this.groupBoxOptions.Controls.Add(this.tabControl1);
-            this.groupBoxOptions.Name = "groupBoxOptions";
-            this.groupBoxOptions.TabStop = false;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            resources.ApplyResources(this.tabControl1, "tabControl1");
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.tableLayoutPanelGameInfo);
-            resources.ApplyResources(this.tabPage1, "tabPage1");
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanelGameInfo
             // 
             resources.ApplyResources(this.tableLayoutPanelGameInfo, "tableLayoutPanelGameInfo");
@@ -1741,7 +1694,6 @@
             this.tableLayoutPanelGameInfo.Controls.Add(this.labelCopyright, 0, 9);
             this.tableLayoutPanelGameInfo.Controls.Add(this.textBoxCopyright, 0, 10);
             this.tableLayoutPanelGameInfo.Name = "tableLayoutPanelGameInfo";
-            this.tableLayoutPanelGameInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanelGameInfo_Paint);
             // 
             // label10
             // 
@@ -1845,24 +1797,14 @@
             this.textBoxCopyright.Name = "textBoxCopyright";
             this.textBoxCopyright.TextChanged += new System.EventHandler(this.textBoxCopyright_TextChanged);
             // 
-            // tabPage2
+            // tableLayoutPanelArtButtons
             // 
-            this.tabPage2.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage2.Controls.Add(this.groupBox2);
-            this.tabPage2.Controls.Add(this.groupBox1);
-            resources.ApplyResources(this.tabPage2, "tabPage2");
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel1
-            // 
-            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.buttonGoogle, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.buttonBrowseImage, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.buttonDefaultCover, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonSpine, 0, 4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            resources.ApplyResources(this.tableLayoutPanelArtButtons, "tableLayoutPanelArtButtons");
+            this.tableLayoutPanelArtButtons.Controls.Add(this.buttonGoogle, 0, 1);
+            this.tableLayoutPanelArtButtons.Controls.Add(this.buttonBrowseImage, 0, 0);
+            this.tableLayoutPanelArtButtons.Controls.Add(this.buttonDefaultCover, 0, 0);
+            this.tableLayoutPanelArtButtons.Controls.Add(this.buttonSpine, 1, 1);
+            this.tableLayoutPanelArtButtons.Name = "tableLayoutPanelArtButtons";
             // 
             // buttonSpine
             // 
@@ -1870,14 +1812,6 @@
             this.buttonSpine.Name = "buttonSpine";
             this.buttonSpine.UseVisualStyleBackColor = true;
             this.buttonSpine.Click += new System.EventHandler(this.buttonSpine_Click);
-            // 
-            // groupBox2
-            // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.Controls.Add(this.pictureBoxM2Spine);
-            this.groupBox2.Controls.Add(this.pictureBoxM2Front);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
             // 
             // pictureBoxM2Spine
             // 
@@ -1902,14 +1836,6 @@
             this.pictureBoxM2Front.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragDrop);
             this.pictureBoxM2Front.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBoxArt_DragEnter);
             this.pictureBoxM2Front.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxArt_MouseClick);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.pictureBoxArt);
-            this.groupBox1.Controls.Add(this.pictureBoxThumbnail);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
             // 
             // structureButton
             // 
@@ -2068,9 +1994,9 @@
             // gamesConsoleComboBox
             // 
             this.gamesConsoleComboBox.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.gamesConsoleComboBox, "gamesConsoleComboBox");
             this.gamesConsoleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gamesConsoleComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.gamesConsoleComboBox, "gamesConsoleComboBox");
             this.gamesConsoleComboBox.Name = "gamesConsoleComboBox";
             this.gamesConsoleComboBox.SelectedIndexChanged += new System.EventHandler(this.gamesConsoleComboBox_SelectedIndexChanged);
             // 
@@ -2078,32 +2004,168 @@
             // 
             this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
             // 
-            // tableLayoutPanelBottomButtons
+            // tableLayoutPanelMain
             // 
-            resources.ApplyResources(this.tableLayoutPanelBottomButtons, "tableLayoutPanelBottomButtons");
-            this.tableLayoutPanelBottomButtons.Controls.Add(this.buttonStart, 2, 0);
-            this.tableLayoutPanelBottomButtons.Controls.Add(this.buttonExport, 1, 0);
-            this.tableLayoutPanelBottomButtons.Controls.Add(this.buttonAddGames, 0, 0);
-            this.tableLayoutPanelBottomButtons.Name = "tableLayoutPanelBottomButtons";
+            resources.ApplyResources(this.tableLayoutPanelMain, "tableLayoutPanelMain");
+            this.tableLayoutPanelMain.Controls.Add(this.groupBoxButtons, 2, 2);
+            this.tableLayoutPanelMain.Controls.Add(this.groupBoxCurrentGamesCollection, 0, 0);
+            this.tableLayoutPanelMain.Controls.Add(this.buttonStart, 2, 3);
+            this.tableLayoutPanelMain.Controls.Add(this.groupBoxArtSega, 2, 1);
+            this.tableLayoutPanelMain.Controls.Add(this.buttonExport, 1, 3);
+            this.tableLayoutPanelMain.Controls.Add(this.groupBoxArtNintendo, 2, 0);
+            this.tableLayoutPanelMain.Controls.Add(this.buttonAddGames, 0, 3);
+            this.tableLayoutPanelMain.Controls.Add(this.groupBoxGameInfo, 1, 0);
+            this.tableLayoutPanelMain.Controls.Add(this.tableLayoutPanelStatusBar, 0, 4);
+            this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            // 
+            // groupBoxButtons
+            // 
+            this.groupBoxButtons.Controls.Add(this.tableLayoutPanelArtButtons);
+            resources.ApplyResources(this.groupBoxButtons, "groupBoxButtons");
+            this.groupBoxButtons.Name = "groupBoxButtons";
+            this.groupBoxButtons.TabStop = false;
+            // 
+            // groupBoxCurrentGamesCollection
+            // 
+            this.groupBoxCurrentGamesCollection.Controls.Add(this.tableLayoutPanel3);
+            resources.ApplyResources(this.groupBoxCurrentGamesCollection, "groupBoxCurrentGamesCollection");
+            this.groupBoxCurrentGamesCollection.Name = "groupBoxCurrentGamesCollection";
+            this.tableLayoutPanelMain.SetRowSpan(this.groupBoxCurrentGamesCollection, 3);
+            this.groupBoxCurrentGamesCollection.TabStop = false;
+            // 
+            // tableLayoutPanel3
+            // 
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.structureButton, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.gamesConsoleComboBox, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.listViewGames, 0, 1);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            // 
+            // groupBoxArtSega
+            // 
+            this.groupBoxArtSega.Controls.Add(this.panel3);
+            resources.ApplyResources(this.groupBoxArtSega, "groupBoxArtSega");
+            this.groupBoxArtSega.Name = "groupBoxArtSega";
+            this.groupBoxArtSega.TabStop = false;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.pictureBoxM2Spine);
+            this.panel3.Controls.Add(this.pictureBoxM2Front);
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
+            // 
+            // groupBoxArtNintendo
+            // 
+            this.groupBoxArtNintendo.Controls.Add(this.panel2);
+            resources.ApplyResources(this.groupBoxArtNintendo, "groupBoxArtNintendo");
+            this.groupBoxArtNintendo.Name = "groupBoxArtNintendo";
+            this.groupBoxArtNintendo.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pictureBoxArt);
+            this.panel2.Controls.Add(this.pictureBoxThumbnail);
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Name = "panel2";
+            // 
+            // groupBoxGameInfo
+            // 
+            this.groupBoxGameInfo.Controls.Add(this.tableLayoutPanelGameInfo);
+            resources.ApplyResources(this.groupBoxGameInfo, "groupBoxGameInfo");
+            this.groupBoxGameInfo.Name = "groupBoxGameInfo";
+            this.tableLayoutPanelMain.SetRowSpan(this.groupBoxGameInfo, 3);
+            this.groupBoxGameInfo.TabStop = false;
+            // 
+            // tableLayoutPanelStatusBar
+            // 
+            resources.ApplyResources(this.tableLayoutPanelStatusBar, "tableLayoutPanelStatusBar");
+            this.tableLayoutPanelMain.SetColumnSpan(this.tableLayoutPanelStatusBar, 3);
+            this.tableLayoutPanelStatusBar.Controls.Add(this.toolStripStatusConnectionIcon, 0, 0);
+            this.tableLayoutPanelStatusBar.Controls.Add(this.tableLayoutPanelStatusBarInner, 1, 0);
+            this.tableLayoutPanelStatusBar.Name = "tableLayoutPanelStatusBar";
+            this.tableLayoutPanelStatusBar.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
+            // toolStripStatusConnectionIcon
+            // 
+            resources.ApplyResources(this.toolStripStatusConnectionIcon, "toolStripStatusConnectionIcon");
+            this.toolStripStatusConnectionIcon.Image = global::com.clusterrr.hakchi_gui.Properties.Resources.red;
+            this.toolStripStatusConnectionIcon.Name = "toolStripStatusConnectionIcon";
+            this.toolStripStatusConnectionIcon.TabStop = false;
+            // 
+            // tableLayoutPanelStatusBarInner
+            // 
+            resources.ApplyResources(this.tableLayoutPanelStatusBarInner, "tableLayoutPanelStatusBarInner");
+            this.tableLayoutPanelStatusBarInner.Controls.Add(this.toolStripStatusLabelShell, 0, 0);
+            this.tableLayoutPanelStatusBarInner.Controls.Add(this.toolStripStatusLabelSelected, 1, 0);
+            this.tableLayoutPanelStatusBarInner.Controls.Add(this.toolStripStatusLabelSize, 2, 0);
+            this.tableLayoutPanelStatusBarInner.Controls.Add(this.toolStripProgressBar, 3, 0);
+            this.tableLayoutPanelStatusBarInner.Name = "tableLayoutPanelStatusBarInner";
+            // 
+            // toolStripStatusLabelShell
+            // 
+            resources.ApplyResources(this.toolStripStatusLabelShell, "toolStripStatusLabelShell");
+            this.toolStripStatusLabelShell.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.toolStripStatusLabelShell.Name = "toolStripStatusLabelShell";
+            this.toolStripStatusLabelShell.Paint += new System.Windows.Forms.PaintEventHandler(this.labelBorder_Paint);
+            // 
+            // toolStripStatusLabelSelected
+            // 
+            resources.ApplyResources(this.toolStripStatusLabelSelected, "toolStripStatusLabelSelected");
+            this.toolStripStatusLabelSelected.Name = "toolStripStatusLabelSelected";
+            this.toolStripStatusLabelSelected.Paint += new System.Windows.Forms.PaintEventHandler(this.labelBorder_Paint);
+            // 
+            // toolStripStatusLabelSize
+            // 
+            resources.ApplyResources(this.toolStripStatusLabelSize, "toolStripStatusLabelSize");
+            this.toolStripStatusLabelSize.Name = "toolStripStatusLabelSize";
+            this.toolStripStatusLabelSize.Paint += new System.Windows.Forms.PaintEventHandler(this.labelBorder_Paint);
+            // 
+            // toolStripProgressBar
+            // 
+            resources.ApplyResources(this.toolStripProgressBar, "toolStripProgressBar");
+            this.toolStripProgressBar.Name = "toolStripProgressBar";
+            this.toolStripProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label1.Name = "label1";
+            this.label1.Paint += new System.Windows.Forms.PaintEventHandler(this.labelBorder_Paint);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            this.label2.Paint += new System.Windows.Forms.PaintEventHandler(this.labelBorder_Paint);
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            this.label3.Paint += new System.Windows.Forms.PaintEventHandler(this.labelBorder_Paint);
+            // 
+            // progressBar1
+            // 
+            resources.ApplyResources(this.progressBar1, "progressBar1");
+            this.progressBar1.Name = "progressBar1";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // MainForm
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanelBottomButtons);
-            this.Controls.Add(this.gamesConsoleComboBox);
-            this.Controls.Add(this.structureButton);
-            this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tableLayoutPanelMain);
             this.Controls.Add(this.menuStrip);
-            this.Controls.Add(this.groupBoxOptions);
-            this.Controls.Add(this.listViewGames);
             this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.KeyPreview = true;
-            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -2113,15 +2175,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxThumbnail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSaveCount)).EndInit();
-            this.groupBoxOptions.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanelGameInfo.ResumeLayout(false);
             this.tableLayoutPanelGameInfo.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -2130,14 +2187,22 @@
             this.tableLayoutPanelGameID.PerformLayout();
             this.tableLayoutPanelGameGenie.ResumeLayout(false);
             this.tableLayoutPanelGameGenie.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
+            this.tableLayoutPanelArtButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxM2Spine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxM2Front)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.foldersContextMenuStrip.ResumeLayout(false);
-            this.tableLayoutPanelBottomButtons.ResumeLayout(false);
+            this.tableLayoutPanelMain.ResumeLayout(false);
+            this.groupBoxButtons.ResumeLayout(false);
+            this.groupBoxCurrentGamesCollection.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.groupBoxArtSega.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.groupBoxArtNintendo.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.groupBoxGameInfo.ResumeLayout(false);
+            this.tableLayoutPanelStatusBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.toolStripStatusConnectionIcon)).EndInit();
+            this.tableLayoutPanelStatusBarInner.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2149,10 +2214,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addMoreGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonAddGames;
-        private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelSelected;
         private System.Windows.Forms.OpenFileDialog openFileDialogNes;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.OpenFileDialog openFileDialogImage;
@@ -2184,9 +2246,6 @@
         private System.Windows.Forms.ToolStripMenuItem uninstallModulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem synchronizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useXYOnClassicControllerAsAutofireABToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelSize;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusConnectionIcon;
         private System.Windows.Forms.Timer timerConnectionCheck;
         private System.Windows.Forms.ToolStripMenuItem saveSettingsToNESMiniNowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
@@ -2255,7 +2314,6 @@
         private System.Windows.Forms.TextBox textBoxPublisher;
         private System.Windows.Forms.Label labelCommandLine;
         private System.Windows.Forms.TextBox textBoxArguments;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBoxArt;
         private System.Windows.Forms.Button buttonBrowseImage;
         private System.Windows.Forms.Button buttonGoogle;
@@ -2273,7 +2331,6 @@
         private System.Windows.Forms.TextBox textBoxSortName;
         private System.Windows.Forms.Label labelSaveCount;
         private System.Windows.Forms.NumericUpDown numericUpDownSaveCount;
-        private System.Windows.Forms.GroupBox groupBoxOptions;
         private System.Windows.Forms.ToolStripMenuItem centerBoxArtThumbnailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem positionHiddenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectEmulationCoreToolStripMenuItem;
@@ -2336,7 +2393,6 @@
         private System.Windows.Forms.ToolStripMenuItem dumpOriginalKernellegacyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem24;
         private System.Windows.Forms.Timer timerUpdate;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelShell;
         private System.Windows.Forms.ToolStripMenuItem forceNetworkMembootsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alwaysCopyOriginalGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem25;
@@ -2352,28 +2408,22 @@
         private System.Windows.Forms.ToolStripMenuItem manageModRepositoriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveDmesgOutputToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem joinOurDiscordServerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rminisnesmodsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rRockinTheClassicsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formatSDCardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downloadLatestHakchiToolStripMenuItem;
         private com.clusterrr.hakchi_gui.Wireless.Bluetooth.BluetoothMenuItem bluetoothToolStripMenuItem;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGameGenie;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label labelCompress;
         private System.Windows.Forms.ComboBox maxPlayersComboBox;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBottomButtons;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBoxM2Spine;
         private System.Windows.Forms.PictureBox pictureBoxM2Front;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGameInfo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGameID;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelArtButtons;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Button buttonSpine;
@@ -2388,6 +2438,31 @@
         private System.Windows.Forms.ToolStripMenuItem japanToolStripMenuItem;
         private System.Windows.Forms.TextBox textBoxCopyright;
         private System.Windows.Forms.Label labelCopyright;
+        private System.Windows.Forms.ToolStripMenuItem scrapeSelectedGamesToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.GroupBox groupBoxArtSega;
+        private System.Windows.Forms.GroupBox groupBoxArtNintendo;
+        private System.Windows.Forms.GroupBox groupBoxGameInfo;
+        private System.Windows.Forms.GroupBox groupBoxCurrentGamesCollection;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelStatusBar;
+        private System.Windows.Forms.PictureBox toolStripStatusConnectionIcon;
+        private System.Windows.Forms.Label toolStripStatusLabelShell;
+        private System.Windows.Forms.Label toolStripStatusLabelSelected;
+        private System.Windows.Forms.Label toolStripStatusLabelSize;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ProgressBar toolStripProgressBar;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelStatusBarInner;
+        private System.Windows.Forms.GroupBox groupBoxButtons;
+        private System.Windows.Forms.ToolStripMenuItem addPrefixToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removePrefixToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

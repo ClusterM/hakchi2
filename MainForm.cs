@@ -20,6 +20,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using static com.clusterrr.hakchi_gui.NesMenuElementBase;
+using static com.clusterrr.hakchi_gui.Tasks.Tasker;
 
 namespace com.clusterrr.hakchi_gui
 {
@@ -74,7 +75,7 @@ namespace com.clusterrr.hakchi_gui
             return string.Empty;
         }
 
-        enum MaxPlayers
+        public enum MaxPlayers
         {
             OnePlayer = 0,
             TwoPlayer = 1,
@@ -114,37 +115,47 @@ namespace com.clusterrr.hakchi_gui
             FormInitialize();
         }
 
+        public static void PopulateMaxPlayers(ComboBox maxPlayersComboBox)
+        {
+            maxPlayersComboBox.Items.Clear();
+            maxPlayersComboBox.Items.AddRange(new string[] {
+                Resources.One,
+                Resources.TwoNotSimultaneously,
+                Resources.TwoSimultaneously,
+                Resources.Three,
+                Resources.Four,
+                Resources.Five
+            });
+        }
+
+        public static void PopulateGenres(ComboBox comboBoxGenre)
+        {
+            comboBoxGenre.Items.Clear();
+            comboBoxGenre.Items.Add(new NameValuePair<string>("", ""));
+            comboBoxGenre.Items.AddRange(new NameValuePair<string>[] {
+                new NameValuePair<string>(Resources.GenreAction, "Action"),
+                new NameValuePair<string>(Resources.GenreActionShooting, "ActionShooting"),
+                new NameValuePair<string>(Resources.GenreAdventure, "Adventure"),
+                new NameValuePair<string>(Resources.GenreEducational, "Educational"),
+                new NameValuePair<string>(Resources.GenreFighting, "Fighting"),
+                new NameValuePair<string>(Resources.GenrePuzzle, "Puzzle"),
+                new NameValuePair<string>(Resources.GenreRacing, "Racing"),
+                new NameValuePair<string>(Resources.GenreRacingSports, "RacingSports"),
+                new NameValuePair<string>(Resources.GenreRPG, "RPG"),
+                new NameValuePair<string>(Resources.GenreShootEmUp, "Shoot-'em-Up"),
+                new NameValuePair<string>(Resources.GenreSimulation, "Simulation"),
+                new NameValuePair<string>(Resources.GenreSports, "Sports"),
+                new NameValuePair<string>(Resources.GenreTable, "Table")
+            }.OrderBy(e => e.Name).Cast<object>().ToArray());
+        }
         private void FormInitialize()
         {
             try
             {
+                scrapeSelectedGamesToolStripMenuItem.Visible = Program.Scrapers.Count > 0;
                 timerShowSelected.Enabled = false;
-                maxPlayersComboBox.Items.AddRange(new string[] {
-                    Resources.One,
-                    Resources.TwoNotSimultaneously,
-                    Resources.TwoSimultaneously,
-                    Resources.Three,
-                    Resources.Four,
-                    Resources.Five
-                });
-
-                comboBoxGenre.Items.Clear();
-                comboBoxGenre.Items.Add(new NameValuePair<string>("", ""));
-                comboBoxGenre.Items.AddRange(new NameValuePair<string>[] {
-                    new NameValuePair<string>(Resources.GenreAction, "Action"),
-                    new NameValuePair<string>(Resources.GenreActionShooting, "ActionShooting"),
-                    new NameValuePair<string>(Resources.GenreAdventure, "Adventure"),
-                    new NameValuePair<string>(Resources.GenreEducational, "Educational"),
-                    new NameValuePair<string>(Resources.GenreFighting, "Fighting"),
-                    new NameValuePair<string>(Resources.GenrePuzzle, "Puzzle"),
-                    new NameValuePair<string>(Resources.GenreRacing, "Racing"),
-                    new NameValuePair<string>(Resources.GenreRacingSports, "RacingSports"),
-                    new NameValuePair<string>(Resources.GenreRPG, "RPG"),
-                    new NameValuePair<string>(Resources.GenreShootEmUp, "Shoot-'em-Up"),
-                    new NameValuePair<string>(Resources.GenreSimulation, "Simulation"),
-                    new NameValuePair<string>(Resources.GenreSports, "Sports"),
-                    new NameValuePair<string>(Resources.GenreTable, "Table")
-                }.OrderBy(e => e.Name).Cast<object>().ToArray());
+                PopulateMaxPlayers(maxPlayersComboBox);
+                PopulateGenres(comboBoxGenre);
 
                 comboBoxCountry.Items.Clear();
                 comboBoxCountry.Items.AddRange(new object[]
@@ -265,6 +276,7 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
             try // wrap upgrade check in an exception check, to avoid past mistakes
             {
                 AutoUpdater.RemindLaterTimeSpan = RemindLaterFormat.Days;
@@ -367,15 +379,15 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
 
-            string title = $"hakchi CE v{Shared.AppDisplayVersion}";
+            string title = $"hakchi CE v{Shared.AppDisplayVersion}"
 
-#if DEBUG
-            title += " (Debug";
-#if VERY_DEBUG
-            title += ", very verbose mode";
-#endif
-            title += ")"
-#endif
+            #if DEBUG
+                + " (Debug"
+                    #if VERY_DEBUG
+                        + ", very verbose mode"
+                    #endif
+                + ")"
+            #endif
             ;
 
             if (hakchi.MinimalMemboot)
@@ -893,18 +905,22 @@ namespace com.clusterrr.hakchi_gui
 
         private void AddPreset(object sender, EventArgs e)
         {
-            var form = new StringInputForm();
-            form.Text = Resources.NewPreset;
-            form.labelComments.Text = Resources.InputPreset;
-            if (form.ShowDialog() == DialogResult.OK)
+            using (var form = new StringInputForm()
             {
-                var name = form.textBox.Text.Replace("=", " ");
-                if (!string.IsNullOrEmpty(name))
+                Text = Resources.NewPreset,
+                Comments = Resources.InputPreset
+            })
+            {
+                if (form.ShowDialog() == DialogResult.OK)
                 {
-                    SaveSelectedGames();
-                    ConfigIni.Instance.Presets[name] =
-                        Shared.ConcatArrays(ConfigIni.Instance.SelectedGames.ToArray(), ConfigIni.Instance.OriginalGames.ToArray()).ToList();
-                    LoadPresets();
+                    var name = form.Value.Replace("=", " ");
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        SaveSelectedGames();
+                        ConfigIni.Instance.Presets[name] =
+                            Shared.ConcatArrays(ConfigIni.Instance.SelectedGames.ToArray(), ConfigIni.Instance.OriginalGames.ToArray()).ToList();
+                        LoadPresets();
+                    }
                 }
             }
         }
@@ -931,6 +947,22 @@ namespace com.clusterrr.hakchi_gui
         }
 
         private bool showingSelected = false;
+
+        public static MaxPlayers GetPlayersFromDesktop(DesktopFile desktop)
+        {
+            if (desktop.Simultaneous && desktop.Players == 2)
+                return MaxPlayers.TwoPlayerSimultaneous;
+            else if (desktop.Players == 2)
+                return MaxPlayers.TwoPlayer;
+            else if (desktop.Players == 3)
+                return MaxPlayers.ThreePlayer;
+            else if (desktop.Players == 4)
+                return MaxPlayers.FourPlayer;
+            else if (desktop.Players == 5)
+                return MaxPlayers.FivePlayer;
+            else
+                return MaxPlayers.OnePlayer;
+        }
         public void ShowSelected()
         {
             object selected = null;
@@ -940,8 +972,14 @@ namespace com.clusterrr.hakchi_gui
             showingSelected = true;
             if (selected == null)
             {
-                groupBoxOptions.Visible = true;
-                groupBoxOptions.Enabled = false;
+                tableLayoutPanelArtButtons.Visible =
+                    groupBoxArtSega.Visible =
+                    groupBoxArtNintendo.Visible =
+                    groupBoxGameInfo.Visible = true;
+                tableLayoutPanelArtButtons.Enabled =
+                    groupBoxArtSega.Enabled =
+                    groupBoxArtNintendo.Enabled =
+                    groupBoxGameInfo.Enabled = false;
                 labelID.Text = String.Empty;
                 labelSize.Text = String.Empty;
                 textBoxName.Text = "";
@@ -963,16 +1001,22 @@ namespace com.clusterrr.hakchi_gui
                 pictureBoxArt.Image = Resources.noboxart;
                 pictureBoxThumbnail.Image = null;
                 pictureBoxThumbnail.Visible = false;
+                pictureBoxM2Spine.Image?.Dispose();
+                pictureBoxM2Spine.Image = Resources.NoBoxArtSpine;
+                pictureBoxM2Front.Image?.Dispose();
+                pictureBoxM2Front.Image = Resources.NoBoxArtMdFront;
                 GameGenieEnabled = false;
                 textBoxGameGenie.Text = "";
                 checkBoxCompressed.Enabled = false;
                 checkBoxCompressed.Checked = false;
-                tabControl1.SelectedIndex = 0;
             }
             else
             {
                 var app = selected as NesApplication;
-                groupBoxOptions.Visible = true;
+                tableLayoutPanelArtButtons.Visible =
+                    groupBoxArtSega.Visible =
+                    groupBoxArtNintendo.Visible =
+                    groupBoxGameInfo.Visible = true;
                 labelID.Text = app.Code;
                 labelSize.Text = Shared.SizeSuffix(app.Size());
                 textBoxName.Text = app.Name;
@@ -980,18 +1024,7 @@ namespace com.clusterrr.hakchi_gui
 
                 if (maxPlayersComboBox.Items.Count > 0)
                 {
-                    if (app.Desktop.Simultaneous && app.Desktop.Players == 2)
-                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.TwoPlayerSimultaneous;
-                    else if (app.Desktop.Players == 2)
-                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.TwoPlayer;
-                    else if (app.Desktop.Players == 3)
-                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.ThreePlayer;
-                    else if (app.Desktop.Players == 4)
-                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.FourPlayer;
-                    else if (app.Desktop.Players == 5)
-                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.FivePlayer;
-                    else
-                        maxPlayersComboBox.SelectedIndex = (int)MaxPlayers.OnePlayer;
+                    maxPlayersComboBox.SelectedIndex = (int)GetPlayersFromDesktop(app.Desktop);
                 }
 
                 maskedTextBoxReleaseDate.Text = app.Desktop.ReleaseDate;
@@ -1060,7 +1093,10 @@ namespace com.clusterrr.hakchi_gui
                     GameGenieEnabled = app is NesGame; //ISupportsGameGenie;
                     textBoxGameGenie.Text = app.GameGenie;
                 }
-                groupBoxOptions.Enabled = true;
+                tableLayoutPanelArtButtons.Enabled =
+                    groupBoxArtSega.Enabled =
+                    groupBoxArtNintendo.Enabled =
+                    groupBoxGameInfo.Enabled = true;
                 if (app.CompressPossible().Count() > 0)
                 {
                     checkBoxCompressed.Enabled = true;
@@ -1099,25 +1135,28 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
+                    scrapeSelectedGamesToolStripMenuItem.Enabled =
+                    addPrefixToolStripMenuItem.Enabled =
+                    removePrefixToolStripMenuItem.Enabled =
                     explorerToolStripMenuItem.Enabled =
-                        downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                        scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                        deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
-                        archiveSelectedGamesToolStripMenuItem.Enabled =
-                        true;
+                    downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                    deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
+                    archiveSelectedGamesToolStripMenuItem.Enabled =
+                    true;
 
                     deleteSelectedGamesToolStripMenuItem.Enabled =
-                        repairGamesToolStripMenuItem.Enabled =
-                        selectEmulationCoreToolStripMenuItem.Enabled = !game.IsOriginalGame;
+                    repairGamesToolStripMenuItem.Enabled =
+                    selectEmulationCoreToolStripMenuItem.Enabled = !game.IsOriginalGame;
 
                     compressSelectedGamesToolStripMenuItem.Enabled = game.CompressPossible().Count() > 0;
                     decompressSelectedGamesToolStripMenuItem.Enabled = game.DecompressPossible().Count() > 0;
 
                     sFROMToolToolStripMenuItem1.Enabled =
-                        editROMHeaderToolStripMenuItem.Enabled =
-                        resetROMHeaderToolStripMenuItem.Enabled =
-                            !game.IsOriginalGame && SfromToolWrapper.IsInstalled && game is SnesGame &&
-                            (game.GameFilePath ?? "").ToLower().Contains(".sfrom");
+                    editROMHeaderToolStripMenuItem.Enabled =
+                    resetROMHeaderToolStripMenuItem.Enabled =
+                        !game.IsOriginalGame && SfromToolWrapper.IsInstalled && game is SnesGame &&
+                        (game.GameFilePath ?? "").ToLower().Contains(".sfrom");
                 }
             }
 
@@ -1126,18 +1165,21 @@ namespace com.clusterrr.hakchi_gui
                 if (last == 0)
                     return;
 
+                scrapeSelectedGamesToolStripMenuItem.Enabled =
+                addPrefixToolStripMenuItem.Enabled =
+                removePrefixToolStripMenuItem.Enabled =
                 explorerToolStripMenuItem.Enabled =
-                    downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                    scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                    deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
-                    compressSelectedGamesToolStripMenuItem.Enabled =
-                    decompressSelectedGamesToolStripMenuItem.Enabled =
-                    deleteSelectedGamesToolStripMenuItem.Enabled =
-                    sFROMToolToolStripMenuItem1.Enabled =
-                    repairGamesToolStripMenuItem.Enabled =
-                    selectEmulationCoreToolStripMenuItem.Enabled =
-                    archiveSelectedGamesToolStripMenuItem.Enabled =
-                    false;
+                downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
+                compressSelectedGamesToolStripMenuItem.Enabled =
+                decompressSelectedGamesToolStripMenuItem.Enabled =
+                deleteSelectedGamesToolStripMenuItem.Enabled =
+                sFROMToolToolStripMenuItem1.Enabled =
+                repairGamesToolStripMenuItem.Enabled =
+                selectEmulationCoreToolStripMenuItem.Enabled =
+                archiveSelectedGamesToolStripMenuItem.Enabled =
+                false;
             }
             else if (c > 1)
             {
@@ -1145,16 +1187,19 @@ namespace com.clusterrr.hakchi_gui
                     return;
 
                 explorerToolStripMenuItem.Enabled =
-                    editROMHeaderToolStripMenuItem.Enabled = false;
+                editROMHeaderToolStripMenuItem.Enabled = false;
 
+                scrapeSelectedGamesToolStripMenuItem.Enabled =
+                addPrefixToolStripMenuItem.Enabled =
+                removePrefixToolStripMenuItem.Enabled =
                 downloadBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                    scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
-                    deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
-                    compressSelectedGamesToolStripMenuItem.Enabled =
-                    decompressSelectedGamesToolStripMenuItem.Enabled =
-                    deleteSelectedGamesToolStripMenuItem.Enabled =
-                    repairGamesToolStripMenuItem.Enabled =
-                    selectEmulationCoreToolStripMenuItem.Enabled = true;
+                scanForNewBoxArtForSelectedGamesToolStripMenuItem.Enabled =
+                deleteSelectedGamesBoxArtToolStripMenuItem.Enabled =
+                compressSelectedGamesToolStripMenuItem.Enabled =
+                decompressSelectedGamesToolStripMenuItem.Enabled =
+                deleteSelectedGamesToolStripMenuItem.Enabled =
+                repairGamesToolStripMenuItem.Enabled =
+                selectEmulationCoreToolStripMenuItem.Enabled = true;
 
                 sFROMToolToolStripMenuItem1.Enabled =
                     resetROMHeaderToolStripMenuItem.Enabled = SfromToolWrapper.IsInstalled;
@@ -2478,13 +2523,15 @@ namespace com.clusterrr.hakchi_gui
         {
             var menuItem = sender as ToolStripMenuItem;
             var cmdLineType = (ConfigIni.ExtraCmdLineTypes)byte.Parse(menuItem.Tag.ToString());
-            using (var form = new StringInputForm())
+            using (var form = new StringInputForm()
             {
-                form.Text = Resources.ExtraArgsTitle + " (" + menuItem.Text + ")";
-                form.labelComments.Text = Resources.ExtraArgsInfo;
-                form.textBox.Text = ConfigIni.Instance.ExtraCommandLineArguments[cmdLineType];
+                Text = Resources.ExtraArgsTitle + " (" + menuItem.Text + ")",
+                Comments = Resources.ExtraArgsInfo,
+                Value = ConfigIni.Instance.ExtraCommandLineArguments[cmdLineType]
+            })
+            {
                 if (form.ShowDialog() == DialogResult.OK)
-                    ConfigIni.Instance.ExtraCommandLineArguments[cmdLineType] = form.textBox.Text;
+                    ConfigIni.Instance.ExtraCommandLineArguments[cmdLineType] = form.Value;
             }
         }
 
@@ -2739,7 +2786,6 @@ namespace com.clusterrr.hakchi_gui
             if (hakchi.Connected)
             {
                 toolStripStatusConnectionIcon.Image = Resources.green;
-                toolStripStatusConnectionIcon.ToolTipText = "Online";
                 if (timerConnectionAnim++ < 4)
                     toolStripStatusLabelShell.Text = "Online";
                 else
@@ -2750,7 +2796,6 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 toolStripStatusConnectionIcon.Image = Resources.red;
-                toolStripStatusConnectionIcon.ToolTipText = "Offline";
                 toolStripStatusLabelShell.Text = "Offline";
             }
         }
@@ -3622,7 +3667,7 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_cogs);
                 tasker.SetTitle(Resources.DownloadingEllipsis);
-                tasker.AddTasks(WebClientTasks.DownloadFile(hakchi.latestHmodUrl, hakchi.latestHmodFile));
+                tasker.AddTasks(WebClientTasks.DownloadFile(hakchi.latestHmodUrl, hakchi.latestHmodFile, false, true));
                 tasker.Start();
             }
         }
@@ -3663,11 +3708,6 @@ namespace com.clusterrr.hakchi_gui
             {
                 game.Desktop.Country = ((NameValuePair<string>)comboBoxCountry.SelectedItem).Value;
             }
-        }
-
-        private void tableLayoutPanelGameInfo_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void checkM2ThemeMenuItem(string theme)
@@ -3720,6 +3760,238 @@ namespace com.clusterrr.hakchi_gui
             if (selected == null || !(selected is NesApplication)) return;
             var game = (selected as NesApplication);
             game.Desktop.Copyright = textBoxCopyright.Text;
+        }
+
+        private TaskFunc ApplyScraperData(ScraperForm.Result result)
+        {
+            return (Tasker tasker, object syncObject) =>
+            {
+                tasker.SetStatus(result.ChangedName && result.Name != null ? result.Name : result.Game.Name);
+                if (result.ChangedCopyright && result.Copyright != null)
+                    result.Game.Desktop.Copyright = result.Copyright;
+
+                if (result.ChangedDescription && result.Description != null)
+                    result.Game.Desktop.Description = result.Description;
+
+                if (result.ChangedPublisher && result.Publisher != null)
+                    result.Game.Desktop.Publisher = result.Publisher.ToUpper();
+
+                if (result.ChangedGenre && result.Genre != null)
+                    result.Game.Desktop.Genre = result.Genre;
+
+                if (result.ChangedName && result.Name != null)
+                {
+                    result.Game.Name = result.Name;
+                    Invoke(new Action(() =>
+                    {
+                        foreach (var item in listViewGames.SelectedItems.Cast<ListViewItem>().Select(a => a).Where(a => a.Tag is NesApplication && (NesApplication)a.Tag == result.Game))
+                            item.Text = result.Game.ToString();
+                    }));
+                }
+
+                if (result.ChangedReleaseDate && result.ReleaseDate != null)
+                    result.Game.Desktop.ReleaseDate = result.ReleaseDate;
+
+                if (result.ChangedSpineArt && result.SpineArt != null)
+                {
+                    Invoke(new Action(() =>
+                    {
+                        result.Game.SetMdMini((Bitmap)result.SpineArt, GameImageType.MdSpine);
+                    }));
+                    if (result.ClearLogo != null)
+                    {
+                        result.ClearLogo.Save(Path.Combine(result.Game.BasePath, $"{result.Game.Desktop.Code}_logo.png"));
+                    }
+                }
+
+                if (result.ChangedFrontArt && result.FrontArt != null)
+                    Invoke(new Action(() =>
+                    {
+                        result.Game.SetImage(result.FrontArt, ConfigIni.Instance.CompressCover);
+                    }));
+
+                if (result.ChangedPlayerCount && result.PlayerCount != null)
+                {
+                    result.Game.Desktop.Simultaneous = result.PlayerCount == MaxPlayers.TwoPlayerSimultaneous;
+                    switch (result.PlayerCount)
+                    {
+                        case MaxPlayers.OnePlayer:
+                            result.Game.Desktop.Players = 1;
+                            break;
+
+                        case MaxPlayers.TwoPlayer:
+                        case MaxPlayers.TwoPlayerSimultaneous:
+                            result.Game.Desktop.Players = 2;
+                            break;
+
+                        case MaxPlayers.ThreePlayer:
+                            result.Game.Desktop.Players = 3;
+                            break;
+
+                        case MaxPlayers.FourPlayer:
+                            result.Game.Desktop.Players = 4;
+                            break;
+
+                        case MaxPlayers.FivePlayer:
+                            result.Game.Desktop.Players = 5;
+                            break;
+
+                        default:
+                            result.Game.Desktop.Players = 1;
+                            break;
+                    }
+                }
+                result.FrontArt?.Dispose();
+                result.SpineArt?.Dispose();
+                result.ClearLogo?.Dispose();
+                result.Game.Desktop.Save();
+
+                return Conclusion.Success;
+            };
+        }
+        private void scrapeSelectedGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count == 0)
+                return;
+
+            SaveConfig();
+            using (ScraperForm scraperForm = new ScraperForm()
+            {
+
+            })
+            {
+                scraperForm.Games.AddRange(listViewGames.SelectedItems.Cast<ListViewItem>().
+                    Select(item => item.Tag).
+                    Where(tag => tag != null && tag is NesApplication).
+                    Select(tag => tag as NesApplication));
+
+                if (scraperForm.Games.Count == 0)
+                    return;
+
+                scraperForm.StartPosition = FormStartPosition.CenterParent;
+                if (scraperForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    using (var tasker = new Tasker(this))
+                    {
+                        tasker.AttachViews(new TaskerTaskbar(), new TaskerForm());
+                        tasker.SetStatusImage(Resources.sign_sync);
+                        tasker.SetTitle(Resources.ApplyingChanges);
+                        
+                        foreach (var result in scraperForm.Results)
+                        {
+                            tasker.AddTask(ApplyScraperData(result));
+                        }
+                        
+                        tasker.Start();
+                    }
+
+                    listViewGames.BeginUpdate();
+                    LoadGames(false);
+                    
+                    foreach (ListViewItem item in listViewGames.Items)
+                    {
+                        item.Selected = scraperForm.Games.Contains(item.Tag);
+                    }
+
+                    listViewGames.EndUpdate();
+                }
+            }
+        }
+
+        private void listViewGames_Resize(object sender, EventArgs e)
+        {
+            gameName.Width = listViewGames.Width - 35;
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            var pen = new Pen(SystemColors.ControlLight);
+            e.Graphics.DrawLine(pen, 0, 0, tableLayoutPanelStatusBar.Width, 0);
+        }
+
+        private void labelBorder_Paint(object sender, PaintEventArgs e)
+        {
+            var control = sender as Control;
+            var pen = new Pen(SystemColors.ControlDark);
+
+            e.Graphics.DrawLine(pen, 0, 0, control.Width, 0);
+            e.Graphics.DrawLine(pen, 0, control.Height - 1, control.Width, control.Height - 1);
+            e.Graphics.DrawLine(pen, 0, 0, 0, control.Height);
+            e.Graphics.DrawLine(pen, control.Width - 1, 0, control.Width - 1, control.Height);
+        }
+
+        private void addPrefixToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count > 0)
+            {
+                using (var prefix = new StringInputForm()
+                {
+                    Text = Resources.EnterAPrefix,
+                    Comments = Resources.AddPrefixMessage
+                })
+                {
+                    if (prefix.ShowDialog() == DialogResult.OK && prefix.Value != null && prefix.Value.Trim().Length > 0)
+                    {
+                        foreach (var game in listViewGames.SelectedItems.Cast<ListViewItem>())
+                        {
+                            if (game.Tag != null && game.Tag is NesApplication)
+                            {
+                                var tag = (NesApplication)(game.Tag);
+                                tag.Name = $"{(prefix.Value ?? "").Trim()}: {tag.Name.Trim()}";
+                                tag.Desktop.SortName = $"{(prefix.Value ?? "").Trim().ToLower()}: {tag.SortName.Trim().ToLower()}";
+                                tag.Save();
+                                game.Text = tag.Name;
+                            }
+                            
+                        }
+                        listViewGames.BeginUpdate();
+                        LoadGames(false);
+                        listViewGames.EndUpdate();
+                    }
+                }
+            }
+        }
+
+        private void removePrefixToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listViewGames.SelectedItems.Count > 0)
+            {
+                using (var prefix = new StringInputForm()
+                {
+                    Text = Resources.EnterAPrefix,
+                    Comments = Resources.RemovePrefixMessage
+                })
+                {
+                    if (prefix.ShowDialog() == DialogResult.OK && prefix.Value != null && prefix.Value.Trim().Length > 0)
+                    {
+                        var formattedPrefix = $"{(prefix.Value ?? "").Trim()}: ";
+                        foreach (var game in listViewGames.SelectedItems.Cast<ListViewItem>())
+                        {
+                            if (game.Tag != null && game.Tag is NesApplication)
+                            {
+                                var tag = (NesApplication)(game.Tag);
+
+                                if (tag.Name.StartsWith(formattedPrefix))
+                                {
+                                    tag.Name = tag.Name.Substring(formattedPrefix.Length);
+                                }
+
+                                if (tag.Desktop.SortName.StartsWith(formattedPrefix.ToLower()))
+                                {
+                                    tag.Desktop.SortName = tag.Desktop.SortName.Substring(formattedPrefix.Length);
+                                }
+
+                                tag.Save();
+                                game.Text = tag.Name;
+                            }
+
+                        }
+                        listViewGames.BeginUpdate();
+                        LoadGames(false);
+                        listViewGames.EndUpdate();
+                    }
+                }
+            }
         }
     }
 }

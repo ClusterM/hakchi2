@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
@@ -57,7 +56,7 @@ namespace com.clusterrr.hakchi_gui
             var collection = showAllSystemsCheckBox.Checked || firstSelected == null ? (IEnumerable<string>)systemsCollection : CoreCollection.GetSystemsFromExtension(firstSelected.SubItems[1].Text.ToLower()).ToArray();
             if (collection.Any())
             {
-                foreach (var system in collection)
+                foreach (var system in collection.OrderBy(s => s))
                     listBoxSystem.Items.Add(system);
             }
             else
@@ -80,7 +79,7 @@ namespace com.clusterrr.hakchi_gui
             var collection = string.IsNullOrEmpty(system) ? CoreCollection.Cores : CoreCollection.GetCoresFromSystem(system);
             if (collection != null)
             {
-                foreach (var core in collection)
+                foreach (var core in collection.OrderBy(c => c.Name))
                 {
                     listBoxCore.Items.Add(core);
                 }
