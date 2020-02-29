@@ -3734,6 +3734,10 @@
       <Project>{e52ae256-6645-423a-b262-2cc5b6060f94}</Project>
       <Name>tiny7z</Name>
     </ProjectReference>
+    <ProjectReference Include="Scrapers\Scrapers.csproj">
+      <Project>{5aa091a1-cfd0-494e-ad89-0dbe4f1e7ed7}</Project>
+      <Name>Scrapers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
