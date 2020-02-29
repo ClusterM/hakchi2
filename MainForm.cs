@@ -226,13 +226,18 @@ namespace com.clusterrr.hakchi_gui
         private void UpdateHakchi()
         {
             var hmod = hakchi.Hmod.Get();
-            using (var tasker = new Tasker(this))
+            TempHelpers.doWithTempFolder((tempPath) =>
             {
-                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
-                tasker.SetTitle(Resources.DownloadingLatestHakchi);
-                tasker.AddTask(Tasks.WebClientTasks.DownloadFile(ConfigIni.Instance.HakchiUpdateURL, hakchi.latestHmodFile, true, true, hmod.LastModified));
-                tasker.Start();
-            }
+                using (var tasker = new Tasker(this))
+                {
+                    var hakchiTemp = Path.Combine(tempPath, "hakchi-latest.hmod");
+                    tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                    tasker.SetTitle(Resources.DownloadingLatestHakchi);
+                    tasker.AddTask(Tasks.WebClientTasks.DownloadFile(ConfigIni.Instance.HakchiUpdateURL, hakchiTemp, true, true, hmod.LastModified));
+                    tasker.AddTask(FileTasks.MoveFile(hakchiTemp, hakchi.latestHmodFile, true, true));
+                    tasker.Start();
+                }
+            });
         }
         private void UpdateMOTD()
         {

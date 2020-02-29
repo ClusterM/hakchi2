@@ -7,10 +7,7 @@ namespace com.clusterrr.hakchi_gui
     {
         public static string getUniqueTempPath(string baseDir = null)
         {
-            if (baseDir == null)
-            {
-                baseDir = Path.GetTempPath();
-            }
+            baseDir = baseDir ?? Path.GetTempPath();
 
             int counter = 0;
             string path = Path.Combine(baseDir, $"hakchi2-ce-temp");
@@ -29,7 +26,13 @@ namespace com.clusterrr.hakchi_gui
             Directory.CreateDirectory(tempFolder);
             func(tempFolder);
             if (deleteAfter)
-                Directory.Delete(tempFolder, true);
+            {
+                try
+                {
+                    Directory.Delete(tempFolder, true);
+                }
+                catch (Exception) { }
+            }
         }
     }
 }
