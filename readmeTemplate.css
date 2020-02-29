@@ -7221,6 +7221,11 @@ body {
 
 html, body {
     background: transparent;
+    width: 100%;
+}
+
+img {
+    max-width: 100%;
 }
 
 #content > h1:first-child {
