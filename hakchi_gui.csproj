@@ -1734,6 +1734,222 @@
     <None Include="folder_images\TheWez1981-MegaDrive\spines\folder_system_wonderswancolor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_action.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_adventure.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_educational.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_fighting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_puzzle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_racing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_rpg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_shootemup.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_shooting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_simulation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\genre_table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_action.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_adventure.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_educational.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_fighting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_puzzle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_racing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_rpg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_shootemup.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_shooting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_simulation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_action.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_adventure.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_educational.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_fighting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_puzzle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_racing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_rpg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_shootemup.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_shooting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_simulation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_action.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_adventure.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_educational.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_fighting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_puzzle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_racing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_rpg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_shootemup.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_shooting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_simulation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_action.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_adventure.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_educational.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_fighting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_puzzle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_racing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_rpg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_shootemup.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_shooting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_simulation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_action.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_adventure.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_educational.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_fighting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_puzzle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_racing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_rpg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_shootemup.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_shooting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_simulation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_table.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="ModHub\snes-dots.png" />
     <None Include="spine_templates\Custom_Black_Grid\template.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
