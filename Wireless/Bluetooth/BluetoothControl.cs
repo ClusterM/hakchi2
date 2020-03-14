@@ -23,6 +23,8 @@ namespace com.clusterrr.hakchi_gui.Wireless.Bluetooth
         private StreamReader cmdReader;
         private StreamWriter cmdWriter;
         private List<BluetoothCommand> _cmdQueue = new List<BluetoothCommand>();
+        public string Address { get; private set; } = null;
+        public int Port { get; private set; } = 787;
         public bool CanRunCommand { get; private set; }
         private bool CanRunCommands = false;
         public bool Connected { get => cmdConnection?.Connected ?? false; }
@@ -93,7 +95,7 @@ namespace com.clusterrr.hakchi_gui.Wireless.Bluetooth
             }
         }
 
-        public void StartListener(bool probe = true)
+        public void StartListener(string address, int port = 787, bool probe = true)
         {
             _cmdQueue.Clear();
             _Devices.Clear();
@@ -101,6 +103,8 @@ namespace com.clusterrr.hakchi_gui.Wireless.Bluetooth
             CanRunCommand = false;
             CanRunCommands = false;
 
+            Address = address;
+            Port = port;
             cmdThread = new Thread(ListenerThread);
             cmdThread.Start();
 
@@ -334,9 +338,8 @@ namespace com.clusterrr.hakchi_gui.Wireless.Bluetooth
         {
             try
             {
-                INetworkShell shell = (INetworkShell)(hakchi.Shell);
                 cmdConnection = new TcpClient();
-                cmdConnection.Connect(shell.IPAddress, 787);
+                cmdConnection.Connect(Address, Port);
 
                 cmdStream = cmdConnection.GetStream();
                 cmdReader = new StreamReader(cmdStream);
@@ -397,7 +400,7 @@ namespace com.clusterrr.hakchi_gui.Wireless.Bluetooth
                 cmdWriter = null;
                 cmdStream = null;
             }
-            catch (Exception) { }
+            catch (Exception ex) { }
         }
 
         public void SetPower(bool state) => RunCommand($"power {(state ? "on" : "off")}");

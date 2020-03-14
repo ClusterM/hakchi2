@@ -53,7 +53,12 @@ namespace com.clusterrr.hakchi_gui.Wireless.Bluetooth
             ParentControl = Parent;
             if (!control.Connected)
             {
-                control.StartListener(false);
+                if (!(hakchi.Shell is INetworkShell))
+                {
+                    return;
+                }
+
+                control.StartListener(((INetworkShell)hakchi.Shell).IPAddress, 787, false);
             }
             control.ProbeDevices();
             control.SetScan(true);
