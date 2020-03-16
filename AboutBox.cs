@@ -97,5 +97,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
         #endregion
+
+        private void licenseInfo_Click(object sender, EventArgs e)
+        {
+            using (var info = new LicenseInfo())
+            {
+                info.ShowDialog();
+            }
+        }
     }
 }

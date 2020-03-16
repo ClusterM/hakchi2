@@ -36,9 +36,12 @@
             this.labelCompanyName = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.labelGitCommit = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.okButton = new System.Windows.Forms.Button();
+            this.licenseInfo = new System.Windows.Forms.Button();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -51,7 +54,7 @@
             this.tableLayoutPanel.Controls.Add(this.labelCompanyName, 1, 4);
             this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 5);
             this.tableLayoutPanel.Controls.Add(this.labelGitCommit, 1, 2);
-            this.tableLayoutPanel.Controls.Add(this.okButton, 1, 6);
+            this.tableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 1, 6);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             // 
             // logoPictureBox
@@ -93,11 +96,24 @@
             resources.ApplyResources(this.labelGitCommit, "labelGitCommit");
             this.labelGitCommit.Name = "labelGitCommit";
             // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.okButton, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.licenseInfo, 0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
             // okButton
             // 
             resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.okButton.Name = "okButton";
+            // 
+            // licenseInfo
+            // 
+            resources.ApplyResources(this.licenseInfo, "licenseInfo");
+            this.licenseInfo.Name = "licenseInfo";
+            this.licenseInfo.Click += new System.EventHandler(this.licenseInfo_Click);
             // 
             // AboutBox
             // 
@@ -114,6 +130,8 @@
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -129,5 +147,7 @@
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Label labelGitCommit;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button licenseInfo;
     }
 }
