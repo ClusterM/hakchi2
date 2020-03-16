@@ -320,7 +320,7 @@ namespace com.clusterrr.hakchi_gui
             if (ext == ".desktop") // already hakchi2-ed game
                 return ImportApp(inputFileName);
 
-            if (rawRomData == null && ext != ".cue" && (new FileInfo(inputFileName)).Length <= MaxCompress) // read file if not already and not too big
+            if (rawRomData == null && ext != ".cue" && ext != ".gdi" && (new FileInfo(inputFileName)).Length <= MaxCompress) // read file if not already and not too big
                 rawRomData = File.ReadAllBytes(inputFileName);
             if (originalFileName == null) // Original file name from archive
                 originalFileName = Path.GetFileName(inputFileName);
@@ -378,6 +378,7 @@ namespace com.clusterrr.hakchi_gui
             byte saveCount = 0;
             Image cover = appInfo.DefaultCover;
             var appFiles = new List<string>();
+
             appFiles.Add(inputFileName);
 
             if (ext == ".cue")
@@ -392,6 +393,19 @@ namespace com.clusterrr.hakchi_gui
                     }
 
                     appFiles.Add(Path.Combine(cuePath.FullName, track.DataFile.Filename));
+                }
+            }
+
+            if (ext == ".gdi")
+            {
+                var gdiText = File.ReadAllText(inputFileName);
+                var gdiPath = (new FileInfo(inputFileName)).Directory;
+
+                var regex = new Regex("^(\\d+)[ \\t]+(\\d+)[ \\t]+(\\d+)[ \\t]+(\\d+)[ \\t]+(?:\"([^\"]+)\"|([^\\s]+))[ \\t]+(\\d+)", RegexOptions.Multiline);
+
+                foreach (Match match in regex.Matches(gdiText))
+                {
+                    appFiles.Add(Path.Combine(gdiPath.FullName, $"{match.Groups[5]}{match.Groups[6]}"));
                 }
             }
 
@@ -467,19 +481,14 @@ namespace com.clusterrr.hakchi_gui
                 File.Copy(inputFileName, romPath);
             }
 
-            if (ext == ".cue")
+            if (appFiles.Count > 1)
             {
-                var cue = new CueSharp.CueSheet(inputFileName);
-                var cuePath = (new FileInfo(inputFileName)).Directory;
-                foreach (var track in cue.Tracks)
+                foreach (var file in appFiles.Skip(1))
                 {
-                    if (track.DataFile.Filename == null)
-                    {
-                        continue;
-                    }
-
-                    string dataFile = Path.Combine(cuePath.FullName, track.DataFile.Filename);
-                    string destFile = Path.Combine(gamePath, track.DataFile.Filename);
+                    var info = new FileInfo(file);
+                    
+                    string dataFile = Path.Combine(file);
+                    string destFile = Path.Combine(gamePath, info.Name);
 
                     if (!File.Exists(destFile))
                     {
