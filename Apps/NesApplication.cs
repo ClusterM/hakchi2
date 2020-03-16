@@ -1352,7 +1352,7 @@ namespace com.clusterrr.hakchi_gui
 
                 if (!romExists)
                     mediaGamePath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
-                if (!iconExists)
+                if (!iconExists && !hakchi.IsMd())
                     iconPath = hakchi.SquashFsPath + hakchi.GamesSquashFsPath;
             }
 
