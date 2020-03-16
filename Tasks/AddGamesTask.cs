@@ -70,6 +70,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
             int total = files.Count();
             int count = 0;
+            var gamesWithMultipleArt = new List<NesApplication>();
             foreach (var sourceFileName in files)
             {
                 NesApplication app = null;
@@ -201,6 +202,10 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     }
                     else
                     {
+                        if (app.CoverArtMatches != null && app.CoverArtMatches.Count() > 1)
+                        {
+                            gamesWithMultipleArt.Add(app);
+                        }
                         if (Program.TheGamesDBAPI != null && 
                             app.Metadata.OriginalCrc32 != 0 && 
                             data.GamesDB.HashLookup.ContainsKey(app.Metadata.OriginalCrc32) && 
@@ -274,7 +279,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                         {
                                             var front = first.Images.Where(i => i.Type == TeamShinkansen.Scrapers.Enums.ArtType.Front).ToArray();
 
-                                            if (front.Length > 0)
+                                            if (front.Length > 0 && !app.CoverArtMatchSuccess)
                                             {
                                                 var data = wc.DownloadData(front[0].Url);
                                                 using (var ms = new MemoryStream(data))
@@ -340,6 +345,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     addedApps.Add(app);
                 }
                 tasker.SetProgress(++count, total);
+            }
+            if (gamesWithMultipleArt.Count > 0)
+            {
+                tasker.HostForm.Invoke(new Action(() => {
+                    using (SelectCoverDialog selectCoverDialog = new SelectCoverDialog())
+                    {
+                        selectCoverDialog.Games.AddRange(gamesWithMultipleArt);
+                        selectCoverDialog.ShowDialog(tasker.HostForm);
+                    }
+                }));
             }
             return Tasker.Conclusion.Success;
         }

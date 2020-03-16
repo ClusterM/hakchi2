@@ -109,7 +109,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         gameFile = game.BasePath;
                     }
                     game.FindCover(game.Metadata.OriginalFilename ?? Path.GetFileName(gameFile), crc32, game.Name);
-                    if (!game.CoverArtMatchSuccess && game.CoverArtMatches.Any())
+                    if ((!game.CoverArtMatchSuccess && game.CoverArtMatches.Any()) || (game.CoverArtMatchSuccess && game.CoverArtMatches.Count() > 1))
                     {
                         unknownApps.Add(game);
                     }
