@@ -314,13 +314,72 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        public static void GetGameFiles(string inputFilename, List<string> gameFiles)
+        {
+            if (gameFiles.Contains(inputFilename))
+                return;
+
+            if (!File.Exists(inputFilename))
+                return;
+
+            gameFiles.Add(inputFilename);
+
+            var ext = Path.GetExtension(inputFilename).ToLower();
+            if (ext == ".cue")
+            {
+                var cue = new CueSharp.CueSheet(inputFilename);
+                var cuePath = (new FileInfo(inputFilename)).Directory;
+                foreach (var track in cue.Tracks)
+                {
+                    if (track.DataFile.Filename == null)
+                    {
+                        continue;
+                    }
+
+                    GetGameFiles(Path.Combine(cuePath.FullName, track.DataFile.Filename), gameFiles);
+                }
+            }
+
+            if (ext == ".gdi")
+            {
+                var gdiText = File.ReadAllText(inputFilename);
+                var gdiPath = (new FileInfo(inputFilename)).Directory;
+
+                var regex = new Regex("^(\\d+)[ \\t]+(\\d+)[ \\t]+(\\d+)[ \\t]+(\\d+)[ \\t]+(?:\"([^\"]+)\"|([^\\s]+))[ \\t]+(\\d+)", RegexOptions.Multiline);
+                var matches = regex.Matches(gdiText);
+
+                foreach (Match match in matches)
+                {
+                    GetGameFiles(Path.Combine(gdiPath.FullName, $"{match.Groups[5]}{match.Groups[6]}"), gameFiles);
+                }
+            }
+
+            if (ext == ".m3u")
+            {
+                var m3uText = File.ReadAllText(inputFilename);
+                var m3uPath = (new FileInfo(inputFilename)).Directory;
+
+                var regex = new Regex("^(?:\"([^\"]+)\"|([^\"\\r\\n]+))", RegexOptions.Multiline);
+                var matches = regex.Matches(m3uText);
+
+                foreach (Match match in matches)
+                {
+                    GetGameFiles(Path.Combine(m3uPath.FullName, $"{match.Groups[1]}{match.Groups[2]}"), gameFiles);
+                }
+            }
+        }
+
         public static NesApplication Import(string inputFileName, string originalFileName = null, byte[] rawRomData = null, bool asIs = false)
         {
             var ext = Path.GetExtension(inputFileName).ToLower();
             if (ext == ".desktop") // already hakchi2-ed game
                 return ImportApp(inputFileName);
 
-            if (rawRomData == null && ext != ".cue" && ext != ".gdi" && (new FileInfo(inputFileName)).Length <= MaxCompress) // read file if not already and not too big
+            var appFiles = new List<string>();
+
+            GetGameFiles(inputFileName, appFiles);
+
+            if (rawRomData == null && appFiles.Count == 1 && (new FileInfo(appFiles[0])).Length <= MaxCompress) // read file if not already and not too big
                 rawRomData = File.ReadAllBytes(inputFileName);
             if (originalFileName == null) // Original file name from archive
                 originalFileName = Path.GetFileName(inputFileName);
@@ -377,37 +436,6 @@ namespace com.clusterrr.hakchi_gui
             }
             byte saveCount = 0;
             Image cover = appInfo.DefaultCover;
-            var appFiles = new List<string>();
-
-            appFiles.Add(inputFileName);
-
-            if (ext == ".cue")
-            {
-                var cue = new CueSharp.CueSheet(inputFileName);
-                var cuePath = (new FileInfo(inputFileName)).Directory;
-                foreach (var track in cue.Tracks)
-                {
-                    if (track.DataFile.Filename == null)
-                    {
-                        continue;
-                    }
-
-                    appFiles.Add(Path.Combine(cuePath.FullName, track.DataFile.Filename));
-                }
-            }
-
-            if (ext == ".gdi")
-            {
-                var gdiText = File.ReadAllText(inputFileName);
-                var gdiPath = (new FileInfo(inputFileName)).Directory;
-
-                var regex = new Regex("^(\\d+)[ \\t]+(\\d+)[ \\t]+(\\d+)[ \\t]+(\\d+)[ \\t]+(?:\"([^\"]+)\"|([^\\s]+))[ \\t]+(\\d+)", RegexOptions.Multiline);
-
-                foreach (Match match in regex.Matches(gdiText))
-                {
-                    appFiles.Add(Path.Combine(gdiPath.FullName, $"{match.Groups[5]}{match.Groups[6]}"));
-                }
-            }
 
             var appFileStreams = new List<Stream>();
             foreach (var file in appFiles)
@@ -481,6 +509,7 @@ namespace com.clusterrr.hakchi_gui
                 File.Copy(inputFileName, romPath);
             }
 
+            var inputPath = new FileInfo(inputFileName).Directory;
             if (appFiles.Count > 1)
             {
                 foreach (var file in appFiles.Skip(1))
@@ -488,7 +517,18 @@ namespace com.clusterrr.hakchi_gui
                     var info = new FileInfo(file);
                     
                     string dataFile = Path.Combine(file);
-                    string destFile = Path.Combine(gamePath, info.Name);
+
+                    if (!info.Directory.FullName.StartsWith(inputPath.FullName))
+                        continue;
+
+                    string destPath = inputPath.FullName.Length == info.Directory.FullName.Length ? gamePath : Path.Combine(gamePath, info.Directory.FullName.Substring(inputPath.FullName.Length + 1));
+
+                    if (!Directory.Exists(destPath))
+                    {
+                        Directory.CreateDirectory(destPath);
+                    }
+
+                    string destFile = Path.Combine(destPath, info.Name);
 
                     if (!File.Exists(destFile))
                     {
@@ -1536,7 +1576,7 @@ namespace com.clusterrr.hakchi_gui
             return gameSet.GetSize(hakchi.BLOCK_SIZE);
         }
 
-        public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", ".rar", ".hsqs", ".sh", ".pbp", ".chd", ".cue" };
+        public static readonly string[] nonCompressibleExtensions = { ".7z", ".zip", ".rar", ".hsqs", ".sh", ".pbp", ".chd", ".cue", ".gdi", ".m3u" };
         public static readonly string[] compressedExtensions = { ".7z", ".zip" };
         public string[] CompressPossible()
         {
