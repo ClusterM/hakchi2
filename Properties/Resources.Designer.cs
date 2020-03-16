@@ -2576,6 +2576,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] LicensesTar {
+            get {
+                object obj = ResourceManager.GetObject("LicensesTar", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to make linked games?.
         /// </summary>
         internal static string LinkedGamesQ {
@@ -3367,6 +3377,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;html&gt;
         ///    &lt;head&gt;
+        ///        &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=9&quot; /&gt;
         ///        &lt;style type=&quot;text/css&quot;&gt;{0}&lt;/style&gt;
         ///    &lt;/head&gt;
         ///    &lt;body style=&quot;background-color: {2}&quot;&gt;

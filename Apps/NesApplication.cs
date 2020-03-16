@@ -320,7 +320,7 @@ namespace com.clusterrr.hakchi_gui
             if (ext == ".desktop") // already hakchi2-ed game
                 return ImportApp(inputFileName);
 
-            if (rawRomData == null && (new FileInfo(inputFileName)).Length <= MaxCompress) // read file if not already and not too big
+            if (rawRomData == null && ext != ".cue" && (new FileInfo(inputFileName)).Length <= MaxCompress) // read file if not already and not too big
                 rawRomData = File.ReadAllBytes(inputFileName);
             if (originalFileName == null) // Original file name from archive
                 originalFileName = Path.GetFileName(inputFileName);
@@ -377,7 +377,38 @@ namespace com.clusterrr.hakchi_gui
             }
             byte saveCount = 0;
             Image cover = appInfo.DefaultCover;
-            uint crc32 = rawRomData != null ? Shared.CRC32(rawRomData) : Shared.CRC32(new FileStream(inputFileName, FileMode.Open, FileAccess.Read));
+            var appFiles = new List<string>();
+            appFiles.Add(inputFileName);
+
+            if (ext == ".cue")
+            {
+                var cue = new CueSharp.CueSheet(inputFileName);
+                var cuePath = (new FileInfo(inputFileName)).Directory;
+                foreach (var track in cue.Tracks)
+                {
+                    if (track.DataFile.Filename == null)
+                    {
+                        continue;
+                    }
+
+                    appFiles.Add(Path.Combine(cuePath.FullName, track.DataFile.Filename));
+                }
+            }
+
+            var appFileStreams = new List<Stream>();
+            foreach (var file in appFiles)
+            {
+                appFileStreams.Add(File.OpenRead(file));
+            }
+
+
+            uint crc32 = rawRomData != null ? Shared.CRC32(rawRomData) : Shared.CRC32(new GameArchives.Common.MultiStream(appFileStreams));
+
+            foreach (var file in appFileStreams)
+            {
+                file?.Dispose();
+            }
+
             string outputFileName = GenerateSafeFileName(Path.GetFileName(inputFileName));
 
             // only attempt patching if file is reasonable and fits in memory

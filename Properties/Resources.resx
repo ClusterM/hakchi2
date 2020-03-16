@@ -1636,4 +1636,7 @@ There is a small chance of data loss, please make sure you have your saves backe
   <data name="RemovePrefixMessage" xml:space="preserve">
     <value>Enter a prefix to remove from the start of all selected games, a colon and space will automatically be added to the end of the prefix.</value>
   </data>
+  <data name="LicensesTar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\data\licenses.tar;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

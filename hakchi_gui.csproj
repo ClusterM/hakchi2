@@ -155,6 +155,7 @@
     </Compile>
     <Compile Include="data\GamesDB.cs" />
     <Compile Include="data\SnesCarts.cs" />
+    <Compile Include="MultiStream.cs" />
     <Compile Include="NameValuePair.cs" />
     <Compile Include="ScraperForm.cs">
       <SubType>Form</SubType>
@@ -1950,6 +1951,7 @@
     <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_table.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Licenses\MultiStream.cs.txt" />
     <Content Include="ModHub\snes-dots.png" />
     <None Include="spine_templates\Custom_Black_Grid\template.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -3990,7 +3992,8 @@
 "./busybox" rm "../data/original_art.tar"
 "./busybox" tar -cvf "../data/libretro_cores.tar" -C "../data/libretro_cores/" "."
 "./busybox" tar -cvf "../data/desktop_entries.tar" -C "../data/desktop_entries/" "."
-"./busybox" tar -cvf "../data/original_art.tar" -C "../data/original_art/" "."</PreBuildEvent>
+"./busybox" tar -cvf "../data/original_art.tar" -C "../data/original_art/" "."
+"./busybox" tar -cvf "../data/licenses.tar" -C "../Licenses/" "."</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>
