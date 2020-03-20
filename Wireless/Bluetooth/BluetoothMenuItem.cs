@@ -15,7 +15,8 @@ namespace com.clusterrr.hakchi_gui.Wireless.Bluetooth
             BluetoothControl.BluetoothDeviceData.DataType.Name,
             BluetoothControl.BluetoothDeviceData.DataType.Address,
             BluetoothControl.BluetoothDeviceData.DataType.Paired,
-            BluetoothControl.BluetoothDeviceData.DataType.Pairable
+            BluetoothControl.BluetoothDeviceData.DataType.Pairable,
+            BluetoothControl.BluetoothDeviceData.DataType.Trusted
         };
 
         private ToolStripMenuItem noDevicesDetectedItem;
