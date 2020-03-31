@@ -226,6 +226,8 @@ namespace com.clusterrr.hakchi_gui
         private void UpdateHakchi()
         {
             var hmod = hakchi.Hmod.Get();
+            Directory.CreateDirectory(Path.GetDirectoryName(hakchi.latestHmodFile));
+
             TempHelpers.doWithTempFolder((tempPath) =>
             {
                 using (var tasker = new Tasker(this))
@@ -3665,16 +3667,22 @@ namespace com.clusterrr.hakchi_gui
 
         private void DownloadLatestHakchiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var hmod = hakchi.Hmod.Get();
             Directory.CreateDirectory(Path.GetDirectoryName(hakchi.latestHmodFile));
 
-            using (var tasker = new Tasker(this))
+            TempHelpers.doWithTempFolder((tempPath) =>
             {
-                tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
-                tasker.SetStatusImage(Resources.sign_cogs);
-                tasker.SetTitle(Resources.DownloadingEllipsis);
-                tasker.AddTasks(WebClientTasks.DownloadFile(hakchi.latestHmodUrl, hakchi.latestHmodFile, false, true));
-                tasker.Start();
-            }
+                using (var tasker = new Tasker(this))
+                {
+                    var hakchiTemp = Path.Combine(tempPath, "hakchi-latest.hmod");
+                    tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+                    tasker.SetStatusImage(Resources.sign_cogs);
+                    tasker.SetTitle(Resources.DownloadingLatestHakchi);
+                    tasker.AddTasks(WebClientTasks.DownloadFile(hakchi.latestHmodUrl, hakchiTemp, true, ModifierKeys != Keys.Shift, hakchi.Hmod.Get().LastModified));
+                    tasker.AddTask(FileTasks.MoveFile(hakchiTemp, hakchi.latestHmodFile, true, true));
+                    tasker.Start();
+                }
+            });
         }
 
         private void textBoxDescription_TextChanged(object sender, EventArgs e)

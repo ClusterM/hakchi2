@@ -35,6 +35,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     File.Delete(destFileName);
                 }
 
+                Directory.CreateDirectory(Path.GetDirectoryName(destFileName));
+
                 File.Move(sourceFileName, destFileName);
 
                 return Conclusion.Success;
@@ -58,6 +60,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     File.Delete(destFileName);
                 }
+
+                Directory.CreateDirectory(Path.GetDirectoryName(destFileName));
 
                 File.Copy(sourceFileName, destFileName);
 
