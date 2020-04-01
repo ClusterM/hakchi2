@@ -453,9 +453,6 @@
   <data name="gameName.Text" xml:space="preserve">
     <value>Spiel-Name</value>
   </data>
-  <data name="labelID.Text" xml:space="preserve">
-    <value>ID:</value>
-  </data>
   <data name="labelName.Text" xml:space="preserve">
     <value>Name:</value>
   </data>
@@ -467,9 +464,6 @@
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Veröffentlichungsdatum (JJJJ-MM-TT):</value>
-  </data>
-  <data name="labelSize.Text" xml:space="preserve">
-    <value>Größe:</value>
   </data>
   <data name="buttonDefaultCover.Text" xml:space="preserve">
     <value>Standard</value>

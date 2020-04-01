@@ -848,9 +848,6 @@
   <data name="checkBoxCompressed.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>
   </data>
-  <data name="labelSize.Text" xml:space="preserve">
-    <value>Taille :</value>
-  </data>
   <data name="buttonDefaultCover.Text" xml:space="preserve">
     <value>À défaut</value>
   </data>
@@ -988,9 +985,6 @@
   </data>
   <data name="sFROMToolToolStripMenuItem1.Text" xml:space="preserve">
     <value>Outil SFROM Tool</value>
-  </data>
-  <data name="labelID.Text" xml:space="preserve">
-    <value>ID:</value>
   </data>
   <data name="buttonGoogle.Text" xml:space="preserve">
     <value>Google</value>
