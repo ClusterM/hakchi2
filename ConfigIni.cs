@@ -241,6 +241,8 @@ namespace com.clusterrr.hakchi_gui
         public bool ExportLinked = true;
         public bool CreateSavesFolder = true;
         public string ExportDrive = "";
+        public bool EnableCeUpdate = true;
+        public bool EnableHakchiUpdate = true;
         public string HakchiUpdateURL = "https://hakchi.net/hakchi/hakchi.hmod";
         public UbootType MembootUboot = UbootType.SD;
         public Hmod.ListSort hmodListSort = Hmod.ListSort.Category;

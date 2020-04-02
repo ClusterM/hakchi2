@@ -283,19 +283,22 @@ namespace com.clusterrr.hakchi_gui
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-            try // wrap upgrade check in an exception check, to avoid past mistakes
+            if (ConfigIni.Instance.EnableCeUpdate)
             {
-                AutoUpdater.RemindLaterTimeSpan = RemindLaterFormat.Days;
-                AutoUpdater.RemindLaterAt = 7;
-                AutoUpdater.ShowRemindLaterButton = true;
-                AutoUpdater.RunUpdateAsAdmin = false;
-                AutoUpdater.Start(UPDATE_XML_URL);
+                try // wrap upgrade check in an exception check, to avoid past mistakes
+                {
+                    AutoUpdater.RemindLaterTimeSpan = RemindLaterFormat.Days;
+                    AutoUpdater.RemindLaterAt = 7;
+                    AutoUpdater.ShowRemindLaterButton = true;
+                    AutoUpdater.RunUpdateAsAdmin = false;
+                    AutoUpdater.Start(UPDATE_XML_URL);
+                }
+                catch (Exception ex)
+                {
+                    Tasks.ErrorForm.Show(this, ex);
+                }
             }
-            catch (Exception ex)
-            {
-                Tasks.ErrorForm.Show(this, ex);
-            }
+            
             kernelToolStripMenuItem.DropDown.KeyDown += menuShiftHandler;
             kernelToolStripMenuItem.DropDown.KeyUp += menuShiftHandler;
             kernelToolStripMenuItem.DropDownOpening += menuShiftHandler;
@@ -333,7 +336,10 @@ namespace com.clusterrr.hakchi_gui
                 Tasks.MessageForm.Show(Resources.Hello, Resources.FirstRun, Resources.Nintendo_NES_icon);
             }
 
-            UpdateHakchi();
+            if (ConfigIni.Instance.EnableHakchiUpdate)
+            {
+                UpdateHakchi();
+            }
 
             // setup system shell
             hakchi.OnConnected += Shell_OnConnected;
