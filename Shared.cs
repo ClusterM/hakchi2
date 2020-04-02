@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace com.clusterrr.hakchi_gui
 {
-    static class Shared
+    public static class Shared
     {
         public static string[] hmodDirectories {
             get
@@ -699,6 +699,15 @@ namespace com.clusterrr.hakchi_gui
                 }
             }
             return default(T);
+        }
+
+        public static string GetSortName(string input)
+        {
+            var newSortName = input.ToLower();
+            if (newSortName.StartsWith("the "))
+                newSortName = newSortName.Substring(4); // Sorting without "THE"
+
+            return newSortName;
         }
     }
 }

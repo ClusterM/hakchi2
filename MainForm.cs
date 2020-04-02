@@ -1559,12 +1559,10 @@ namespace com.clusterrr.hakchi_gui
             var game = (selected as NesApplication);
             if (game.Name != textBoxName.Text)
             {
-                var newSortName = textBoxName.Text.ToLower();
-                if (newSortName.StartsWith("the "))
-                    newSortName = newSortName.Substring(4); // Sorting without "THE"
+                
                 game.Name = textBoxName.Text;
                 selectedItem.Text = game.ToString();
-                textBoxSortName.Text = newSortName;
+                textBoxSortName.Text = Shared.GetSortName(textBoxName.Text);
             }
         }
 
@@ -3795,6 +3793,7 @@ namespace com.clusterrr.hakchi_gui
                 if (result.ChangedName && result.Name != null)
                 {
                     result.Game.Name = result.Name;
+                    result.Game.Desktop.SortName = Shared.GetSortName(result.Name);
                     Invoke(new Action(() =>
                     {
                         foreach (var item in listViewGames.SelectedItems.Cast<ListViewItem>().Select(a => a).Where(a => a.Tag is NesApplication && (NesApplication)a.Tag == result.Game))

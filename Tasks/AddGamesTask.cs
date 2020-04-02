@@ -225,7 +225,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                     if (first.Name != null)
                                     {
                                         app.Desktop.Name = first.Name;
-                                        app.Desktop.SortName = first.Name.ToLower();
+                                        app.Desktop.SortName = Shared.GetSortName(first.Name);
                                     }
 
                                     if (first.Publishers != null && first.Publishers.Length > 0)
