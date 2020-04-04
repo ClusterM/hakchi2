@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -300,7 +301,7 @@ namespace TeamShinkansen.Scrapers.TheGamesDB
                     Name = item.Title,
                     Description = item.Overview,
                     PlayerCount = item.Players ?? 1,
-                    ReleaseDate = DateTime.Parse(item.ReleaseDate ?? "1970-01-01"),
+                    ReleaseDate = DateTime.ParseExact(item.ReleaseDate ?? "1970-01-01", "yyyy-MM-dd", CultureInfo.InvariantCulture),
                     ID = (item.ID ?? -1).ToString()
                 };
 
