@@ -1543,7 +1543,12 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (spineForm.ClearLogo != null)
                     {
-                        spineForm.ClearLogo.Save(logoPath, ImageFormat.Png);
+                        using(Bitmap cl = new Bitmap(spineForm.ClearLogo.Width, spineForm.ClearLogo.Height, PixelFormat.Format32bppArgb))
+                        using(var g = Graphics.FromImage(cl))
+                        {
+                            g.DrawImage(spineForm.ClearLogo, new Point(0, 0));
+                            cl.Save(logoPath, ImageFormat.Png);
+                        }
                     }
 
                     app.SetMdMini(spineForm.Spine as Bitmap, NesMenuElementBase.GameImageType.MdSpine);
