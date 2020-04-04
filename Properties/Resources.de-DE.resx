@@ -905,4 +905,10 @@ Fortfahren?</value>
   <data name="LinkingGames" xml:space="preserve">
     <value>Verarbeitung der symbolischen Verbindung...</value>
   </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
 </root>

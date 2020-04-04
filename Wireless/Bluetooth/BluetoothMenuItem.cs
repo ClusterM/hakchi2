@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui.Wireless.Bluetooth
@@ -206,7 +205,7 @@ namespace com.clusterrr.hakchi_gui.Wireless.Bluetooth
 
             if (devices.Count() > 0)
             {
-                menuItems.Add(new ToolStripMenuItem("Remove all devices", null, RemoveAll_Click));
+                menuItems.Add(new ToolStripMenuItem(Properties.Resources.RemoveAllDevices, null, RemoveAll_Click));
                 menuItems.Add(new ToolStripSeparator());
             }
 

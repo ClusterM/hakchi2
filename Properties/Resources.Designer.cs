@@ -3111,6 +3111,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offline.
+        /// </summary>
+        internal static string Offline {
+            get {
+                return ResourceManager.GetString("Offline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         internal static string OK {
@@ -3125,6 +3134,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string One {
             get {
                 return ResourceManager.GetString("One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Online.
+        /// </summary>
+        internal static string Online {
+            get {
+                return ResourceManager.GetString("Online", resourceCulture);
             }
         }
         
@@ -3459,6 +3477,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove all devices.
+        /// </summary>
+        internal static string RemoveAllDevices {
+            get {
+                return ResourceManager.GetString("RemoveAllDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter a prefix to remove from the start of all selected games, a colon and space will automatically be added to the end of the prefix..
         /// </summary>
         internal static string RemovePrefixMessage {
@@ -3639,6 +3666,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string RunningFoldersManager {
             get {
                 return ResourceManager.GetString("RunningFoldersManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sa {
+            get {
+                object obj = ResourceManager.GetObject("sa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

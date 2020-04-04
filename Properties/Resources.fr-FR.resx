@@ -920,4 +920,10 @@ Continuer?</value>
   <data name="CannotProceedCannotSync" xml:space="preserve">
     <value>Votre installation de hakchi utilise Clovershell. Il n'est pas sécuritaire de syncroniser vos jeux à l'aide de Clovershell. Veuillez désinstaller le module afin de syncroniser vos jeux de façon optimale!</value>
   </data>
+  <data name="Online" xml:space="preserve">
+    <value>En ligne</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Hors ligne</value>
+  </data>
 </root>

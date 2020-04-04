@@ -2798,7 +2798,7 @@ namespace com.clusterrr.hakchi_gui
             {
                 toolStripStatusConnectionIcon.Image = Resources.green;
                 if (timerConnectionAnim++ < 4)
-                    toolStripStatusLabelShell.Text = "Online";
+                    toolStripStatusLabelShell.Text = Resources.Online;
                 else
                     toolStripStatusLabelShell.Text = (hakchi.Shell is INetworkShell) ? "SSH" : "Clovershell";
                 if (timerConnectionAnim == 8)
@@ -2807,7 +2807,7 @@ namespace com.clusterrr.hakchi_gui
             else
             {
                 toolStripStatusConnectionIcon.Image = Resources.red;
-                toolStripStatusLabelShell.Text = "Offline";
+                toolStripStatusLabelShell.Text = Resources.Offline;
             }
         }
 

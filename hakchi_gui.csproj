@@ -155,6 +155,7 @@
     </Compile>
     <Compile Include="data\GamesDB.cs" />
     <Compile Include="data\SnesCarts.cs" />
+    <None Include="images\flags\sa.png" />
     <Content Include="Licenses\ArxOne.Ftp.txt" />
     <Compile Include="LicenseInfo.cs">
       <SubType>Form</SubType>
@@ -2004,6 +2005,9 @@
     <Content Include="tools\putty\puttytel.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="AboutBox.ar-SA.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AboutBox.de-DE.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -2013,14 +2017,41 @@
     <EmbeddedResource Include="Controls\ImageGoogler.resx">
       <DependentUpon>ImageGoogler.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExportGamesDialog.ar-SA.resx">
+      <DependentUpon>ExportGamesDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExportGamesDialog.de-DE.resx">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportGamesDialog.fr-FR.resx">
       <DependentUpon>ExportGamesDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.ar-SA.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.ar-SA.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.ar-SA.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hmod\SelectForm.ar-SA.resx">
+      <DependentUpon>SelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.ar-SA.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImagesForm.ar-SA.resx">
+      <DependentUpon>ImagesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LicenseInfo.ar-SA.resx">
+      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LicenseInfo.resx">
       <DependentUpon>LicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.ar-SA.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModHub\Controls\ModInfoControl.resx">
       <DependentUpon>ModInfoControl.cs</DependentUpon>
@@ -2067,14 +2098,21 @@
     <EmbeddedResource Include="ModHub\ModHubForm.resx">
       <DependentUpon>ModHubForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModHub\ModHubResources.ar-SA.resx" />
     <EmbeddedResource Include="ModHub\ModHubResources.de-DE.resx" />
     <EmbeddedResource Include="ModHub\ModHubResources.fr-FR.resx" />
     <EmbeddedResource Include="ModHub\ModHubResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ModHubResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModHub\Repository\RepoManagementForm.ar-SA.resx">
+      <DependentUpon>RepoManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModHub\Repository\RepoManagementForm.resx">
       <DependentUpon>RepoManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Motd.ar-SA.resx">
+      <DependentUpon>Motd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Motd.de-DE.resx">
       <DependentUpon>Motd.cs</DependentUpon>
@@ -2085,18 +2123,31 @@
     <EmbeddedResource Include="Motd.resx">
       <DependentUpon>Motd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewCustomGameForm.ar-SA.resx">
+      <DependentUpon>NewCustomGameForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewCustomGameForm.de-DE.resx">
       <DependentUpon>NewCustomGameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewCustomGameForm.fr-FR.resx">
       <DependentUpon>NewCustomGameForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ar-SA.resx" />
     <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
+    <EmbeddedResource Include="SaveStateManager.ar-SA.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaveStateManager.de-DE.resx">
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ScraperForm.ar-SA.resx">
+      <DependentUpon>ScraperForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScraperForm.resx">
       <DependentUpon>ScraperForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScreenshotForm.ar-SA.resx">
+      <DependentUpon>ScreenshotForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScreenshotForm.de-DE.resx">
       <DependentUpon>ScreenshotForm.cs</DependentUpon>
@@ -3391,17 +3442,26 @@
     <EmbeddedResource Include="SaveStateManager.resx">
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.ar-SA.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.de-DE.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchForm.fr-FR.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectCoreDialog.ar-SA.resx">
+      <DependentUpon>SelectCoreDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectCoreDialog.de-DE.resx">
       <DependentUpon>SelectCoreDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectCoreDialog.fr-FR.resx">
       <DependentUpon>SelectCoreDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectCoverDialog.ar-SA.resx">
+      <DependentUpon>SelectCoverDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectCoverDialog.de-DE.resx">
       <DependentUpon>SelectCoverDialog.cs</DependentUpon>
@@ -3415,8 +3475,14 @@
     <EmbeddedResource Include="SelectCoreDialog.resx">
       <DependentUpon>SelectCoreDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.ar-SA.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectFileForm.de-DE.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFirmwareDialog.ar-SA.resx">
+      <DependentUpon>SelectFirmwareDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectFirmwareDialog.de-DE.resx">
       <DependentUpon>SelectFirmwareDialog.cs</DependentUpon>
@@ -3427,11 +3493,20 @@
     <EmbeddedResource Include="SelectFirmwareDialog.resx">
       <DependentUpon>SelectFirmwareDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.ar-SA.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectIconForm.de-DE.resx">
       <DependentUpon>SelectIconForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.ar-SA.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectNesButtonsForm.de-DE.resx">
       <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSnesButtonsForm.ar-SA.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectSnesButtonsForm.de-DE.resx">
       <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
@@ -3466,6 +3541,9 @@
     <EmbeddedResource Include="SelectFileForm.resx">
       <DependentUpon>SelectFileForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectSystemDialog.ar-SA.resx">
+      <DependentUpon>SelectSystemDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectSystemDialog.de-DE.resx">
       <DependentUpon>SelectSystemDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -3474,6 +3552,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectSystemDialog.resx">
       <DependentUpon>SelectSystemDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.ar-SA.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.de-DE.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
@@ -3484,6 +3565,9 @@
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SnesPresetEditor.ar-SA.resx">
+      <DependentUpon>SnesPresetEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SnesPresetEditor.de-DE.resx">
       <DependentUpon>SnesPresetEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -3493,8 +3577,14 @@
     <EmbeddedResource Include="SnesPresetEditor.resx">
       <DependentUpon>SnesPresetEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SpineForm.ar-SA.resx">
+      <DependentUpon>SpineForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SpineForm.resx">
       <DependentUpon>SpineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StringInputForm.ar-SA.resx">
+      <DependentUpon>StringInputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StringInputForm.de-DE.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>
@@ -3508,6 +3598,9 @@
     <EmbeddedResource Include="FoldersManagerForm.resx">
       <DependentUpon>FoldersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\ErrorForm.ar-SA.resx">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tasks\ErrorForm.de-DE.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -3516,6 +3609,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tasks\ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\MessageForm.ar-SA.resx">
+      <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tasks\MessageForm.de-DE.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
@@ -3526,8 +3622,14 @@
     <EmbeddedResource Include="Tasks\MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\SDFormat.ar-SA.resx">
+      <DependentUpon>SDFormat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tasks\SDFormat.resx">
       <DependentUpon>SDFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\TaskerForm.ar-SA.resx">
+      <DependentUpon>TaskerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tasks\TaskerForm.de-DE.resx">
       <DependentUpon>TaskerForm.cs</DependentUpon>
@@ -3538,6 +3640,9 @@
     <EmbeddedResource Include="Tasks\TaskerForm.resx">
       <DependentUpon>TaskerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\TaskerTransferForm.ar-SA.resx">
+      <DependentUpon>TaskerTransferForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tasks\TaskerTransferForm.de-DE.resx">
       <DependentUpon>TaskerTransferForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -3546,6 +3651,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tasks\TaskerTransferForm.resx">
       <DependentUpon>TaskerTransferForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechInfo.ar-SA.resx">
+      <DependentUpon>TechInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TechInfo.de-DE.resx">
       <DependentUpon>TechInfo.cs</DependentUpon>
@@ -3556,11 +3664,17 @@
     <EmbeddedResource Include="TechInfo.resx">
       <DependentUpon>TechInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.ar-SA.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.de-DE.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingFelForm.fr-FR.resx">
       <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingShellCycleForm.ar-SA.resx">
+      <DependentUpon>WaitingShellCycleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingShellCycleForm.de-DE.resx">
       <DependentUpon>WaitingShellCycleForm.cs</DependentUpon>
@@ -3570,6 +3684,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingShellCycleForm.resx">
       <DependentUpon>WaitingShellCycleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingShellForm.ar-SA.resx">
+      <DependentUpon>WaitingShellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingShellForm.de-DE.resx">
       <DependentUpon>WaitingShellForm.cs</DependentUpon>

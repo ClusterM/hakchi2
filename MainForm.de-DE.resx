@@ -463,7 +463,7 @@
     <value>Google</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Veröffentlichungsdatum (JJJJ-MM-TT):</value>
+    <value>Offline</value>
   </data>
   <data name="buttonDefaultCover.Text" xml:space="preserve">
     <value>Standard</value>

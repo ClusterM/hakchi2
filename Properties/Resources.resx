@@ -1639,4 +1639,16 @@ There is a small chance of data loss, please make sure you have your saves backe
   <data name="LicensesTar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\licenses.tar;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="RemoveAllDevices" xml:space="preserve">
+    <value>Remove all devices</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="sa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\flags\sa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="autodetectToolStripMenuItem.Text" xml:space="preserve">
+    <value>إكتشاف تلقائي</value>
+  </data>
+  <data name="asIsToolStripMenuItem.Text" xml:space="preserve">
+    <value>كما هي</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>إضافة المزيد من الألعاب</value>
+  </data>
+  <data name="addCustomAppToolStripMenuItem.Text" xml:space="preserve">
+    <value>إضافة تطبيق مخصص</value>
+  </data>
+  <data name="addPresetToolStripMenuItem.Text" xml:space="preserve">
+    <value>إضافة إعداد مسبق</value>
+  </data>
+  <data name="deletePresetToolStripMenuItem.Text" xml:space="preserve">
+    <value>حذف إعداد مسبق</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text" xml:space="preserve">
+    <value>إختيار إعدادات مسبقة</value>
+  </data>
+  <data name="exportGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>تصدير ألعاب</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>تزامن</value>
+  </data>
+  <data name="searchToolStripMenuItem.Text" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="reloadGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>إعادة التحميل</value>
+  </data>
+  <data name="resetOriginalGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>إستعادة الألعاب الأصلية</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>ملف</value>
+  </data>
+  <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>تثبيت / إصلاح</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>إعادة ضبط</value>
+  </data>
+  <data name="normalModeToolStripMenuItem.Text" xml:space="preserve">
+    <value>النمط العادي</value>
+  </data>
+  <data name="sDModeToolStripMenuItem.Text" xml:space="preserve">
+    <value>نمط الـ SD</value>
+  </data>
+  <data name="flashUbootToolStripMenuItem.Text" xml:space="preserve">
+    <value>تفليش الـ uboot</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>إقلاع الكيرنيل الأصلي من الذاكرة المؤقتة (RAM)</value>
+  </data>
+  <data name="membootCustomKernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>إقلاع الكيرنيل المعدل من الذاكرة المؤقتة (RAM)</value>
+  </data>
+  <data name="membootRecoveryKernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>إقلاع الكيرنيل الإستعادة من الذاكرة المؤقتة (RAM)</value>
+  </data>
+  <data name="dumpOriginalKernellegacyToolStripMenuItem.Text" xml:space="preserve">
+    <value>تفريغ الكيرنيل الاصلي (قديم)</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text" xml:space="preserve">
+    <value>تفريغ NAND flash بالكامل </value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text" xml:space="preserve">
+    <value>تفليش NAND بالكامل (للخبراء فقط!)</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text" xml:space="preserve">
+    <value>تفريغ  برنامج النظام مفكوك التشفير</value>
+  </data>
+  <data name="flashNANDBPartitionToolStripMenuItem.Text" xml:space="preserve">
+    <value>تفليش  برنامج النظام مفكوك التشفير</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
+    <value>تفريغ بارتيشن بيانات المستخدم</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
+    <value>تفليش بارتيشن بيانات المستخدم</value>
+  </data>
+  <data name="formatNANDCToolStripMenuItem.Text" xml:space="preserve">
+    <value>تهيئة بارتيشن بيانات المستخدم</value>
+  </data>
+  <data name="advancedToolStripMenuItem.Text" xml:space="preserve">
+    <value>متقدم</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>الكيرنيل</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>تثبيت وحدات إضافية</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>إلغاء وحدات إضافية</value>
+  </data>
+  <data name="generateModulesReportToolStripMenuItem.Text" xml:space="preserve">
+    <value>توليد تقرير الوحدات</value>
+  </data>
+  <data name="manageModRepositoriesToolStripMenuItem.Text" xml:space="preserve">
+    <value>إدارة مستودع التعديل</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>وحدات</value>
+  </data>
+  <data name="positionAtTheTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>في الأعلى</value>
+  </data>
+  <data name="positionAtTheBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>في الأسفل</value>
+  </data>
+  <data name="positionSortedToolStripMenuItem.Text" xml:space="preserve">
+    <value>مصنفة</value>
+  </data>
+  <data name="positionHiddenToolStripMenuItem.Text" xml:space="preserve">
+    <value>مخفي (غير مختار)</value>
+  </data>
+  <data name="originalGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>الألعاب الأصلية</value>
+  </data>
+  <data name="nameToolStripMenuItem.Text" xml:space="preserve">
+    <value>الأسم</value>
+  </data>
+  <data name="coreToolStripMenuItem.Text" xml:space="preserve">
+    <value>كور</value>
+  </data>
+  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
+    <value>جهاز (منصة)</value>
+  </data>
+  <data name="sortByToolStripMenuItem.Text" xml:space="preserve">
+    <value>فرز بواسطة</value>
+  </data>
+  <data name="showGamesWithoutBoxArtToolStripMenuItem.Text" xml:space="preserve">
+    <value>تجميع الألعاب مع/بدون غلاف اللعبة</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="autoToolStripMenuItem.Text" xml:space="preserve">
+    <value>تلقائي</value>
+  </data>
+  <data name="unitedStatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>الولايات المتحدة</value>
+  </data>
+  <data name="europeToolStripMenuItem.Text" xml:space="preserve">
+    <value>أوروبا</value>
+  </data>
+  <data name="japanToolStripMenuItem.Text" xml:space="preserve">
+    <value>اليابان</value>
+  </data>
+  <data name="segaUiThemeToolStripMenuItem.Text" xml:space="preserve">
+    <value>ثيم واجهة SEGA</value>
+  </data>
+  <data name="enableSFROMToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>تفعيل</value>
+  </data>
+  <data name="usePCMPatchWhenAvailableToolStripMenuItem.Text" xml:space="preserve">
+    <value>إستخدام رقعة PCM عندما يكون متوفر</value>
+  </data>
+  <data name="sFROMToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>أداة SFROM</value>
+  </data>
+  <data name="sFROMToolToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>اذا اردت استخدام أداة SFROM،</value>
+  </data>
+  <data name="convertSNESROMSToSFROMToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحويل رومات SNES إلى SFROM</value>
+  </data>
+  <data name="separateGamesStorageToolStripMenuItem.Text" xml:space="preserve">
+    <value>تفريق تخزين الألعاب</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>ضغط الألعاب عند الإضافة</value>
+  </data>
+  <data name="compressBoxArtToolStripMenuItem.Text" xml:space="preserve">
+    <value>ضغط رسمة الغلاف عند الإضافة</value>
+  </data>
+  <data name="centerBoxArtThumbnailToolStripMenuItem.Text" xml:space="preserve">
+    <value>توسيط الصورة المصغرة لغلاف للعبة</value>
+  </data>
+  <data name="disableHakchi2PopupsToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعطيل الإطارات المنبثقة الخاصة بـ هاكتشي2</value>
+  </data>
+  <data name="devForceSshToolStripMenuItem.Text" xml:space="preserve">
+    <value>إجبار نقل الملف عن طريق SSH</value>
+  </data>
+  <data name="uploadTotmpforTestingToolStripMenuItem.Text" xml:space="preserve">
+    <value>الرفع إلى /tmp (للتجربة)</value>
+  </data>
+  <data name="forceNetworkMembootsToolStripMenuItem.Text" xml:space="preserve">
+    <value>إجبار Network memboots</value>
+  </data>
+  <data name="forceClovershellMembootsToolStripMenuItem.Text" xml:space="preserve">
+    <value>إجبار Clovershell memboots</value>
+  </data>
+  <data name="downloadLatestHakchiToolStripMenuItem.Text" xml:space="preserve">
+    <value>تنزيل أحدث إصدار من هاكتشي</value>
+  </data>
+  <data name="developerToolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>أدوات المطور</value>
+  </data>
+  <data name="separateGamesForMultibootToolStripMenuItem.Text" xml:space="preserve">
+    <value>فصل الألعاب لأجل الإقلاع المتعدد</value>
+  </data>
+  <data name="alwaysCopyOriginalGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>دائماً أنسخ الألعاب الأصلية</value>
+  </data>
+  <data name="useLinkedSyncToolStripMenuItem.Text" xml:space="preserve">
+    <value>إستخدام تزامن مرتبط</value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text" xml:space="preserve">
+    <value>إستخدام عدة أزارير لإعادة التشغيل</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text" xml:space="preserve">
+    <value>إختيار عدة أزارير لإعادة التشغيل</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text" xml:space="preserve">
+    <value>إستخدام "Select+A/B" لتفعيل الطلق التلقائي على A/B</value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text" xml:space="preserve">
+    <value>إستخدام  X/Y على يد التحكم كـ الطلق التلقائي على A/B</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Text" xml:space="preserve">
+    <value>"Up+A+B = Start" على يد التحكم الثانية</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
+    <value>تهكيرات جهاز التحكم</value>
+  </data>
+  <data name="kachikachiToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kachikachi</value>
+  </data>
+  <data name="canoeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Canoe</value>
+  </data>
+  <data name="retroarchToolStripMenuItem.Text" xml:space="preserve">
+    <value>Retroarch</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text" xml:space="preserve">
+    <value>موجه الأوامر (للخبراء فقط!)</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعطيل الحماية من الصرع</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text" xml:space="preserve">
+    <value>حفظ الإعدادات إلى الجهاز الميني الأن</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text" xml:space="preserve">
+    <value>مدير  تخزين الحالة</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
+    <value>إلتقاط صورة من الشاشة</value>
+  </data>
+  <data name="saveDmesgOutputToolStripMenuItem.Text" xml:space="preserve">
+    <value>حفظ معطيات امر dmesg</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text" xml:space="preserve">
+    <value>فتح عميل FTP</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text" xml:space="preserve">
+    <value>فتح عميل Telnet</value>
+  </data>
+  <data name="changeBootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>تغيير صورة الإقلاع</value>
+  </data>
+  <data name="disableBootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعطيل صورة الإقلاع</value>
+  </data>
+  <data name="resetDefaultBootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>إعادة الضبط إلى الأفتراضي</value>
+  </data>
+  <data name="bootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>صورة الإقلاع</value>
+  </data>
+  <data name="rebootToolStripMenuItem.Text" xml:space="preserve">
+    <value>إعادة الإقلاع</value>
+  </data>
+  <data name="switchRunningFirmwareToolStripMenuItem.Text" xml:space="preserve">
+    <value>تبديل الفيرموير الحالي</value>
+  </data>
+  <data name="formatSDCardToolStripMenuItem.Text" xml:space="preserve">
+    <value>تهئية كرت SD</value>
+  </data>
+  <data name="prepareArtDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>تجهيز رسومات المجلدات</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>أدوات</value>
+  </data>
+  <data name="bluetoothToolStripMenuItem.Text" xml:space="preserve">
+    <value>بلوتوث</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>صفحة GitHub مع الإصدارات الفعلية</value>
+  </data>
+  <data name="joinOurDiscordServerToolStripMenuItem.Text" xml:space="preserve">
+    <value>إنظم إلى  ديسكورد</value>
+  </data>
+  <data name="rRockinTheClassicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>/r/RockinTheClassics</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text" xml:space="preserve">
+    <value>التبرع</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text" xml:space="preserve">
+    <value>التعليمات</value>
+  </data>
+  <data name="technicalInformationToolStripMenuItem.Text" xml:space="preserve">
+    <value>معلومات تقنية</value>
+  </data>
+  <data name="messageOfTheDayToolStripMenuItem.Text" xml:space="preserve">
+    <value>رسالة مهمة</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>حول</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>المساعدة</value>
+  </data>
+  <data name="buttonAddGames.Text" xml:space="preserve">
+    <value>إضافة المزيد من الألعاب</value>
+  </data>
+  <data name="openFileDialogNes.Title" xml:space="preserve">
+    <value>إختار الألعاب</value>
+  </data>
+  <data name="explorerToolStripMenuItem.Text" xml:space="preserve">
+    <value>عرض في مستعرض ويندوز</value>
+  </data>
+  <data name="addPrefixToolStripMenuItem.Text" xml:space="preserve">
+    <value>إضافة إختصار</value>
+  </data>
+  <data name="removePrefixToolStripMenuItem.Text" xml:space="preserve">
+    <value>إزالة إختصار</value>
+  </data>
+  <data name="scrapeSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>جلب بيانات الألعاب المختارة</value>
+  </data>
+  <data name="scanForNewBoxArtForSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>فحص رسم علبة جديدة للألعاب المختارة</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>تنزيل رسم علبة الألعاب المختارة</value>
+  </data>
+  <data name="deleteSelectedGamesBoxArtToolStripMenuItem.Text" xml:space="preserve">
+    <value>حذف رسم علبة الألعاب المختارة</value>
+  </data>
+  <data name="archiveSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>أرشفة الألعاب المحددة</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>ضغط الألعاب المحددة</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>فك الضغط عن الألعاب المحددة</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Del</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>حذف الألعاب المختارة</value>
+  </data>
+  <data name="editROMHeaderToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحرير رأس SFROM</value>
+  </data>
+  <data name="resetROMHeaderToolStripMenuItem.Text" xml:space="preserve">
+    <value>إعادة ضبط رأس SFROM للألعاب المختارة</value>
+  </data>
+  <data name="sFROMToolToolStripMenuItem1.Text" xml:space="preserve">
+    <value>أداة SFROM</value>
+  </data>
+  <data name="repairGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>إصلاح الألعاب</value>
+  </data>
+  <data name="selectEmulationCoreToolStripMenuItem.Text" xml:space="preserve">
+    <value>إختيار كور المحاكاة...</value>
+  </data>
+  <data name="openFileDialogImage.Filter" xml:space="preserve">
+    <value>صور (*.bmp;*.png;*.jpg;*.jpeg;*.gif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif|جميع الملفات|*.*</value>
+  </data>
+  <data name="openFileDialogImage.Title" xml:space="preserve">
+    <value>إختيار غلاف للعبة</value>
+  </data>
+  <data name="buttonStart.Text" xml:space="preserve">
+    <value>مزامنة الألعاب المختارة مع جهاز الميني</value>
+  </data>
+  <data name="saveDumpFileDialog.Title" xml:space="preserve">
+    <value>أختار اسم ملف التفريغ</value>
+  </data>
+  <data name="openDumpFileDialog.Title" xml:space="preserve">
+    <value>أختار اسم ملف التفريغ</value>
+  </data>
+  <data name="gameName.Text" xml:space="preserve">
+    <value>أسم اللعبة</value>
+  </data>
+  <data name="structureButton.Text" xml:space="preserve">
+    <value>الهيكلة</value>
+  </data>
+  <data name="buttonExport.Text" xml:space="preserve">
+    <value>تصدير إلى يو اس بي</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>الحجم:</value>
+  </data>
+  <data name="labelCommandLine.Text" xml:space="preserve">
+    <value>سطر الأوامر </value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="buttonShowGameGenieDatabase.Text" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="labelMaxPlayers.Text" xml:space="preserve">
+    <value>أقصى عدد من اللاعبين</value>
+  </data>
+  <data name="labelSaveCount.Text" xml:space="preserve">
+    <value>عدد مرات الحفظ</value>
+  </data>
+  <data name="labelGameGenie.Text" xml:space="preserve">
+    <value>Game Genie codes (مفصولة بالكوما)</value>
+  </data>
+  <data name="labelCompress.Text" xml:space="preserve">
+    <value>مضغوط</value>
+  </data>
+  <data name="labelPublisher.Text" xml:space="preserve">
+    <value>الناشر</value>
+  </data>
+  <data name="maskedTextBoxReleaseDate.Mask" xml:space="preserve">
+    <value>0000-00-00</value>
+  </data>
+  <data name="labelSortName.Text" xml:space="preserve">
+    <value>اسم الفرز</value>
+  </data>
+  <data name="labelDescription.Text" xml:space="preserve">
+    <value>الوصف:</value>
+  </data>
+  <data name="labelReleaseDate.Text" xml:space="preserve">
+    <value>تاريخ الإصدار  (YYYY-MM-DD)</value>
+  </data>
+  <data name="labelName.Text" xml:space="preserve">
+    <value>الأسم</value>
+  </data>
+  <data name="labelGenre.Text" xml:space="preserve">
+    <value>النوع</value>
+  </data>
+  <data name="labelCountry.Text" xml:space="preserve">
+    <value>المنطقة</value>
+  </data>
+  <data name="labelCopyright.Text" xml:space="preserve">
+    <value>حقوق الحفظ</value>
+  </data>
+  <data name="buttonBrowseImage.Text" xml:space="preserve">
+    <value>إستعراض</value>
+  </data>
+  <data name="buttonGoogle.Text" xml:space="preserve">
+    <value>جووجل</value>
+  </data>
+  <data name="buttonDefaultCover.Text" xml:space="preserve">
+    <value>الإفتراضي</value>
+  </data>
+  <data name="buttonSpine.Text" xml:space="preserve">
+    <value>الظهر</value>
+  </data>
+  <data name="disablePagefoldersToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعطيل صفحة / مجلدات</value>
+  </data>
+  <data name="customToolStripMenuItem.Text" xml:space="preserve">
+    <value>مخصص - إستخدم مدير المجلدات (إضغط مرة آخرى للفتح)</value>
+  </data>
+  <data name="automaticToolStripMenuItem.Text" xml:space="preserve">
+    <value>تلقائي</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>الألعاب الأصلية في الجذر -&gt; تلقائياً في مجلدات فرعية</value>
+  </data>
+  <data name="pagesToolStripMenuItem.Text" xml:space="preserve">
+    <value>صفحات، تقسيم الألعاب بالتساوي</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>الألعاب الأصلية في الجذر -&gt; الصفحات، تقسيم الألعاب بالتساوي</value>
+  </data>
+  <data name="foldersToolStripMenuItem.Text" xml:space="preserve">
+    <value>مجلدات، تقسيم الألعاب بالتساوي</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>الألعاب الأصلية في الجذر -&gt; المجلدات، تقسيم الألعاب بالتساوي</value>
+  </data>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text" xml:space="preserve">
+    <value>مجلدات، تقسيم بأول حرف</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>الألعاب الأصلية في الجذر -&gt; المجلدات، تقسيم بأول حرف</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text" xml:space="preserve">
+    <value>أقصى عدد من الألعاب في الصفحة/المجلد</value>
+  </data>
+  <data name="leftmostToolStripMenuItem.Text" xml:space="preserve">
+    <value>أقصى اليسار</value>
+  </data>
+  <data name="rightmostToolStripMenuItem.Text" xml:space="preserve">
+    <value>أقصى اليمين</value>
+  </data>
+  <data name="backFolderButtonPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>موضع زر الرجوع للخلف</value>
+  </data>
+  <data name="folderImagesSetToolStripMenuItem.Text" xml:space="preserve">
+    <value>مجموعة صور المجلد</value>
+  </data>
+  <data name="syncStructureForAllGamesCollectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>مزامنة إعدادات الهيكلة لجميع مجموعات الألعاب</value>
+  </data>
+  <data name="groupBoxCurrentGamesCollection.Text" xml:space="preserve">
+    <value>مجموعة الألعاب الحالية</value>
+  </data>
+  <data name="groupBoxArtSega.Text" xml:space="preserve">
+    <value>عمل فني - سيجا</value>
+  </data>
+  <data name="groupBoxArtNintendo.Text" xml:space="preserve">
+    <value>عمل فني - نينتندو</value>
+  </data>
+  <data name="groupBoxGameInfo.Text" xml:space="preserve">
+    <value>معلومات اللعبة</value>
+  </data>
+  <data name="toolStripStatusLabelShell.Text" xml:space="preserve">
+    <value>غير متصل</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>غير متصل</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>هاكاتشي2</value>
+  </data>
+</root>

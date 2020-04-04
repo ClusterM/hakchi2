@@ -117,97 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;textBoxLicenses.Name" xml:space="preserve">
-    <value>textBoxLicenses</value>
+  <data name="buttonNewFolder.Text" xml:space="preserve">
+    <value>مجلد جديد</value>
   </data>
-  <data name="&gt;&gt;textBoxLicenses.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="comboBoxPosition.Items" xml:space="preserve">
+    <value>أقصى اليسار</value>
   </data>
-  <data name="textBoxLicenses.Text" xml:space="preserve">
-    <value>--------------------------------------------------------------------------------</value>
+  <data name="comboBoxPosition.Items1" xml:space="preserve">
+    <value>على يسار الألعاب</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="comboBoxPosition.Items2" xml:space="preserve">
+    <value>على يمين الألعاب</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="comboBoxPosition.Items3" xml:space="preserve">
+    <value>أقصى اليمين</value>
   </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="labelPosition1.Text" xml:space="preserve">
+    <value>أهمية مكان المجلد:</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="buttonFoldersApp.Text" xml:space="preserve">
+    <value>التقسيم حسب الجهاز</value>
   </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 586</value>
+  <data name="buttonNoFoldersOriginal.Text" xml:space="preserve">
+    <value>الألعاب الأصلية -&gt; ألعاب آخرى</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="buttonNoFolders.Text" xml:space="preserve">
+    <value>لايوجد مجلدات</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>609, 586</value>
+  <data name="buttonFoldersLetters.Text" xml:space="preserve">
+    <value>التقسيم بالحرف الأول</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>LicenseInfo</value>
+  <data name="buttonFoldersEqually.Text" xml:space="preserve">
+    <value>التقسيم بالتساوي</value>
   </data>
-  <data name="&gt;&gt;textBoxLicenses.Parent" xml:space="preserve">
-    <value>panel1</value>
+  <data name="groupBoxSplitModes.Text" xml:space="preserve">
+    <value>إنشاء هيكلة المجلدات تلقائياً</value>
   </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>625, 300</value>
+  <data name="groupBoxArt.Text" xml:space="preserve">
+    <value>أيقونة القائمة</value>
   </data>
-  <data name="textBoxLicenses.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="comboBoxBackPosition.Items" xml:space="preserve">
+    <value>أقصى اليسار</value>
   </data>
-  <data name="textBoxLicenses.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+  <data name="comboBoxBackPosition.Items1" xml:space="preserve">
+    <value>أقصى اليمين</value>
   </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="labelPosition2.Text" xml:space="preserve">
+    <value>موضع زر الرجوع للخلف:</value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
+  <data name="newFolderToolStripMenuItem.Text" xml:space="preserve">
+    <value>إنشاء مجلد جديد</value>
   </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
+  <data name="renameToolStripMenuItem.Text" xml:space="preserve">
+    <value>تسمية المجلد</value>
   </data>
-  <data name="textBoxLicenses.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+  <data name="cutToolStripMenuItem.Text" xml:space="preserve">
+    <value>قص</value>
   </data>
-  <data name="&gt;&gt;textBoxLicenses.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="pasteToolStripMenuItem.Text" xml:space="preserve">
+    <value>لصق</value>
   </data>
-  <data name="panel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>12, 12, 12, 12</value>
+  <data name="deleteToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Del</value>
   </data>
-  <data name="textBoxLicenses.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>حذف</value>
   </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="labelElementCount.Text" xml:space="preserve">
+    <value>إحصائيات المجلد</value>
   </data>
-  <data name="textBoxLicenses.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="checkBoxAddHome.Text" xml:space="preserve">
+    <value>إضافة زر العودة للقائمة الرئيسية</value>
   </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>إلغاء</value>
   </data>
-  <data name="textBoxLicenses.Size" type="System.Drawing.Size, System.Drawing">
-    <value>585, 562</value>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>موافق</value>
   </data>
-  <data name="textBoxLicenses.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="newToolStripMenuItem.Text" xml:space="preserve">
+    <value>جديد</value>
   </data>
-  <data name="textBoxLicenses.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Both</value>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>فتح</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="saveAsToolStripMenuItem.Text" xml:space="preserve">
+    <value>حفظ باسم</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>ملف</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>License Information</value>
+    <value>مدير المجلدات</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>
