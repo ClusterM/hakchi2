@@ -1,0 +1,84 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+name: $(Build.SourceVersion)-$(date:yyyy-MM-dd)$(rev:.r)
+
+trigger:
+  tags:
+    include:
+    - '*'
+  branches:
+    include:
+    - '*'
+pr:
+  branches:
+    include:
+    - '*'  # must quote since "*" is a YAML reserved character; we want a string
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: 'hakchi_gui.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Debug'
+
+steps:
+
+- checkout: self
+  submodules: true
+  persistCredentials: true
+
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: nsis@1
+  inputs:
+    scriptFile: 
+    justInclude: 'yes'
+    includeMorePlugins: 'no'
+
+- task: DownloadSecureFile@1
+  name: GamesDBApiKey
+  inputs:
+    secureFile: 'TheGamesDB.txt'
+
+- script: mkdir "$(System.DefaultWorkingDirectory)/ApiKeys" && copy "$(GamesDBApiKey.secureFilePath)" "$(System.DefaultWorkingDirectory)/ApiKeys/TheGamesDB.txt"
+
+- task: VSBuild@1
+  inputs:
+    solution: 'hakchi_gui.sln'
+    configuration: 'Installer'
+    platform: 'Any CPU'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)/bin/'
+    Contents: 'hakchi2-ce-*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+    OverWrite: true
+    preserveTimestamp: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: '$(Build.SourceVersion)'
+    publishLocation: 'Container'
+
+- task: GitHubRelease@1
+  inputs:
+    gitHubConnection: 'github.com_DanTheMan827'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'gitTag'
+    isDraft: true
+    changeLogCompareToRelease: 'lastFullRelease'
+    changeLogType: 'commitBased'
+
