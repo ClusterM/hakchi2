@@ -1407,6 +1407,7 @@ namespace com.clusterrr.hakchi_gui
             }
 
             SetGameImageFile(type);
+            ShowSelected();
         }
 
         private void pictureBoxArt_DragEnter(object sender, DragEventArgs e)
