@@ -65,10 +65,31 @@ steps:
     OverWrite: true
     preserveTimestamp: true
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)/bin/'
+    Contents: 'hakchi2-ce-*installer.exe'
+    TargetFolder: '$(System.DefaultWorkingDirectory)/bin/installer/'
+    CleanTargetFolder: true
+    OverWrite: true
+    preserveTimestamp: true
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: '$(Build.SourceVersion)'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/bin/Debug/'
+    ArtifactName: 'Debug'
+    publishLocation: 'Container'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/bin/Release/'
+    ArtifactName: 'Release'
+    publishLocation: 'Container'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/bin/installer/'
+    ArtifactName: 'Installer'
     publishLocation: 'Container'
 
 - task: GitHubRelease@1
