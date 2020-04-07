@@ -4023,6 +4023,7 @@ namespace com.clusterrr.hakchi_gui
         private void enableInformationScrapeOnImportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigIni.Instance.EnableImportScraper = !ConfigIni.Instance.EnableImportScraper;
+            enableInformationScrapeOnImportToolStripMenuItem.Checked = ConfigIni.Instance.EnableImportScraper;
             ConfigIni.Save();
         }
     }
