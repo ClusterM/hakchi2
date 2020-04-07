@@ -225,6 +225,22 @@ namespace com.clusterrr.hakchi_gui
 
                         return true;
                     })
+                },
+                new Action()
+                {
+                    startingVersion = new Version("0.0.0.0"),
+                    targetVersion = new Version("3.8.0.1"),
+                    action = new ActionFunc(() =>
+                    {
+                        var oldCache = Path.Combine(Program.BaseDirectoryExternal, "user_mods", "readme_cache");
+                        
+                        if (Directory.Exists(oldCache))
+                        {
+                            Directory.Delete(oldCache, true);
+                        }
+
+                        return true;
+                    })
                 }
 
             });

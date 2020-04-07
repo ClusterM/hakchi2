@@ -36,7 +36,7 @@ namespace com.clusterrr.hakchi_gui
 #endif
         private static readonly string MOTD_URL = "https://teamshinkansen.github.io/motd.md";
         private static readonly string SFROM_TOOL_URL = "http://darkakuma.z-net.us/p/sfromtool.html";
-        private static readonly string MotdFilename = Path.Combine(Program.BaseDirectoryExternal, "config", "motd.md");
+        private static readonly string MotdFilename = Path.Combine(Program.BaseDirectoryExternal, "cache", "motd.md");
 
         private bool GameGenieEnabled
         {

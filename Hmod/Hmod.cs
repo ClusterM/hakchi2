@@ -46,7 +46,7 @@ namespace com.clusterrr.hakchi_gui.Hmod
             this.isFile = false;
             
             string usermodsDirectory = Path.Combine(Program.BaseDirectoryExternal, "user_mods");
-            string cacheDir = Shared.PathCombine(Program.BaseDirectoryExternal, "user_mods", "readme_cache");
+            string cacheDir = Shared.PathCombine(Program.BaseDirectoryExternal, "cache", "readme_cache");
             string cacheFile = Path.Combine(cacheDir, $"{mod}.xml");
 
 
