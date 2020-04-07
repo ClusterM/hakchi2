@@ -660,4 +660,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>هاكاتشي2</value>
   </data>
+  <data name="enableInformationScrapeOnImportToolStripMenuItem.Text" xml:space="preserve">
+    <value>تمكين جلب المعلومات التلقائي عند الاستيراد</value>
+  </data>
 </root>

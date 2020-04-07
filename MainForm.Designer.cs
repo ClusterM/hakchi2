@@ -165,6 +165,7 @@
             this.openFileDialogNes = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.explorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.addPrefixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removePrefixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
@@ -282,7 +283,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.enableInformationScrapeOnImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
@@ -756,6 +757,7 @@
             this.compressBoxArtToolStripMenuItem,
             this.centerBoxArtThumbnailToolStripMenuItem,
             this.disableHakchi2PopupsToolStripMenuItem,
+            this.enableInformationScrapeOnImportToolStripMenuItem,
             this.toolStripMenuItem25,
             this.developerToolsToolStripMenuItem,
             this.separateGamesForMultibootToolStripMenuItem,
@@ -1315,6 +1317,11 @@
             resources.ApplyResources(this.explorerToolStripMenuItem, "explorerToolStripMenuItem");
             this.explorerToolStripMenuItem.Name = "explorerToolStripMenuItem";
             this.explorerToolStripMenuItem.Click += new System.EventHandler(this.explorerToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // addPrefixToolStripMenuItem
             // 
@@ -2151,10 +2158,13 @@
             resources.ApplyResources(this.progressBar1, "progressBar1");
             this.progressBar1.Name = "progressBar1";
             // 
-            // toolStripSeparator2
+            // enableInformationScrapeOnImportToolStripMenuItem
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            this.enableInformationScrapeOnImportToolStripMenuItem.Checked = true;
+            this.enableInformationScrapeOnImportToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.enableInformationScrapeOnImportToolStripMenuItem.Name = "enableInformationScrapeOnImportToolStripMenuItem";
+            resources.ApplyResources(this.enableInformationScrapeOnImportToolStripMenuItem, "enableInformationScrapeOnImportToolStripMenuItem");
+            this.enableInformationScrapeOnImportToolStripMenuItem.Click += new System.EventHandler(this.enableInformationScrapeOnImportToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -2463,6 +2473,7 @@
         private System.Windows.Forms.ToolStripMenuItem addPrefixToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removePrefixToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem enableInformationScrapeOnImportToolStripMenuItem;
     }
 }
 

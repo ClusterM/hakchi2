@@ -206,7 +206,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         {
                             gamesWithMultipleArt.Add(app);
                         }
-                        if (Program.TheGamesDBAPI != null && 
+                        if (ConfigIni.Instance.EnableImportScraper && Program.TheGamesDBAPI != null && 
                             app.Metadata.OriginalCrc32 != 0 && 
                             data.GamesDB.HashLookup.ContainsKey(app.Metadata.OriginalCrc32) && 
                             data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].Length > 0)

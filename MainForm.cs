@@ -154,6 +154,8 @@ namespace com.clusterrr.hakchi_gui
             {
                 scrapeSelectedGamesToolStripMenuItem.Visible = Program.Scrapers.Count > 0;
                 timerShowSelected.Enabled = false;
+                enableInformationScrapeOnImportToolStripMenuItem.Visible = Program.TheGamesDBAPI != null;
+                enableInformationScrapeOnImportToolStripMenuItem.Checked = ConfigIni.Instance.EnableImportScraper;
                 PopulateMaxPlayers(maxPlayersComboBox);
                 PopulateGenres(comboBoxGenre);
 
@@ -4016,6 +4018,12 @@ namespace com.clusterrr.hakchi_gui
                     }
                 }
             }
+        }
+
+        private void enableInformationScrapeOnImportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigIni.Instance.EnableImportScraper = !ConfigIni.Instance.EnableImportScraper;
+            ConfigIni.Save();
         }
     }
 }
