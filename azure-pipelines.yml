@@ -56,6 +56,13 @@ steps:
     configuration: 'Installer'
     platform: 'Any CPU'
 
+- task: CmdLine@2
+  inputs:
+    script: |
+      $(System.DefaultWorkingDirectory)/bin/Debug/hakchi.exe --versionFormat "##vso[task.setvariable variable=displayVersion]{0}" --versionFile displayVersion.txt
+      cat displayVersion.txt
+      del displayVersion.txt
+
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)/bin/'
@@ -77,19 +84,19 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/bin/Debug/'
-    ArtifactName: 'Debug'
+    ArtifactName: 'hakchi2-ce-$(displayVersion)-debug'
     publishLocation: 'Container'
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/bin/Release/'
-    ArtifactName: 'Release'
+    ArtifactName: 'hakchi2-ce-$(displayVersion)-release'
     publishLocation: 'Container'
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/bin/installer/'
-    ArtifactName: 'Installer'
+    ArtifactName: 'hakchi2-ce-$(displayVersion)-installer'
     publishLocation: 'Container'
 
 - task: GitHubRelease@1
@@ -99,7 +106,7 @@ steps:
     action: 'create'
     target: '$(Build.SourceVersion)'
     tagSource: 'gitTag'
+    title: 'Hakchi2 CE v$(displayVersion)'
     isDraft: true
     changeLogCompareToRelease: 'lastFullRelease'
     changeLogType: 'commitBased'
-
