@@ -76,6 +76,7 @@
             this.scraperGameName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonOk = new System.Windows.Forms.Button();
             this.comboBoxScrapers = new System.Windows.Forms.ComboBox();
+            this.linkLabelPoweredBy = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -99,9 +100,9 @@
             // 
             // listViewGames
             // 
-            resources.ApplyResources(this.listViewGames, "listViewGames");
             this.listViewGames.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.gameName});
+            resources.ApplyResources(this.listViewGames, "listViewGames");
             this.listViewGames.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewGames.HideSelection = false;
             this.listViewGames.MultiSelect = false;
@@ -179,8 +180,8 @@
             // 
             // maskedTextBoxReleaseDate
             // 
-            resources.ApplyResources(this.maskedTextBoxReleaseDate, "maskedTextBoxReleaseDate");
             this.maskedTextBoxReleaseDate.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.maskedTextBoxReleaseDate, "maskedTextBoxReleaseDate");
             this.maskedTextBoxReleaseDate.Name = "maskedTextBoxReleaseDate";
             this.maskedTextBoxReleaseDate.Tag = com.clusterrr.hakchi_gui.ScraperForm.DataType.ReleaseDate;
             this.maskedTextBoxReleaseDate.TextChanged += new System.EventHandler(this.DataChanged);
@@ -319,10 +320,10 @@
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.panelArt);
             this.panel1.Controls.Add(this.checkBoxSpine);
             this.panel1.Controls.Add(this.checkBoxFront);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // panelArt
@@ -335,9 +336,9 @@
             // 
             // pictureBoxM2Spine
             // 
-            resources.ApplyResources(this.pictureBoxM2Spine, "pictureBoxM2Spine");
             this.pictureBoxM2Spine.AllowDrop = true;
             this.pictureBoxM2Spine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.pictureBoxM2Spine, "pictureBoxM2Spine");
             this.pictureBoxM2Spine.Name = "pictureBoxM2Spine";
             this.pictureBoxM2Spine.TabStop = false;
             this.pictureBoxM2Spine.Tag = com.clusterrr.hakchi_gui.ScraperForm.DataType.SpineArt;
@@ -345,9 +346,9 @@
             // 
             // pictureBoxM2Front
             // 
-            resources.ApplyResources(this.pictureBoxM2Front, "pictureBoxM2Front");
             this.pictureBoxM2Front.AllowDrop = true;
             this.pictureBoxM2Front.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.pictureBoxM2Front, "pictureBoxM2Front");
             this.pictureBoxM2Front.Name = "pictureBoxM2Front";
             this.pictureBoxM2Front.TabStop = false;
             this.pictureBoxM2Front.Tag = com.clusterrr.hakchi_gui.ScraperForm.DataType.FrontArt;
@@ -355,9 +356,9 @@
             // 
             // comboBoxSpineTemplates
             // 
-            resources.ApplyResources(this.comboBoxSpineTemplates, "comboBoxSpineTemplates");
             this.comboBoxSpineTemplates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSpineTemplates.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxSpineTemplates, "comboBoxSpineTemplates");
             this.comboBoxSpineTemplates.Name = "comboBoxSpineTemplates";
             this.comboBoxSpineTemplates.Tag = com.clusterrr.hakchi_gui.ScraperForm.DataType.SpineTemplate;
             this.comboBoxSpineTemplates.SelectedIndexChanged += new System.EventHandler(this.DataChanged);
@@ -431,9 +432,9 @@
             // 
             // listViewScraperResults
             // 
-            resources.ApplyResources(this.listViewScraperResults, "listViewScraperResults");
             this.listViewScraperResults.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.scraperGameName});
+            resources.ApplyResources(this.listViewScraperResults, "listViewScraperResults");
             this.listViewScraperResults.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewScraperResults.HideSelection = false;
             this.listViewScraperResults.MultiSelect = false;
@@ -459,12 +460,21 @@
             this.comboBoxScrapers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxScrapers.FormattingEnabled = true;
             this.comboBoxScrapers.Name = "comboBoxScrapers";
+            this.comboBoxScrapers.Tag = com.clusterrr.hakchi_gui.ScraperForm.DataType.SelectedScraper;
             this.comboBoxScrapers.SelectedIndexChanged += new System.EventHandler(this.DataChanged);
+            // 
+            // linkLabelPoweredBy
+            // 
+            resources.ApplyResources(this.linkLabelPoweredBy, "linkLabelPoweredBy");
+            this.linkLabelPoweredBy.Name = "linkLabelPoweredBy";
+            this.linkLabelPoweredBy.TabStop = true;
+            this.linkLabelPoweredBy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPoweredBy_LinkClicked);
             // 
             // ScraperForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.linkLabelPoweredBy);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
@@ -542,5 +552,6 @@
         private System.Windows.Forms.TextBox textBoxSearchTerm;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.LinkLabel linkLabelPoweredBy;
     }
 }

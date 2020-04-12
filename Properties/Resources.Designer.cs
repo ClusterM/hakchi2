@@ -3322,6 +3322,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Powered by {0}.
+        /// </summary>
+        internal static string PoweredBy0 {
+            get {
+                return ResourceManager.GetString("PoweredBy0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Powering off....
         /// </summary>
         internal static string PoweringOff {

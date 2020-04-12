@@ -6,6 +6,7 @@ namespace TeamShinkansen.Scrapers.Interfaces
     {
         // General scraper info
         string ProviderName { get; }
+        string ProviderUrl { get; }
         string ApiKey { get; set; }
 
         // Booleans describing if certain data is provided

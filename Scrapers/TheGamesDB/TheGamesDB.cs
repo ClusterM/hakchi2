@@ -15,6 +15,7 @@ namespace TeamShinkansen.Scrapers.TheGamesDB
     {
         public API TgdbApi = new API();
         public string ProviderName => "TheGamesDB";
+        public string ProviderUrl => "https://thegamesdb.net/";
         public string ApiKey { get => TgdbApi.Key; set => TgdbApi.Key = value; }
         public bool ProvidesDescription => true;
         public bool ProvidesReleaseDate => true;

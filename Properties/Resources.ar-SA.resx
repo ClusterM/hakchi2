@@ -1249,4 +1249,7 @@ http://darkakuma.z-net.us/p/sfromtool.html </value>
   <data name="Offline" xml:space="preserve">
     <value>غير متصل</value>
   </data>
+  <data name="PoweredBy0" xml:space="preserve">
+    <value>{0} مدعوم من</value>
+  </data>
 </root>

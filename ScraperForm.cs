@@ -3,6 +3,7 @@ using SpineGen.DrawingBitmaps;
 using SpineGen.JSON;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -139,6 +140,7 @@ namespace com.clusterrr.hakchi_gui
 
                 comboBoxScrapers.Items.Add(scraper);
             }
+
             comboBoxScrapers.SelectedIndex = 0;
             comboBoxScrapers.Visible = Program.Scrapers.Count > 1;
 
@@ -391,12 +393,12 @@ namespace com.clusterrr.hakchi_gui
 
         private void DataChanged(object sender, EventArgs e)
         {
-            if (SelectedItem == null || !UpdateCheckboxes)
-                return;
-
             if (sender != null && sender is Control)
             {
                 var control = sender as Control;
+
+                if ((DataType)control.Tag != DataType.SelectedScraper && SelectedItem == null || !UpdateCheckboxes)
+                    return;
 
                 if (control.Tag != null && control.Tag is DataType)
                 {
@@ -444,7 +446,9 @@ namespace com.clusterrr.hakchi_gui
                         case DataType.FrontArt: break;
 
                         case DataType.SelectedScraper:
-                            SelectedItem.SelectedScraper = comboBoxScrapers.SelectedItem as IScraper;
+                            linkLabelPoweredBy.Visible = SelectedScraper.ProviderUrl != null && isUrl(SelectedScraper.ProviderUrl);
+                            linkLabelPoweredBy.Tag = SelectedScraper.ProviderUrl;
+                            linkLabelPoweredBy.Text = string.Format(Resources.PoweredBy0, SelectedScraper.ProviderName);
                             break;
 
                         case DataType.SpineTemplate:
@@ -942,6 +946,26 @@ namespace com.clusterrr.hakchi_gui
             if (e.KeyChar == (char)13 && listViewScraperResults.Enabled)
             {
                 buttonSearch_Click(sender, e);
+            }
+        }
+
+        private bool isUrl(string input)
+        {
+            return input != null && input.Length > 0 && (input.ToLower().StartsWith("http://") || input.ToLower().StartsWith("https://"));
+        }
+
+        private void linkLabelPoweredBy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (linkLabelPoweredBy.Tag != null && linkLabelPoweredBy.Tag is string && isUrl((string)linkLabelPoweredBy.Tag))
+            {
+                (new Process()
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        UseShellExecute = true,
+                        FileName = (string)linkLabelPoweredBy.Tag
+                    }
+                }).Start();
             }
         }
     }
