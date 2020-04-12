@@ -112,36 +112,64 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     break;
 
                 case MembootTaskType.UninstallHakchi:
-                    taskList.Add(TaskIf(() => hakchi.IsMdPartitioning, SuccessTask, GetStockKernel));
-
-                    if (ignoreBackupKernel)
-                        taskList.Add(TaskIf(() => hakchi.IsMdPartitioning, SuccessTask, EraseBackupKernel));
-
-                    taskList.AddRange(new TaskFunc[]{
-                        TaskIf(() => hakchi.IsMdPartitioning, SuccessTask, FlashKernel),
-                        HandleHakchi(HakchiTasks.Uninstall)
-                    });
-
-                    if (!userRecovery)
-                        taskList.Add(ShellTasks.Reboot);
-
-                    break;
-
+                case MembootTaskType.FormatUserPartition:
                 case MembootTaskType.FactoryReset:
-                    taskList.Add(TaskIf(() => hakchi.IsMdPartitioning, ErrorTask(Resources.NotSupportedOnThisPlatform), SuccessTask));
-                    taskList.Add(GetStockKernel);
 
-                    if (ignoreBackupKernel)
-                        taskList.Add(EraseBackupKernel);
+                    var reinstallHakchi = false;
 
-                    taskList.AddRange(new TaskFunc[] {
-                        FlashKernel,
-                        ShellTasks.UnmountBase,
-                        (Tasker tasker, Object syncObject) =>  ShellTasks.FormatDevice($"/dev/{Sunxi.NandInfo.GetNandInfo().GetDataPartition().Device}")(tasker, syncObject)
-                    });
+                    if (type == MembootTaskType.UninstallHakchi || type == MembootTaskType.FactoryReset)
+                    {
+                        taskList.Add(TaskIf(() => hakchi.IsMdPartitioning, SuccessTask, GetStockKernel));
+
+                        if (ignoreBackupKernel)
+                            taskList.Add(TaskIf(() => hakchi.IsMdPartitioning, SuccessTask, EraseBackupKernel));
+
+                        taskList.AddRange(new TaskFunc[]{
+                            TaskIf(() => hakchi.IsMdPartitioning, SuccessTask, FlashKernel),
+                            HandleHakchi(HakchiTasks.Uninstall)
+                        });
+                    }
+
+                    if (type == MembootTaskType.FormatUserPartition || type == MembootTaskType.FactoryReset)
+                    {
+
+                        if (type == MembootTaskType.FormatUserPartition)
+                        {
+                            taskList.AddRange(new TaskFunc[]
+                            {
+                                (Tasker tasker, object SyncObject) =>
+                                {
+                                    hakchi.Shell.Execute("hakchi mount_base");
+                                    reinstallHakchi = hakchi.Shell.Execute("hakchi eval '[ -e \"$mountpoint/var/lib/hakchi/\" ]'") == 0;
+                                    hakchi.Shell.Execute("hakchi umount_base");
+                                    return Conclusion.Success;
+                                },
+                            });
+                        }
+
+                        taskList.AddRange(new TaskFunc[]
+                        {
+                            ShellTasks.UnmountBase,
+                            (Tasker tasker, Object syncObject) =>  ShellTasks.FormatDevice($"/dev/{Sunxi.NandInfo.GetNandInfo().GetDataPartition().Device}")(tasker, syncObject)
+                        });
+
+                        if (type == MembootTaskType.FormatUserPartition)
+                        {
+                            taskList.AddRange(new TaskFunc[]
+                            {
+                                TaskIf(() => reinstallHakchi, HandleHakchi(HakchiTasks.Install), SuccessTask),
+                                TaskIf(() => reinstallHakchi, ModTasks.TransferBaseHmods("/hakchi/transfer"), SuccessTask),
+                                TaskIf(() => reinstallHakchi, ModTasks.TransferHakchiHmod("/hakchi/transfer"), SuccessTask)
+                            });
+                        }
+
+
+                    }
 
                     if (!userRecovery)
-                        taskList.Add(ShellTasks.Reboot);
+                    {
+                        taskList.Add(TaskIf(() => reinstallHakchi, BootHakchi, ShellTasks.Reboot));
+                    }
 
                     break;
 
@@ -192,20 +220,6 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     });
                     if (!userRecovery)
                         taskList.Add(ShellTasks.Reboot);
-
-                    break;
-
-                case MembootTaskType.FormatUserPartition:
-                    taskList.AddRange(new TaskFunc[]
-                    {
-                        ShellTasks.UnmountBase,
-                        (Tasker tasker, Object syncObject) =>  ShellTasks.FormatDevice($"/dev/{Sunxi.NandInfo.GetNandInfo().GetDataPartition().Device}")(tasker, syncObject),
-                        HandleHakchi(HakchiTasks.Install),
-                        ModTasks.TransferBaseHmods("/hakchi/transfer"),
-                        ModTasks.TransferHakchiHmod("/hakchi/transfer")
-                    });
-                    if (!userRecovery)
-                        taskList.Add(BootHakchi);
 
                     break;
 

@@ -497,9 +497,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             return (Tasker tasker, Object syncObject) =>
             {
-                return (condition(tasker, syncObject) == Conclusion.Success) ?
-                    successTask(tasker, syncObject) :
-                    (failureTask ?? Stub)(tasker, syncObject);
+                TaskFunc task = condition(tasker, syncObject) == Conclusion.Success ? successTask : (failureTask ?? Stub);
+                Trace.WriteLine($"Forwarding task: {Regex.Match(task.Method.DeclaringType.Name, @"[^.]+$").Value + "." + task.Method.Name}");
+                return task(tasker, syncObject);
             };
         }
 
@@ -507,9 +507,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             return (Tasker tasker, Object syncObject) =>
             {
-                return (condition()) ?
-                    trueTask(tasker, syncObject) :
-                    (falseTask ?? Stub)(tasker, syncObject);
+                TaskFunc task = (condition()) ? trueTask : (falseTask ?? Stub);
+                Trace.WriteLine($"Forwarding task: {Regex.Match(task.Method.DeclaringType.Name, @"[^.]+$").Value + "." + task.Method.Name}");
+                return task(tasker, syncObject);
             };
         }
 

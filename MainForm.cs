@@ -3663,7 +3663,6 @@ namespace com.clusterrr.hakchi_gui
         private void MenuStrip_MenuActivate(object sender, EventArgs e)
         {
             membootOriginalKernelToolStripMenuItem.Visible =
-            factoryResetToolStripMenuItem.Visible =
             dumpOriginalKernellegacyToolStripMenuItem.Visible =
             toolStripSeparator1.Visible =
             toolStripMenuItem10.Visible =
