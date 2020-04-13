@@ -4121,7 +4121,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>cd /D "$(ProjectDir)tools/" || cd "$(ProjectDir)tools/"
+    <PreBuildEvent>"$(SolutionDir)TGDBHashTool/bin/$(ConfigurationName)/TGDBHashTool.exe" --xml "$(SolutionDir)TGDBHashTool/data.xml" --cs "$(SolutionDir)data/GamesDB.cs" --cs-opts "com.clusterrr.hakchi_gui.data,GamesDB,HashLookup"
+cd /D "$(ProjectDir)tools/" || cd "$(ProjectDir)tools/"
 "./busybox" sh -e "./downloadfiles" ../
 "./busybox" tar -cvf "../basehmods.tar" -C "../mods/hmods" "."
 "./busybox" sh -e "./copypackedhmods" "../mods/hmods" "../$(OutDir)user_mods"

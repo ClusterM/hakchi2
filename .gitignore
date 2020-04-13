@@ -1,28 +1,29 @@
+*.csproj.user
+*.pfx
+*.vcxproj.user
+.vs/
+ApiKeys/
+Makefile Projects/Debug/
+Makefile Projects/Release/
+Web Installer/*.exe
+basehmods.tar
 bin/
+commit.txt
+data/GamesDB.cs
+data/desktop_entries.7z
+data/desktop_entries.tar
+data/libretro_cores.7z
+data/libretro_cores.tar
+data/licenses.tar
+data/original_art.tar
+downloadedFiles.txt
+driver/classic_driver.exe
 driver/source/nesmini_driver/Release/
 driver/usb_driver/
-obj/
-.vs/
-*.csproj.user
-*.vcxproj.user
-*.pfx
-commit.txt
-basehmods.tar
-downloadedFiles.txt
 mods/hmods/hakchi.hmod
-tools/arm/detached-fallback
-Web Installer/*.exe
-driver/classic_driver.exe
-Makefile Projects/Release/
-Makefile Projects/Debug/
-tools/putty/puttytel.exe
+obj/
 packages/
-data/libretro_cores.7z
-data/desktop_entries.7z
-data/libretro_cores.tar
-data/desktop_entries.tar
-data/original_art.tar
-data/licenses.tar
-!user_mods/snes_custom_filters.hmod/usr/bin/
+tools/arm/detached-fallback
+tools/putty/puttytel.exe
 user_mods/bluetooth.hmod
-ApiKeys/
+!user_mods/snes_custom_filters.hmod/usr/bin/

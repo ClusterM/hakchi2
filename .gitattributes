@@ -1,6 +1,8 @@
+*.ai binary
 *.cs text eol=crlf
+*.desktop text eol=lf
+*.png binary
 *.resx text eol=crlf
 *.sln text eol=crlf
-*.desktop text eol=lf
-*.ai binary
+*.xml text eol=lf
 data/moon_hashes/* text eol=lf
