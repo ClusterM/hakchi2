@@ -52,6 +52,7 @@
             this.Name = "ModHubForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ModHubForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModHubForm_FormClosing);
             this.ResumeLayout(false);
 
         }

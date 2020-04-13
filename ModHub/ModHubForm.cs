@@ -1,6 +1,7 @@
 ﻿using com.clusterrr.hakchi_gui.Hmod.Controls;
 using com.clusterrr.hakchi_gui.ModHub.Controls;
 using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.hakchi_gui.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,6 +83,21 @@ namespace com.clusterrr.hakchi_gui.ModHub
             }
             
             tabControl1.ResumeLayout();
+        }
+
+        private void ModHubForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (hakchi.Shell.IsOnline && hakchi.Shell.Execute("[ -e /mod-recovery.flag ]") == 0)
+            {
+                using (var tasker = new Tasker(this))
+                {
+                    tasker.AttachViews(new TaskerTaskbar(), new TaskerForm());
+                    tasker.SetStatusImage(Resources.sign_sync);
+                    tasker.SetTitle(Resources.Rebooting);
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.Memboot));
+                    tasker.Start();
+                }
+            }
         }
     }
 }

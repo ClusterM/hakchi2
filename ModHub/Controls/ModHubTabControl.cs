@@ -229,8 +229,10 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
         private void handleModDownload(bool install = false)
         {
             using (var tasker = new Tasks.Tasker(parentForm))
+            using (var taskerForm = new TaskerForm())
             {
-                tasker.AttachViews(new TaskerTaskbar(), new TaskerForm());
+                
+                tasker.AttachViews(new TaskerTaskbar(), taskerForm);
                 tasker.SetStatusImage(Resources.sign_cogs);
                 tasker.SetTitle(Resources.Processing);
 
@@ -246,8 +248,15 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
 
                 if (install && selectedMods.Count > 0)
                 {
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery, forceRecoveryReload: false));
+                    tasker.AddTask(ShellTasks.ShellCommand("touch /user-recovery.flag"));
+                    tasker.AddTask(ShellTasks.ShellCommand("touch /mod-recovery.flag"));
                     tasker.AddTask(ShellTasks.MountBase);
-                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ProcessMods, selectedMods.ToArray()));
+                    tasker.AddTask((Tasker innerTasker, object syncObject) =>
+                    {
+                        tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.ProcessMods, selectedMods.ToArray()));
+                        return Conclusion.Success;
+                    });
                 }
 
                 tasker.Start();
