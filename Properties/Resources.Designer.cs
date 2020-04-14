@@ -1077,11 +1077,29 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading clear logo for {0}.
+        /// </summary>
+        internal static string DownloadingClearLogoFor0 {
+            get {
+                return ResourceManager.GetString("DownloadingClearLogoFor0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Downloading....
         /// </summary>
         internal static string DownloadingEllipsis {
             get {
                 return ResourceManager.GetString("DownloadingEllipsis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading front art for {0}.
+        /// </summary>
+        internal static string DownloadingFrontArtFor0 {
+            get {
+                return ResourceManager.GetString("DownloadingFrontArtFor0", resourceCulture);
             }
         }
         
@@ -2111,6 +2129,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
             get {
                 object obj = ResourceManager.GetObject("gb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generating spine for {0}.
+        /// </summary>
+        internal static string GeneratingSpineFor0 {
+            get {
+                return ResourceManager.GetString("GeneratingSpineFor0", resourceCulture);
             }
         }
         
@@ -3730,6 +3757,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string ScanningCovers {
             get {
                 return ResourceManager.GetString("ScanningCovers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scraping {0}.
+        /// </summary>
+        internal static string Scraping0 {
+            get {
+                return ResourceManager.GetString("Scraping0", resourceCulture);
             }
         }
         

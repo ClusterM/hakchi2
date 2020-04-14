@@ -2,6 +2,8 @@
 using SharpCompress.Archives;
 using SharpCompress.Common;
 using SharpCompress.Readers;
+using SpineGen.DrawingBitmaps;
+using SpineGen.JSON;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,6 +13,7 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
+using TeamShinkansen.Scrapers.Interfaces;
 
 namespace com.clusterrr.hakchi_gui.Tasks
 {
@@ -18,6 +21,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
     {
         readonly string tempDirectory = Path.Combine(Path.GetTempPath(), "hakchi2");
 
+        private List<NesApplication> NewGames = new List<NesApplication>();
         private static string selectedFile = null;
         public static DialogResult SelectFile(Tasker tasker, string[] files)
         {
@@ -206,110 +210,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         {
                             gamesWithMultipleArt.Add(app);
                         }
-                        if (ConfigIni.Instance.EnableImportScraper && Program.TheGamesDBAPI != null && 
-                            app.Metadata.OriginalCrc32 != 0 && 
-                            data.GamesDB.HashLookup.ContainsKey(app.Metadata.OriginalCrc32) && 
-                            data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].Length > 0)
-                        {
-                            var api = Program.TheGamesDBAPI;
-                            var task = api.GetInfoByID(data.GamesDB.HashLookup[app.Metadata.OriginalCrc32]);
-                            try
-                            {
-                                task.Wait();
-                                var result = task.Result;
-
-                                if (result.Items.Count() > 0)
-                                {
-                                    var first = result.Items.First();
-
-                                    if (first.Name != null)
-                                    {
-                                        app.Desktop.Name = first.Name;
-                                        app.Desktop.SortName = Shared.GetSortName(first.Name);
-                                    }
-
-                                    if (first.Publishers != null && first.Publishers.Length > 0)
-                                    {
-                                        app.Desktop.Publisher = String.Join(", ", first.Publishers).ToUpper();
-                                    }
-                                    else if (first.Developers != null && first.Developers.Length > 0)
-                                    {
-                                        if (first.ReleaseDate != null)
-                                        {
-                                            app.Desktop.Copyright = $"© {first.ReleaseDate.Year} {String.Join(", ", first.Developers)}";
-                                        }
-                                        else
-                                        {
-                                            app.Desktop.Copyright = $"© {String.Join(", ", first.Developers)}";
-                                        }
-                                    }
-
-                                    if (first.Description != null)
-                                        app.Desktop.Description = first.Description;
-                                    
-                                    if (first.ReleaseDate != null)
-                                        app.Desktop.ReleaseDate = first.ReleaseDate.ToString("yyyy-MM-dd");
-                                    
-                                    if (first.PlayerCount > 0)
-                                    {
-                                        app.Desktop.Players = Convert.ToByte(first.PlayerCount);
-                                        app.Desktop.Simultaneous = first.PlayerCount == 2;
-                                    }
-
-                                    if (first.Genres != null && first.Genres.Length > 0)
-                                    {
-                                        foreach (var genre in first.Genres)
-                                        {
-                                            var match = ScraperForm.TheGamesDBGenreLookup.Where(g => g.Value.Contains(genre.ID)).Select(g => g.Key);
-
-                                            if (match.Count() > 0)
-                                            {
-                                                var firstGenre = match.First();
-
-                                                app.Desktop.Genre = firstGenre;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    
-                                    using (var wc = new HakchiWebClient())
-                                    {
-
-                                        try
-                                        {
-                                            var front = first.Images.Where(i => i.Type == TeamShinkansen.Scrapers.Enums.ArtType.Front).ToArray();
-
-                                            if (front.Length > 0 && !app.CoverArtMatchSuccess)
-                                            {
-                                                var data = wc.DownloadData(front[0].Url);
-                                                using (var ms = new MemoryStream(data))
-                                                using (var bm = new Bitmap(ms))
-                                                {
-                                                    app.SetImage(bm);
-                                                }
-                                            }
-                                        }
-                                        catch (WebException ex) { }
-
-                                        try
-                                        {
-                                            var imageData = wc.DownloadData($"https://cdn.thegamesdb.net/images/original/clearlogo/{first.ID}.png");
-
-                                            using (var ms = new MemoryStream(imageData))
-                                            using (var clearLogo = File.OpenWrite(Path.Combine(app.BasePath, $"{app.Code}_logo.png")))
-                                            {
-                                                ms.Seek(0, SeekOrigin.Begin);
-                                                ms.CopyTo(clearLogo);
-                                            }
-                                        }
-                                        catch (WebException ex) { }
-                                    }
-
-                                    
-                                }
-                            }
-                            catch (Exception) { }
-                        }
+                        NewGames.Add(app);
                     }
 
                     if (app is ISupportsGameGenie && Path.GetExtension(fileName).ToLower() == ".nes")
@@ -356,6 +257,175 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     }
                 }));
             }
+            return Tasker.Conclusion.Success;
+        }
+
+        public Tasker.Conclusion ScrapeGames(Tasker tasker, Object syncObject = null)
+        {
+            if (Program.TheGamesDBAPI == null)
+            {
+                return Tasker.Conclusion.Success;
+            }
+
+            try
+            {
+                var idList = new Dictionary<UInt32, int>();
+
+                foreach (var app in NewGames)
+                {
+                    if (app.Metadata.OriginalCrc32 != 0 &&
+                        data.GamesDB.HashLookup.ContainsKey(app.Metadata.OriginalCrc32) &&
+                        data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].Length > 0)
+                    {
+                        if (!idList.ContainsKey(app.Metadata.OriginalCrc32))
+                        {
+                            idList.Add(app.Metadata.OriginalCrc32, data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].First());
+                        }
+                    }
+                }   
+
+                var api = Program.TheGamesDBAPI;
+                var infoList = new Dictionary<int, IScraperData>();
+
+                foreach (var chunk in idList.Values.Distinct().ToList().ChunkBy(20)){
+                    var apiResponse = api.GetInfoByID(chunk.ToArray());
+
+                    while (true)
+                    {
+                        apiResponse.Wait();
+                        foreach (var result in apiResponse.Result.Items)
+                        {
+                            infoList.Add(int.Parse(result.ID), result);
+                        }
+
+                        if (apiResponse.Result.HasNextPage)
+                        {
+                            apiResponse = apiResponse.Result.GetNextPage();
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                var counter = 0;
+                
+                foreach (var app in NewGames)
+                {
+                    tasker.SetProgress(++counter, NewGames.Count);
+                    tasker.SetStatus(string.Format(Resources.Scraping0, app.Name));
+
+                    int tgdbId;
+                    if (app.Metadata.OriginalCrc32 != 0 &&
+                    data.GamesDB.HashLookup.ContainsKey(app.Metadata.OriginalCrc32) &&
+                    data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].Length > 0 &&
+                    infoList.ContainsKey(tgdbId = data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].First()))
+                    {
+                        try
+                        {
+                            var apiResult = infoList[tgdbId];
+
+                            if (apiResult.Name != null)
+                            {
+                                app.Desktop.Name = apiResult.Name;
+                                app.Desktop.SortName = Shared.GetSortName(apiResult.Name);
+                            }
+
+                            if (apiResult.Publishers != null && apiResult.Publishers.Length > 0)
+                            {
+                                app.Desktop.Publisher = String.Join(", ", apiResult.Publishers).ToUpper();
+                            }
+                            else if (apiResult.Developers != null && apiResult.Developers.Length > 0)
+                            {
+                                if (apiResult.ReleaseDate != null)
+                                {
+                                    app.Desktop.Copyright = $"© {apiResult.ReleaseDate.Year} {String.Join(", ", apiResult.Developers)}";
+                                }
+                                else
+                                {
+                                    app.Desktop.Copyright = $"© {String.Join(", ", apiResult.Developers)}";
+                                }
+                            }
+
+                            if (apiResult.Description != null)
+                                app.Desktop.Description = apiResult.Description;
+
+                            if (apiResult.ReleaseDate != null)
+                                app.Desktop.ReleaseDate = apiResult.ReleaseDate.ToString("yyyy-MM-dd");
+
+                            if (apiResult.PlayerCount > 0)
+                            {
+                                app.Desktop.Players = Convert.ToByte(apiResult.PlayerCount);
+                                app.Desktop.Simultaneous = apiResult.PlayerCount == 2;
+                            }
+
+                            if (apiResult.Genres != null && apiResult.Genres.Length > 0)
+                            {
+                                foreach (var genre in apiResult.Genres)
+                                {
+                                    var match = ScraperForm.TheGamesDBGenreLookup.Where(g => g.Value.Contains(genre.ID)).Select(g => g.Key);
+
+                                    if (match.Count() > 0)
+                                    {
+                                        var firstGenre = match.First();
+
+                                        app.Desktop.Genre = firstGenre;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            using (var wc = new HakchiWebClient())
+                            {
+
+                                try
+                                {
+                                    var front = apiResult.Images.Where(i => i.Type == TeamShinkansen.Scrapers.Enums.ArtType.Front).ToArray();
+
+                                    if (front.Length > 0 && !app.CoverArtMatchSuccess)
+                                    {
+                                        tasker.SetStatus(string.Format(Resources.DownloadingFrontArtFor0, apiResult.Name));
+                                        var data = wc.DownloadData(front[0].Url);
+                                        using (var ms = new MemoryStream(data))
+                                        using (var bm = new Bitmap(ms))
+                                        {
+                                            app.SetImage(bm);
+                                        }
+                                    }
+                                }
+                                catch (WebException ex) { }
+
+                                try
+                                {
+                                    tasker.SetStatus(string.Format(Resources.DownloadingClearLogoFor0, apiResult.Name));
+                                    var imageData = wc.DownloadData($"https://cdn.thegamesdb.net/images/original/clearlogo/{apiResult.ID}.png");
+
+                                    using (var ms = new MemoryStream(imageData))
+                                    using (var clearLogo = File.OpenWrite(Path.Combine(app.BasePath, $"{app.Code}_logo.png")))
+                                    {
+                                        ms.Seek(0, SeekOrigin.Begin);
+                                        ms.CopyTo(clearLogo);
+                                        ms.Seek(0, SeekOrigin.Begin);
+
+                                        tasker.SetStatus(string.Format(Resources.GeneratingSpineFor0, apiResult.Name));
+                                        using (var bm = new Bitmap(ms))
+                                        using (var cl = new SystemDrawingBitmap(bm))
+                                        using (var spineImage = (Program.SpineTemplates.Where(e => e.Value.Name == "Custom (Black Grid)").First().Value as SpineTemplate<Bitmap>).Process(cl).Bitmap)
+                                        {
+                                            app.SetMdMini(spineImage, NesMenuElementBase.GameImageType.MdSpine);
+                                        }
+                                    }
+                                }
+                                catch (WebException ex) { }
+                            }
+                        }
+                        catch (Exception innerEx) { }
+                    }
+                }
+            }
+            catch (Exception ex) { }
+
             return Tasker.Conclusion.Success;
         }
 

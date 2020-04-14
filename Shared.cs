@@ -276,6 +276,15 @@ namespace com.clusterrr.hakchi_gui
             return formatted;
         }
 
+        public static List<List<T>> ChunkBy<T>(this List<T> source, int chunkSize)
+        {
+            return source
+            .Select((x, i) => new { Index = i, Value = x })
+            .GroupBy(x => x.Index / chunkSize)
+            .Select(x => x.Select(v => v.Value).ToList())
+            .ToList();
+        }
+
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool skipExistingFiles, bool overwriteExistingFiles, bool pseudoLinks, string[] skipFiles = null)
         {
             // Get the subdirectories for the specified directory.

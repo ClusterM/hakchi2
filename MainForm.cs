@@ -2112,6 +2112,12 @@ namespace com.clusterrr.hakchi_gui
                 tasker.AttachView(new Tasks.TaskerForm());
                 var task = new Tasks.AddGamesTask(listViewGames, files, asIs);
                 tasker.AddTask(task.AddGames, 4);
+
+                if (ConfigIni.Instance.EnableImportScraper && Program.TheGamesDBAPI != null)
+                {
+                    tasker.AddTask(task.ScrapeGames, 4);
+                }
+                
                 tasker.AddTask(task.UpdateListView);
 
                 if (tasker.Start() == Tasks.Tasker.Conclusion.Success)

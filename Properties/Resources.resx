@@ -1654,4 +1654,16 @@ There is a small chance of data loss, please make sure you have your saves backe
   <data name="PoweredBy0" xml:space="preserve">
     <value>Powered by {0}</value>
   </data>
+  <data name="Scraping0" xml:space="preserve">
+    <value>Scraping {0}</value>
+  </data>
+  <data name="DownloadingFrontArtFor0" xml:space="preserve">
+    <value>Downloading front art for {0}</value>
+  </data>
+  <data name="DownloadingClearLogoFor0" xml:space="preserve">
+    <value>Downloading clear logo for {0}</value>
+  </data>
+  <data name="GeneratingSpineFor0" xml:space="preserve">
+    <value>Generating spine for {0}</value>
+  </data>
 </root>
