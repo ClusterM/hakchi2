@@ -36774,10 +36774,12 @@
     <game name="16 Zhang Mahjong (Taiwan) (Unl)">
       <description>16 Zhang Mahjong (Taiwan) (Unl)</description>
       <rom name="16 Zhang Mahjong (Taiwan) (Unl).md" crc="36407C82" />
+      <tgdb>70627</tgdb>
     </game>
     <game name="16 Zhang Mahjong II (Taiwan) (Unl)">
       <description>16 Zhang Mahjong II (Taiwan) (Unl)</description>
       <rom name="16 Zhang Mahjong II (Taiwan) (Unl).md" crc="B4F4249F" />
+      <tgdb>70624</tgdb>
     </game>
     <game name="16t (Japan) (Game no Kanzume Otokuyou)">
       <description>16t (Japan) (Game no Kanzume Otokuyou)</description>
@@ -37288,6 +37290,7 @@
     <game name="Arcade Legends Sega Mega Drive ~ Arcade Legends Sega Genesis ~ Mega Drive Play TV (World)">
       <description>Arcade Legends Sega Mega Drive ~ Arcade Legends Sega Genesis ~ Mega Drive Play TV (World)</description>
       <rom name="Arcade Legends Sega Mega Drive ~ Arcade Legends Sega Genesis ~ Mega Drive Play TV (World).md" crc="2362F1B9" />
+      <tgdb>43178</tgdb>
     </game>
     <game name="Arcade Legends Street Fighter II' - Special Champion Edition ~ Mega Drive Play TV 3 (World)">
       <description>Arcade Legends Street Fighter II' - Special Champion Edition ~ Mega Drive Play TV 3 (World)</description>
@@ -37587,6 +37590,7 @@
     <game name="Ballz 3D - Fighting at Its Ballziest ~ Ballz 3D - The Battle of the Ballz (USA, Europe)">
       <description>Ballz 3D - Fighting at Its Ballziest ~ Ballz 3D - The Battle of the Ballz (USA, Europe)</description>
       <rom name="Ballz 3D - Fighting at Its Ballziest ~ Ballz 3D - The Battle of the Ballz (USA, Europe).md" crc="B362B705" />
+      <tgdb>451</tgdb>
     </game>
     <game name="Ballz 3D - Fighting at Its Ballziest ~ Ballz 3D - The Battle of the Ballz (USA, Europe) (Rev A) (Beta) (September, 1994)">
       <description>Ballz 3D - Fighting at Its Ballziest ~ Ballz 3D - The Battle of the Ballz (USA, Europe) (Rev A) (Beta) (September, 1994)</description>
@@ -39287,18 +39291,26 @@
     <game name="Daimakaimura (Japan)">
       <description>Daimakaimura (Japan)</description>
       <rom name="Daimakaimura (Japan).md" crc="5659F379" />
+      <tgdb>2592</tgdb>
+      <tgdb>24015</tgdb>
     </game>
     <game name="Daimakaimura ~ Ghouls'n Ghosts (World) (Rev A)">
       <description>Daimakaimura ~ Ghouls'n Ghosts (World) (Rev A)</description>
       <rom name="Daimakaimura ~ Ghouls'n Ghosts (World) (Rev A).md" crc="D31BD910" />
+      <tgdb>2592</tgdb>
+      <tgdb>24015</tgdb>
     </game>
     <game name="Daimakaimura ~ Ghouls'n Ghosts (World) (Rev A) (Sega Channel)">
       <description>Daimakaimura ~ Ghouls'n Ghosts (World) (Rev A) (Sega Channel)</description>
       <rom name="Daimakaimura ~ Ghouls'n Ghosts (World) (Rev A) (Sega Channel).md" crc="4552A3DE" />
+      <tgdb>2592</tgdb>
+      <tgdb>24015</tgdb>
     </game>
     <game name="Daimakaimura ~ Ghouls'n Ghosts (World) (Rev B)">
       <description>Daimakaimura ~ Ghouls'n Ghosts (World) (Rev B)</description>
       <rom name="Daimakaimura ~ Ghouls'n Ghosts (World) (Rev B).md" crc="4F2561D5" />
+      <tgdb>2592</tgdb>
+      <tgdb>24015</tgdb>
     </game>
     <game name="Daisenpuu ~ Twin Hawk (Japan, Europe)">
       <description>Daisenpuu ~ Twin Hawk (Japan, Europe)</description>
@@ -39602,6 +39614,7 @@
     <game name="Dinosaur's Tale, A (USA)">
       <description>Dinosaur's Tale, A (USA)</description>
       <rom name="Dinosaur's Tale, A (USA).md" crc="70155B5B" />
+      <tgdb>4721</tgdb>
     </game>
     <game name="Disney Collection, The - QuackShot Starring Donald Duck + Castle of Illusion Starring Mickey Mouse (Europe)">
       <description>Disney Collection, The - QuackShot Starring Donald Duck + Castle of Illusion Starring Mickey Mouse (Europe)</description>
@@ -39664,6 +39677,7 @@
     <game name="Doraemon - Yume Dorobou to 7 Nin no Gozans (Japan)">
       <description>Doraemon - Yume Dorobou to 7 Nin no Gozans (Japan)</description>
       <rom name="Doraemon - Yume Dorobou to 7 Nin no Gozans (Japan).md" crc="EEED1130" />
+      <tgdb>20318</tgdb>
     </game>
     <game name="Double Clutch (Europe)">
       <description>Double Clutch (Europe)</description>
