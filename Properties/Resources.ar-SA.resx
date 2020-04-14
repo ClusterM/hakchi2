@@ -1252,4 +1252,36 @@ http://darkakuma.z-net.us/p/sfromtool.html </value>
   <data name="PoweredBy0" xml:space="preserve">
     <value>{0} مدعوم من</value>
   </data>
+  <data name="GeneratingSpineFor0" xml:space="preserve">
+    <value>جاري توليد الظهر لـ {0}</value>
+  </data>
+  <data name="DownloadingClearLogoFor0" xml:space="preserve">
+    <value>جاري تنزيل شعار صافي لـ {0}</value>
+  </data>
+  <data name="DownloadingFrontArtFor0" xml:space="preserve">
+    <value>جاري تنزيل الرسم الامامي لـ {0}</value>
+  </data>
+  <data name="Scraping0" xml:space="preserve">
+    <value>جاري جلب البيانات لـ {0}</value>
+  </data>
+  <data name="AutoScrapeKnownGames" xml:space="preserve">
+    <value>جلب البيانات تلقائياً للألعاب المعروفة</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>البيانات الوصفية</value>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>كلاهما</value>
+  </data>
+  <data name="Artwork" xml:space="preserve">
+    <value>رسمة العلبة</value>
+  </data>
+  <data name="ChooseWhatYouWouldLikeToScrape" xml:space="preserve">
+    <value>اختر ما تريد جلبه من بيانات، سيؤدي ذلك إلى استبدال أي معلومات موجودة.</value>
+  </data>
+  <data name="ThisWillReplaceAnyCustomInformationAndArtworkFromScraper" xml:space="preserve">
+    <value>سيؤدي ذلك إلى استبدال أي معلومات مخصصة وعمل فني بتلك من جالب البيانات.
+
+هل أنت متأكد؟</value>
+  </data>
 </root>

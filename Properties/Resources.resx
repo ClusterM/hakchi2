@@ -1666,4 +1666,24 @@ There is a small chance of data loss, please make sure you have your saves backe
   <data name="GeneratingSpineFor0" xml:space="preserve">
     <value>Generating spine for {0}</value>
   </data>
+  <data name="Artwork" xml:space="preserve">
+    <value>Artwork</value>
+  </data>
+  <data name="AutoScrapeKnownGames" xml:space="preserve">
+    <value>Auto-scrape known games</value>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="ChooseWhatYouWouldLikeToScrape" xml:space="preserve">
+    <value>Choose what you would like to scrape, this will replace any existing information.</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="ThisWillReplaceAnyCustomInformationAndArtworkFromScraper" xml:space="preserve">
+    <value>This will replace any custom information and artwork with that from the scraper.
+
+Are you sure?</value>
+  </data>
 </root>

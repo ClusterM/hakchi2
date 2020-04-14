@@ -224,6 +224,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artwork.
+        /// </summary>
+        internal static string Artwork {
+            get {
+                return ResourceManager.GetString("Artwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data automatically filled for {0} game(s)..
         /// </summary>
         internal static string AutofillResult {
@@ -238,6 +247,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string AutofireHelp1 {
             get {
                 return ResourceManager.GetString("AutofireHelp1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto-scrape known games.
+        /// </summary>
+        internal static string AutoScrapeKnownGames {
+            get {
+                return ResourceManager.GetString("AutoScrapeKnownGames", resourceCulture);
             }
         }
         
@@ -460,6 +478,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Both.
+        /// </summary>
+        internal static string Both {
+            get {
+                return ResourceManager.GetString("Both", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap br {
@@ -574,6 +601,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string CannotSyncToNonMultiBoot {
             get {
                 return ResourceManager.GetString("CannotSyncToNonMultiBoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose what you would like to scrape, this will replace any existing information..
+        /// </summary>
+        internal static string ChooseWhatYouWouldLikeToScrape {
+            get {
+                return ResourceManager.GetString("ChooseWhatYouWouldLikeToScrape", resourceCulture);
             }
         }
         
@@ -2813,6 +2849,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Metadata.
+        /// </summary>
+        internal static string Metadata {
+            get {
+                return ResourceManager.GetString("Metadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
         ///&lt;html lang=&quot;en&quot;&gt;
         ///  &lt;head&gt;
@@ -4329,6 +4374,17 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string TheGamesDBKey {
             get {
                 return ResourceManager.GetString("TheGamesDBKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will replace any custom information and artwork with that from the scraper.
+        ///
+        ///Are you sure?.
+        /// </summary>
+        internal static string ThisWillReplaceAnyCustomInformationAndArtworkFromScraper {
+            get {
+                return ResourceManager.GetString("ThisWillReplaceAnyCustomInformationAndArtworkFromScraper", resourceCulture);
             }
         }
         
