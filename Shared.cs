@@ -206,21 +206,21 @@ namespace com.clusterrr.hakchi_gui
             get
             {
                 Version version = AppVersion;
-
+                var gitInfo = GitTag == null ? $"-{GitCommit}" : "";
                 if (version.Revision > 2000)
                 {
-                    return $"{version.Major + 1}.0.0rc{version.Revision - 2000}";
+                    return $"{version.Major + 1}.0.0rc{version.Revision - 2000}{gitInfo}";
                 }
                 else if (version.Revision > 1000)
                 {
-                    return $"{version.Major}.{version.Minor + 1}.0rc{version.Revision - 1000}";
+                    return $"{version.Major}.{version.Minor + 1}.0rc{version.Revision - 1000}{gitInfo}";
                 }
                 else if (version.Revision > 0)
                 {
-                    return $"{version.Major}.{version.Minor}.{version.Build + 1}rc{version.Revision}";
+                    return $"{version.Major}.{version.Minor}.{version.Build + 1}rc{version.Revision}{gitInfo}";
                 }
 
-                return $"{version.Major}.{version.Minor}.{version.Build}";
+                return $"{version.Major}.{version.Minor}.{version.Build}{gitInfo}";
             }
         }
 
@@ -228,6 +228,22 @@ namespace com.clusterrr.hakchi_gui
             get
             {
                 return Encoding.UTF8.GetString(Resources.gitCommit);
+            }
+        }
+
+        public static string GitTag
+        {
+            get
+            {
+                var tags = Encoding.UTF8.GetString(Resources.gitTag).Trim().Replace("\r", "").Split('\n');
+                string value = null;
+
+                if (tags.Length > 0 && tags[0].Trim().Length > 0)
+                {
+                    value = tags[0].Trim();
+                }
+
+                return value;
             }
         }
 

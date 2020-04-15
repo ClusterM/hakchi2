@@ -23,6 +23,7 @@ driver/usb_driver/
 mods/hmods/hakchi.hmod
 obj/
 packages/
+tag.txt
 tools/arm/detached-fallback
 tools/putty/puttytel.exe
 user_mods/bluetooth.hmod

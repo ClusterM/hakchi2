@@ -2351,6 +2351,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gitTag {
+            get {
+                object obj = ResourceManager.GetObject("gitTag", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Googling for.
         /// </summary>
         internal static string GooglingFor {
@@ -4369,7 +4379,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to a14d982753518ea3438fe788e214ae1640f837dc2f076c2f6f1cf8b243e2ceb7.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string TheGamesDBKey {
             get {

@@ -2008,6 +2008,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="mod_report_template.html" />
+    <None Include="tag.txt" />
     <Content Include="tools\putty\puttytel.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -4135,6 +4136,7 @@ cd /D "$(ProjectDir)tools/" || cd "$(ProjectDir)tools/"
 "./busybox" rm -rf "../$(OutDir)user_mods/hakchi.hmod"
 "./busybox" cp -R "../user_mods/" "../$(OutDir)/"
 "./busybox" sh -e "./gitcommit" &gt; "../commit.txt"
+"./busybox" sh -e "./gittag" &gt; "../tag.txt"
 "./busybox" mkdir -p "../ApiKeys"
 "./busybox" touch "../ApiKeys/TheGamesDB.txt"
 "./busybox" rm "../data/libretro_cores.tar"

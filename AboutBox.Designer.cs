@@ -39,6 +39,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.okButton = new System.Windows.Forms.Button();
             this.licenseInfo = new System.Windows.Forms.Button();
+            this.labelGitTag = new System.Windows.Forms.Label();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -50,18 +51,19 @@
             this.tableLayoutPanel.Controls.Add(this.logoPictureBox, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.labelProductName, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.labelCompanyName, 1, 4);
-            this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 5);
+            this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 4);
+            this.tableLayoutPanel.Controls.Add(this.labelCompanyName, 1, 5);
+            this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 6);
             this.tableLayoutPanel.Controls.Add(this.labelGitCommit, 1, 2);
-            this.tableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 1, 6);
+            this.tableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 1, 7);
+            this.tableLayoutPanel.Controls.Add(this.labelGitTag, 1, 3);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             // 
             // logoPictureBox
             // 
             resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
             this.logoPictureBox.Name = "logoPictureBox";
-            this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 7);
+            this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 8);
             this.logoPictureBox.TabStop = false;
             // 
             // labelProductName
@@ -115,6 +117,11 @@
             this.licenseInfo.Name = "licenseInfo";
             this.licenseInfo.Click += new System.EventHandler(this.licenseInfo_Click);
             // 
+            // labelGitTag
+            // 
+            resources.ApplyResources(this.labelGitTag, "labelGitTag");
+            this.labelGitTag.Name = "labelGitTag";
+            // 
             // AboutBox
             // 
             this.AcceptButton = this.okButton;
@@ -149,5 +156,6 @@
         private System.Windows.Forms.Label labelGitCommit;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button licenseInfo;
+        private System.Windows.Forms.Label labelGitTag;
     }
 }

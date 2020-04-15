@@ -1,0 +1,6 @@
+#!/bin/sh
+git --version &> /dev/null
+if [ "$?" == "0" ]; then
+  echo "`git describe --tags --exact-match 2>/dev/null`"
+fi
+exit 0
