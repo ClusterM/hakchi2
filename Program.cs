@@ -82,21 +82,36 @@ namespace com.clusterrr.hakchi_gui
         [STAThread]
         static void Main(string[] args)
         {
-            var versionFileArgIndex = -1;
-            if (args != null && (versionFileArgIndex = Array.IndexOf(args, "--versionFile")) != -1)
+            var stdout = Console.OpenStandardOutput();
+
+            int versionFormatArgIndex;
+            if (args != null && (versionFormatArgIndex = Array.IndexOf(args, "--versionFormat")) != -1)
             {
-                string versionFormat = "{0}";
-                var versionFormatArgIndex = -1;
-                if (args != null && (versionFormatArgIndex = Array.IndexOf(args, "--versionFormat")) != -1)
+                Stream versionStream = null;
+                string versionFormat;
+
+                var versionFileArgIndex = -1;
+                if (args != null && (versionFileArgIndex = Array.IndexOf(args, "--versionFile")) != -1)
+                {
+                    versionStream = File.Create(args[versionFileArgIndex + 1]);
+                } 
+                else
+                {
+                    versionStream = stdout;
+                }
+
+                using (var writer = new StreamWriter(versionStream))
                 {
                     versionFormat = args[versionFormatArgIndex + 1];
+                    writer.Write(String.Format(versionFormat, Shared.AppDisplayVersion));
+                    writer.Flush();
                 }
-                File.WriteAllText(args[versionFileArgIndex + 1], String.Format(versionFormat, Shared.AppDisplayVersion));
+                
                 return;
             }
-            
-            
 
+            Debug.Listeners.Add(new TextWriterTraceListener(stdout));
+            
             if (Debugger.IsAttached || Array.IndexOf(args, "/debug") != -1)
             {
                 try
@@ -125,10 +140,6 @@ namespace com.clusterrr.hakchi_gui
                     Debug.WriteLine(ex.Message + ex.StackTrace);
                 }
                 Debug.AutoFlush = true;
-            }
-            else
-            {
-                Trace.Listeners.Clear();
             }
 #if TRACE
             try
