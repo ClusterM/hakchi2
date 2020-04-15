@@ -1,7 +1,5 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using com.clusterrr.hakchi_gui.Tasks;
-using SharpCompress.Archives;
-using SharpCompress.Common;
 using SharpCompress.Readers;
 using System;
 using System.Collections.Generic;

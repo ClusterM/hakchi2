@@ -1,5 +1,4 @@
-﻿using com.clusterrr.Famicom;
-using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.IO;
 using System.Windows.Forms;

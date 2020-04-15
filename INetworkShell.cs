@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace com.clusterrr.hakchi_gui
+﻿namespace com.clusterrr.hakchi_gui
 {
     public interface INetworkShell
     {

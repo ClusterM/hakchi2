@@ -1,7 +1,6 @@
 ﻿using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui.Tasks

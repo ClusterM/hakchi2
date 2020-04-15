@@ -1,16 +1,12 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
+﻿using Newtonsoft.Json;
 using SharpCompress.Archives;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
-using SharpCompress.Compressors.Deflate;
 
 namespace com.clusterrr.hakchi_gui
 {

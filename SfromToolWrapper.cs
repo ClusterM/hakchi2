@@ -1,10 +1,5 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace com.clusterrr.hakchi_gui
 {

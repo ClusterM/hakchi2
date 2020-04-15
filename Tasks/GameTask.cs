@@ -1,13 +1,11 @@
 ﻿using com.clusterrr.hakchi_gui.Controls;
 using com.clusterrr.hakchi_gui.Properties;
 using SharpCompress.Archives;
-using SharpCompress.Compressors.Deflate;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 

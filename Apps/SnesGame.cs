@@ -7,8 +7,6 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Windows.Forms;
-using System.Xml.XPath;
 
 namespace com.clusterrr.hakchi_gui
 {

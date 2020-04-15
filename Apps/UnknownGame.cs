@@ -1,6 +1,4 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
-
-namespace com.clusterrr.hakchi_gui
+﻿namespace com.clusterrr.hakchi_gui
 {
     public class UnknownGame : NesApplication
     {
