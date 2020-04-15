@@ -2,13 +2,12 @@
 !include "Sections.nsh"
 
 ; Display Version
-!system '..\bin\Release\hakchi.exe --versionFormat "!define DisplayVersion {0}" --versionFile version.nsh'
+!system '..\bin\Debug\hakchi.exe --versionFormat "!define DisplayVersion {0}" --versionFile version.nsh'
 !include ".\version.nsh"
 !system 'del version.nsh'
 
 ; Create zip files
-!system '..\Zipper\bin\Release\Zipper.exe ..\bin\Release ..\bin\hakchi2-ce-${DisplayVersion}-release.zip'
-!system '..\Zipper\bin\Release\Zipper.exe ..\bin\Debug ..\bin\hakchi2-ce-${DisplayVersion}-debug.zip'
+!system '..\Zipper\bin\Debug\Zipper.exe ..\bin\Debug ..\bin\hakchi2-ce-${DisplayVersion}.zip'
 
 ; The icon of the installer
 Icon "..\icon_app.ico"
@@ -53,18 +52,11 @@ UninstPage instfiles
 
 ; Sections
 
-SectionGroup /e "Hakchi2 CE ${DisplayVersion} (required)"
-  
-  Section "Release Build" section_release
-    SetOutPath $INSTDIR
-    File /r "..\bin\Release\*"
-  SectionEnd
-
-  Section /o "Debug Build" section_debug
-    SetOutPath $INSTDIR
-    File /r "..\bin\Debug\*"
-  SectionEnd
-SectionGroupEnd
+Section "Hakchi2 CE ${DisplayVersion} (required)" section_main
+  SectionIn RO
+  SetOutPath $INSTDIR
+  File /r "..\bin\Debug\*"
+SectionEnd
 
 Section /o "Portable Install" section_portable
 SectionEnd
@@ -97,6 +89,7 @@ Section "Start Menu Shortcuts" section_startmenu
   SetShellVarContext all
   CreateDirectory "$SMPROGRAMS\Team Shinkansen\Hakchi2 CE"
   CreateShortcut "$SMPROGRAMS\Team Shinkansen\Hakchi2 CE\Hakchi2 CE.lnk" "$INSTDIR\hakchi.exe" "/nonportable" "$INSTDIR\hakchi.exe" 0
+  CreateShortcut "$SMPROGRAMS\Team Shinkansen\Hakchi2 CE\Hakchi2 CE (Debug).lnk" "$INSTDIR\hakchi.exe" "/nonportable /debug" "$INSTDIR\hakchi.exe" 0
   CreateShortcut "$SMPROGRAMS\Team Shinkansen\Hakchi2 CE\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
 SectionEnd
 
@@ -116,16 +109,8 @@ Section "Uninstall"
   RMDir /r "$SMPROGRAMS\Team Shinkansen\Hakchi2 CE"
   RMDir "$SMPROGRAMS\Team Shinkansen"
   
-  IfFileExists "$INSTDIR\hakchi.pdb" uninstall_debug
-  
-  uninstall_release:
-  !include "release-uninstall.nsh"
-  Goto uninstall_done
-  
-  uninstall_debug:
   !include "debug-uninstall.nsh"
-  
-  uninstall_done:
+
   Delete "$INSTDIR\nonportable.flag"
   Delete "$INSTDIR\uninstall.exe"
   RMDir "$INSTDIR"
@@ -135,23 +120,14 @@ SectionEnd
 Function .onInit
   StrCpy $defaultInstDir "$PROGRAMFILES\Team Shinkansen\Hakchi2 CE"
   StrCpy $InstDir $defaultInstDir
-  StrCpy $1 ${section_release} ; Group 1 - Option 1 is selected by default
-  StrCpy $2 ${section_debug} ; Group 1 - Option 1 is selected by default
-
+  IntOp $0 ${SF_SELECTED} | ${SF_RO}
+  SectionSetFlags ${section_main} $0
 FunctionEnd
 
 Function .onSelChange
-  !insertmacro StartRadioButtons $1
-    !insertmacro RadioButton ${section_release}
-    !insertmacro RadioButton ${section_debug}
-  !insertmacro EndRadioButtons
-
   ${If} ${SectionIsSelected} ${section_portable}
-    ${If} ${SectionIsSelected} ${section_debug}
-      StrCpy $InstDir "$EXEDIR\hakchi2-ce-${DisplayVersion}-debug"
-    ${Else}
-      StrCpy $InstDir "$EXEDIR\hakchi2-ce-${DisplayVersion}-release"
-    ${EndIf}
+    StrCpy $InstDir "$EXEDIR\hakchi2-ce-${DisplayVersion}"
+      
     !insertmacro UnselectSection ${section_install}
     !insertmacro UnselectSection ${section_startmenu}
     !insertmacro UnselectSection ${section_desktop}

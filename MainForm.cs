@@ -29,11 +29,7 @@ namespace com.clusterrr.hakchi_gui
         /// <summary>
         /// The URL for the update metadata XML file
         /// </summary>
-#if DEBUG
-        private static readonly string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update-debug.xml";
-#else
-        private static readonly string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update-release.xml";
-#endif
+        private static readonly string UPDATE_XML_URL = "https://teamshinkansen.github.io/xml/updates/update.xml";
         private static readonly string MOTD_URL = "https://teamshinkansen.github.io/motd.md";
         private static readonly string SFROM_TOOL_URL = "http://darkakuma.z-net.us/p/sfromtool.html";
         private static readonly string MotdFilename = Path.Combine(Program.BaseDirectoryExternal, "cache", "motd.md");
@@ -394,16 +390,16 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
 
-            string title = $"hakchi CE v{Shared.AppDisplayVersion}"
+            string title = $"hakchi CE v{Shared.AppDisplayVersion}";
 
-            #if DEBUG
-                + " (Debug"
-                    #if VERY_DEBUG
+            if (Program.ConsoleVisible)
+            {
+                title += " (Debug"
+                #if VERY_DEBUG
                         + ", very verbose mode"
-                    #endif
-                + ")"
-            #endif
-            ;
+                #endif
+                + ")";
+            }
 
             if (hakchi.MinimalMemboot)
             {

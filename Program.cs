@@ -43,6 +43,7 @@ namespace com.clusterrr.hakchi_gui
         private const uint OPEN_EXISTING = 0x3;
         public static readonly string BaseDirectoryInternal = Path.GetDirectoryName(Application.ExecutablePath);
         public static string BaseDirectoryExternal;
+        public static bool ConsoleVisible { get; private set; } = false;
         public static bool isPortable = false;
         public static List<Stream> debugStreams = new List<Stream>();
         private static Dictionary<string, SpineTemplate<Bitmap>> _SpineTemplates;
@@ -93,35 +94,42 @@ namespace com.clusterrr.hakchi_gui
                 File.WriteAllText(args[versionFileArgIndex + 1], String.Format(versionFormat, Shared.AppDisplayVersion));
                 return;
             }
-#if DEBUG
-            try
+            
+            
+
+            if (Debugger.IsAttached || Array.IndexOf(args, "/debug") != -1)
             {
-                AllocConsole();
-                IntPtr stdHandle = CreateFile("CONOUT$", GENERIC_WRITE, FILE_SHARE_WRITE, 0, OPEN_EXISTING, 0, 0);
-                SafeFileHandle safeFileHandle = new SafeFileHandle(stdHandle, true);
-                FileStream consoleFileStream = new FileStream(safeFileHandle, FileAccess.Write);
-                Encoding encoding = System.Text.Encoding.GetEncoding(MY_CODE_PAGE);
-                StreamWriter standardOutput = new StreamWriter(consoleFileStream, encoding);
-                standardOutput.AutoFlush = true;
-                Console.SetOut(standardOutput);
-                debugStreams.Add(consoleFileStream);
-                Debug.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
+                try
+                {
+                    AllocConsole();
+                    IntPtr stdHandle = CreateFile("CONOUT$", GENERIC_WRITE, FILE_SHARE_WRITE, 0, OPEN_EXISTING, 0, 0);
+                    SafeFileHandle safeFileHandle = new SafeFileHandle(stdHandle, true);
+                    FileStream consoleFileStream = new FileStream(safeFileHandle, FileAccess.Write);
+                    Encoding encoding = System.Text.Encoding.GetEncoding(MY_CODE_PAGE);
+                    StreamWriter standardOutput = new StreamWriter(consoleFileStream, encoding);
+                    standardOutput.AutoFlush = true;
+                    Console.SetOut(standardOutput);
+                    debugStreams.Add(consoleFileStream);
+                    Debug.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
+                    ConsoleVisible = true;
+                }
+                catch { }
+                try
+                {
+                    Stream logFile = File.Create("debuglog.txt");
+                    debugStreams.Add(logFile);
+                    Debug.Listeners.Add(new TextWriterTraceListener(logFile));
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message + ex.StackTrace);
+                }
+                Debug.AutoFlush = true;
             }
-            catch { }
-            try
+            else
             {
-                Stream logFile = File.Create("debuglog.txt");
-                debugStreams.Add(logFile);
-                Debug.Listeners.Add(new TextWriterTraceListener(logFile));
+                Trace.Listeners.Clear();
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message + ex.StackTrace);
-            }
-            Debug.AutoFlush = true;
-#else
-            Trace.Listeners.Clear();
-#endif
 #if TRACE
             try
             {

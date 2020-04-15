@@ -84,13 +84,7 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/bin/Debug/'
-    ArtifactName: 'hakchi2-ce-$(displayVersion)-debug'
-    publishLocation: 'Container'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/bin/Release/'
-    ArtifactName: 'hakchi2-ce-$(displayVersion)-release'
+    ArtifactName: 'hakchi2-ce-$(displayVersion)'
     publishLocation: 'Container'
 
 - task: PublishBuildArtifacts@1

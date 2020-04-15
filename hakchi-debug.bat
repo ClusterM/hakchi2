@@ -1,0 +1,1 @@
+start hakchi.exe /debug

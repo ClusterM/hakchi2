@@ -155,6 +155,12 @@
     </Compile>
     <Compile Include="data\GamesDB.cs" />
     <Compile Include="data\SnesCarts.cs" />
+    <None Include="hakchi-debug.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="hakchi-nonportable-debug.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="images\flags\sa.png" />
     <Content Include="Licenses\ArxOne.Ftp.txt" />
     <Compile Include="LicenseInfo.cs">
