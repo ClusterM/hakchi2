@@ -195,58 +195,43 @@ namespace com.clusterrr.hakchi_gui
             else if (style == SplitStyle.FoldersGroupByApp)
             {
                 var apps = new SortedDictionary<string, NesMenuCollection>();
-                var customApps = new Dictionary<string, NesMenuCollection>();
-                foreach (var system in CoreCollection.Systems)
-                    apps[system] = new NesMenuCollection();
-                foreach (var ai in AppTypeCollection.Apps)
-                    if (!apps.ContainsKey(ai.Name))
-                        apps[ai.Name] = new NesMenuCollection();
-                apps[AppTypeCollection.UnknownApp.Name] = new NesMenuCollection();
 
-                foreach (var game in root)
+                foreach (var game in root.Where(e => e is NesApplication))
                 {
-                    if (!(game is NesApplication)) continue;
-                    NesApplication app = game as NesApplication;
+                    var app = game as NesApplication;
+                    var groupName = AppTypeCollection.UnknownApp.Name;
+                    var ai = app.Metadata.AppInfo;
 
-                    AppTypeCollection.AppInfo ai = app.Metadata.AppInfo;
-                    if (!ai.Unknown && apps.ContainsKey(ai.Name))
-                        apps[ai.Name].Add(game);
-                    else if (!string.IsNullOrEmpty(app.Metadata.System) && apps.ContainsKey(app.Metadata.System))
+                    if (!ai.Unknown && !string.IsNullOrEmpty(ai.Name))
                     {
-                        apps[app.Metadata.System].Add(game);
+                        groupName = ai.Name;
                     }
-                    else
+                    else if (!string.IsNullOrEmpty(app.Metadata.System))
                     {
-                        if (!string.IsNullOrEmpty(app.Desktop.Bin))
-                        {
-                            if (!customApps.ContainsKey(app.Desktop.Bin))
-                                customApps.Add(app.Desktop.Bin, new NesMenuCollection());
-                            customApps[app.Desktop.Bin].Add(game);
-                        }
-                        else
-                            apps[AppTypeCollection.UnknownApp.Name].Add(game);
+                        groupName = app.Metadata.System;
                     }
+                    else if (!string.IsNullOrEmpty(app.Desktop.Bin))
+                    {
+                        groupName = app.Desktop.Bin;
+                    }
+
+                    if (!apps.ContainsKey(groupName))
+                    {
+                        apps[groupName] = new NesMenuCollection();
+                    }
+
+                    apps[groupName].Add(app);
                 }
 
                 root.Clear();
-                foreach (var app in apps)
-                    if (app.Value.Count > 0)
-                    {
-                        string folderImageId = "folder";
-                        var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = app.Key, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
-                        //folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
-                        folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
-                        root.Add(folder);
-                    }
-                foreach (var app in customApps)
-                    if (app.Value.Count > 0)
-                    {
-                        string folderImageId = "folder";
-                        var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = app.Key, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
-                        //folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
-                        folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
-                        root.Add(folder);
-                    }
+                foreach (var app in apps.Where(e => e.Value.Count > 0))
+                {
+                    string folderImageId = "folder";
+                    var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = app.Key, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
+                    //folder.ChildMenuCollection.Split(SplitStyle.FoldersEqual, maxElements);
+                    folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
+                    root.Add(folder);
+                }
             }
             else if (style == SplitStyle.FoldersGroupByGenre)
             {
@@ -259,15 +244,9 @@ namespace com.clusterrr.hakchi_gui
                     var genre = app.Desktop.Genre;
                     if ((genre ?? "") == "") genre = "Unknown Genre";
 
-                    NesMenuCollection collection;
-                    if (apps.ContainsKey(genre))
+                    if (!apps.ContainsKey(genre))
                     {
-                        collection = apps[genre];
-                    }
-                    else
-                    {
-                        collection = new NesMenuCollection();
-                        apps[genre] = collection;
+                        apps[genre] = new NesMenuCollection();
                     }
 
                     apps[genre].Add(game);
