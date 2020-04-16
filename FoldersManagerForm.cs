@@ -238,41 +238,14 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void buttonNoFolders_Click(object sender, EventArgs e)
-        {
-            DrawSplitTree(NesMenuCollection.SplitStyle.NoSplit);
-        }
-
-        private void buttonNoFoldersOriginal_Click(object sender, EventArgs e)
-        {
-            DrawSplitTree(NesMenuCollection.SplitStyle.Original_NoSplit);
-        }
-
-        private void buttonFoldersEqually_Click(object sender, EventArgs e)
-        {
-            DrawSplitTree(NesMenuCollection.SplitStyle.FoldersEqual);
-        }
-
-        private void buttonFoldersEquallyOriginal_Click(object sender, EventArgs e)
-        {
-            DrawSplitTree(NesMenuCollection.SplitStyle.Original_FoldersEqual);
-        }
-
-        private void buttonFoldersLetters_Click(object sender, EventArgs e)
-        {
-            DrawSplitTree(NesMenuCollection.SplitStyle.FoldersAlphabetic_FoldersEqual);
-        }
-
-        private void buttonFoldersLettersOriginal_Click(object sender, EventArgs e)
-        {
-            DrawSplitTree(NesMenuCollection.SplitStyle.Original_FoldersAlphabetic_FoldersEqual);
-        }
-
-        private void buttonFoldersApp_Click(object sender, EventArgs e)
-        {
-            DrawSplitTree(NesMenuCollection.SplitStyle.FoldersGroupByApp);
-        }
-
+        private void buttonNoFolders_Click(object sender, EventArgs e) => DrawSplitTree(NesMenuCollection.SplitStyle.NoSplit);
+        private void buttonNoFoldersOriginal_Click(object sender, EventArgs e) => DrawSplitTree(NesMenuCollection.SplitStyle.Original_NoSplit);
+        private void buttonFoldersEqually_Click(object sender, EventArgs e) => DrawSplitTree(NesMenuCollection.SplitStyle.FoldersEqual);
+        private void buttonFoldersEquallyOriginal_Click(object sender, EventArgs e) => DrawSplitTree(NesMenuCollection.SplitStyle.Original_FoldersEqual);
+        private void buttonFoldersLetters_Click(object sender, EventArgs e) => DrawSplitTree(NesMenuCollection.SplitStyle.FoldersAlphabetic_FoldersEqual);
+        private void buttonFoldersLettersOriginal_Click(object sender, EventArgs e) => DrawSplitTree(NesMenuCollection.SplitStyle.Original_FoldersAlphabetic_FoldersEqual);
+        private void buttonFoldersApp_Click(object sender, EventArgs e) => DrawSplitTree(NesMenuCollection.SplitStyle.FoldersGroupByApp);
+        private void buttonFoldersGenre_Click(object sender, EventArgs e) => DrawSplitTree(NesMenuCollection.SplitStyle.FoldersGroupByGenre);
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             ShowSelected();
@@ -1166,11 +1139,6 @@ namespace com.clusterrr.hakchi_gui
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void FoldersManagerForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.hakchi_gui.data;
+using com.clusterrr.hakchi_gui.Properties;
 using SpineGen.DrawingBitmaps;
 using SpineGen.JSON;
 using System;
@@ -19,22 +20,6 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class ScraperForm : Form
     {
-        public static readonly IReadOnlyDictionary<string, int[]> TheGamesDBGenreLookup = new Dictionary<string, int[]>()
-        {
-            ["Action"] = new int[] { 1 },
-            ["ActionShooting"] = new int[] { 8 },
-            ["Adventure"] = new int[] { 2 },
-            ["Educational"] = new int[] { },
-            ["Fighting"] = new int[] { 10 },
-            ["Puzzle"] = new int[] { 5 },
-            ["Racing"] = new int[] { 7 },
-            ["RacingSports"] = new int[] { },
-            ["RPG"] = new int[] { 4, 14 },
-            ["Shoot-'em-Up"] = new int[] { 8 },
-            ["Simulation"] = new int[] { 3, 9, 13, 19 },
-            ["Sports"] = new int[] { 11 },
-            ["Table"] = new int[] { }
-        };
         private enum DataType { Name, Description, Publisher, Developer, ReleaseDate, Copyright, Genre, PlayerCount, FrontArt, SpineArt, SelectedScraper, SpineTemplate }
         private enum PageDirection { Previous, Next }
         private class ItemWrapper
@@ -547,12 +532,12 @@ namespace com.clusterrr.hakchi_gui
                     {
                         foreach (var genre in result.Genres)
                         {
-                            var match = TheGamesDBGenreLookup.Where(g => g.Value.Contains(genre.ID)).Select(g => g.Key);
+                            var match = Genre.GenreList.Where(g => g.GamesDbId.Contains(genre.ID)).Select(g => g);
 
                             if (match.Count() > 0)
                             {
                                 var first = match.First();
-                                var selectedGenre = comboBoxGenre.Items.Cast<NameValuePair<string>>().Where(g => g.Value == first);
+                                var selectedGenre = comboBoxGenre.Items.Cast<NameValuePair<string>>().Where(g => g.Value == first.DesktopName);
 
                                 if (selectedGenre.Count() > 0)
                                 {

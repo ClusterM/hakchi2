@@ -154,6 +154,7 @@
       <DependentUpon>ImageGoogler.cs</DependentUpon>
     </Compile>
     <Compile Include="data\GamesDB.cs" />
+    <Compile Include="data\Genre.cs" />
     <Compile Include="data\SnesCarts.cs" />
     <None Include="hakchi-debug.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -162,6 +163,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="images\flags\sa.png" />
+    <None Include="folder_images\TheWez1981-Genesis\genre_racing_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-Genesis\spines\genre_racing_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\genre_racing_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive-JP\spines\genre_racing_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\genre_racing_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_racing_sports.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Licenses\ArxOne.Ftp.txt" />
     <Compile Include="LicenseInfo.cs">
       <SubType>Form</SubType>

@@ -1,4 +1,5 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.hakchi_gui.data;
+using com.clusterrr.hakchi_gui.Properties;
 using SharpCompress.Archives;
 using SharpCompress.Common;
 using SharpCompress.Readers;
@@ -364,13 +365,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             {
                                 foreach (var genre in apiResult.Genres)
                                 {
-                                    var match = ScraperForm.TheGamesDBGenreLookup.Where(g => g.Value.Contains(genre.ID)).Select(g => g.Key);
+                                    var match = Genre.GenreList.Where(g => g.GamesDbId.Contains(genre.ID)).Select(g => g);
 
                                     if (match.Count() > 0)
                                     {
                                         var firstGenre = match.First();
 
-                                        app.Desktop.Genre = firstGenre;
+                                        app.Desktop.Genre = firstGenre.DesktopName;
                                         break;
                                     }
                                 }

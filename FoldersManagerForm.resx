@@ -140,7 +140,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAD0
-        IwAAAk1TRnQBSQFMAgEBJgEAAaQBAQGkAQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        IwAAAk1TRnQBSQFMAgEBJgEAAbQBAQG0AQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAAaADAAEBAQABCAYAASgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -446,14 +446,20 @@
   <data name="groupBoxSplitModes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
+  <data name="tableLayoutPanelSplit.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="buttonFoldersApp.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <data name="buttonFoldersApp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonFoldersApp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 182</value>
+    <value>3, 139</value>
   </data>
   <data name="buttonFoldersApp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 34</value>
+    <value>242, 30</value>
   </data>
   <data name="buttonFoldersApp.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -468,46 +474,22 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonFoldersApp.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
+    <value>tableLayoutPanelSplit</value>
   </data>
   <data name="&gt;&gt;buttonFoldersApp.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="buttonNoFoldersOriginal.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 22</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 74</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="buttonNoFoldersOriginal.Text" xml:space="preserve">
-    <value>Original games -&gt; Other games</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.Name" xml:space="preserve">
-    <value>buttonNoFoldersOriginal</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
-  </data>
-  <data name="&gt;&gt;buttonNoFoldersOriginal.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="buttonNoFolders.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="buttonNoFolders.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonNoFolders.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 22</value>
+    <value>3, 3</value>
   </data>
   <data name="buttonNoFolders.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 74</value>
+    <value>118, 58</value>
   </data>
   <data name="buttonNoFolders.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -522,19 +504,22 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonNoFolders.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
+    <value>tableLayoutPanelSplit</value>
   </data>
   <data name="&gt;&gt;buttonNoFolders.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
+  </data>
+  <data name="buttonFoldersLetters.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="buttonFoldersLetters.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonFoldersLetters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 142</value>
+    <value>3, 103</value>
   </data>
   <data name="buttonFoldersLetters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 34</value>
+    <value>242, 30</value>
   </data>
   <data name="buttonFoldersLetters.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -549,19 +534,49 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonFoldersLetters.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
+    <value>tableLayoutPanelSplit</value>
   </data>
   <data name="&gt;&gt;buttonFoldersLetters.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>127, 3</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 58</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="buttonNoFoldersOriginal.Text" xml:space="preserve">
+    <value>Original games -&gt; Other games</value>
+  </data>
+  <data name="&gt;&gt;buttonNoFoldersOriginal.Name" xml:space="preserve">
+    <value>buttonNoFoldersOriginal</value>
+  </data>
+  <data name="&gt;&gt;buttonNoFoldersOriginal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonNoFoldersOriginal.Parent" xml:space="preserve">
+    <value>tableLayoutPanelSplit</value>
+  </data>
+  <data name="&gt;&gt;buttonNoFoldersOriginal.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="buttonFoldersEqually.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="buttonFoldersEqually.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonFoldersEqually.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 102</value>
+    <value>3, 67</value>
   </data>
   <data name="buttonFoldersEqually.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 34</value>
+    <value>242, 30</value>
   </data>
   <data name="buttonFoldersEqually.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -576,10 +591,67 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonFoldersEqually.Parent" xml:space="preserve">
-    <value>groupBoxSplitModes</value>
+    <value>tableLayoutPanelSplit</value>
   </data>
   <data name="&gt;&gt;buttonFoldersEqually.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="buttonFoldersGenre.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="buttonFoldersGenre.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 175</value>
+  </data>
+  <data name="buttonFoldersGenre.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 30</value>
+  </data>
+  <data name="buttonFoldersGenre.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="buttonFoldersGenre.Text" xml:space="preserve">
+    <value>Split by genre</value>
+  </data>
+  <data name="&gt;&gt;buttonFoldersGenre.Name" xml:space="preserve">
+    <value>buttonFoldersGenre</value>
+  </data>
+  <data name="&gt;&gt;buttonFoldersGenre.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonFoldersGenre.Parent" xml:space="preserve">
+    <value>tableLayoutPanelSplit</value>
+  </data>
+  <data name="&gt;&gt;buttonFoldersGenre.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tableLayoutPanelSplit.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanelSplit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="tableLayoutPanelSplit.RowCount" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="tableLayoutPanelSplit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>248, 208</value>
+  </data>
+  <data name="tableLayoutPanelSplit.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelSplit.Name" xml:space="preserve">
+    <value>tableLayoutPanelSplit</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelSplit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelSplit.Parent" xml:space="preserve">
+    <value>groupBoxSplitModes</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanelSplit.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanelSplit.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="buttonFoldersApp" Row="4" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="buttonNoFolders" Row="0" RowSpan="2" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonFoldersLetters" Row="3" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="buttonNoFoldersOriginal" Row="0" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="buttonFoldersEqually" Row="2" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="buttonFoldersGenre" Row="5" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,50,Percent,50,Absolute,36,Absolute,36,Absolute,36,Absolute,36" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="groupBoxSplitModes.Location" type="System.Drawing.Point, System.Drawing">
     <value>305, 12</value>
@@ -696,7 +768,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;splitContainer.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="comboBoxBackPosition.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -980,7 +1052,7 @@
     <value>Magenta</value>
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="newToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;New</value>
@@ -1008,13 +1080,13 @@
     <value>Ctrl+O</value>
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Open</value>
   </data>
   <data name="toolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>143, 6</value>
   </data>
   <data name="saveToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1039,22 +1111,22 @@
     <value>Ctrl+S</value>
   </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Save</value>
   </data>
   <data name="saveAsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="saveAsToolStripMenuItem.Text" xml:space="preserve">
     <value>Save &amp;As</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>143, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
@@ -1114,7 +1186,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

@@ -1,4 +1,5 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.hakchi_gui.data;
+using com.clusterrr.hakchi_gui.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace com.clusterrr.hakchi_gui
             FoldersAlphabetic_PagesEqual = 10,
             Original_FoldersAlphabetic_PagesEqual = 11,
             FoldersGroupByApp = 12,
+            FoldersGroupByGenre = 13,
             Custom = 99
         }
 
@@ -194,9 +196,9 @@ namespace com.clusterrr.hakchi_gui
             {
                 var apps = new SortedDictionary<string, NesMenuCollection>();
                 var customApps = new Dictionary<string, NesMenuCollection>();
-                foreach(var system in CoreCollection.Systems)
+                foreach (var system in CoreCollection.Systems)
                     apps[system] = new NesMenuCollection();
-                foreach(var ai in AppTypeCollection.Apps)
+                foreach (var ai in AppTypeCollection.Apps)
                     if (!apps.ContainsKey(ai.Name))
                         apps[ai.Name] = new NesMenuCollection();
                 apps[AppTypeCollection.UnknownApp.Name] = new NesMenuCollection();
@@ -215,7 +217,7 @@ namespace com.clusterrr.hakchi_gui
                     }
                     else
                     {
-                        if(!string.IsNullOrEmpty(app.Desktop.Bin))
+                        if (!string.IsNullOrEmpty(app.Desktop.Bin))
                         {
                             if (!customApps.ContainsKey(app.Desktop.Bin))
                                 customApps.Add(app.Desktop.Bin, new NesMenuCollection());
@@ -227,8 +229,8 @@ namespace com.clusterrr.hakchi_gui
                 }
 
                 root.Clear();
-                foreach(var app in apps)
-                    if(app.Value.Count > 0)
+                foreach (var app in apps)
+                    if (app.Value.Count > 0)
                     {
                         string folderImageId = "folder";
                         var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = app.Key, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
@@ -245,6 +247,51 @@ namespace com.clusterrr.hakchi_gui
                         folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
                         root.Add(folder);
                     }
+            }
+            else if (style == SplitStyle.FoldersGroupByGenre)
+            {
+                var apps = new SortedDictionary<string, NesMenuCollection>();
+
+                foreach (var game in root.Where(e => e is NesApplication))
+                {
+                    NesApplication app = game as NesApplication;
+
+                    var genre = app.Desktop.Genre;
+                    if ((genre ?? "") == "") genre = "Unknown Genre";
+
+                    NesMenuCollection collection;
+                    if (apps.ContainsKey(genre))
+                    {
+                        collection = apps[genre];
+                    }
+                    else
+                    {
+                        collection = new NesMenuCollection();
+                        apps[genre] = collection;
+                    }
+
+                    apps[genre].Add(game);
+                }
+
+                root.Clear();
+
+                foreach (var app in apps.Where(e => e.Value.Count > 0))
+                {
+                    string folderImageId = "folder";
+                    string folderName = app.Key;
+
+                    Genre genreInfo = null;
+                    if (Genre.GenreDictionary.TryGetValue(app.Key, out genreInfo))
+                    {
+                        folderName = genreInfo.EnglishName;
+                        folderImageId = genreInfo.FolderImageId;
+                    }
+
+                    var folder = new NesMenuFolder() { ChildMenuCollection = app.Value, Name = folderName, Position = NesMenuFolder.Priority.Right, ImageId = folderImageId };
+                    
+                    folder.ChildMenuCollection.Add(new NesMenuFolder() { Name = Resources.FolderNameBack, ImageId = "folder_back", Position = ConfigIni.Instance.BackFolderPosition, ChildMenuCollection = root });
+                    root.Add(folder);
+                }
             }
             if (originalToRoot)
             {

@@ -38,11 +38,13 @@
             this.labelPosition1 = new System.Windows.Forms.Label();
             this.listViewContent = new System.Windows.Forms.ListView();
             this.groupBoxSplitModes = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanelSplit = new System.Windows.Forms.TableLayoutPanel();
             this.buttonFoldersApp = new System.Windows.Forms.Button();
             this.buttonNoFoldersOriginal = new System.Windows.Forms.Button();
             this.buttonNoFolders = new System.Windows.Forms.Button();
             this.buttonFoldersLetters = new System.Windows.Forms.Button();
             this.buttonFoldersEqually = new System.Windows.Forms.Button();
+            this.buttonFoldersGenre = new System.Windows.Forms.Button();
             this.groupBoxArt = new System.Windows.Forms.GroupBox();
             this.pictureBoxArt = new System.Windows.Forms.PictureBox();
             this.comboBoxBackPosition = new System.Windows.Forms.ComboBox();
@@ -75,6 +77,7 @@
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.groupBoxSplitModes.SuspendLayout();
+            this.tableLayoutPanelSplit.SuspendLayout();
             this.groupBoxArt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -190,6 +193,7 @@
             // 
             this.listViewContent.AllowDrop = true;
             resources.ApplyResources(this.listViewContent, "listViewContent");
+            this.listViewContent.HideSelection = false;
             this.listViewContent.LabelEdit = true;
             this.listViewContent.LargeImageList = this.imageList;
             this.listViewContent.Name = "listViewContent";
@@ -209,16 +213,24 @@
             // groupBoxSplitModes
             // 
             resources.ApplyResources(this.groupBoxSplitModes, "groupBoxSplitModes");
-            this.groupBoxSplitModes.Controls.Add(this.buttonFoldersApp);
-            this.groupBoxSplitModes.Controls.Add(this.buttonNoFoldersOriginal);
-            this.groupBoxSplitModes.Controls.Add(this.buttonNoFolders);
-            this.groupBoxSplitModes.Controls.Add(this.buttonFoldersLetters);
-            this.groupBoxSplitModes.Controls.Add(this.buttonFoldersEqually);
+            this.groupBoxSplitModes.Controls.Add(this.tableLayoutPanelSplit);
             this.groupBoxSplitModes.Name = "groupBoxSplitModes";
             this.groupBoxSplitModes.TabStop = false;
             // 
+            // tableLayoutPanelSplit
+            // 
+            resources.ApplyResources(this.tableLayoutPanelSplit, "tableLayoutPanelSplit");
+            this.tableLayoutPanelSplit.Controls.Add(this.buttonFoldersApp, 0, 4);
+            this.tableLayoutPanelSplit.Controls.Add(this.buttonNoFolders, 0, 0);
+            this.tableLayoutPanelSplit.Controls.Add(this.buttonFoldersLetters, 0, 3);
+            this.tableLayoutPanelSplit.Controls.Add(this.buttonNoFoldersOriginal, 1, 0);
+            this.tableLayoutPanelSplit.Controls.Add(this.buttonFoldersEqually, 0, 2);
+            this.tableLayoutPanelSplit.Controls.Add(this.buttonFoldersGenre, 0, 5);
+            this.tableLayoutPanelSplit.Name = "tableLayoutPanelSplit";
+            // 
             // buttonFoldersApp
             // 
+            this.tableLayoutPanelSplit.SetColumnSpan(this.buttonFoldersApp, 2);
             resources.ApplyResources(this.buttonFoldersApp, "buttonFoldersApp");
             this.buttonFoldersApp.Name = "buttonFoldersApp";
             this.buttonFoldersApp.UseVisualStyleBackColor = true;
@@ -228,6 +240,7 @@
             // 
             resources.ApplyResources(this.buttonNoFoldersOriginal, "buttonNoFoldersOriginal");
             this.buttonNoFoldersOriginal.Name = "buttonNoFoldersOriginal";
+            this.tableLayoutPanelSplit.SetRowSpan(this.buttonNoFoldersOriginal, 2);
             this.buttonNoFoldersOriginal.UseVisualStyleBackColor = true;
             this.buttonNoFoldersOriginal.Click += new System.EventHandler(this.buttonNoFoldersOriginal_Click);
             // 
@@ -235,11 +248,13 @@
             // 
             resources.ApplyResources(this.buttonNoFolders, "buttonNoFolders");
             this.buttonNoFolders.Name = "buttonNoFolders";
+            this.tableLayoutPanelSplit.SetRowSpan(this.buttonNoFolders, 2);
             this.buttonNoFolders.UseVisualStyleBackColor = true;
             this.buttonNoFolders.Click += new System.EventHandler(this.buttonNoFolders_Click);
             // 
             // buttonFoldersLetters
             // 
+            this.tableLayoutPanelSplit.SetColumnSpan(this.buttonFoldersLetters, 2);
             resources.ApplyResources(this.buttonFoldersLetters, "buttonFoldersLetters");
             this.buttonFoldersLetters.Name = "buttonFoldersLetters";
             this.buttonFoldersLetters.UseVisualStyleBackColor = true;
@@ -247,10 +262,19 @@
             // 
             // buttonFoldersEqually
             // 
+            this.tableLayoutPanelSplit.SetColumnSpan(this.buttonFoldersEqually, 2);
             resources.ApplyResources(this.buttonFoldersEqually, "buttonFoldersEqually");
             this.buttonFoldersEqually.Name = "buttonFoldersEqually";
             this.buttonFoldersEqually.UseVisualStyleBackColor = true;
             this.buttonFoldersEqually.Click += new System.EventHandler(this.buttonFoldersEqually_Click);
+            // 
+            // buttonFoldersGenre
+            // 
+            this.tableLayoutPanelSplit.SetColumnSpan(this.buttonFoldersGenre, 2);
+            resources.ApplyResources(this.buttonFoldersGenre, "buttonFoldersGenre");
+            this.buttonFoldersGenre.Name = "buttonFoldersGenre";
+            this.buttonFoldersGenre.UseVisualStyleBackColor = true;
+            this.buttonFoldersGenre.Click += new System.EventHandler(this.buttonFoldersGenre_Click);
             // 
             // groupBoxArt
             // 
@@ -443,13 +467,13 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FoldersManagerForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TreeContructorForm_FormClosing);
-            this.Load += new System.EventHandler(this.FoldersManagerForm_Load);
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             this.splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             this.groupBoxSplitModes.ResumeLayout(false);
+            this.tableLayoutPanelSplit.ResumeLayout(false);
             this.groupBoxArt.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
@@ -504,5 +528,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelSplit;
+        private System.Windows.Forms.Button buttonFoldersGenre;
     }
 }
