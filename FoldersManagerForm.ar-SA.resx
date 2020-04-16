@@ -219,4 +219,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>مدير المجلدات</value>
   </data>
+  <data name="buttonFoldersGenre.Text" xml:space="preserve">
+    <value>تقسيم حسب النوع</value>
+  </data>
 </root>
