@@ -211,7 +211,7 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        private void UpdateHakchi()
+        private void UpdateFiles()
         {
             var hmod = hakchi.Hmod.Get();
             Directory.CreateDirectory(Path.GetDirectoryName(hakchi.latestHmodFile));
@@ -221,10 +221,20 @@ namespace com.clusterrr.hakchi_gui
                 using (var tasker = new Tasker(this))
                 {
                     var hakchiTemp = Path.Combine(tempPath, "hakchi-latest.hmod");
+                    var listTemp = Path.Combine(tempPath, "romfiles.xml");
+                    var listOutput = Path.Combine(Program.BaseDirectoryExternal, "data", "romfiles.xml");
+
                     tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
+
                     tasker.SetTitle(Resources.DownloadingLatestHakchi);
                     tasker.AddTask(Tasks.WebClientTasks.DownloadFile(ConfigIni.Instance.HakchiUpdateURL, hakchiTemp, true, true, hmod.LastModified));
                     tasker.AddTask(FileTasks.MoveFile(hakchiTemp, hakchi.latestHmodFile, true, true));
+
+                    
+                    tasker.AddTask(Tasker.TaskTitle(Resources.UpdatingList));
+                    tasker.AddTask(Tasks.WebClientTasks.DownloadFile("https://github.com/TeamShinkansen/hash-db/releases/download/data/romfiles.xml.gz", listTemp, true, true, File.GetLastWriteTime(GamesDB.XmlFile), true));
+                    tasker.AddTask(FileTasks.MoveFile(listTemp, listOutput, true, true));
+
                     tasker.Start();
                 }
             });
@@ -326,7 +336,7 @@ namespace com.clusterrr.hakchi_gui
 
             if (ConfigIni.Instance.EnableHakchiUpdate)
             {
-                UpdateHakchi();
+                UpdateFiles();
             }
 
             // setup system shell

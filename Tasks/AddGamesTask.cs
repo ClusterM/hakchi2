@@ -276,11 +276,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     if (app.Metadata.OriginalCrc32 != 0 &&
                         data.GamesDB.HashLookup.ContainsKey(app.Metadata.OriginalCrc32) &&
-                        data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].Length > 0)
+                        data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].TgdbId.Count > 0)
                     {
                         if (!idList.ContainsKey(app.Metadata.OriginalCrc32))
                         {
-                            idList.Add(app.Metadata.OriginalCrc32, data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].First());
+                            idList.Add(app.Metadata.OriginalCrc32, data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].TgdbId.First());
                         }
                     }
                 }   
@@ -320,8 +320,8 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     int tgdbId;
                     if (app.Metadata.OriginalCrc32 != 0 &&
                     data.GamesDB.HashLookup.ContainsKey(app.Metadata.OriginalCrc32) &&
-                    data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].Length > 0 &&
-                    infoList.ContainsKey(tgdbId = data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].First()))
+                    data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].TgdbId.Count > 0 &&
+                    infoList.ContainsKey(tgdbId = data.GamesDB.HashLookup[app.Metadata.OriginalCrc32].TgdbId.First()))
                     {
                         try
                         {
@@ -329,8 +329,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
                             if (apiResult.Name != null)
                             {
-                                app.Desktop.Name = apiResult.Name;
-                                app.Desktop.SortName = Shared.GetSortName(apiResult.Name);
+                                var name = GamesDB.HashLookup[app.Metadata.OriginalCrc32].Name;
+
+                                if (name != null)
+                                {
+                                    name = Shared.CleanName(name, true);
+                                }
+
+                                app.Desktop.Name = name ?? apiResult.Name;
+                                app.Desktop.SortName = Shared.GetSortName(app.Desktop.Name);
                             }
 
                             if (apiResult.Publishers != null && apiResult.Publishers.Length > 0)

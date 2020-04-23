@@ -493,6 +493,11 @@ namespace com.clusterrr.hakchi_gui.Tasks
             };
         }
 
+        public static TaskFunc TaskTitle(string title) => (Tasker tasker, Object syncObject) => 
+        {
+            tasker.SetTitle(title);
+            return Conclusion.Success;
+        };
         public static TaskFunc TaskIf(TaskFunc condition, TaskFunc successTask, TaskFunc failureTask = null)
         {
             return (Tasker tasker, Object syncObject) =>

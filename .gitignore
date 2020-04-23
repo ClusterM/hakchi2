@@ -9,13 +9,14 @@ Web Installer/*.exe
 basehmods.tar
 bin/
 commit.txt
-data/GamesDB.cs
 data/desktop_entries.7z
 data/desktop_entries.tar
 data/libretro_cores.7z
 data/libretro_cores.tar
 data/licenses.tar
 data/original_art.tar
+data/romfiles.xml
+data/romfiles.xml.gz
 downloadedFiles.txt
 driver/classic_driver.exe
 driver/source/nesmini_driver/Release/

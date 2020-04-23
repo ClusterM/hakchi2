@@ -219,9 +219,9 @@ namespace com.clusterrr.hakchi_gui
 
                 var hash = SelectedItem.Game?.Metadata?.OriginalCrc32 ?? 0;
 
-                if (data.GamesDB.HashLookup.ContainsKey(hash) && data.GamesDB.HashLookup[hash].Length > 0)
+                if (data.GamesDB.HashLookup.ContainsKey(hash) && data.GamesDB.HashLookup[hash].TgdbId.Count > 0)
                 {
-                    SelectedItem.SearchTerm = $"ID: {string.Join(", ", data.GamesDB.HashLookup[hash])}";
+                    SelectedItem.SearchTerm = $"ID: {string.Join(", ", data.GamesDB.HashLookup[hash].TgdbId)}";
                 }
                 
                 textBoxSearchTerm.Text = SelectedItem.SearchTerm ?? SelectedItem.Game.Name;

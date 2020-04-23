@@ -734,5 +734,30 @@ namespace com.clusterrr.hakchi_gui
 
             return newSortName;
         }
+
+        public static string CleanName(string input, bool removeExtension = false)
+        {
+            var output = input;
+
+            int extensionIndex = -1;
+            if (removeExtension && (extensionIndex = output.LastIndexOf(".")) != -1)
+            {
+                output = output.Substring(0, extensionIndex);
+            }
+
+            output = Regex.Replace(output, "\\([^\\)]*\\)", "");
+
+            var theRegex = new Regex("(, The |, The$)", RegexOptions.IgnoreCase);
+
+            if (theRegex.Match(output, 0).Success)
+            {
+                output = theRegex.Replace(output, " ");
+                output = $"The {output.Trim()}";
+            }
+
+            output = Regex.Replace(output, " +", " ");
+
+            return output.Trim();
+        }
     }
 }

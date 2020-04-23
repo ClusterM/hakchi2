@@ -5,6 +5,7 @@ namespace com.clusterrr.hakchi_gui
 {
     class HakchiWebClient : WebClient
     {
+        public static readonly string UserAgent = $"Hakchi2 CE/{Shared.AppVersion.ToString()} (https://github.com/TeamShinkansen/Hakchi2-CE)";
         public string Method
         {
             get;
@@ -12,7 +13,7 @@ namespace com.clusterrr.hakchi_gui
         }
 
         public HakchiWebClient() {
-            this.Headers.Add(HttpRequestHeader.UserAgent, $"Hakchi2 CE/{Shared.AppVersion.ToString()} (https://github.com/TeamShinkansen/Hakchi2-CE)");
+            this.Headers.Add(HttpRequestHeader.UserAgent, HakchiWebClient.UserAgent);
         }
 
         protected override WebRequest GetWebRequest(Uri address)

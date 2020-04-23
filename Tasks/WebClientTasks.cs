@@ -1,8 +1,10 @@
-﻿using com.clusterrr.hakchi_gui.Properties;
+﻿using com.clusterrr.util;
 using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using static com.clusterrr.hakchi_gui.Tasks.Tasker;
@@ -11,91 +13,80 @@ namespace com.clusterrr.hakchi_gui.Tasks
 {
     class WebClientTasks
     {
-        public static TaskFunc DownloadFile(string url, string fileName, bool successOnError = false, bool onlyLatest = false, DateTime? comparisonDate = null)
+        public static TaskFunc DownloadFile(string url, string fileName, bool successOnError = false, bool onlyLatest = false, DateTime? comparisonDate = null, bool gunzip = false)
         {
             return (Tasker tasker, Object sync) =>
             {
                 Conclusion result = Conclusion.Success;
+
+                Debug.WriteLine($"Downloading: {url} to {fileName}");
+
+                if (comparisonDate == null && File.Exists(fileName))
+                {
+                    comparisonDate = File.GetLastWriteTime(fileName);
+                }
+
+                var wr = HttpWebRequest.Create(url) as HttpWebRequest;
+                wr.UserAgent = HakchiWebClient.UserAgent;
+
                 try
                 {
-                    var wc = new HakchiWebClient();
-                    wc.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
-                    wc.Method = "HEAD";
-
-                    wc.DownloadData(url);
-
-                    if (comparisonDate == null && File.Exists(fileName))
+                    using (var response = wr.GetResponse())
                     {
-                        comparisonDate = File.GetLastWriteTime(fileName);
-                    }
+                        var headers = response.Headers;
+                        var contentLength = headers.AllKeys.Contains("Content-Length") ? response.ContentLength : 0;
 
-                    if (onlyLatest && comparisonDate != null)
-                    {
-                        var date = DateTime.ParseExact(wc.ResponseHeaders.Get("Last-Modified"),
-                        "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
-                        CultureInfo.InvariantCulture.DateTimeFormat,
-                        DateTimeStyles.AssumeUniversal);
+                        var date = DateTime.Now;
 
-                        if (comparisonDate >= date)
+                        if (headers.AllKeys.Contains("Last-Modified"))
                         {
-                            return Conclusion.Success;
-                        }
-                    }
+                            date = DateTime.ParseExact(headers["Last-Modified"],
+                            "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
+                            CultureInfo.InvariantCulture.DateTimeFormat,
+                            DateTimeStyles.AssumeUniversal);
 
-                    wc.Method = "GET";
-
-                    Debug.WriteLine($"Downloading: {url} to {fileName}");
-
-                    wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(async (object sender, DownloadProgressChangedEventArgs e) =>
-                    {
-                        tasker.SetProgress(e.BytesReceived, e.TotalBytesToReceive);
-                        tasker.SetStatus(String.Format(Resources.DownloadingProgress, Shared.SizeSuffix(e.BytesReceived), Shared.SizeSuffix(e.TotalBytesToReceive)));
-                    });
-                    wc.DownloadFileCompleted += (object sender, System.ComponentModel.AsyncCompletedEventArgs e) =>
-                    {
-                        if (e.Error != null)
-                        {
-                            File.Delete(fileName);
-                            result = Conclusion.Error;
-                        }
-                        else
-                        {
-                            try
+                            if (onlyLatest && comparisonDate != null && comparisonDate >= date)
                             {
-                                var date = DateTime.ParseExact(wc.ResponseHeaders.Get("Last-Modified"),
-                                "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
-                                CultureInfo.InvariantCulture.DateTimeFormat,
-                                DateTimeStyles.AssumeUniversal);
-
-                                File.SetLastWriteTimeUtc(fileName, date);
+                                response.Close();
+                                return Conclusion.Success;
                             }
-                            catch (Exception) { }
                         }
-                    };
-                    var downloadTask = wc.DownloadFileTaskAsync(new Uri(url), fileName);
-                    new Thread(() =>
-                    {
-                        while (true)
+
+                        using (var webStream = response.GetResponseStream())
+                        using (var trackableStream = new TrackableStream(webStream))
                         {
-                            if (tasker.TaskConclusion == Conclusion.Abort)
+                            trackableStream.OnProgress += (progress, max) =>
                             {
-                                Debug.WriteLine("Download Aborted");
-                                wc.CancelAsync();
-                                break;
-                            }
-                            if (downloadTask.IsCanceled || downloadTask.IsCompleted || downloadTask.IsFaulted)
-                                break;
+                                tasker.SetStatus($"{Shared.SizeSuffix(progress)}{(contentLength > 0 ? $" / {Shared.SizeSuffix(contentLength)}" : "")}");
+                                tasker.SetProgress(progress, contentLength);
+                            };
 
-                            Thread.Sleep(100);
+                            using (var outputFile = File.Create(fileName))
+                            {
+
+                                if (gunzip)
+                                {
+                                    using (var gzipStream = new GZipStream(trackableStream, CompressionMode.Decompress))
+                                    {
+                                        gzipStream.CopyTo(outputFile);
+                                    }
+                                }
+                                else
+                                {
+                                    trackableStream.CopyTo(outputFile);
+                                }
+                            }
+                            File.SetLastWriteTime(fileName, date);
                         }
-                    }).Start();
-                    downloadTask.Wait();
-                } 
-                catch (WebException e)
+                    }
+                }
+                catch (ThreadAbortException) { }
+                catch (Exception e)
                 {
                     if (!successOnError)
                         throw e;
                 }
+
                 return result;
             };
         }

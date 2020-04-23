@@ -7,13 +7,17 @@ downloadedFiles="$(cat "$downloadedFileListName")"
 
 download(){
   mkdir -p "`dirname "$2"`"
-  ([ ! -f "$2" ] || [ "$(echo "$downloadedFiles" | grep -x "$2 $1")" == "" ]) && ($pwd/wget.exe "$1" -O "$2" 2>/dev/null || wget "$1" -O "$2" 2>/dev/null || return 1)
+  [ "$(echo "$downloadedFiles" | grep -x "$2 $1")" == "" ] && [ -f "$2" ] && rm "$2"
+  $pwd/wget.exe -N -S "$1" -O "$2" 2>/dev/null || wget -N -S "$1" -O "$2" 2>/dev/null || return 1
   echo "$2 $1" >> "$downloadedFileListName"
 }
 
 printf "" > "$downloadedFileListName"
 
-download "https://github.com/TeamShinkansen/Hakchi2-CE/releases/download/supplemental/bluetooth.Fri.Mar.20.18-15-57.GMT.2020.hmod" "user_mods/bluetooth.hmod"
+download "https://github.com/TeamShinkansen/hash-db/releases/download/data/romfiles.xml.gz" "data/romfiles.xml.gz" || exit 1
+gunzip -k -f "data/romfiles.xml.gz"
+touch "data/romfiles.xml.gz" -r "data/romfiles.xml"
+download "https://github.com/TeamShinkansen/Hakchi2-CE/releases/download/supplemental/bluetooth.Fri.Mar.20.18-15-57.GMT.2020.hmod" "user_mods/bluetooth.hmod" || exit 1
 download "https://github.com/TeamShinkansen/Hakchi2-CE/releases/download/supplemental/hakchi-v1.0.4-126.Fri.03.Apr.2020.11_12_31.AM.GMT.hmod" "mods/hmods/hakchi.hmod" || exit 1
 download "https://hakchi.net/hakchi/detached-fallback" "tools/arm/detached-fallback" || exit 1
 download "https://github.com/TeamShinkansen/libwdi/releases/download/classic_driver_1/classic_driver.exe" "driver/classic_driver.exe" || exit 1

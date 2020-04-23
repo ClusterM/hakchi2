@@ -181,6 +181,9 @@
     <None Include="folder_images\TheWez1981-MegaDrive\spines\genre_racing_sports.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="data\romfiles.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Licenses\ArxOne.Ftp.txt" />
     <Compile Include="LicenseInfo.cs">
       <SubType>Form</SubType>
@@ -188,6 +191,8 @@
     <Compile Include="LicenseInfo.Designer.cs">
       <DependentUpon>LicenseInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Rom\RomData.cs" />
+    <Compile Include="Models\Rom\RomFiles.cs" />
     <Compile Include="MultiStream.cs" />
     <Compile Include="NameValuePair.cs" />
     <Compile Include="ScraperForm.cs">
@@ -4147,8 +4152,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>"$(SolutionDir)TGDBHashTool/bin/$(ConfigurationName)/TGDBHashTool.exe" --xml "$(SolutionDir)TGDBHashTool/data.xml" --cs "$(SolutionDir)data/GamesDB.cs" --cs-opts "com.clusterrr.hakchi_gui.data,GamesDB,HashLookup"
-cd /D "$(ProjectDir)tools/" || cd "$(ProjectDir)tools/"
+    <PreBuildEvent>cd /D "$(ProjectDir)tools/" || cd "$(ProjectDir)tools/"
 "./busybox" sh -e "./downloadfiles" ../
 "./busybox" tar -cvf "../basehmods.tar" -C "../mods/hmods" "."
 "./busybox" sh -e "./copypackedhmods" "../mods/hmods" "../$(OutDir)user_mods"
