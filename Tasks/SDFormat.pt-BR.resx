@@ -141,6 +141,6 @@ If it turns out to be incompatible, the system will not start with the card inse
     <value>Cancelar</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Formatar cartão SD</value>
+    <value>Formatar Cartão SD</value>
   </data>
 </root>

@@ -217,7 +217,7 @@
     <value>Subindo o kernel...</value>
   </data>
   <data name="VerifyFailed" xml:space="preserve">
-    <value>Verificação falhou :O Isso não é bom.</value>
+    <value>Verificação falhou :O Isso não é bom...</value>
   </data>
   <data name="Verifying" xml:space="preserve">
     <value>Verificando...</value>
@@ -238,7 +238,7 @@
     <value>Se você gostou desse programa e puder fazer uma doação, meu PayPal está na tela do "Sobre".</value>
   </data>
   <data name="FirstRun" xml:space="preserve">
-    <value>Olá! Estou feliz por você estar usando o hakchi2!
+    <value>Olá! Estou feliz por você usar o hakchi2!
 
 É bem simples de usar. Apenas clique em "Adicionar mais jogos", selecione algumas ROMs, aperte "Sincronizar" para subir os jogos para a memória do console, ou clique em "Exportar" "para usar o modo USB HOST e siga as instruções. Boa sorte!</value>
   </data>
@@ -288,7 +288,7 @@
     <value>Selecione ao menos dois botões.</value>
   </data>
   <data name="AutofireHelp1" xml:space="preserve">
-    <value>Mantenha pressionados Select+A+B por um segundo para habilitar/desabilitar rapidfire A/B.</value>
+    <value>Mantenha pressionados Select+A+B por um segundo para habilitar/desabilitar rapid fire A/B.</value>
   </data>
   <data name="ExtraArgsInfo" xml:space="preserve">
     <value>Você pode adicionar argumentos globais de linha de comando que vão ser acrescentados em todos os jogos, incluindo os originais. Isso é apenas para usuários avançados!</value>
@@ -297,7 +297,7 @@
     <value>Argumentos de linha de comando adicionais</value>
   </data>
   <data name="DownloadAllCoversTitle" xml:space="preserve">
-    <value>Baixando artes de capa para todos os jogos (Estou me sentindo com sorte!)</value>
+    <value>Baixando artes da capa para todos os jogos (Estou me sentindo com sorte!)</value>
   </data>
   <data name="GooglingFor" xml:space="preserve">
     <value>Googleando por</value>
@@ -357,7 +357,7 @@
     <value>Nova pasta</value>
   </data>
   <data name="FolderNameUnsorted" xml:space="preserve">
-    <value>Organizar</value>
+    <value>Não organizados</value>
   </data>
   <data name="FoldersSaveQ" xml:space="preserve">
     <value>Você quer salvar essa estrutura de pastas?</value>
@@ -366,7 +366,7 @@
     <value>A pasta "{0}" contém {1} elemento(s).</value>
   </data>
   <data name="NewGamesUnsorted" xml:space="preserve">
-    <value>Os novos jogos adicionados foram movidos para a pasta "Organizar".</value>
+    <value>Os novos jogos adicionados foram movidos para a pasta "Não organizados".</value>
   </data>
   <data name="AddingGames" xml:space="preserve">
     <value>Processando jogos, por favor aguarde...</value>
@@ -426,7 +426,7 @@
     <value>Por favor aguarde...</value>
   </data>
   <data name="DumpingNand" xml:space="preserve">
-    <value>Fazendo o despejo da memória NAND...</value>
+    <value>Fazendo o dump da memória NAND...</value>
   </data>
   <data name="NandDumped" xml:space="preserve">
     <value>O despejo da memória NAND foi realizado com sucesso.</value>
@@ -641,7 +641,7 @@ http://darkakuma.z-net.us/p/sfromtool.html</value>
     <value>Seu kernel customizado está desatualizado. Você precisa fazer um novo flash antes de usar este programa. Quer fazer o flash do kernel customizado agora?</value>
   </data>
   <data name="SystemRequiresRootfsUpdate" xml:space="preserve">
-    <value>Os scripts do kernel estão desatualizados. Você precisa fazer um memboot antes de usar este programa. Você quer fazer o memboot do kernel customizado agora?</value>
+    <value>Os scripts do kernel estão desatualizados. Você precisa de um memboot antes de usar este programa. Você quer fazer o memboot do kernel customizado agora?</value>
   </data>
   <data name="Unassigned" xml:space="preserve">
     <value>Não atribuído</value>
@@ -788,7 +788,7 @@ Todos os dados serão apagados e será feito o flash do kernel padrão.
 Continuar?</value>
   </data>
   <data name="CannotProceedCannotInteract" xml:space="preserve">
-    <value>Os scripts do seu kernel estão desatualizados. Por favor faça a atualização antes de sincronizar os jogos</value>
+    <value>Os scripts do kernel estão desatualizados. Por favor faça a atualização antes de sincronizar os jogos</value>
   </data>
   <data name="CannotProceedMinimalMemboot" xml:space="preserve">
     <value>Seu mini está em recovery state, não dá para continuar. Para sair desse estado, use Ferramentas -&gt; Reiniciar</value>
@@ -857,7 +857,7 @@ Continuar?</value>
     <value>Calculando espaço livre...</value>
   </data>
   <data name="InvalidUserDataBackup" xml:space="preserve">
-    <value>Backup de dados de usuário inválido.</value>
+    <value>Backup de dados de usuário inválido</value>
   </data>
   <data name="CriticalError" xml:space="preserve">
     <value>Erro crítico</value>
@@ -881,7 +881,7 @@ Continuar?</value>
     <value>Backup do Software do Sistema</value>
   </data>
   <data name="UserDataBackup" xml:space="preserve">
-    <value>Backup de Dados de Usuário</value>
+    <value>Backup de Dados do Usuário</value>
   </data>
   <data name="DumpOriginalKernelInvalid" xml:space="preserve">
     <value>O arquivo do kernel original que você forneceu não é um kernel original validado.</value>
@@ -1270,5 +1270,20 @@ Há uma pequena chance de perda de dados, tenha certeza de ter backup dos seus s
     <value>Isso vai substituir as informações e artes customizadas por aquelas achadas pelo buscador.
 
 Tem certeza?</value>
+  </data>
+  <data name="NoTelnet" xml:space="preserve">
+    <value>Não foi possível iniciar o cliente Telnet, parece estar desabilitado. Você precisa habilitá-lo primeiro. Pode fazê-lo em "Painel de Controle -&gt; Programas -&gt; Ativar ou desativar recursos do Windows".</value>
+  </data>
+  <data name="PleaseConnectYourDevice" xml:space="preserve">
+    <value>Por favor conecte o mini para poder continuar. Note que você precisa instalar o kernel customizado, utilizando as opções do menu Kernel.</value>
+  </data>
+  <data name="UninstallFactoryNote" xml:space="preserve">
+    <value>Pronto! Não esqueça de voltar às configurações de fábrica caso deseje apagar os Suspend Points.</value>
+  </data>
+  <data name="ReplaceKernelQ" xml:space="preserve">
+    <value>Você já tem o dump do kernel. Se você REALMENTE quer substituir o backup do seu kernel e REALMENTE entende o que está fazendo, exclua a pasta "kakchi2/dump" manualmente.</value>
+  </data>
+  <data name="CannotSyncToNonMultiBoot" xml:space="preserve">
+    <value>Você não pode sincronizar uma coleção de {0} jogos no mini ({1}) que está usando. Por favor mude para a coleção de jogos apropriada, ou mude para o modo "jogos separados para multiboot", para poder continuar.</value>
   </data>
 </root>

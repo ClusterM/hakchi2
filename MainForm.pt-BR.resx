@@ -247,7 +247,7 @@
     <value>Nome</value>
   </data>
   <data name="coreToolStripMenuItem.Text" xml:space="preserve">
-    <value>Core</value>
+    <value>Core de emulação</value>
   </data>
   <data name="systemToolStripMenuItem.Text" xml:space="preserve">
     <value>Console</value>
@@ -505,7 +505,7 @@
     <value>Reparar jogos</value>
   </data>
   <data name="selectEmulationCoreToolStripMenuItem.Text" xml:space="preserve">
-    <value>Selecionar o core de emulação...</value>
+    <value>Selecionar o core de emulação</value>
   </data>
   <data name="openFileDialogImage.Filter" xml:space="preserve">
     <value>Imagens (*.bmp;*.png;*.jpg;*.jpeg;*.gif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif|Todos os arquivos|*.*</value>
@@ -628,10 +628,10 @@
     <value>Máximo de jogos por página/pasta</value>
   </data>
   <data name="leftmostToolStripMenuItem.Text" xml:space="preserve">
-    <value>à esquerda</value>
+    <value>Mais à esquerda</value>
   </data>
   <data name="rightmostToolStripMenuItem.Text" xml:space="preserve">
-    <value>à direita</value>
+    <value>Mais à direita</value>
   </data>
   <data name="backFolderButtonPositionToolStripMenuItem.Text" xml:space="preserve">
     <value>Posição do botão voltar pasta</value>
