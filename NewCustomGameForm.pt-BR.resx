@@ -124,7 +124,7 @@
     <value>\C\L\V-A-AAAAA</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>Gerar código baseando-se no nome</value>
+    <value>Gerar código baseado no nome</value>
   </data>
   <data name="button1.Text" xml:space="preserve">
     <value>Criar</value>

@@ -872,7 +872,7 @@ Continuar?</value>
     <value>Dump do kernel original concluído</value>
   </data>
   <data name="DumpOriginalKernelNotFound" xml:space="preserve">
-    <value>o kernel original não foi achado no sistema.</value>
+    <value>O kernel original não foi achado no sistema.</value>
   </data>
   <data name="KernelDump" xml:space="preserve">
     <value>Dump do kernel</value>
@@ -982,7 +982,7 @@ Outros motivos podem ser alguma VPN bloqueando tráfego na rede local ou o Windo
     <value>Arquivos XML</value>
   </data>
   <data name="ArchiveFiles" xml:space="preserve">
-    <value>Arquivar Arquivos</value>
+    <value>Arquivos Comprimidos</value>
   </data>
   <data name="GameArchive" xml:space="preserve">
     <value>Arquivo de Jogos</value>
@@ -1053,7 +1053,7 @@ Todos os dados do cartão serão apagados!</value>
     <value>Criando uboot</value>
   </data>
   <data name="FactoryReset" xml:space="preserve">
-    <value>Voltar as configurações de fábrica </value>
+    <value>Voltar as configurações de fábrica</value>
   </data>
   <data name="FactoryResetWithKernelFile" xml:space="preserve">
     <value>Voltar as configurações de fábrica com arquivo de kernel</value>
@@ -1165,7 +1165,7 @@ Você deseja continuar?</value>
 Versão: {0}
 Hash: {1}
 
-Você deseja continuar?</value>
+Você deseja continuar??</value>
   </data>
   <data name="UnknownSystemVersionDetected" xml:space="preserve">
     <value>Foi Detectada uma Versão de Sistema Desconhecida</value>
@@ -1192,7 +1192,7 @@ Há uma pequena chance de perda de dados, tenha certeza de ter backup dos seus s
     <value>Deseja expandir a partição de dados?</value>
   </data>
   <data name="GenreRacingSports" xml:space="preserve">
-    <value>Corrida / Esportes</value>
+    <value>Esportes de Corrida</value>
   </data>
   <data name="GenreFighting" xml:space="preserve">
     <value>Luta</value>
