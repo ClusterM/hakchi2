@@ -47,8 +47,11 @@
             this.colCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colFlags = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonOpenWithFTP = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip
@@ -163,22 +166,37 @@
             // 
             resources.ApplyResources(this.colFlags, "colFlags");
             // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.buttonImport, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonDelete, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonExport, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonOpenWithFTP, 0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // buttonOpenWithFTP
+            // 
+            resources.ApplyResources(this.buttonOpenWithFTP, "buttonOpenWithFTP");
+            this.buttonOpenWithFTP.Name = "buttonOpenWithFTP";
+            this.buttonOpenWithFTP.UseVisualStyleBackColor = true;
+            this.buttonOpenWithFTP.Click += new System.EventHandler(this.buttonOpenWithFTP_Click);
+            // 
             // SaveStateManager
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listViewSaves);
             this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.buttonDelete);
-            this.Controls.Add(this.buttonImport);
-            this.Controls.Add(this.buttonExport);
             this.Controls.Add(this.labelLoading);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.Name = "SaveStateManager";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SaveStateManager_FormClosed);
             this.contextMenuStrip.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,5 +221,7 @@
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.ColumnHeader colSize;
         private System.Windows.Forms.ColumnHeader colFlags;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button buttonOpenWithFTP;
     }
 }

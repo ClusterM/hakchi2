@@ -112,7 +112,7 @@ namespace com.clusterrr.hakchi_gui
                             new  ListViewItem.ListViewSubItem() { Name = "colName", Text = name},
                             new  ListViewItem.ListViewSubItem() { Name = "colCode", Text = code},
                             new  ListViewItem.ListViewSubItem() { Name = "colSize", Text = size},
-                            new  ListViewItem.ListViewSubItem() { Name = "colFlags", Text = flags}                           
+                            new  ListViewItem.ListViewSubItem() { Name = "colFlags", Text = flags}
                         }, 0));
                         listViewSaves.ListViewItemSorter = new SavesSorter(0, false);
                         listViewSaves.Sort();
@@ -333,6 +333,7 @@ namespace com.clusterrr.hakchi_gui
         {
             exportToolStripMenuItem.Enabled = deleteToolStripMenuItem.Enabled =
                 buttonExport.Enabled = buttonDelete.Enabled = listViewSaves.SelectedItems.Count > 0;
+            buttonOpenWithFTP.Enabled = listViewSaves.SelectedItems.Count == 1;
             if (listViewSaves.SelectedItems.Count > 0)
             {
                 var size = 0;
@@ -425,6 +426,32 @@ namespace com.clusterrr.hakchi_gui
                 {
                     return 0;
                 }
+            }
+        }
+
+        private void buttonOpenWithFTP_Click(object sender, EventArgs e)
+        {
+            string ip, port;
+
+            if (hakchi.Shell is INetworkShell && hakchi.Shell.IsOnline)
+            {
+                ip = (hakchi.Shell as INetworkShell).IPAddress;
+                port = "21";
+            }
+            else
+            {
+                return;
+            }
+            if (listViewSaves.SelectedItems.Count > 0)
+            {
+                new Process()
+                {
+                    StartInfo = new ProcessStartInfo()
+                    {
+                        FileName = String.Format(ConfigIni.Instance.FtpCommand, "root", "clover", ip, port),
+                        Arguments = String.Format(ConfigIni.Instance.FtpArguments, "root", "clover", ip, port) + $"/var/saves/{listViewSaves.SelectedItems[0].SubItems["colCode"].Text}"
+                    }
+                }.Start();
             }
         }
     }
