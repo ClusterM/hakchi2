@@ -87,10 +87,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1D05715BF83320949FC1BAC8462308051A0C0F04</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>525D016AC453C9B9D64743D1D1A4462DD3DCEB61</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>cluster_cert.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />

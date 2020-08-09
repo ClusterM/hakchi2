@@ -49,23 +49,10 @@ namespace com.clusterrr.hakchi_gui
             //Debug.WriteLine("Web response: " + responseFromServer);
 
             var urls = new List<string>();
-            string search = @"\""ou\""\:\""(?<url>.+?)\""";
+            string search = @"\[""(?<url>https?:\/\/.*?\.(jpg|jpeg|png))\"",\d+,\d+\]";
             MatchCollection matches = Regex.Matches(responseFromServer, search);
             foreach (Match match in matches)
-            {
-                urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
-            }
-
-            // For some reason Google returns different data for dirrefent users (IPs?)
-            // There is alternative method
-            search = @"imgurl=(.*?)&";
-            matches = Regex.Matches(responseFromServer, search);
-            foreach (Match match in matches)
-            {
-                // Not sure about it.
-                urls.Add(HttpUtility.UrlDecode(match.Groups[1].Value.Replace("\\u00", "%")));
-            }
-
+                urls.Add(match.Groups["url"].Value);
             return urls.ToArray();
         }
 
