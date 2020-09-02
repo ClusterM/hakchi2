@@ -322,6 +322,8 @@ namespace com.clusterrr.hakchi_gui
 
             // centralized upgrade actions system
             new Upgrade(this).Run();
+            
+            // populate mod repository list
             populateRepos();
 
             // nothing else will call this at the moment, so need to do it
@@ -802,6 +804,7 @@ namespace com.clusterrr.hakchi_gui
                     this.FormInitialize();
                     this.SyncConsoleSettings(true);
                     this.SyncConsoleType(true);
+                    this.populateRepos();
                     this.Show();
                 };
                 if (Thread.CurrentThread.CurrentUICulture.Name.ToUpper() == langCodes[language].ToUpper())
