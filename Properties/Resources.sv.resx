@@ -1,0 +1,1289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FolderNotEmpty" xml:space="preserve">
+    <value>Den valda mappen är inte tom</value>
+  </data>
+  <data name="RemovingCovers" xml:space="preserve">
+    <value>Tar bort omslagsbilder...</value>
+  </data>
+  <data name="BuildingMenu" xml:space="preserve">
+    <value>Bygger menyn...</value>
+  </data>
+  <data name="Aborting" xml:space="preserve">
+    <value>Avbryter...</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Bilder</value>
+  </data>
+  <data name="Removing" xml:space="preserve">
+    <value>Tar bort {0}...</value>
+  </data>
+  <data name="SelectRegion" xml:space="preserve">
+    <value>Välj en region</value>
+  </data>
+  <data name="ListCategoryAll" xml:space="preserve">
+    <value>Alla spel</value>
+  </data>
+  <data name="AllFiles" xml:space="preserve">
+    <value>Alla filer</value>
+  </data>
+  <data name="GenreAdventure" xml:space="preserve">
+    <value>Äverntyr</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="GenreAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="GenreActionShooting" xml:space="preserve">
+    <value>Action / Skjuta</value>
+  </data>
+  <data name="AddingHakchiMBR" xml:space="preserve">
+    <value>Lägger till hakchi MBR</value>
+  </data>
+  <data name="AlreadyInRecovery" xml:space="preserve">
+    <value>Redan i återhämtningsläge</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="CopyFilesFromNandQ" xml:space="preserve">
+    <value>Kopiera filer från NAND?</value>
+  </data>
+  <data name="CopyingGames" xml:space="preserve">
+    <value>Kopierar spel...</value>
+  </data>
+  <data name="CopyingHakchiToSDCard" xml:space="preserve">
+    <value>Kopierar hakchi till SD-kort</value>
+  </data>
+  <data name="CopyingNandDataToSDCard" xml:space="preserve">
+    <value>Kopierar NAND-data till SD-kort</value>
+  </data>
+  <data name="CriticalError" xml:space="preserve">
+    <value>Kritiskt fel</value>
+  </data>
+  <data name="FirmwareCurrent" xml:space="preserve">
+    <value>Aktuell</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="One" xml:space="preserve">
+    <value>En</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Ansluten</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Frånkopplad</value>
+  </data>
+  <data name="GGCodeEmpty" xml:space="preserve">
+    <value>Du måste ange en kod!</value>
+  </data>
+  <data name="GGDescriptionEmpty" xml:space="preserve">
+    <value>Du måste ange en beskrivning!</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="YesForAll" xml:space="preserve">
+    <value>Ja till allt</value>
+  </data>
+  <data name="YesToAll" xml:space="preserve">
+    <value>Ja till allt</value>
+  </data>
+  <data name="Wow" xml:space="preserve">
+    <value>Hurra</value>
+  </data>
+  <data name="WritingBoot0" xml:space="preserve">
+    <value>Skriver boot0</value>
+  </data>
+  <data name="WritingFATFilesystem" xml:space="preserve">
+    <value>Skriver FAT-filsystem</value>
+  </data>
+  <data name="WritingKernel" xml:space="preserve">
+    <value>Skriver kärnan</value>
+  </data>
+  <data name="WritingSquashFS" xml:space="preserve">
+    <value>Skriver SquashFS</value>
+  </data>
+  <data name="WritingUboot" xml:space="preserve">
+    <value>Skriver uboot</value>
+  </data>
+  <data name="XMLFiles" xml:space="preserve">
+    <value>XML-filer</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Välkommen</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Varning!</value>
+  </data>
+  <data name="WaitingForDevice" xml:space="preserve">
+    <value>Väntar på enheten...</value>
+  </data>
+  <data name="Verifying" xml:space="preserve">
+    <value>Verifierar...</value>
+  </data>
+  <data name="UnsavedChanges" xml:space="preserve">
+    <value>Osparade ändringar</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Okänt</value>
+  </data>
+  <data name="UpdatingList" xml:space="preserve">
+    <value>Uppdaterar listan...</value>
+  </data>
+  <data name="UploadGames" xml:space="preserve">
+    <value>Skicka upp spel</value>
+  </data>
+  <data name="FolderNameHome" xml:space="preserve">
+    <value>Hem</value>
+  </data>
+  <data name="Hakchi2CEGames0" xml:space="preserve">
+    <value>Hakchi2 CE Games - {0}</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hej</value>
+  </data>
+  <data name="Japan" xml:space="preserve">
+    <value>Japan</value>
+  </data>
+  <data name="ImportGames" xml:space="preserve">
+    <value>Importera spel</value>
+  </data>
+  <data name="InstallingHakchi" xml:space="preserve">
+    <value>Installerar hakchi...</value>
+  </data>
+  <data name="InstallingMods" xml:space="preserve">
+    <value>Installerar moduler...</value>
+  </data>
+  <data name="VersionRevisionNotice" xml:space="preserve">
+    <value>INTERN VERSION ENDAST FÖR TESTNING</value>
+  </data>
+  <data name="InvalidKernelSize" xml:space="preserve">
+    <value>Ogiltig kärnstorlek:</value>
+  </data>
+  <data name="LoadingGames" xml:space="preserve">
+    <value>Läser in spel...</value>
+  </data>
+  <data name="LoadingHmods" xml:space="preserve">
+    <value>Läser in moduler...</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Läser in...</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="FolderNameMoreGames" xml:space="preserve">
+    <value>Fler spel...</value>
+  </data>
+  <data name="MountingSDCard" xml:space="preserve">
+    <value>Monterar SD-kort</value>
+  </data>
+  <data name="MountingSquashFS" xml:space="preserve">
+    <value>Monterar SquashFS</value>
+  </data>
+  <data name="ListCategoryNew" xml:space="preserve">
+    <value>Nya appar</value>
+  </data>
+  <data name="NewCustomGame" xml:space="preserve">
+    <value>Nytt anpassat spel</value>
+  </data>
+  <data name="FolderNameNewFolder" xml:space="preserve">
+    <value>Ny mapp</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="NoForAll" xml:space="preserve">
+    <value>Nej till allt</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Hittade inte:</value>
+  </data>
+  <data name="NotRecommended" xml:space="preserve">
+    <value>rekommenderas inte</value>
+  </data>
+  <data name="NotSupportedOnThisPlatform" xml:space="preserve">
+    <value>Stöds inte på denna plattform</value>
+  </data>
+  <data name="ListCategoryOriginal" xml:space="preserve">
+    <value>Originalspel</value>
+  </data>
+  <data name="FolderNameOriginalGames" xml:space="preserve">
+    <value>Originalspel</value>
+  </data>
+  <data name="Default30games" xml:space="preserve">
+    <value>Originalspel</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Klistra in</value>
+  </data>
+  <data name="PatchAvailable" xml:space="preserve">
+    <value>Patch tillgänglig</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Vänta...</value>
+  </data>
+  <data name="PoweringOff" xml:space="preserve">
+    <value>Stänger av...</value>
+  </data>
+  <data name="PressOkToContinue" xml:space="preserve">
+    <value>Tryck Ok för att fortsätta.</value>
+  </data>
+  <data name="AddingGame" xml:space="preserve">
+    <value>Behandlar spelet {0}</value>
+  </data>
+  <data name="AddingGames" xml:space="preserve">
+    <value>Behandlar spel. Vänta...</value>
+  </data>
+  <data name="UploadingOriginalGames" xml:space="preserve">
+    <value>Behandlar originalspel...</value>
+  </data>
+  <data name="LinkingGames" xml:space="preserve">
+    <value>Behandlar symboliska länkar...</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Behandlar...</value>
+  </data>
+  <data name="RunningFoldersManager" xml:space="preserve">
+    <value>Kör mapphanteraren...</value>
+  </data>
+  <data name="SaveSettings" xml:space="preserve">
+    <value>Spara inställningar</value>
+  </data>
+  <data name="consoleTypeMdUsa" xml:space="preserve">
+    <value>Sega Genesis (USA)</value>
+  </data>
+  <data name="consoleTypeMdAsia" xml:space="preserve">
+    <value>Sega MegaDrive (Asien)</value>
+  </data>
+  <data name="consoleTypeMdEur" xml:space="preserve">
+    <value>Sega MegaDrive (Europa)</value>
+  </data>
+  <data name="consoleTypeMdJpn" xml:space="preserve">
+    <value>Sega MegaDrive (Japan)</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Välj fil</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Storlek:</value>
+  </data>
+  <data name="Skipping" xml:space="preserve">
+    <value>Hoppar över {0}</value>
+  </data>
+  <data name="GenreSports" xml:space="preserve">
+    <value>Sport</value>
+  </data>
+  <data name="consoleTypeSuperFamicom" xml:space="preserve">
+    <value>Super Famicom (Japan)</value>
+  </data>
+  <data name="consoleTypeSnesEur" xml:space="preserve">
+    <value>Super NES (Europa)</value>
+  </data>
+  <data name="consoleTypeSnesUsa" xml:space="preserve">
+    <value>Super NES (USA)</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>Startar...</value>
+  </data>
+  <data name="SfromTool" xml:space="preserve">
+    <value>SFROM-verktyg</value>
+  </data>
+  <data name="ImageTooLarge" xml:space="preserve">
+    <value>Bilden är för stor</value>
+  </data>
+  <data name="SystemFilesModifiedMessage" xml:space="preserve">
+    <value>Systemfilerna verkar ha ändrats:
+
+Version: {0}
+Hash: {1}
+
+Vill du fortsätta?</value>
+  </data>
+  <data name="SystemFilesUnknownMessage" xml:space="preserve">
+    <value>Systemfilerna är av en okänd version:
+
+Version: {0}
+Hash: {1}
+
+Vill du fortsätta?</value>
+  </data>
+  <data name="PatchQ" xml:space="preserve">
+    <value>Det finns en patch för "{0}". Vill du patcha detta spel?</value>
+  </data>
+  <data name="GGCodeExists" xml:space="preserve">
+    <value>Koden finns redan. Vill du redigera den?</value>
+  </data>
+  <data name="Three" xml:space="preserve">
+    <value>Tre</value>
+  </data>
+  <data name="TransferringMods" xml:space="preserve">
+    <value>Överför moduler...</value>
+  </data>
+  <data name="TwoNotSimultaneously" xml:space="preserve">
+    <value>Två, inte samtidigt</value>
+  </data>
+  <data name="TwoSimultaneously" xml:space="preserve">
+    <value>Två, samtidigt</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>Avinstallera</value>
+  </data>
+  <data name="Uploading" xml:space="preserve">
+    <value>Skickar upp {0}</value>
+  </data>
+  <data name="UploadingGames" xml:space="preserve">
+    <value>Skickar upp spel...</value>
+  </data>
+  <data name="TooManyPerFolder" xml:space="preserve">
+    <value>Varning! Det rekommenderas inte att ha så många spel per mapp.</value>
+  </data>
+  <data name="UnsavedChangesQ" xml:space="preserve">
+    <value>Du har osparade ändringar. Vill du spara dem?</value>
+  </data>
+  <data name="SyncMultibootWarning" xml:space="preserve">
+    <value>Du har {0} spel redan synkroniserade till din mini (inte separerade för multiboot). Fortsätta kommer att radera dem. Är du säker?</value>
+  </data>
+  <data name="SyncNonMultibootWarning" xml:space="preserve">
+    <value>Du har {0} spel redan synkroniserade till din mini (separerade för multiboot). Fortsätta kommer att radera dem. Är du säker?</value>
+  </data>
+  <data name="CustomGameNeedValidData" xml:space="preserve">
+    <value>Du måste ange en giltig appkod och namn!</value>
+  </data>
+  <data name="CustomWarning" xml:space="preserve">
+    <value>Du måste flasha en anpassad kärna till din mini. Det krävs endast en gång. Vill du fortsätta?</value>
+  </data>
+  <data name="CannotProceedCannotInteract" xml:space="preserve">
+    <value>Din kärna eller skript är utdaterade. Uppdatera dem innan spel synkroniseras</value>
+  </data>
+  <data name="DiscardChanges" xml:space="preserve">
+    <value>Förkasta ändringar</value>
+  </data>
+  <data name="DeleteGame" xml:space="preserve">
+    <value>Vill du verkligen ta bort spelet "{0}"?</value>
+  </data>
+  <data name="DeleteElement" xml:space="preserve">
+    <value>Vill du verkligen ta bort "{0}"?</value>
+  </data>
+  <data name="ApplyChangesQ" xml:space="preserve">
+    <value>Vill du verkställa dina ändringar?</value>
+  </data>
+  <data name="DoYouWantToContinue" xml:space="preserve">
+    <value>Vill du fortsätta?</value>
+  </data>
+  <data name="DumpKernelQ" xml:space="preserve">
+    <value>Vill du dumpa kärnan?</value>
+  </data>
+  <data name="DoYouWantToExpandTheDataPartition" xml:space="preserve">
+    <value>Vill du expandera datapartitionen?</value>
+  </data>
+  <data name="CustomKernelQ" xml:space="preserve">
+    <value>Vill du flasha den anpassade kärnan?</value>
+  </data>
+  <data name="UninstallQ2" xml:space="preserve">
+    <value>Vill du flasha originalkärnan nu?</value>
+  </data>
+  <data name="OriginalKernelQ" xml:space="preserve">
+    <value>Vill du flasha originalkärnan?</value>
+  </data>
+  <data name="LinkedGamesQ" xml:space="preserve">
+    <value>Vill du skapa länkade spel?</value>
+  </data>
+  <data name="ReplaceFollowingFileQ" xml:space="preserve">
+    <value>Vill du ersätta följande fil?
+
+{0}</value>
+  </data>
+  <data name="FoldersSaveQ" xml:space="preserve">
+    <value>Vill du spara denna mappstruktur?</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Färdigt!</value>
+  </data>
+  <data name="DownloadingLatestHakchi" xml:space="preserve">
+    <value>Hämtar senaste hakchi</value>
+  </data>
+  <data name="DownloadingEllipsis" xml:space="preserve">
+    <value>Hämtar...</value>
+  </data>
+  <data name="DownloadingProgress" xml:space="preserve">
+    <value>Hämtar: {0} / {1}</value>
+  </data>
+  <data name="DumpingKernel" xml:space="preserve">
+    <value>Dumpar kärna...</value>
+  </data>
+  <data name="DumpingNand" xml:space="preserve">
+    <value>Dumpar NAND...</value>
+  </data>
+  <data name="GenreEducational" xml:space="preserve">
+    <value>Utbildning</value>
+  </data>
+  <data name="EnableAutoRefresh" xml:space="preserve">
+    <value>Aktivera autouppdatering</value>
+  </data>
+  <data name="Europe" xml:space="preserve">
+    <value>Europa</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fel</value>
+  </data>
+  <data name="ExecutingCommand" xml:space="preserve">
+    <value>Kör kommando:</value>
+  </data>
+  <data name="ExportGames" xml:space="preserve">
+    <value>Exportera till USB</value>
+  </data>
+  <data name="FactoryReset" xml:space="preserve">
+    <value>Fabriksåterställning </value>
+  </data>
+  <data name="consoleTypeFamicom" xml:space="preserve">
+    <value>Famicom (Japan)</value>
+  </data>
+  <data name="Firmware" xml:space="preserve">
+    <value>Fast programvara</value>
+  </data>
+  <data name="Five" xml:space="preserve">
+    <value>Fem</value>
+  </data>
+  <data name="FormatSD" xml:space="preserve">
+    <value>Formatera SD</value>
+  </data>
+  <data name="FormattingTheSDCard" xml:space="preserve">
+    <value>Formaterar SD-kort</value>
+  </data>
+  <data name="FormattingSDCard" xml:space="preserve">
+    <value>Formaterar SD-kort</value>
+  </data>
+  <data name="Four" xml:space="preserve">
+    <value>Fyra</value>
+  </data>
+  <data name="GameArchive" xml:space="preserve">
+    <value>Spelarkiv</value>
+  </data>
+  <data name="FTPServerOn" xml:space="preserve">
+    <value>FTP-server på ftp://root@{0} (pass:clover)</value>
+  </data>
+  <data name="GamesSelected" xml:space="preserve">
+    <value>spel markerade</value>
+  </data>
+  <data name="GamesAndApps" xml:space="preserve">
+    <value>Spel och appar</value>
+  </data>
+  <data name="GooglingFor" xml:space="preserve">
+    <value>Googlar efter</value>
+  </data>
+  <data name="CannotInteract" xml:space="preserve">
+    <value>Uppdatering av hakchi krävs</value>
+  </data>
+  <data name="FirstRun" xml:space="preserve">
+    <value>Hej där! Jag är mycket glad att du använder hakchi2!
+
+Det är väldigt enkelt att använda. Klickar bara på "Lägg till fler spel", välj några ROM, tryck på "Synkronisera" för att skicka upp spel till konsolens interna minne, eller tryck på "Exportera" för att använda USB HOST-läge, och följ instruktionerna. Lycka till!</value>
+  </data>
+  <data name="HTMLFiles" xml:space="preserve">
+    <value>HTML-filer</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Hem-meny</value>
+  </data>
+  <data name="InvalidImageResolution" xml:space="preserve">
+    <value>Bildupplösning måste vara {0}x{1}</value>
+  </data>
+  <data name="DownloadSfromTool" xml:space="preserve">
+    <value>För att använda SFROM-verktyget med hakchi2 CE så måste du:
+- Besöka webbsidan för /u/DarkAkuma
+- Hämta senaste versionen av hans verktyg
+- Installera paketet i {0}\sfrom_tool
+
+Vill du hämta verktyget?
+
+http://darkakuma.z-net.us/p/sfromtool.html</value>
+  </data>
+  <data name="InvalidConsoleSelected" xml:space="preserve">
+    <value>Ogiltig konsol vald! Hittade konsolen:</value>
+  </data>
+  <data name="GameGenieFormatError" xml:space="preserve">
+    <value>Ogiltig Game Genie-kod "{0}" för spelet "{1}".</value>
+  </data>
+  <data name="KernelDump" xml:space="preserve">
+    <value>Kärndump</value>
+  </data>
+  <data name="OutdatedKernel" xml:space="preserve">
+    <value>Kärnan är utdaterad</value>
+  </data>
+  <data name="MakeSureYourMiniIsConnected" xml:space="preserve">
+    <value>Försäkra dig om att din mini är ansluten rätt via USB-kabel.</value>
+  </data>
+  <data name="NandFlashed" xml:space="preserve">
+    <value>NAND-minnet flashat.</value>
+  </data>
+  <data name="NandDumped" xml:space="preserve">
+    <value>NAND-minnet har dumpats.</value>
+  </data>
+  <data name="NandFormatted" xml:space="preserve">
+    <value>NAND-minnet har formaterats.</value>
+  </data>
+  <data name="consoleTypeNes" xml:space="preserve">
+    <value>NES (USA/Europa)</value>
+  </data>
+  <data name="NewGamesUnsorted" xml:space="preserve">
+    <value>Nya spel flyttas till mappen "Osorterat".</value>
+  </data>
+  <data name="NewPreset" xml:space="preserve">
+    <value>Nytt markeringsförval</value>
+  </data>
+  <data name="NoDriveSelected" xml:space="preserve">
+    <value>Ingen enhet vald</value>
+  </data>
+  <data name="NoDevicesDetected" xml:space="preserve">
+    <value>Inga enheter hittades</value>
+  </data>
+  <data name="NoSDCard" xml:space="preserve">
+    <value>Inget SD-kort har anslutits i classic.</value>
+  </data>
+  <data name="NoRepositoriesConfigured" xml:space="preserve">
+    <value>Inga förråd konfigurerade</value>
+  </data>
+  <data name="NoKernel" xml:space="preserve">
+    <value>Ingen kärndump hittades</value>
+  </data>
+  <data name="NoKernelYouNeed" xml:space="preserve">
+    <value>Ingen kärndump hittades. Du måste dumpa kärnan först.</value>
+  </data>
+  <data name="PleaseConnectYourDevice" xml:space="preserve">
+    <value>Anslut din mini för att fortsätta. Observera att du måste även installera den anpassade kärnan via inställningarna i menyn Kärna.</value>
+  </data>
+  <data name="PoweredBy0" xml:space="preserve">
+    <value>Drivs av {0}</value>
+  </data>
+  <data name="GenrePuzzle" xml:space="preserve">
+    <value>Pussel</value>
+  </data>
+  <data name="GenreRacing" xml:space="preserve">
+    <value>Racerspel</value>
+  </data>
+  <data name="GenreRacingSports" xml:space="preserve">
+    <value>Racerspel / Sport</value>
+  </data>
+  <data name="Rebooting" xml:space="preserve">
+    <value>Startar om...</value>
+  </data>
+  <data name="FolderNameTrashBin" xml:space="preserve">
+    <value>Papperskorg</value>
+  </data>
+  <data name="RemoveAllDevices" xml:space="preserve">
+    <value>Ta bort alla enheter</value>
+  </data>
+  <data name="RemovingGames" xml:space="preserve">
+    <value>Tar bort spel...</value>
+  </data>
+  <data name="RepairGames" xml:space="preserve">
+    <value>Reparera spel</value>
+  </data>
+  <data name="RepairingGame" xml:space="preserve">
+    <value>Reparerar {0}</value>
+  </data>
+  <data name="ReplaceFileQ" xml:space="preserve">
+    <value>Ersätt fil?</value>
+  </data>
+  <data name="OutdatedScripts" xml:space="preserve">
+    <value>Utdaterade skript</value>
+  </data>
+  <data name="Scraping0" xml:space="preserve">
+    <value>Skrapar {0}</value>
+  </data>
+  <data name="SelectAtLeast" xml:space="preserve">
+    <value>Välj minst ett spel.</value>
+  </data>
+  <data name="SelectAtLeastTwo" xml:space="preserve">
+    <value>Välj minst två knappar.</value>
+  </data>
+  <data name="SelectDrive" xml:space="preserve">
+    <value>Välj enhet för export...</value>
+  </data>
+  <data name="SelectFileFor" xml:space="preserve">
+    <value>Välj fil för {0}</value>
+  </data>
+  <data name="GenreSimulation" xml:space="preserve">
+    <value>Simulering</value>
+  </data>
+  <data name="consoleTypeSnes" xml:space="preserve">
+    <value>SNES (USA/Europa)</value>
+  </data>
+  <data name="SupportedFiles" xml:space="preserve">
+    <value>Filer som stöds</value>
+  </data>
+  <data name="GenreTable" xml:space="preserve">
+    <value>Tabell</value>
+  </data>
+  <data name="UninstallingHakchi" xml:space="preserve">
+    <value>Avinstallerar hakchi...</value>
+  </data>
+  <data name="UninstallingMods" xml:space="preserve">
+    <value>Avinstallerar moduler...</value>
+  </data>
+  <data name="Uninstalling" xml:space="preserve">
+    <value>Avinstallerar...</value>
+  </data>
+  <data name="UnitedStates" xml:space="preserve">
+    <value>USA</value>
+  </data>
+  <data name="ListCategoryUnknown" xml:space="preserve">
+    <value>Okända appar</value>
+  </data>
+  <data name="UnknownGame" xml:space="preserve">
+    <value>Okänt spel</value>
+  </data>
+  <data name="UnknownSystemVersionDetected" xml:space="preserve">
+    <value>Okänd systemversion hittades</value>
+  </data>
+  <data name="UnmountingSDCard" xml:space="preserve">
+    <value>Avmonterar SD-kort</value>
+  </data>
+  <data name="FolderNameUnsorted" xml:space="preserve">
+    <value>Osorterat</value>
+  </data>
+  <data name="UpdateComplete" xml:space="preserve">
+    <value>Uppdatering färdig!</value>
+  </data>
+  <data name="UploadingConfig" xml:space="preserve">
+    <value>Skickar upp ny konfiguration...</value>
+  </data>
+  <data name="UploadingKernel" xml:space="preserve">
+    <value>Skickar upp kärnan...</value>
+  </data>
+  <data name="UserDataBackup" xml:space="preserve">
+    <value>Säkerhetskopiering av användardata</value>
+  </data>
+  <data name="SelectModsInstall" xml:space="preserve">
+    <value>Välj modulerna att installera på din mini</value>
+  </data>
+  <data name="SelectModsUninstall" xml:space="preserve">
+    <value>Välj modulerna att ta bort från din mini</value>
+  </data>
+  <data name="SystemModificationDetected" xml:space="preserve">
+    <value>Systemändring hittades</value>
+  </data>
+  <data name="BootingHakchi" xml:space="preserve">
+    <value>Startar hakchi...</value>
+  </data>
+  <data name="Membooting" xml:space="preserve">
+    <value>Startar kärnan från RAM...</value>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>Båda</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Omslagsbild</value>
+  </data>
+  <data name="BuildingCustom" xml:space="preserve">
+    <value>Bygger anpassad kärnavbildning...</value>
+  </data>
+  <data name="BuildingFolders" xml:space="preserve">
+    <value>Bygger mappstrukturen...</value>
+  </data>
+  <data name="CalculatingDiff" xml:space="preserve">
+    <value>Beräknar förändringar...</value>
+  </data>
+  <data name="CalculatingFreeSpace" xml:space="preserve">
+    <value>Beräknar ledigt utrymme...</value>
+  </data>
+  <data name="BluetoothAdapters" xml:space="preserve">
+    <value>Bluetooth-adaptrar</value>
+  </data>
+  <data name="FolderNameBack" xml:space="preserve">
+    <value>Bakåt</value>
+  </data>
+  <data name="Artwork" xml:space="preserve">
+    <value>Omslagsbilder</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Är du säker?</value>
+  </data>
+  <data name="ArchivingGame" xml:space="preserve">
+    <value>Arkiverar spel</value>
+  </data>
+  <data name="ArchivingGames" xml:space="preserve">
+    <value>Arkiverar spel</value>
+  </data>
+  <data name="Archiving" xml:space="preserve">
+    <value>Arkiverar: {0}</value>
+  </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>Verkställ ändringar</value>
+  </data>
+  <data name="ApplyingChanges" xml:space="preserve">
+    <value>Verkställer ändringar</value>
+  </data>
+  <data name="ArchiveFiles" xml:space="preserve">
+    <value>Arkivfiler</value>
+  </data>
+  <data name="MapperNotSupported" xml:space="preserve">
+    <value>"{0}" använder mapper #{1} men denna mapper stöds inte av NES Mini och spelet kommer antagligen inte starta med standardemulatorn. Det kan dock fungera med andra emulatormoduler installerade. Vill du lägga till detta spel?</value>
+  </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>Gratulerar!</value>
+  </data>
+  <data name="CompressingGames" xml:space="preserve">
+    <value>Komprimerar spel...</value>
+  </data>
+  <data name="Compressing" xml:space="preserve">
+    <value>Komprimerar {0}...</value>
+  </data>
+  <data name="ListCategoryCustom" xml:space="preserve">
+    <value>Anpassade spel</value>
+  </data>
+  <data name="CustomKernel" xml:space="preserve">
+    <value>Anpassad kärna</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="DefaultNoChange" xml:space="preserve">
+    <value>Standard / ingen ändring</value>
+  </data>
+  <data name="DeleteSelectedGamesQ" xml:space="preserve">
+    <value>Ta bort markerade spel?</value>
+  </data>
+  <data name="DoYouWantCancel" xml:space="preserve">
+    <value>Vill du avbryta åtgärden?</value>
+  </data>
+  <data name="ExtraArgsTitle" xml:space="preserve">
+    <value>Extra argument för kommandorad</value>
+  </data>
+  <data name="ExtractingHakchiToTemporaryFolder" xml:space="preserve">
+    <value>Extraherar hakchi till temporär mapp</value>
+  </data>
+  <data name="FactoryResetWithKernelFile" xml:space="preserve">
+    <value>Fabriksåterställning med kärnfil</value>
+  </data>
+  <data name="consoleTypeShonenJump" xml:space="preserve">
+    <value>Famicom (Shonen Jump)</value>
+  </data>
+  <data name="GenreFighting" xml:space="preserve">
+    <value>Fighting</value>
+  </data>
+  <data name="NoKernelWarning" xml:space="preserve">
+    <value>Dumpa först kärnavbildningen av din mini. Du behöver endast göra detta en gång. Vill du fortsätta?</value>
+  </data>
+  <data name="FlasingCustom" xml:space="preserve">
+    <value>Flashar anpassad kärna...</value>
+  </data>
+  <data name="FlashingNand" xml:space="preserve">
+    <value>Flashar NAND-minne...</value>
+  </data>
+  <data name="FlasingOriginal" xml:space="preserve">
+    <value>Flashar originalkärna...</value>
+  </data>
+  <data name="FlashingUboot" xml:space="preserve">
+    <value>Flashar uboot...</value>
+  </data>
+  <data name="FolderStatistics" xml:space="preserve">
+    <value>Mappen "{0}" innehåller {1} element.</value>
+  </data>
+  <data name="GeneratingSpineFor0" xml:space="preserve">
+    <value>Genererar spine för {0}</value>
+  </data>
+  <data name="AutofireHelp1" xml:space="preserve">
+    <value>Håll ner Select+A/B för en sekund för att aktivera/inaktivera autofire A/B.</value>
+  </data>
+  <data name="PleaseTryAgainUSB" xml:space="preserve">
+    <value>Om problemet kvarstår, prova att använda en annan USB-port eller kabel.</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Du kan donera till mig om du gillar denna app. Du kan hitta min PayPal i "Om"-rutan.</value>
+  </data>
+  <data name="InvalidHsqs" xml:space="preserve">
+    <value>Ogiltig hsqs-avbildning</value>
+  </data>
+  <data name="InvalidKernelHeader" xml:space="preserve">
+    <value>Ogiltig kärn-header.</value>
+  </data>
+  <data name="InvalidUbootSize" xml:space="preserve">
+    <value>Ogiltig filstorlek för uboot.bin.</value>
+  </data>
+  <data name="InvalidUserDataBackup" xml:space="preserve">
+    <value>Ogiltig säkerhetskopia för användardata.</value>
+  </data>
+  <data name="JustWaitForYourMini" xml:space="preserve">
+    <value>Vänta till den startat om.</value>
+  </data>
+  <data name="KernelCheckFailed" xml:space="preserve">
+    <value>Fel i kontrollsumma för kärna</value>
+  </data>
+  <data name="MD5Failed" xml:space="preserve">
+    <value>Kärnan dumpad med MD5-kontrollsumman är okänd:</value>
+  </data>
+  <data name="ListCategoryNoCoverArt" xml:space="preserve">
+    <value>Ingen anpassad omslagsbild</value>
+  </data>
+  <data name="Need3rdPartyEmulator" xml:space="preserve">
+    <value>Hoppsan, det verkar som om "{0}" inte kommer att fungera korrekt med originalemulatorn. Vill du använda en tredjepartsemulator för detta spel (den måste installeras)?</value>
+  </data>
+  <data name="FourScreenNotSupported" xml:space="preserve">
+    <value>Hoppsan, {0} använder fyrskärmsläge (alltså, spelet har ytterligare VRAM-minne i sin cartridge) och denna funktion stöds inte av NES Mini. Spelet kommer antagligen inte starta. Men det skulle fungera med en annan emulators moduler installerade. Vill du lägga till detta spel ändå?</value>
+  </data>
+  <data name="DumpOriginalKernelCompleteTitle" xml:space="preserve">
+    <value>Dumpning av originalkärnan färdig</value>
+  </data>
+  <data name="PairedDevicesClickToUnpair" xml:space="preserve">
+    <value>Ihopparade enheter (Klicka för att koppla från)</value>
+  </data>
+  <data name="PasteStretchToFit" xml:space="preserve">
+    <value>Klistra in (sträck ut för att passa)</value>
+  </data>
+  <data name="InputPreset" xml:space="preserve">
+    <value>Ange ett förvalsnamn för aktuell spelmarkering.</value>
+  </data>
+  <data name="DumpOriginalKernelCompleteMessage" xml:space="preserve">
+    <value>Observera: denna dumpfil kan endast användas av gamla versioner av hakchi2 eller hakchi2 ce. Den går inte använda med aktuell version.</value>
+  </data>
+  <data name="ProjectLunarHasBeenDetected" xml:space="preserve">
+    <value>Project Lunar har hittats. Installationen kan inte fortsätta innan det tagits bort.</value>
+  </data>
+  <data name="RecoveryKernel" xml:space="preserve">
+    <value>Återhämtningskärna</value>
+  </data>
+  <data name="RecoveryMode" xml:space="preserve">
+    <value>Återhämtningsläge</value>
+  </data>
+  <data name="ResettingHakchi" xml:space="preserve">
+    <value>Återställer hakchi...</value>
+  </data>
+  <data name="ResettingHeader" xml:space="preserve">
+    <value>Återställer SFROM-header i {0}</value>
+  </data>
+  <data name="ResettingHeaders" xml:space="preserve">
+    <value>Återställer SFROM-headers...</value>
+  </data>
+  <data name="ResettingOriginalGames" xml:space="preserve">
+    <value>Återställer originalspel...</value>
+  </data>
+  <data name="GenreRPG" xml:space="preserve">
+    <value>RPG</value>
+  </data>
+  <data name="ScanningCovers" xml:space="preserve">
+    <value>Letar i bildmappen efter omslagsbilder...</value>
+  </data>
+  <data name="ScanningCover" xml:space="preserve">
+    <value>Letar efter omslagsbild för {0}</value>
+  </data>
+  <data name="SfromToolInstalled" xml:space="preserve">
+    <value>SFROM-verktyg har installerats. Dina spel kommer nu konverteras med det. Du kan även dra och släppa CNP-patchar för att lägga till dem enkelt.</value>
+  </data>
+  <data name="MemoryFull" xml:space="preserve">
+    <value>Tyvärr, det finns {0} spel. Det är för mycket.</value>
+  </data>
+  <data name="SystemSoftwareBackup" xml:space="preserve">
+    <value>Säkerhetskopiera systemprogramvara</value>
+  </data>
+  <data name="TelnetServerOn" xml:space="preserve">
+    <value>Telnet-server på telnet://{0} (login:root)</value>
+  </data>
+  <data name="DumpOriginalKernelNotFound" xml:space="preserve">
+    <value>Originalkärnan kunde inte hittas på systemet.</value>
+  </data>
+  <data name="DumpOriginalKernelInvalid" xml:space="preserve">
+    <value>Originalkärnfilen som du angav är inte en verifierad originalkärna.</value>
+  </data>
+  <data name="MD5Failed2" xml:space="preserve">
+    <value>Kärnan är redan patchad eller är av en okänd revision. Skicka detta meddelande till mig (tryck Ctrl+C). Fortsätt på egen risk.</value>
+  </data>
+  <data name="MemoryStatsExport" xml:space="preserve">
+    <value>Totalt ledigt utrymme på enheten: {0}</value>
+  </data>
+  <data name="MemoryStats" xml:space="preserve">
+    <value>Totalt skrivbart minne: {0:F1}MB|Tillgängligt minne för spel: {1:F1}MB|Använt av sparningar: {2:F1}MB|Använt av andra filer: {3:F1}MB</value>
+  </data>
+  <data name="TrustedNotPairedClickToRemove" xml:space="preserve">
+    <value>Pålitliga / Icke ihopparade (Klicka för att ta bort)</value>
+  </data>
+  <data name="UbootFlashed" xml:space="preserve">
+    <value>Uboot flashat.</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>Ej tilldelade</value>
+  </data>
+  <data name="UninstallWithKernelFile" xml:space="preserve">
+    <value>Avinstallera och flasha kärnfil</value>
+  </data>
+  <data name="PleaseUpdate" xml:space="preserve">
+    <value>Du kan uppleva fel när du använder detta program tills du har installerat nödvändiga uppdateringar. Uppdatera för att uppnå full kompatibilitet.</value>
+  </data>
+  <data name="UpdatingLocalCache" xml:space="preserve">
+    <value>Uppdaterar lokal mellanlagring av originalspel...</value>
+  </data>
+  <data name="UploadingFes1" xml:space="preserve">
+    <value>Skickar upp och kör FES-1...</value>
+  </data>
+  <data name="VerifyFailed" xml:space="preserve">
+    <value>Verifiering misslyckades :O Detta är inte bra.</value>
+  </data>
+  <data name="PartitionExpandQ" xml:space="preserve">
+    <value>Vill du expandera datapartitionen? Detta ger dig ungefär {0} ytterligare ledigt utrymme.
+
+Det finns en liten chans att data går förlorat. Försäkra dig om att du har säkerhetskopierat dina sparningar.</value>
+  </data>
+  <data name="PartitionExpandQMd" xml:space="preserve">
+    <value>Vill du expandera datapartitionen? Detta ger dig ungefär {0} ytterligare ledigt utrymme.
+
+Det finns en liten chans att data går förlorat. Försäkra dig om att du har säkerhetskopierat dina sparningar.
+
+Detta kan påverka kompatibiliteten för andra hack.</value>
+  </data>
+  <data name="ReplaceKernelQ" xml:space="preserve">
+    <value>Du har redan kärndumpen. Om du VERKLIGEN vill ersätta säkerhetskopian av din kärna och du VERKLIGEN förstår vad du gör, ta bort mappen "hakchi2/dump" manuellt.</value>
+  </data>
+  <data name="FinishBootSequenceQ" xml:space="preserve">
+    <value>Du kör för närvarande i återhämtningsläge. Vill du avsluta normal uppstartsprocedur istället för omstart?</value>
+  </data>
+  <data name="SavesFlterName" xml:space="preserve">
+    <value>Säkerhetskopior av sparningstillstånd</value>
+  </data>
+  <data name="GenreShootEmUp" xml:space="preserve">
+    <value>Shoot-'em-Up</value>
+  </data>
+  <data name="SizeOfSaves" xml:space="preserve">
+    <value>Storlek för markerade sparningstillstånd: </value>
+  </data>
+  <data name="ThisWillReplaceAnyCustomInformationAndArtworkFromScraper" xml:space="preserve">
+    <value>Detta kommer att ersätta all anpassad information och omslagsbilder med det från skraparen.
+
+Är du säker?</value>
+  </data>
+  <data name="DisableUSBWarning" xml:space="preserve">
+    <value>Detta kommer att inaktivera OTG USB-enheten ansluten med din mini. Är du säker på att du vill inaktivera USB-HOST?</value>
+  </data>
+  <data name="FirmwareSwitched" xml:space="preserve">
+    <value>Efter omstart så kommer din mini att köra den valda fasta programvaran "{0}"!</value>
+  </data>
+  <data name="CannotSyncToNonMultiBoot" xml:space="preserve">
+    <value>Du kan inte synkronisera en {0}-spelsamling till din aktuella mini ({1}). Byt till matchande spelsamling eller byt till att använda läget "separata spel för multiboot" för att kunna fortsätta.</value>
+  </data>
+  <data name="DisableAutoRefresh" xml:space="preserve">
+    <value>Inaktivera automatisk uppdatering</value>
+  </data>
+  <data name="CustomKernelInstalledQ" xml:space="preserve">
+    <value>Har du redan flashat anpassat kärna på din mini?</value>
+  </data>
+  <data name="DetectedConsole" xml:space="preserve">
+    <value>Identifierad konsol: {0}</value>
+  </data>
+  <data name="DetectedDevicesClickToPair" xml:space="preserve">
+    <value>Identifierade enheter (Klicka för att para ihop)</value>
+  </data>
+  <data name="DecompressingGames" xml:space="preserve">
+    <value>Dekomprimerar spel...</value>
+  </data>
+  <data name="Decompressing" xml:space="preserve">
+    <value>Dekomprimerar {0}...</value>
+  </data>
+  <data name="AutofillResult" xml:space="preserve">
+    <value>Data automatiskt fylld för {0} spel.</value>
+  </data>
+  <data name="ShowExperimentalQuestion" xml:space="preserve">
+    <value>Är du säker på att du vill visa experimentiella moduler?</value>
+  </data>
+  <data name="ResetQ" xml:space="preserve">
+    <value>Är du säker på att du vill återställa och reparera hakchi på din mini?</value>
+  </data>
+  <data name="DiscardChangesQ" xml:space="preserve">
+    <value>Är du säker på att du vill förkasta dina ändringar?</value>
+  </data>
+  <data name="ErrorRestoringAllOriginalGames" xml:space="preserve">
+    <value>Ett fel inträffade när originalspelen återskapades. Du kan alltid använda Arkiv -&gt; Återskapa originalspel senare för att försöka igen för den spelsamling som du tänkte använda dem med.</value>
+  </data>
+  <data name="CustomGameCodeAlreadyExists" xml:space="preserve">
+    <value>Appkoden finns redan. Använd en annan kod!</value>
+  </data>
+  <data name="RepairSelectedGamesQ" xml:space="preserve">
+    <value>Är du säker på att du vill försöka reparera markerade spel? (Detta kan förstöra några spel, speciellt om de inte importerades med hakchi2. Försök endast på trasiga spel.)</value>
+  </data>
+  <data name="FormatSDQ" xml:space="preserve">
+    <value>Är du säker på att du vill formatera SD-kortet som sitter i din classic?
+
+Detta kommer att radera all data som finns på kortet!</value>
+  </data>
+  <data name="AutoScrapeKnownGames" xml:space="preserve">
+    <value>Skrapa automatiskt kända spel</value>
+  </data>
+  <data name="SaveStructureQ" xml:space="preserve">
+    <value>Är du säker på att du vill synkronisera alla strukturinställningar för din spelsamling till de inställningar som visas nu?</value>
+  </data>
+  <data name="ResetROMHeaderSelectedGamesQ" xml:space="preserve">
+    <value>Är du säker på att du vill återställa/reparera SFROM-headers för markerade spel?</value>
+  </data>
+  <data name="FactoryResetQ" xml:space="preserve">
+    <value>Är du säker på att du vill återställa till fabriksinställningar?
+
+Allt data kommer att raderas och standardkärnan kommer att flashas.
+
+Fortsätt?</value>
+  </data>
+  <data name="UninstallQ1" xml:space="preserve">
+    <value>Vill du verkligen ta bort alla spår av hakchi2 och låta din mini återgå till ursprungstillståndet?</value>
+  </data>
+  <data name="FolderContent" xml:space="preserve">
+    <value>Borttaget innehåll kommer att flyttas till papperskorgen. Du kan ta bort denna mapp permanent eller flytta spelen till andra mappar.</value>
+  </data>
+  <data name="FirmwareDefault" xml:space="preserve">
+    <value>Fast standardprogramvara på NAND</value>
+  </data>
+  <data name="CopyFilesFromNandQ2" xml:space="preserve">
+    <value>Vill du kopiera dina sparanden och spel från NAND till SD-kortet?</value>
+  </data>
+  <data name="GGCodeDelete" xml:space="preserve">
+    <value>Vill du ta bort "{0}"-koden?</value>
+  </data>
+  <data name="FlashNandCQ" xml:space="preserve">
+    <value>Vill du flasha användardata? Det kommer att ersätta all användardata.</value>
+  </data>
+  <data name="FormatNandCQ" xml:space="preserve">
+    <value>Vill du formatera partitionen för användardata? Detta kommer radera all användardata.</value>
+  </data>
+  <data name="PermanentlyDeleteQ" xml:space="preserve">
+    <value>Vill du permanent ta bort innehållet i:
+
+{0}
+
+Denna process går inte att ångra!</value>
+  </data>
+  <data name="DownloadCoverQ" xml:space="preserve">
+    <value>Vill du prova att hämta omslagsbild för"{0}"?</value>
+  </data>
+  <data name="FactoryResetNote" xml:space="preserve">
+    <value>Färdigt! Alla spår av hakchi har tagits bort och din mini har återställts till fabrikinställningar.</value>
+  </data>
+  <data name="DoneYouCanUpload" xml:space="preserve">
+    <value>Färdigt! Du kan nu skicka upp spel till din mini.</value>
+  </data>
+  <data name="KernelDumped" xml:space="preserve">
+    <value>Din originalkärna har sparats på ett speciellt ställe i din konsole.</value>
+  </data>
+  <data name="ExtraArgsInfo" xml:space="preserve">
+    <value>Du kan lägga till globala kommandoradsargument som kommer att läggas till för alla spel, inklusive original. Detta är endast för experter!</value>
+  </data>
+  <data name="CannotDeleteTempFolder" xml:space="preserve">
+    <value>Fel vid borttagning av temporärmapp. Försök igen.</value>
+  </data>
+  <data name="EnterAPrefix" xml:space="preserve">
+    <value>Ange ett prefix</value>
+  </data>
+  <data name="DownloadingFrontArtFor0" xml:space="preserve">
+    <value>Hämtar omslagsbild för {0}</value>
+  </data>
+  <data name="DownloadAllCoversTitle" xml:space="preserve">
+    <value>Hämtar omslagsbilder för alla spel (Kör på bara!)</value>
+  </data>
+  <data name="FlashUbootSDQ" xml:space="preserve">
+    <value>Vill du verkligen flasha SD MODE uboot?</value>
+  </data>
+  <data name="DeleteSavesQ" xml:space="preserve">
+    <value>Vill du verkligen ta bort dessa sparningstillstånd?</value>
+  </data>
+  <data name="DeletePreset" xml:space="preserve">
+    <value>Vill du verkligen ta bort förvalet "{0}"?</value>
+  </data>
+  <data name="DeleteElements" xml:space="preserve">
+    <value>Vill du verkligen ta bort "{0}" element?</value>
+  </data>
+  <data name="CleaningUp" xml:space="preserve">
+    <value>Rensar upp efter tidigare åtgärd...</value>
+  </data>
+  <data name="ClearingTheFirst32MBOfSDCard" xml:space="preserve">
+    <value>Tömmer första 32MB av SD-kortet</value>
+  </data>
+  <data name="ChooseWhatYouWouldLikeToScrape" xml:space="preserve">
+    <value>Välj vad du vill skrapa. Detta kommer att ersätta tidigare information.</value>
+  </data>
+  <data name="NoTelnet" xml:space="preserve">
+    <value>Kan inte starta Telnet-klienten. Verkar som om den är inaktiverad. Du behöver aktivera den först. Gör det i “Kontrollpanel“ -&gt; “Program“ -&gt; "Aktivera Windows-funktioner på eller av".</value>
+  </data>
+  <data name="GameGenieNotFound" xml:space="preserve">
+    <value>Kan inte applicera Game Genie-koden "{0}" till spelet "{1}" - värdet hittas inte. Kanske är denna kod för ett annat spel?</value>
+  </data>
+  <data name="FlashUbootNormalQ" xml:space="preserve">
+    <value>Vill du verkligen flasha NORMAL MODE uboot?</value>
+  </data>
+  <data name="ResetOriginalGamesQ" xml:space="preserve">
+    <value>Vill du ångra all anpassning för originalspelen för {0}?</value>
+  </data>
+  <data name="UninstallFactoryNote" xml:space="preserve">
+    <value>Färdigt! Glöm inte att genomföra en fabriksåterställning om du vill ta bort alla pauspunkter.</value>
+  </data>
+  <data name="UninstallNote" xml:space="preserve">
+    <value>Färdigt. Om allting gick bra så ska din mini vara tillbaka på att köra standardkärnan.</value>
+  </data>
+  <data name="AddPrefixMessage" xml:space="preserve">
+    <value>Ange ett prefix att lägga först i namnet för alla markerade spel, ett kolon och blanksteg kommer automatiskt att läggas till i slutet av prefixet.</value>
+  </data>
+  <data name="RemovePrefixMessage" xml:space="preserve">
+    <value>Ange ett prefix att ta bort först i namnet för alla markerade spel, ett kolon och blanksteg kommer automatiskt att läggas till i slutet av prefixet.</value>
+  </data>
+  <data name="ErrorImportingGame" xml:space="preserve">
+    <value>Fel vid import av spelet "{0}". Verifiera att filen är giltig och inte skadad.</value>
+  </data>
+  <data name="WaitingForDeviceTakingALongTime" xml:space="preserve">
+    <value>Din enhet har lång tid på sig att starta om.
+
+Du kan vänta lite till och om den blir ansluten igen så bör du se "Återhämtningsläge" i titelraden. I det fallet så kan du prova att göra samma åtgärd igen, eller använda "Verktyg &gt; Starta om" för att återgå till normalt läge.
+
+Den vanligaste orsaken till att konsolen tar lång tid på sig är en lokal brandvägg, såsom Windows-brandväggen. Du kan lägga till ett undantag för hakchi2 ce för att lösa detta problem.
+
+Andra orsaker kan vara VPN-klienter som blockerar trafik till lokala nätverk och att Windows misslyckas att identifiera RNDIS-drivrutinen korrekt.</value>
+  </data>
+  <data name="CannotProceedCannotSync" xml:space="preserve">
+    <value>Din hakchi-installation kör Clovershell-demonen. Det är inte säkert att synkronisera spel med Clovershell. Avinstallera denna modul för att kunna synkronisera spel säkert!</value>
+  </data>
+  <data name="RecoveryModeCloseWarning" xml:space="preserve">
+    <value>Din mini är för närvarande i återhämtningsläge. Du kommer inte kunna stänga av den normalt. Vill du färdigställa uppstartssekvensen så att den återgår till normalt läge efteråt?</value>
+  </data>
+  <data name="CannotProceedMinimalMemboot" xml:space="preserve">
+    <value>Din mini är för närvarande i återhämtningstillstånd. Kan inte fortsätta. Använd Verktyg -&gt; Starta om för att avsluta detta tillstånd</value>
+  </data>
+  <data name="RecoveryModeMessage" xml:space="preserve">
+    <value>Ditt system är nu i återhämtningsläge. Här kan du köra telnet in i systemet för att köra kommandon som du önskar. Du kan även använda FTP för att överföra filer.
+
+För att montera dina baspartitioner så behöver du köra kommandot "hakchi mount_base"</value>
+  </data>
+  <data name="SystemRequiresReflash" xml:space="preserve">
+    <value>Ditt systems anpassade kärna är utdaterad och kröver en omflashning innan du kan använda detta program. Vill du flasha en anpassad kärna nu?</value>
+  </data>
+  <data name="SystemEligibleForRootfsUpdate" xml:space="preserve">
+    <value>Ditt systems kärnskript är utdaterade och kan uppdateras. Vill du uppdatera de anpassade kärnskripten nu?</value>
+  </data>
+  <data name="SystemRequiresRootfsUpdate" xml:space="preserve">
+    <value>Ditt systems kärnskript är utdaterade och det krävs en memboot innan du kan använda detta program. Vill du köra en memboot för anpassad kärna nu?</value>
+  </data>
+  <data name="AlreadyInRecoveryQ" xml:space="preserve">
+    <value>Du är redan i återhämtningsläge. Vill du läsa om återhämtningsavbildningen?</value>
+  </data>
+  <data name="DownloadingClearLogoFor0" xml:space="preserve">
+    <value>Hämtar transparent logotyp för {0}</value>
+  </data>
+</root>

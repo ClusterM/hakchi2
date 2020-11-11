@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>A&amp;vsluta</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Arkiv</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hjälp</value>
+  </data>
+  <data name="kernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Kärna</value>
+  </data>
+  <data name="modulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Moduler</value>
+  </data>
+  <data name="reloadGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Läs om</value>
+  </data>
+  <data name="searchToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Sök</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Inställningar</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ver&amp;ktyg</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Visa</value>
+  </data>
+  <data name="advancedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Avancerat</value>
+  </data>
+  <data name="addPrefixToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lägg till prefix</value>
+  </data>
+  <data name="buttonAddGames.Text" xml:space="preserve">
+    <value>Lägg till fler spel</value>
+  </data>
+  <data name="addMoreGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lägg till &amp;fler spel</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Om...</value>
+  </data>
+  <data name="rRockinTheClassicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>/r/RockinTheClassics</value>
+  </data>
+  <data name="upABStartOnSecondControllerToolStripMenuItem.Text" xml:space="preserve">
+    <value>"Upp+A+B = Start" på andra kontrollern</value>
+  </data>
+  <data name="maskedTextBoxReleaseDate.Mask" xml:space="preserve">
+    <value>0000-00-00</value>
+  </data>
+  <data name="addCustomAppToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lägg till an&amp;passad app</value>
+  </data>
+  <data name="addPresetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lägg till förval</value>
+  </data>
+  <data name="canoeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Canoe</value>
+  </data>
+  <data name="buttonBrowseImage.Text" xml:space="preserve">
+    <value>Bläddra</value>
+  </data>
+  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
+    <value>Konsol</value>
+  </data>
+  <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kontrollerhack</value>
+  </data>
+  <data name="convertSNESROMSToSFROMToolStripMenuItem.Text" xml:space="preserve">
+    <value>Konvertera SNES ROMs till SFROM</value>
+  </data>
+  <data name="labelCopyright.Text" xml:space="preserve">
+    <value>Upphovsrätt</value>
+  </data>
+  <data name="coreToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kärna</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Frånkopplad</value>
+  </data>
+  <data name="toolStripStatusLabelShell.Text" xml:space="preserve">
+    <value>Frånkopplad</value>
+  </data>
+  <data name="useLinkedSyncToolStripMenuItem.Text" xml:space="preserve">
+    <value>Använd länkad synk</value>
+  </data>
+  <data name="buttonGoogle.Text" xml:space="preserve">
+    <value>Google</value>
+  </data>
+  <data name="labelGenre.Text" xml:space="preserve">
+    <value>Genre</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>hakchi2</value>
+  </data>
+  <data name="japanToolStripMenuItem.Text" xml:space="preserve">
+    <value>Japan</value>
+  </data>
+  <data name="messageOfTheDayToolStripMenuItem.Text" xml:space="preserve">
+    <value>Viktigt meddelande</value>
+  </data>
+  <data name="flashCustomKernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Installera / Reparera</value>
+  </data>
+  <data name="installModulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Installera extramoduler</value>
+  </data>
+  <data name="kachikachiToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kachikachi</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="leftmostToolStripMenuItem.Text" xml:space="preserve">
+    <value>Längst till vänster</value>
+  </data>
+  <data name="labelMaxPlayers.Text" xml:space="preserve">
+    <value>Max spelare</value>
+  </data>
+  <data name="nameToolStripMenuItem.Text" xml:space="preserve">
+    <value>Namn</value>
+  </data>
+  <data name="labelName.Text" xml:space="preserve">
+    <value>Namn</value>
+  </data>
+  <data name="normalModeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Normalt läge</value>
+  </data>
+  <data name="openFTPInExplorerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Öppna FTP-klient</value>
+  </data>
+  <data name="openTelnetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Öppna Telnet-klient</value>
+  </data>
+  <data name="originalGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Originalspel</value>
+  </data>
+  <data name="resetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Återställ</value>
+  </data>
+  <data name="resetROMHeaderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Återställ SFROM-header för valda spel</value>
+  </data>
+  <data name="resetDefaultBootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Återställ till standard</value>
+  </data>
+  <data name="retroarchToolStripMenuItem.Text" xml:space="preserve">
+    <value>Retroarch</value>
+  </data>
+  <data name="rightmostToolStripMenuItem.Text" xml:space="preserve">
+    <value>Längst till höger</value>
+  </data>
+  <data name="synchronizeToolStripMenuItem.Text" xml:space="preserve">
+    <value>S&amp;ynkronisera</value>
+  </data>
+  <data name="saveDmesgOutputToolStripMenuItem.Text" xml:space="preserve">
+    <value>Spara utdata från dmesg</value>
+  </data>
+  <data name="openFileDialogNes.Title" xml:space="preserve">
+    <value>Välj spel</value>
+  </data>
+  <data name="explorerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Visa i Windows-utforskaren</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Storlek:</value>
+  </data>
+  <data name="sortByToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sortera efter</value>
+  </data>
+  <data name="positionSortedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sorterat</value>
+  </data>
+  <data name="labelSortName.Text" xml:space="preserve">
+    <value>Sorteringsnamn</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ta skärmbild</value>
+  </data>
+  <data name="structureButton.Text" xml:space="preserve">
+    <value>Struktur</value>
+  </data>
+  <data name="sFROMToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>SFROM-verktyg</value>
+  </data>
+  <data name="sFROMToolToolStripMenuItem1.Text" xml:space="preserve">
+    <value>SFROM-verktyg</value>
+  </data>
+  <data name="technicalInformationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teknisk information...</value>
+  </data>
+  <data name="donateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Donera</value>
+  </data>
+  <data name="downloadBoxArtForSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hämta omslagsbilder för valda spel</value>
+  </data>
+  <data name="downloadLatestHakchiToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hämta senaste Hakchi</value>
+  </data>
+  <data name="exportGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>E&amp;xportera spel...</value>
+  </data>
+  <data name="editROMHeaderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Redigera SFROM-header</value>
+  </data>
+  <data name="enableSFROMToolToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aktivera</value>
+  </data>
+  <data name="europeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Europa</value>
+  </data>
+  <data name="buttonExport.Text" xml:space="preserve">
+    <value>Exportera till USB</value>
+  </data>
+  <data name="fAQToolStripMenuItem.Text" xml:space="preserve">
+    <value>Frågor och svar</value>
+  </data>
+  <data name="formatSDCardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Formatera SD-kort</value>
+  </data>
+  <data name="formatNANDCToolStripMenuItem.Text" xml:space="preserve">
+    <value>Formatera partion för användardata</value>
+  </data>
+  <data name="gameName.Text" xml:space="preserve">
+    <value>Spelnamn</value>
+  </data>
+  <data name="generateModulesReportToolStripMenuItem.Text" xml:space="preserve">
+    <value>Generera modulrapport</value>
+  </data>
+  <data name="showGamesWithoutBoxArtToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gruppera spel utan omslagsbild</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="sFROMToolToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Om du vill använda SFROM-verktyget, </value>
+  </data>
+  <data name="openFileDialogImage.Filter" xml:space="preserve">
+    <value>Bilder (*.bmp;*.png;*.jpg;*.jpeg;*.gif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif|Alla filer|*.*</value>
+  </data>
+  <data name="joinOurDiscordServerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gå med i vår discord-server</value>
+  </data>
+  <data name="manageModRepositoriesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hantera modulförråd</value>
+  </data>
+  <data name="maximumGamesPerFolderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Max spel per sida/mapp</value>
+  </data>
+  <data name="prepareArtDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Förbered omslagsbildmappar</value>
+  </data>
+  <data name="rebootToolStripMenuItem.Text" xml:space="preserve">
+    <value>Starta om</value>
+  </data>
+  <data name="labelCountry.Text" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="labelReleaseDate.Text" xml:space="preserve">
+    <value>Lanseringsdatum (ÅÅÅÅ-MM-DD)</value>
+  </data>
+  <data name="removePrefixToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ta bort prefix</value>
+  </data>
+  <data name="repairGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reparera spel</value>
+  </data>
+  <data name="sDModeToolStripMenuItem.Text" xml:space="preserve">
+    <value>SD-läge</value>
+  </data>
+  <data name="scrapeSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skrapa markerade spel</value>
+  </data>
+  <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Spara inställningar till mini nu</value>
+  </data>
+  <data name="openFileDialogImage.Title" xml:space="preserve">
+    <value>Välj omslag för spel</value>
+  </data>
+  <data name="saveDumpFileDialog.Title" xml:space="preserve">
+    <value>Välj filnamn för dump</value>
+  </data>
+  <data name="openDumpFileDialog.Title" xml:space="preserve">
+    <value>Välj filnamn för dump</value>
+  </data>
+  <data name="selectEmulationCoreToolStripMenuItem.Text" xml:space="preserve">
+    <value>Välj emuleringskärna...</value>
+  </data>
+  <data name="unitedStatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>USA</value>
+  </data>
+  <data name="usePCMPatchWhenAvailableToolStripMenuItem.Text" xml:space="preserve">
+    <value>Använd PCM-patch om möjligt</value>
+  </data>
+  <data name="presetsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Markeringsförval</value>
+  </data>
+  <data name="separateGamesForMultibootToolStripMenuItem.Text" xml:space="preserve">
+    <value>Separata spel för multiboot</value>
+  </data>
+  <data name="separateGamesStorageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Separat spellagring</value>
+  </data>
+  <data name="buttonStart.Text" xml:space="preserve">
+    <value>Synkronisera markerade spel med mini</value>
+  </data>
+  <data name="syncStructureForAllGamesCollectionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Synkronisera strukturinställningar för alla spelsamlingar</value>
+  </data>
+  <data name="membootCustomKernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Starta anpassad kärna från RAM</value>
+  </data>
+  <data name="membootOriginalKernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Starta originalkärna från RAM</value>
+  </data>
+  <data name="membootRecoveryKernelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Starta återhämtningskärna från RAM</value>
+  </data>
+  <data name="bootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Uppstartsbild</value>
+  </data>
+  <data name="bluetoothToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bluetooth</value>
+  </data>
+  <data name="automaticToolStripMenuItem.Text" xml:space="preserve">
+    <value>Automatiskt</value>
+  </data>
+  <data name="autoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="archiveSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Arkivera markerade spel</value>
+  </data>
+  <data name="alwaysCopyOriginalGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kopiera alltid originalspel</value>
+  </data>
+  <data name="positionAtTheBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Längst ner</value>
+  </data>
+  <data name="positionAtTheTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Längst upp</value>
+  </data>
+  <data name="autodetectToolStripMenuItem.Text" xml:space="preserve">
+    <value>Identifiera automatiskt...</value>
+  </data>
+  <data name="compressSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Komprimera markerade spel</value>
+  </data>
+  <data name="labelCompress.Text" xml:space="preserve">
+    <value>Komprimera</value>
+  </data>
+  <data name="labelCommandLine.Text" xml:space="preserve">
+    <value>Kommandorad</value>
+  </data>
+  <data name="groupBoxCurrentGamesCollection.Text" xml:space="preserve">
+    <value>Aktuell spelsamling</value>
+  </data>
+  <data name="buttonDefaultCover.Text" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="deletePresetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ta bort förval</value>
+  </data>
+  <data name="deleteSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ta bort markerade spel</value>
+  </data>
+  <data name="labelDescription.Text" xml:space="preserve">
+    <value>Beskrivning</value>
+  </data>
+  <data name="developerToolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Utvecklarverktyg</value>
+  </data>
+  <data name="flashNANDBPartitionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Flasha dekrypterad systemprogramvara</value>
+  </data>
+  <data name="toolFlashTheWholeNANDStripMenuItem.Text" xml:space="preserve">
+    <value>Flasha hela NAND (endast experter!)</value>
+  </data>
+  <data name="flashUbootToolStripMenuItem.Text" xml:space="preserve">
+    <value>Flasha uboot</value>
+  </data>
+  <data name="flashNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Flasha partition för användardata</value>
+  </data>
+  <data name="foldersSplitByFirstLetterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mappar, delade efter första bokstav</value>
+  </data>
+  <data name="foldersToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mappar, lika delade spel</value>
+  </data>
+  <data name="labelGameGenie.Text" xml:space="preserve">
+    <value>Game Genie-koder (kommaseparerade)</value>
+  </data>
+  <data name="groupBoxGameInfo.Text" xml:space="preserve">
+    <value>Spelinfo</value>
+  </data>
+  <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text" xml:space="preserve">
+    <value>Global kommandorad (experter!)</value>
+  </data>
+  <data name="gitHubPageWithActualReleasesToolStripMenuItem.Text" xml:space="preserve">
+    <value>GitHub-sida med faktiska utgåvor</value>
+  </data>
+  <data name="positionHiddenToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dolda (Omarkerade)</value>
+  </data>
+  <data name="automaticOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Originalspel i roten -&gt; Automatiskt i undermapp</value>
+  </data>
+  <data name="foldersSplitByFirstLetterOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Originalspel i roten -&gt; Mappar, delade efter första bokstav</value>
+  </data>
+  <data name="foldersOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Originalspel i roten -&gt; Mappar, lika delade spel</value>
+  </data>
+  <data name="pagesOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Originalspel i roten -&gt; Sidor, lika delade spel</value>
+  </data>
+  <data name="pagesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sidor, lika delade spel</value>
+  </data>
+  <data name="labelPublisher.Text" xml:space="preserve">
+    <value>Publicerat av</value>
+  </data>
+  <data name="resetOriginalGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Återställ &amp;originalspel</value>
+  </data>
+  <data name="scanForNewBoxArtForSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Leta efter nya omslagsbilder för markerade spel</value>
+  </data>
+  <data name="segaUiThemeToolStripMenuItem.Text" xml:space="preserve">
+    <value>SEGA UI-tema</value>
+  </data>
+  <data name="selectButtonCombinationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Välj knappkombination för omstart</value>
+  </data>
+  <data name="buttonSpine.Text" xml:space="preserve">
+    <value>Spine</value>
+  </data>
+  <data name="uninstallModulesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Avinstallera extramoduler</value>
+  </data>
+  <data name="uploadTotmpforTestingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skicka upp till /tmp (för testning)</value>
+  </data>
+  <data name="enableAutofireToolStripMenuItem.Text" xml:space="preserve">
+    <value>Använd "Select+A/B" för att aktivera autofire på A/B </value>
+  </data>
+  <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Använd knappkombination för omstart</value>
+  </data>
+  <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Text" xml:space="preserve">
+    <value>Använd X/Y på klassisk kontroller som autofire A/B</value>
+  </data>
+  <data name="labelSaveCount.Text" xml:space="preserve">
+    <value>Antal sparningar</value>
+  </data>
+  <data name="saveStateManagerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hantare för sparningstillstånd</value>
+  </data>
+  <data name="switchRunningFirmwareToolStripMenuItem.Text" xml:space="preserve">
+    <value>Växla körande fast programvara</value>
+  </data>
+  <data name="dumpNANDCPartitionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dumpa partition för användardata</value>
+  </data>
+  <data name="dumpTheWholeNANDToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dumpa hela NAND-flash</value>
+  </data>
+  <data name="dumpOriginalKernellegacyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dumpa originalkärna (ursprunglig)</value>
+  </data>
+  <data name="dumpNANDBToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dumpa dekrypterad systemprogramvara</value>
+  </data>
+  <data name="compressBoxArtToolStripMenuItem.Text" xml:space="preserve">
+    <value>Komprimera omslagsbilder när de läggs till</value>
+  </data>
+  <data name="compressGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Komprimera spel när de läggs till</value>
+  </data>
+  <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Inaktivera epilepsiskydd</value>
+  </data>
+  <data name="disableHakchi2PopupsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Inaktivera hakchi2-popup</value>
+  </data>
+  <data name="disablePagefoldersToolStripMenuItem.Text" xml:space="preserve">
+    <value>Inaktivera sida/mappar</value>
+  </data>
+  <data name="disableBootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Inaktivera uppstartsbild</value>
+  </data>
+  <data name="decompressSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dekomprimera markerade spel</value>
+  </data>
+  <data name="customToolStripMenuItem.Text" xml:space="preserve">
+    <value>Anpassad - Använd mapphanterare (Klicka igen för att öppna)</value>
+  </data>
+  <data name="changeBootImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Byt uppstartsbild</value>
+  </data>
+  <data name="asIsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Som-de-är...</value>
+  </data>
+  <data name="groupBoxArtNintendo.Text" xml:space="preserve">
+    <value>Omslagsbilder - Nintendo</value>
+  </data>
+  <data name="groupBoxArtSega.Text" xml:space="preserve">
+    <value>Omslagsbilder - Sega</value>
+  </data>
+  <data name="buttonShowGameGenieDatabase.Text" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="backFolderButtonPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Knapposition för föregående mapp</value>
+  </data>
+  <data name="deleteSelectedGamesBoxArtToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ta bort omslagsbilder för markerade spel</value>
+  </data>
+  <data name="folderImagesSetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mappbilder inställda</value>
+  </data>
+  <data name="forceClovershellMembootsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tvinga Clovershell memboots</value>
+  </data>
+  <data name="devForceSshToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tvinga filöverföringar över SSH</value>
+  </data>
+  <data name="forceNetworkMembootsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tvinga nätverk memboots</value>
+  </data>
+  <data name="enableInformationScrapeOnImportToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aktivera automatisk informationsskrapning vid import</value>
+  </data>
+  <data name="centerBoxArtThumbnailToolStripMenuItem.Text" xml:space="preserve">
+    <value>Centrera miniatyrbild för omslagsbild</value>
+  </data>
+</root>
