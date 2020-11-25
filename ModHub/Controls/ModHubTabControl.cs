@@ -183,7 +183,7 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
             switch (item.Kind)
             {
                 case Repository.Repository.ItemKind.Hmod:
-                    var modPath = Path.Combine(Program.BaseDirectoryExternal, "user_mods", item.FileName);
+                    var modPath = Path.Combine(Program.BaseDirectoryExternal, "user_mods", $"{Hmod.Hmod.GetCleanName(Path.GetFileNameWithoutExtension(item.FileName), true)}.hmod");
                     if (File.Exists(modPath))
                         File.Delete(modPath);
 

@@ -1,11 +1,11 @@
 ﻿using SharpCompress.Archives;
 using SharpCompress.Common;
-using SharpCompress.Readers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui.Hmod
@@ -146,61 +146,64 @@ namespace com.clusterrr.hakchi_gui.Hmod
             AddMods(files);
         }
 
-        private void AddMods(string[] files)
+        private void AddMods(string[] files, bool moveHmod = false)
         {
             foreach (var file in files)
             {
                 var ext = Path.GetExtension(file).ToLower();
                 if (ext == ".hmod")
                 {
-                    var target = Path.Combine(usermodsDirectory, Path.GetFileName(file));
+                    var target = Path.Combine(usermodsDirectory, $"{Hmod.GetCleanName(Path.GetFileNameWithoutExtension(file), true)}.hmod");
+
+                    if (File.Exists(target))
+                        File.Delete(target);
+
+                    if (Directory.Exists(target))
+                        Directory.Delete(target, true);
+
                     if (file != target)
-                        if (Directory.Exists(file))
-                            Shared.DirectoryCopy(file, target, true, false, true, false);
-                        else
-                            File.Copy(file, target, true);
-                    hmods.Add(new Hmod(Path.GetFileNameWithoutExtension(file)));
-                }
-                else if (ext == ".7z" || ext == ".zip" || ext == ".rar")
-                {
-                    using (var extractor = ArchiveFactory.Open(file))
                     {
-                        foreach (var f in extractor.Entries)
+
+                        if (Directory.Exists(file))
                         {
-                            if (Path.GetExtension(f.Key).ToLower() == ".hmod")
+                            if (moveHmod)
                             {
-                                if (f.IsDirectory)
-                                {
-                                    using (var reader = extractor.ExtractAllEntries())
-                                    {
-                                        while (reader.MoveToNextEntry())
-                                        {
-                                            if (!reader.Entry.IsDirectory && reader.Entry.Key.StartsWith(f.Key))
-                                                reader.WriteEntryToDirectory(usermodsDirectory, new ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
-                                        }
-                                    }
-
-                                    if (!Directory.Exists(Path.Combine(usermodsDirectory, Path.GetFileName(f.Key))))
-                                    {
-                                        Directory.Move(Path.Combine(usermodsDirectory, f.Key), Path.Combine(usermodsDirectory, Path.GetFileName(f.Key)));
-
-                                        new DirectoryInfo(usermodsDirectory).Refresh();
-                                        int pos = f.Key.IndexOfAny(new char[] { '/', '\\' });
-                                        Directory.Delete(Path.Combine(usermodsDirectory, pos > 0 ? f.Key.Substring(0, pos) : f.Key), true);
-                                    }
-
-                                    hmods.Add(new Hmod(Path.GetFileNameWithoutExtension(f.Key)));
-                                }
-                                else
-                                {
-                                    using (var outFile = new FileStream(Path.Combine(usermodsDirectory, Path.GetFileName(f.Key)), FileMode.Create))
-                                    {
-                                        f.OpenEntryStream().CopyTo(outFile);
-                                        hmods.Add(new Hmod(Path.GetFileNameWithoutExtension(f.Key)));
-                                    }
-                                }
+                                Directory.Move(file, target);
+                            }
+                            else
+                            {
+                                Shared.DirectoryCopy(file, target, true, false, true, false);
                             }
                         }
+                        else
+                        {
+                            if (moveHmod)
+                            {
+                                File.Move(file, target);
+                            }
+                            else
+                            {
+                                File.Copy(file, target, true);
+                            }
+                        }
+                    }
+
+                    var rawName = Path.GetFileNameWithoutExtension(target);
+
+                    hmods.RemoveAll(m => m.RawName == rawName);
+                    hmods.Add(new Hmod(rawName));
+                }
+                else if (ext == ".7z" || ext == ".zip" || ext == ".rar" || ext == ".tar")
+                {
+                    var newHmods = new List<string>();
+                    using (var extractor = ArchiveFactory.Open(file))
+                    {
+                        TempHelpers.doWithTempFolder(temp =>
+                        {
+                            extractor.WriteToDirectory(temp, new ExtractionOptions() { ExtractFullPath = true });
+                            AddMods(Directory.EnumerateDirectories(temp, "*.hmod", SearchOption.AllDirectories).ToArray(), true);
+                            AddMods(Directory.EnumerateFiles(temp, "*.hmod", SearchOption.AllDirectories).ToArray(), true);
+                        }, true, usermodsDirectory);
                     }
                 }
             }

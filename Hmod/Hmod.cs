@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui.Hmod
@@ -31,6 +32,7 @@ namespace com.clusterrr.hakchi_gui.Hmod
                 return Path.Combine(Program.BaseDirectoryExternal, "user_mods");
             }
         }
+        public static Regex BadCharsRegex = new Regex(@"[^a-zA-Z0-9_\-\.]", RegexOptions.Compiled);
 
         public Hmod(string mod, string[] installedHmods = null)
         {
@@ -215,11 +217,30 @@ namespace com.clusterrr.hakchi_gui.Hmod
             return File.Exists(this.HmodPath) || Directory.Exists(this.HmodPath);
         }
 
+        public static string GetCleanName(string modName, bool allowReplacement = false)
+        {
+            var userModsDirectory = UserModsDirectory;
+            var count = 0;
+            var cleanName = BadCharsRegex.Replace(modName, "_").Trim('_', '-');
+            var output = Path.Combine(userModsDirectory, $"{cleanName}.hmod"); ;
+            
+            if (allowReplacement == false)
+            {
+                while (File.Exists(output) || Directory.Exists(output))
+                {
+                    output = Path.Combine(userModsDirectory, $"{cleanName}_{++count}.hmod");
+                }
+            }
+
+            return Path.GetFileNameWithoutExtension(output);
+        }
+
         public static List<Hmod> GetMods(bool onlyInstalled = false, string[] installed = null, Form taskerParent = null)
         {
             var usermodsDirectory = UserModsDirectory;
             var installedMods = installed  ?? hakchi.GetPackList() ?? new string[] { };
             var modsList = new List<string>();
+
 
             if (onlyInstalled)
             {
@@ -229,6 +250,16 @@ namespace com.clusterrr.hakchi_gui.Hmod
             {
                 if (Directory.Exists(usermodsDirectory))
                 {
+                    foreach (var mod in Directory.GetDirectories(usermodsDirectory, "*.hmod", SearchOption.TopDirectoryOnly).Select(m => Path.GetFileNameWithoutExtension(m)).Where(m => BadCharsRegex.IsMatch(m)))
+                    {
+                        Directory.Move(Path.Combine(usermodsDirectory, $"{mod}.hmod"), Path.Combine(usermodsDirectory, $"{GetCleanName(mod)}.hmod"));
+                    }
+
+                    foreach (var mod in Directory.GetFiles(usermodsDirectory, "*.hmod", SearchOption.TopDirectoryOnly).Select(m => Path.GetFileNameWithoutExtension(m)).Where(m => BadCharsRegex.IsMatch(m)))
+                    {
+                        File.Move(Path.Combine(usermodsDirectory, $"{mod}.hmod"), Path.Combine(usermodsDirectory, $"{GetCleanName(mod)}.hmod"));
+                    }
+
                     modsList.AddRange(from m
                                       in Directory.GetDirectories(usermodsDirectory, "*.hmod", SearchOption.TopDirectoryOnly)
                                       select Path.GetFileNameWithoutExtension(m));

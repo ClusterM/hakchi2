@@ -20,9 +20,9 @@ namespace com.clusterrr.hakchi_gui
 
             return path;
         }
-        public static void doWithTempFolder(Action<string> func, bool deleteAfter = true)
+        public static void doWithTempFolder(Action<string> func, bool deleteAfter = true, string baseDir = null)
         {
-            var tempFolder = getUniqueTempPath();
+            var tempFolder = getUniqueTempPath(baseDir);
             Directory.CreateDirectory(tempFolder);
             func(tempFolder);
             if (deleteAfter)
