@@ -1220,7 +1220,7 @@ namespace com.clusterrr.hakchi_gui
             string f = Path.GetFileNameWithoutExtension(input);
             string e = Path.GetExtension(input);
             f = Regex.Replace(f, @" ?\(.*?\)| ?\[.*?\]", string.Empty);
-            f = Regex.Replace(f, @"[^A-Za-z0-9\.\!]+", "_");
+            f = Regex.Replace(f, @"[^A-Za-z0-9\.\!\-]+", "_");
             f = Regex.Replace(f, @"_+", "_");
             int maxLength = 64 - ".sfrom.lzma".Length;
             if(f.Length > maxLength) // 64 characters, leave room for longest extension: '.sfrom.lzma'
