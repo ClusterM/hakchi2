@@ -45,10 +45,12 @@ steps:
 
 - task: DownloadSecureFile@1
   name: GamesDBApiKey
+  continueOnError: true
   inputs:
     secureFile: 'TheGamesDB.txt'
 
 - script: mkdir "$(System.DefaultWorkingDirectory)/ApiKeys" && copy "$(GamesDBApiKey.secureFilePath)" "$(System.DefaultWorkingDirectory)/ApiKeys/TheGamesDB.txt"
+  continueOnError: true
 
 - task: VSBuild@1
   inputs:
@@ -94,6 +96,7 @@ steps:
     publishLocation: 'Container'
 
 - task: GitHubRelease@1
+  continueOnError: true
   inputs:
     gitHubConnection: 'github.com_DanTheMan827'
     repositoryName: '$(Build.Repository.Name)'
