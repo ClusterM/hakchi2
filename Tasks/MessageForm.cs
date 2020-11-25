@@ -36,6 +36,13 @@ namespace com.clusterrr.hakchi_gui.Tasks
 
         public static Button Show(string title, string message, Image icon = null, Button[] buttons = null, DefaultButton defaultButton = DefaultButton.Button1)
         {
+            var form = Get(title, message, icon, buttons, defaultButton);
+            form.ShowDialog();
+            return form.result;
+        }
+
+        public static MessageForm Get(string title, string message, Image icon = null, Button[] buttons = null, DefaultButton defaultButton = DefaultButton.Button1)
+        {
             if (buttons != null && (buttons.Length < 1 || buttons.Length > 3))
                 throw new ArgumentOutOfRangeException();
 
@@ -70,8 +77,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
             }
             formButtons[(int)defaultButton].Select();
 
-            form.ShowDialog();
-            return form.result;
+            return form;
         }
 
         private Button[] buttons;

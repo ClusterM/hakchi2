@@ -1689,4 +1689,10 @@ There is a small chance of data loss, please make sure you have your saves backe
 
 Are you sure?</value>
   </data>
+  <data name="RunningAsAdministrator" xml:space="preserve">
+    <value>Running as administrator</value>
+  </data>
+  <data name="RunningAsAdministratorMessage" xml:space="preserve">
+    <value>Running as administrator can cause issues, if you really want to run as administrator launch hakchi.exe with the --allowAdministrator argument.</value>
+  </data>
 </root>

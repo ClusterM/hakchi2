@@ -3752,6 +3752,24 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Running as administrator.
+        /// </summary>
+        internal static string RunningAsAdministrator {
+            get {
+                return ResourceManager.GetString("RunningAsAdministrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Running as administrator can cause issues, if you really want to run as administrator launch hakchi.exe with the --allowAdministrator argument..
+        /// </summary>
+        internal static string RunningAsAdministratorMessage {
+            get {
+                return ResourceManager.GetString("RunningAsAdministratorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Running folders manager....
         /// </summary>
         internal static string RunningFoldersManager {
@@ -3821,16 +3839,6 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string Scraping0 {
             get {
                 return ResourceManager.GetString("Scraping0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap se {
-            get {
-                object obj = ResourceManager.GetObject("se", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -4275,6 +4283,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string SupportedFiles {
             get {
                 return ResourceManager.GetString("SupportedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sv {
+            get {
+                object obj = ResourceManager.GetObject("sv", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

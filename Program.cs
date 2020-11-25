@@ -1,5 +1,6 @@
 ﻿#pragma warning disable 0618
 using com.clusterrr.hakchi_gui.Properties;
+using com.clusterrr.hakchi_gui.Tasks;
 using Microsoft.Win32.SafeHandles;
 using SpineGen.DrawingBitmaps;
 using SpineGen.JSON;
@@ -76,6 +77,15 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        static bool IsElevated
+        {
+            get
+            {
+                return WindowsIdentity.GetCurrent().Owner
+                  .IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid);
+            }
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -108,6 +118,16 @@ namespace com.clusterrr.hakchi_gui
                 }
                 
                 return;
+            }
+
+            if (Program.IsElevated && Array.IndexOf(args, "--allowAdministrator") == -1)
+            {
+                using (var messageForm = MessageForm.Get(Resources.RunningAsAdministrator, Resources.RunningAsAdministratorMessage, Resources.sign_warning))
+                {
+                    messageForm.StartPosition = FormStartPosition.CenterScreen;
+                    Application.Run(messageForm);
+                    return;
+                }
             }
 
             Debug.Listeners.Add(new TextWriterTraceListener(stdout));
