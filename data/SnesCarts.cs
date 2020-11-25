@@ -16,7 +16,7 @@ namespace com.clusterrr.hakchi_gui.data
             var serializer = new XmlSerializer(typeof(SnesCarts));
             SnesCarts carts = null;
 
-            using (var reader = new FileStream(Path.Combine(Program.BaseDirectoryInternal, "data", "snescarts.xml"), FileMode.Open))
+            using (var reader = new FileStream(Path.Combine(Program.BaseDirectoryInternal, "data", "snescarts.xml"), FileMode.Open, FileAccess.Read))
             {
                 carts = (SnesCarts)serializer.Deserialize(reader);
             }

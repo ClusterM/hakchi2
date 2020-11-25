@@ -70,7 +70,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     if (File.Exists(Path.Combine(dir, modName)))
                     {
                         hakchi.Shell.ExecuteSimple($"mkdir -p {hmodHakchiPath}");
-                        using (var hmodStream = new TrackableFileStream(Path.Combine(dir, modName), FileMode.Open))
+                        using (var hmodStream = new TrackableFileStream(Path.Combine(dir, modName), FileMode.Open, FileAccess.Read))
                         {
                             hmodStream.OnProgress += tasker.OnProgress;
 

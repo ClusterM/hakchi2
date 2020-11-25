@@ -239,7 +239,7 @@ namespace com.clusterrr.hakchi_gui
                 }))) return;
                 foreach (var file in files)
                 {
-                    using (var f = new FileStream(file, FileMode.Open))
+                    using (var f = new FileStream(file, FileMode.Open, FileAccess.Read))
                     {
                         hakchi.Shell.Execute("cd /var/lib/clover/profiles/0 && tar -xvz", f, null, null, 10000, true);
                     }

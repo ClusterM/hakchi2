@@ -8,6 +8,7 @@ namespace com.clusterrr.util
         public event OnProgressDelegate OnProgress = delegate { };
 
         public TrackableFileStream(string path, FileMode mode) : base(path, mode) { }
+        public TrackableFileStream(string path, FileMode mode, FileAccess access) : base(path, mode, access) { }
 
         public override void Write(byte[] array, int offset, int count)
         {

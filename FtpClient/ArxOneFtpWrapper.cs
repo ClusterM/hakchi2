@@ -119,7 +119,7 @@ namespace com.clusterrr.util.arxoneftp
                     bool owned = true;
                     if (!string.IsNullOrEmpty(afi.LocalFilePath))
                     {
-                        inStream = new FileStream(afi.LocalFilePath, FileMode.Open);
+                        inStream = new FileStream(afi.LocalFilePath, FileMode.Open, FileAccess.Read);
                     }
                     else if (afi.FileStream != null)
                     {
@@ -130,7 +130,7 @@ namespace com.clusterrr.util.arxoneftp
                     else if (this.rootDirectory != null)
                     {
                         string inPath = new Uri(this.rootDirectory + "/" + afi.FilePath).LocalPath;
-                        inStream = new FileStream(inPath, FileMode.Open);
+                        inStream = new FileStream(inPath, FileMode.Open, FileAccess.Read);
                     }
                     if (inStream != null)
                     {

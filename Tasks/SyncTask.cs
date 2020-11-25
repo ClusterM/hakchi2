@@ -191,7 +191,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 {
                     if (afi.FileSize > NesApplication.MaxCompress)
                     {
-                        using (var stream = new TrackableFileStream(afi.LocalFilePath, FileMode.Open))
+                        using (var stream = new TrackableFileStream(afi.LocalFilePath, FileMode.Open, FileAccess.Read))
                         {
                             stream.OnProgress += ((long pos, long len) => {
                                 if (DateTime.Now.Subtract(lastTime).TotalMilliseconds > UpdateFreq)

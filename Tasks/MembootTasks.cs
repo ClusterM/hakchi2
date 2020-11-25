@@ -887,7 +887,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     mode = FileMode.Open;
 
                 tasker.SetStatus(mode == FileMode.Open ? Resources.FlashingNand : Resources.DumpingNand);
-                using (var file = new TrackableFileStream(nandDump, mode))
+                using (var file = new TrackableFileStream(nandDump, mode, mode == FileMode.Open ? FileAccess.Read : FileAccess.ReadWrite))
                 {
                     if (mode == FileMode.Open && file.Length > partitionSize)
                         throw new Exception(Resources.ImageTooLarge);

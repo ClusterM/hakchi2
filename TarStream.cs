@@ -315,7 +315,7 @@ namespace com.clusterrr.util
                         DateTime lastWriteTimeUtc;
                         if (localFilePath != null) // Standard file
                         {
-                            currentFile = new FileStream(localFilePath, FileMode.Open);
+                            currentFile = new FileStream(localFilePath, FileMode.Open, FileAccess.Read);
                             currentFileOwned = true;
                             lastWriteTimeUtc = new FileInfo(localFilePath).LastWriteTimeUtc;
                         }
