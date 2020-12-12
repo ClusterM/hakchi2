@@ -9,9 +9,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
 {
     static class ShellTasks
     {
-        public static Conclusion Reboot(Tasker tasker, Object syncObject = null)
+        public static Conclusion Reboot(Tasker tasker = null, Object syncObject = null)
         {
-            tasker.SetStatus(Resources.Rebooting);
+            tasker?.SetStatus(Resources.Rebooting);
             try
             {
                 hakchi.Shell.ExecuteSimple("sync; umount -ar; reboot -f", 100);
@@ -20,9 +20,9 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
-        public static Conclusion Shutdown(Tasker tasker, Object syncObject = null)
+        public static Conclusion Shutdown(Tasker tasker = null, Object syncObject = null)
         {
-            tasker.SetStatus(Resources.PoweringOff);
+            tasker?.SetStatus(Resources.PoweringOff);
             try
             {
                 hakchi.Shell.ExecuteSimple("sync; umount -ar; poweroff -f", 100);
@@ -32,15 +32,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
-        public static Conclusion MountBase(Tasker tasker, Object syncObject = null)
+        public static Conclusion MountBase(Tasker tasker = null, Object syncObject = null)
         {
-            tasker.SetStatus("hakchi mount_base");
+            tasker?.SetStatus("hakchi mount_base");
             return hakchi.Shell.Execute("hakchi mount_base") == 0 ? Conclusion.Success : Conclusion.Error;
         }
 
-        public static Conclusion UnmountBase(Tasker tasker, Object syncObject = null)
+        public static Conclusion UnmountBase(Tasker tasker = null, Object syncObject = null)
         {
-            tasker.SetStatus("hakchi umount_base");
+            tasker?.SetStatus("hakchi umount_base");
             return hakchi.Shell.Execute("hakchi umount_base") == 0 ? Conclusion.Success : Conclusion.Error;
         }
 
@@ -48,21 +48,21 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             return (Tasker tasker, Object syncObject) =>
             {
-                tasker.SetStatus(command);
+                tasker?.SetStatus(command);
                 hakchi.Shell.Execute(command, stdin, stdout, stderr, timeout, throwOnNonZero);
                 return Conclusion.Success;
             };
         }
 
-        public static Tasker.Conclusion ShowSplashScreen(Tasker tasker, Object syncObject = null)
+        public static Tasker.Conclusion ShowSplashScreen(Tasker tasker = null, Object syncObject = null)
         {
-            tasker.SetStatus(Resources.PleaseWait);
+            tasker?.SetStatus(Resources.PleaseWait);
             return hakchi.ShowSplashScreen() == 0 ? Tasker.Conclusion.Success : Tasker.Conclusion.Error;
         }
 
-        public static Tasker.Conclusion SyncConfig(Tasker tasker, Object syncObject = null)
+        public static Tasker.Conclusion SyncConfig(Tasker tasker = null, Object syncObject = null)
         {
-            tasker.SetStatus(Resources.UploadingConfig);
+            tasker?.SetStatus(Resources.UploadingConfig);
             hakchi.SyncConfig(ConfigIni.GetConfigDictionary());
             return Tasker.Conclusion.Success;
         }
@@ -86,18 +86,18 @@ namespace com.clusterrr.hakchi_gui.Tasks
                         if (matches.Count > 0)
                         {
                             currentHeading = matches[matches.Count - 1].Value;
-                            tasker.SetStatus(currentHeading);
+                            tasker?.SetStatus(currentHeading);
                         }
 
                         matches = mke2fsProgressRegex.Matches(data);
 
                         if (matches.Count > 0 && currentHeading != null && currentHeading != "Writing superblocks and filesystem accounting information")
                         {
-                            tasker.SetStatus($"{currentHeading}: {matches[matches.Count - 1].Value}");
+                            tasker?.SetStatus($"{currentHeading}: {matches[matches.Count - 1].Value}");
                             if (currentHeading == "Writing inode tables")
                             {
                                 var inodes = matches[matches.Count - 1].Value.Split("/"[0]);
-                                tasker.SetProgress(long.Parse(inodes[0]), long.Parse(inodes[1]));
+                                tasker?.SetProgress(long.Parse(inodes[0]), long.Parse(inodes[1]));
                             }
                         }
                     };
