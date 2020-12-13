@@ -494,7 +494,7 @@
 </value>
   </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>Language</value>
@@ -524,7 +524,7 @@
     <value>Japan</value>
   </data>
   <data name="segaUiThemeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="segaUiThemeToolStripMenuItem.Text" xml:space="preserve">
     <value>SEGA UI Theme</value>
@@ -542,7 +542,7 @@
     <value>Use PCM patch when available</value>
   </data>
   <data name="sFROMToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="sFROMToolToolStripMenuItem.Text" xml:space="preserve">
     <value>SFROM tool</value>
@@ -551,49 +551,49 @@
     <value>If you want to use SFROM Tool, </value>
   </data>
   <data name="convertSNESROMSToSFROMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="convertSNESROMSToSFROMToolStripMenuItem.Text" xml:space="preserve">
     <value>Convert SNES ROMS to SFROM</value>
   </data>
   <data name="separateGamesStorageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="separateGamesStorageToolStripMenuItem.Text" xml:space="preserve">
     <value>Separate games storage</value>
   </data>
   <data name="compressGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="compressGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Compress games when adding</value>
   </data>
   <data name="compressBoxArtToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="compressBoxArtToolStripMenuItem.Text" xml:space="preserve">
     <value>Compress box art when adding</value>
   </data>
   <data name="centerBoxArtThumbnailToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="centerBoxArtThumbnailToolStripMenuItem.Text" xml:space="preserve">
     <value>Center box art thumbnail</value>
   </data>
   <data name="disableHakchi2PopupsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="disableHakchi2PopupsToolStripMenuItem.Text" xml:space="preserve">
     <value>Disable hakchi2 pop-ups</value>
   </data>
   <data name="enableInformationScrapeOnImportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="enableInformationScrapeOnImportToolStripMenuItem.Text" xml:space="preserve">
     <value>Enable automatic information scrape on import</value>
   </data>
   <data name="toolStripMenuItem25.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 6</value>
+    <value>322, 6</value>
   </data>
   <data name="devForceSshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 22</value>
@@ -629,7 +629,7 @@
     <value>Download Latest Hakchi</value>
   </data>
   <data name="developerToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="developerToolsToolStripMenuItem.Text" xml:space="preserve">
     <value>Developer tools</value>
@@ -638,25 +638,25 @@
     <value>False</value>
   </data>
   <data name="separateGamesForMultibootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="separateGamesForMultibootToolStripMenuItem.Text" xml:space="preserve">
     <value>Separate games for multiboot</value>
   </data>
   <data name="alwaysCopyOriginalGamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="alwaysCopyOriginalGamesToolStripMenuItem.Text" xml:space="preserve">
     <value>Always copy original games</value>
   </data>
   <data name="useLinkedSyncToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="useLinkedSyncToolStripMenuItem.Text" xml:space="preserve">
     <value>Use linked sync</value>
   </data>
   <data name="toolStripMenuItem16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 6</value>
+    <value>322, 6</value>
   </data>
   <data name="resetUsingCombinationOfButtonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>308, 22</value>
@@ -689,7 +689,7 @@
     <value>"Up+A+B = Start" on 2nd controller</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="cloverconHackToolStripMenuItem.Text" xml:space="preserve">
     <value>Controller hacks</value>
@@ -716,25 +716,25 @@
     <value>False</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="globalCommandLineArgumentsexpertsOnluToolStripMenuItem.Text" xml:space="preserve">
     <value>Global command-line (Experts!)</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="epilepsyProtectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Disable epilepsy protection</value>
   </data>
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 6</value>
+    <value>322, 6</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 22</value>
+    <value>325, 22</value>
   </data>
   <data name="saveSettingsToNESMiniNowToolStripMenuItem.Text" xml:space="preserve">
     <value>Save settings to mini now</value>
@@ -750,6 +750,12 @@
   </data>
   <data name="saveStateManagerToolStripMenuItem.Text" xml:space="preserve">
     <value>Save-State Manager</value>
+  </data>
+  <data name="importGamesFromMiniToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="importGamesFromMiniToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import games from mini</value>
   </data>
   <data name="takeScreenshotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 22</value>
@@ -3960,6 +3966,12 @@
   <data name="&gt;&gt;disableHakchi2PopupsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;enableInformationScrapeOnImportToolStripMenuItem.Name" xml:space="preserve">
+    <value>enableInformationScrapeOnImportToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;enableInformationScrapeOnImportToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripMenuItem25.Name" xml:space="preserve">
     <value>toolStripMenuItem25</value>
   </data>
@@ -4134,6 +4146,12 @@
   <data name="&gt;&gt;saveDmesgOutputToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;importGamesFromMiniToolStripMenuItem.Name" xml:space="preserve">
+    <value>importGamesFromMiniToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;importGamesFromMiniToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripMenuItem6.Name" xml:space="preserve">
     <value>toolStripMenuItem6</value>
   </data>
@@ -4216,7 +4234,7 @@
     <value>bluetoothToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;bluetoothToolStripMenuItem.Type" xml:space="preserve">
-    <value>com.clusterrr.hakchi_gui.Wireless.Bluetooth.BluetoothMenuItem, hakchi, Version=3.8.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>com.clusterrr.hakchi_gui.Wireless.Bluetooth.BluetoothMenuItem, hakchi, Version=3.8.0.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">
     <value>helpToolStripMenuItem</value>
@@ -4577,12 +4595,6 @@
   </data>
   <data name="&gt;&gt;timerUpdate.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;enableInformationScrapeOnImportToolStripMenuItem.Name" xml:space="preserve">
-    <value>enableInformationScrapeOnImportToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;enableInformationScrapeOnImportToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

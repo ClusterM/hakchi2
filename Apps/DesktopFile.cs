@@ -229,6 +229,9 @@ namespace com.clusterrr.hakchi_gui
         }
 
         private bool hasUnsavedChanges = false;
+
+        public DesktopFile() : base() { }
+        public DesktopFile(Stream configStream) : base() => Load(configStream);
         public bool Load(Stream configStream)
         {
             try

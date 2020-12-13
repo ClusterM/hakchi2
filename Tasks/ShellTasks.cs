@@ -32,6 +32,29 @@ namespace com.clusterrr.hakchi_gui.Tasks
             return Conclusion.Success;
         }
 
+        public static Conclusion CheckExternalStorage(Tasker tasker = null, Object syncObject = null)
+        {
+            tasker?.SetStatus("hakchi checkExtStorage");
+
+            using (var eventStream = new EventStream())
+            using (var splitStream = new SplitterStream())
+            {
+                eventStream.OnData += (byte[] buffer) =>
+                {
+                    tasker.SetStatus(Encoding.UTF8.GetString(buffer));
+                };
+
+                splitStream.AddStreams(Program.debugStreams);
+                splitStream.AddStreams(eventStream);
+
+                hakchi.Shell.Execute("hakchi checkExtStorage", null, splitStream, splitStream);
+
+                return Conclusion.Success;
+            }
+
+            return Conclusion.Error;
+        }
+
         public static Conclusion MountBase(Tasker tasker = null, Object syncObject = null)
         {
             tasker?.SetStatus("hakchi mount_base");

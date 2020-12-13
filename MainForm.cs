@@ -3665,6 +3665,53 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+        private void importGamesFromMiniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var online = hakchi.Shell.IsOnline;
+            var foundGames = new Dictionary<string, GameImporterForm.FoundGame>();
+            var gameCopied = false;
+            var previousSelected = listViewGames.SelectedItems.Cast<ListViewItem>().ToList();
+                
+            listViewGames.SelectedItems.Clear();
+
+            using (var tasker = new Tasks.Tasker(this))
+            {
+                    
+                tasker.AttachView(new TaskerTaskbar());
+                tasker.AttachView(new TaskerForm());
+                tasker.SetTitle(Resources.ImportGames);
+                if (!hakchi.Shell.IsOnline)
+                {
+                    tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.MembootRecovery).Tasks);
+                    tasker.AddTasks(ShellTasks.MountBase);
+                    tasker.AddTasks(ShellTasks.CheckExternalStorage);
+                }
+                tasker.AddTask(GameImporterForm.FindGamesTask(foundGames));
+                if (tasker.Start() == Conclusion.Success)
+                {
+                    using (var form = new GameImporterForm(foundGames.Values.ToList()))
+                    {
+                        form.ShowDialog();
+                        gameCopied = form.gameCopied;
+                    }
+                }
+
+                if (gameCopied)
+                {
+                    LoadGames(true);
+                }
+                else
+                {
+                    previousSelected.ForEach(item => item.Selected = true);
+                }
+
+                if (!online && hakchi.Shell.IsOnline)
+                {
+                    ShellTasks.Reboot(null);
+                }
+            }
+        }
+
         private void MenuStrip_MenuActivate(object sender, EventArgs e)
         {
             membootOriginalKernelToolStripMenuItem.Visible =

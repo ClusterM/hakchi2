@@ -439,7 +439,7 @@ namespace com.clusterrr.hakchi_gui
                 // execution stops here for a minimal memboot
                 if (!MinimalMemboot)
                 {
-                    var versionExists = Shell.ExecuteSimple("[ -f /var/version ] && echo \"yes\"", 2000, true) == "yes";
+                    var versionExists = Shell.ExecuteSimple("[ -f /var/version ] && echo \"yes\"", 2000, false) == "yes";
                     if (versionExists)
                     {
                         var versions = Shell.ExecuteSimple("source /var/version && echo \"$bootVersion $kernelVersion $hakchiVersion\"", 2000, true).Split(' ');

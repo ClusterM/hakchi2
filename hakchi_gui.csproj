@@ -156,6 +156,9 @@
     <Compile Include="data\GamesDB.cs" />
     <Compile Include="data\Genre.cs" />
     <Compile Include="data\SnesCarts.cs" />
+    <EmbeddedResource Include="GameImporterForm.resx">
+      <DependentUpon>GameImporterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Motd.sv.resx">
       <DependentUpon>Motd.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +212,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Licenses\ArxOne.Ftp.txt" />
+    <Compile Include="GameImporterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameImporterForm.Designer.cs">
+      <DependentUpon>GameImporterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LicenseInfo.cs">
       <SubType>Form</SubType>
     </Compile>
