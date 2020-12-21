@@ -663,4 +663,7 @@
   <data name="enableInformationScrapeOnImportToolStripMenuItem.Text" xml:space="preserve">
     <value>تمكين جلب المعلومات التلقائي عند الاستيراد</value>
   </data>
+  <data name="importGamesFromMiniToolStripMenuItem.Text" xml:space="preserve">
+    <value>إستيراد ألعاب من الميني</value>
+  </data>
 </root>

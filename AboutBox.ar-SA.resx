@@ -144,4 +144,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>حول</value>
   </data>
+  <data name="labelGitTag.Text" xml:space="preserve">
+    <value>تاج Git</value>
+  </data>
 </root>

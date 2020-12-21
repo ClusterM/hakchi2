@@ -156,4 +156,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>مدير حالة التخزين</value>
   </data>
+  <data name="buttonOpenWithFTP.Text" xml:space="preserve">
+    <value>فتح بواسطة FTP</value>
+  </data>
 </root>

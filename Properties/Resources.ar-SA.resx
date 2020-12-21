@@ -1284,4 +1284,22 @@ http://darkakuma.z-net.us/p/sfromtool.html </value>
 
 هل أنت متأكد؟</value>
   </data>
+  <data name="RunningAsAdministrator" xml:space="preserve">
+    <value>التشغيل كمسؤول إداري</value>
+  </data>
+  <data name="RunningAsAdministratorMessage" xml:space="preserve">
+    <value>التشغيل كمسؤول إداري قد يسبب مشاكل، إذا أردت فعلا أن تشغل كمسؤول إداري، قم بتشغيل "هاكتشي" مع  --allowAdministrator</value>
+  </data>
+  <data name="Scanning" xml:space="preserve">
+    <value>جاري التفحص....</value>
+  </data>
+  <data name="NoItemsSelected" xml:space="preserve">
+    <value>لايوجد أدوات مختارة</value>
+  </data>
+  <data name="_0ItemSelected1" xml:space="preserve">
+    <value>{0} أداة مختارة، {1}</value>
+  </data>
+  <data name="_0ItemsSelected1" xml:space="preserve">
+    <value>{0} أدوات مختارة, {1}</value>
+  </data>
 </root>

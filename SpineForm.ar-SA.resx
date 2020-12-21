@@ -123,4 +123,7 @@
   <data name="buttonLoadLogo.Text" xml:space="preserve">
     <value>فتح شعار شفاف</value>
   </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>مولد صورة الظهر</value>
+  </data>
 </root>
