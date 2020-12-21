@@ -159,6 +159,12 @@
     <EmbeddedResource Include="GameImporterForm.resx">
       <DependentUpon>GameImporterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LicenseInfo.fr-FR.resx">
+      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModHub\Repository\RepoManagementForm.fr-FR.resx">
+      <DependentUpon>RepoManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Motd.sv.resx">
       <DependentUpon>Motd.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,17 +174,26 @@
     <EmbeddedResource Include="SaveStateManager.sv.resx">
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ScraperForm.fr-FR.resx">
+      <DependentUpon>ScraperForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.sv.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SnesPresetEditor.sv.resx">
       <DependentUpon>SnesPresetEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SpineForm.fr-FR.resx">
+      <DependentUpon>SpineForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SpineForm.sv.resx">
       <DependentUpon>SpineForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StringInputForm.sv.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\SDFormat.fr-FR.resx">
+      <DependentUpon>SDFormat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingShellForm.sv.resx">
       <DependentUpon>WaitingShellForm.cs</DependentUpon>

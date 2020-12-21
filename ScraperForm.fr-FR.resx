@@ -120,25 +120,49 @@
   <data name="buttonOk.Text" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="categoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Catégorie</value>
+  <data name="gameName.Text" xml:space="preserve">
+    <value>Nom du jeu</value>
   </data>
-  <data name="creatorToolStripMenuItem.Text" xml:space="preserve">
-    <value>Créateur</value>
+  <data name="maskedTextBoxReleaseDate.Mask" xml:space="preserve">
+    <value>0000-00-00</value>
   </data>
-  <data name="emulatedSystemToolStripMenuItem.Text" xml:space="preserve">
-    <value>Console Émulée</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Nom</value>
   </data>
-  <data name="groupByToolStripMenuItem.Text" xml:space="preserve">
-    <value>Regrouper par</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Éditeur</value>
   </data>
-  <data name="deleteModFromDiskToolStripMenuItem.Text" xml:space="preserve">
-    <value>Effacer du disque</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Développeur</value>
   </data>
-  <data name="showModInExplorerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Afficher le mod dans l'explorateur</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Date de sortie</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Droits d'auteur</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Genre</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Nb. Joueurs</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="buttonSearch.Text" xml:space="preserve">
+    <value>Rechercher</value>
+  </data>
+  <data name="buttonScraperPrevious.Text" xml:space="preserve">
+    <value>&lt; Précédent</value>
+  </data>
+  <data name="buttonScraperNext.Text" xml:space="preserve">
+    <value>Suivant &gt;</value>
+  </data>
+  <data name="linkLabelPoweredBy.Text" xml:space="preserve">
+    <value>Généré par...</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>ModsSelect</value>
+    <value>Recherche en ligne d'information</value>
   </data>
 </root>

@@ -136,4 +136,31 @@
   <data name="buttonOk.Text" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="buttonFoldersApp.Text" xml:space="preserve">
+    <value>Séparer par console</value>
+  </data>
+  <data name="buttonFoldersGenre.Text" xml:space="preserve">
+    <value>Séparer par genre</value>
+  </data>
+  <data name="newToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Nouveau</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ouvrir</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Sauvegarder</value>
+  </data>
+  <data name="saveAsToolStripMenuItem.Text" xml:space="preserve">
+    <value>S&amp;auvegarder sous</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Quitter</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Fichier</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
 </root>

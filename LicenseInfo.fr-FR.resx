@@ -117,28 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="buttonOk.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="categoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Catégorie</value>
-  </data>
-  <data name="creatorToolStripMenuItem.Text" xml:space="preserve">
-    <value>Créateur</value>
-  </data>
-  <data name="emulatedSystemToolStripMenuItem.Text" xml:space="preserve">
-    <value>Console Émulée</value>
-  </data>
-  <data name="groupByToolStripMenuItem.Text" xml:space="preserve">
-    <value>Regrouper par</value>
-  </data>
-  <data name="deleteModFromDiskToolStripMenuItem.Text" xml:space="preserve">
-    <value>Effacer du disque</value>
-  </data>
-  <data name="showModInExplorerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Afficher le mod dans l'explorateur</value>
+  <data name="textBoxLicenses.Text" xml:space="preserve">
+    <value>--------------------------------------------------------------------------------</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>ModsSelect</value>
+    <value>Information de license</value>
   </data>
 </root>

@@ -124,7 +124,7 @@
     <value>Valeur</value>
   </data>
   <data name="buttonSave.Text" xml:space="preserve">
-    <value>Sauvegarde</value>
+    <value>Sauvegarde...</value>
   </data>
   <data name="saveFileDialog1.Filter" xml:space="preserve">
     <value>Fichiers texte|*.txt</value>
@@ -285,5 +285,8 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>OK</value>
   </data>
 </root>

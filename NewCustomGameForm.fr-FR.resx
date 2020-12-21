@@ -135,4 +135,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Ajouter appli perso</value>
   </data>
+  <data name="maskedTextBox1.Mask" xml:space="preserve">
+    <value>\C\L\V-A-AAAAA</value>
+  </data>
 </root>

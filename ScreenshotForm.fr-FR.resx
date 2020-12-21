@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="openInDefaultViewerToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ouvrir dans le programme par défaut</value>
+  </data>
+  <data name="copyImageToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Copier l'image dans le presse-papier</value>
+  </data>
+  <data name="saveImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Sauvegarder l'image dans un fichier</value>
+  </data>
+  <data name="updateScreenshotToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Rafraîchir la capture d'écran</value>
+  </data>
+  <data name="startStopLiveViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Activer le rafraîchissement auto</value>
+  </data>
+  <data name="takeUnattendedScreenshotToolStripMenuItem.Text" xml:space="preserve">
+    <value>Capture d'écran</value>
+  </data>
+  <data name="saveImageFileDialog.Filter" xml:space="preserve">
+    <value>Images PNG | *.png</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Capture d'écran sur {0} à {1}</value>
+  </data>
 </root>

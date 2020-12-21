@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddingGames" xml:space="preserve">
-    <value>Traitement des jeux, veuillez patienter…</value>
+    <value>Traitement des jeux, veuillez patienter...</value>
   </data>
   <data name="AllFiles" xml:space="preserve">
     <value>Tous les fichiers</value>
@@ -133,10 +133,10 @@
     <value>Maintenez Select+A/B pendant quelques secondes pour activer/désactiver l’autofire A/B.</value>
   </data>
   <data name="BuildingCustom" xml:space="preserve">
-    <value>Construction de l’image du kernel custom…</value>
+    <value>Construction de l’image du kernel custom...</value>
   </data>
   <data name="BuildingFolders" xml:space="preserve">
-    <value>Construction de la structure des dossiers…</value>
+    <value>Construction de la structure des dossiers...</value>
   </data>
   <data name="Compressing" xml:space="preserve">
     <value>Compression de {0}...</value>
@@ -211,7 +211,7 @@
     <value>Voulez-vous extraire le kernel ?</value>
   </data>
   <data name="DumpingKernel" xml:space="preserve">
-    <value>Extraction du kernel…</value>
+    <value>Extraction du kernel...</value>
   </data>
   <data name="DumpingNand" xml:space="preserve">
     <value>Extraction NAND...</value>
@@ -240,10 +240,10 @@ C'est très simple à utiliser. Cliquez sur "Ajouter des jeux", sélectionner qu
     <value>Flash de la mémoire NAND...</value>
   </data>
   <data name="FlasingCustom" xml:space="preserve">
-    <value>Flash du kernel custom…</value>
+    <value>Flash du kernel custom...</value>
   </data>
   <data name="FlasingOriginal" xml:space="preserve">
-    <value>Flash du kernel d’origine…</value>
+    <value>Flash du kernel d’origine...</value>
   </data>
   <data name="FolderContent" xml:space="preserve">
     <value>Le contenu supprimé sera déplacé vers la corbeille. Vous pouvez supprimer définitivement ce dossier ou déplacer les jeux vers un autre dossier.</value>
@@ -252,7 +252,7 @@ C'est très simple à utiliser. Cliquez sur "Ajouter des jeux", sélectionner qu
     <value>Retour</value>
   </data>
   <data name="FolderNameMoreGames" xml:space="preserve">
-    <value>Plus de jeux…</value>
+    <value>Plus de jeux...</value>
   </data>
   <data name="FolderNameNewFolder" xml:space="preserve">
     <value>Nouveau dossier</value>
@@ -312,7 +312,7 @@ C'est très simple à utiliser. Cliquez sur "Ajouter des jeux", sélectionner qu
     <value>Veuillez entrer un nom de liste pour la sélection actuelle des jeux.</value>
   </data>
   <data name="InstallingMods" xml:space="preserve">
-    <value>Installation des modules…</value>
+    <value>Installation des modules...</value>
   </data>
   <data name="InvalidConsoleSelected" xml:space="preserve">
     <value>Console sélectionnée invalide ! Console détectée :</value>
@@ -327,7 +327,7 @@ C'est très simple à utiliser. Cliquez sur "Ajouter des jeux", sélectionner qu
     <value>Votre kernel d’origine est sauvegardé dans le dossier "hakchi2/dump". Ne le perdez pas.</value>
   </data>
   <data name="LoadingGames" xml:space="preserve">
-    <value>Chargement des jeux…</value>
+    <value>Chargement des jeux...</value>
   </data>
   <data name="MD5Failed" xml:space="preserve">
     <value>Kernel sauvegardé mais la somme de contrôle MD5 est inconnu :</value>
@@ -354,7 +354,7 @@ C'est très simple à utiliser. Cliquez sur "Ajouter des jeux", sélectionner qu
     <value>Mémoire NAND extraite avec succès.</value>
   </data>
   <data name="NandFlashed" xml:space="preserve">
-    <value>Mémoire NAND flashée</value>
+    <value>Mémoire NAND flashée.</value>
   </data>
   <data name="Need3rdPartyEmulator" xml:space="preserve">
     <value>Oups, il semblerait que "{0}" ne puisse pas fonctionner correctement avec l’émulateur d’origine. Voulez-vous utiliser un émulateur de tierce partie pour ce jeu (il sera nécessaire de l’installer) ?</value>
@@ -435,7 +435,7 @@ C'est très simple à utiliser. Cliquez sur "Ajouter des jeux", sélectionner qu
     <value>Taille :</value>
   </data>
   <data name="SizeOfSaves" xml:space="preserve">
-    <value>Taille des sauvegardes d’état sélectionnées :</value>
+    <value>Taille des sauvegardes d’état sélectionnées : </value>
   </data>
   <data name="TooManyPerFolder" xml:space="preserve">
     <value>Attention ! Il n’est pas recommandé de stocker une telle quantité de jeux par dossier.</value>
@@ -444,43 +444,43 @@ C'est très simple à utiliser. Cliquez sur "Ajouter des jeux", sélectionner qu
     <value>N’oubliez pas de rétablir les paramètres d’origine de votre NES/SNES Mini si vous voulez supprimer tous les points de restauration.</value>
   </data>
   <data name="UninstallQ1" xml:space="preserve">
-    <value>Voulez-vous vraiment supprimer toute trace de Hakchi2 et remettre votre mini dans son état d’origine ?</value>
+    <value>Voulez-vous vraiment supprimer toute trace de Hakchi2 et remettre votre mini dans son état d’originel?</value>
   </data>
   <data name="UninstallQ2" xml:space="preserve">
     <value>Voulez-vous flasher le kernel d'origine maintenant?</value>
   </data>
   <data name="Uninstalling" xml:space="preserve">
-    <value>Désinstallation…</value>
+    <value>Désinstallation...</value>
   </data>
   <data name="UninstallingMods" xml:space="preserve">
-    <value>Désinstallation des modules…</value>
+    <value>Désinstallation des modules...</value>
   </data>
   <data name="UnknownGame" xml:space="preserve">
     <value>Jeu inconnu</value>
   </data>
   <data name="UploadingConfig" xml:space="preserve">
-    <value>Transfert de la nouvelle configuration…</value>
+    <value>Transfert de la nouvelle configuration...</value>
   </data>
   <data name="UploadingFes1" xml:space="preserve">
-    <value>Transfert et démarrage du FES-1…</value>
+    <value>Transfert et démarrage du FES-1...</value>
   </data>
   <data name="UploadingGames" xml:space="preserve">
-    <value>Transfert des jeux…</value>
+    <value>Transfert des jeux...</value>
   </data>
   <data name="UploadingKernel" xml:space="preserve">
-    <value>Transfert du kernel…</value>
+    <value>Transfert du kernel...</value>
   </data>
   <data name="UploadingOriginalGames" xml:space="preserve">
-    <value>Traitement des jeux d’origine…</value>
+    <value>Traitement des jeux d’origine...</value>
   </data>
   <data name="VerifyFailed" xml:space="preserve">
     <value>La vérification a échoué :O Ce n’est pas bon signe.</value>
   </data>
   <data name="Verifying" xml:space="preserve">
-    <value>Vérification…</value>
+    <value>Vérification...</value>
   </data>
   <data name="WaitingForDevice" xml:space="preserve">
-    <value>En attente du périphérique…</value>
+    <value>En attente du périphérique...</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Attention !</value>
@@ -660,7 +660,7 @@ Voulez-vous télécharger l'outil?</value>
     <value>Une erreur s'est produite lors de la restoration des jeux originaux. Vous pouvez toujours utiliser l'option Restaurer les jeux originaux sous le menu Fichier plus tard pour la collection en cours.</value>
   </data>
   <data name="UninstallNote" xml:space="preserve">
-    <value>Terminé. Si tout s'est bien passé, votre mini est maintenant de retour au kernel d'origine!</value>
+    <value>Terminé. Si tout s'est bien passé, votre mini est maintenant de retour au kernel d'origine.</value>
   </data>
   <data name="ImageTooLarge" xml:space="preserve">
     <value>L'image est trop volumineuse</value>
@@ -756,13 +756,13 @@ Voulez-vous télécharger l'outil?</value>
     <value>Ok</value>
   </data>
   <data name="CannotSyncToNonMultiBoot" xml:space="preserve">
-    <value>Vous ne pouvez pas synchroniser une collection de jeux {0} sur votre mini actuellle ({1}). S.v.p. basculer à la collection de jeux correspondante, ou changer vers le mode "Séparation des jeux pour multiboot" pour continuer</value>
+    <value>Vous ne pouvez pas synchroniser une collection de jeux {0} sur votre mini actuellle ({1}). S.v.p. basculer à la collection de jeux correspondante, ou changer vers le mode "Séparation des jeux pour multiboot" pour continuer.</value>
   </data>
   <data name="PleaseConnectYourDevice" xml:space="preserve">
     <value>Prière de connecter votre mini pour procéder. Notez que vous devez aussi installer le coeur hakchi, sous le menu Kernel.</value>
   </data>
   <data name="Starting" xml:space="preserve">
-    <value>Démarrage</value>
+    <value>Démarrage...</value>
   </data>
   <data name="AddingGame" xml:space="preserve">
     <value>Ajout du jeu {0}</value>
@@ -804,7 +804,7 @@ Continuer?</value>
     <value>Terminé! Toutes traces de hakchi ont été effacées et votre mini est réinitialisée aux paramètre d'usine.</value>
   </data>
   <data name="NandFormatted" xml:space="preserve">
-    <value>Mémoire NAND formattée avec succès</value>
+    <value>Mémoire NAND formattée avec succès.</value>
   </data>
   <data name="RecoveryKernel" xml:space="preserve">
     <value>Kernel de recouvrement</value>
@@ -879,7 +879,7 @@ Continuer?</value>
     <value>Sauvegarde du kernel d'origine complétée</value>
   </data>
   <data name="DumpOriginalKernelNotFound" xml:space="preserve">
-    <value>Le kernel d'origine est introuvable sur votre NES/SNES Mini</value>
+    <value>Le kernel d'origine est introuvable sur votre NES/SNES Mini.</value>
   </data>
   <data name="FormatNandCQ" xml:space="preserve">
     <value>Désirez-vous formatter la partition données utilisateur? Cette opération effacera toutes vos données personnelles.</value>
@@ -897,7 +897,7 @@ Continuer?</value>
     <value>Aucun</value>
   </data>
   <data name="DumpOriginalKernelInvalid" xml:space="preserve">
-    <value>Le kernel d'origine que vous avez fourni n'est pas un kernel d'origine valide</value>
+    <value>Le kernel d'origine que vous avez fourni n'est pas un kernel d'origine valide.</value>
   </data>
   <data name="RecoveryModeCloseWarning" xml:space="preserve">
     <value>Votre mini est présentement en mode récupération. Vous ne pourrez pas l'éteindre normalement. Voulez-vous terminer la séquence de démarrage pour la ramener en mode normal?</value>
@@ -925,5 +925,379 @@ Continuer?</value>
   </data>
   <data name="Offline" xml:space="preserve">
     <value>Hors ligne</value>
+  </data>
+  <data name="ExportGames" xml:space="preserve">
+    <value>Exporter vers USB</value>
+  </data>
+  <data name="WaitingForDeviceTakingALongTime" xml:space="preserve">
+    <value>Votre appareil prend du temps à redémarrer.
+
+Vous pouvez attendre encore un peu et si tout va bien, vous devriez voir "Mode de récupération" dans la barre de titre. Si c'est le cas, vous pouvez retenter la même action, ou utiliser "Outils &gt; Redémarrer" pour retourner au mode d'opération normal.
+
+La raison la plus fréquente pour ce délai de redémarrage est un Pare-Feu, comme celui de Windows, et vous pouvez ajouter une exception pour hakchi2 pour régler ce problème.
+
+Les autres raisons incluent VPNs bloquant le traffic vers le réseau local, et Windows qui ne détecte pas le pilote RNDIS pour une raison ou une autre.</value>
+  </data>
+  <data name="consoleTypeShonenJump" xml:space="preserve">
+    <value>Famicom (Shonen Jump)</value>
+  </data>
+  <data name="AlreadyInRecovery" xml:space="preserve">
+    <value>Déjà en mode de récupération</value>
+  </data>
+  <data name="AlreadyInRecoveryQ" xml:space="preserve">
+    <value>Vous êtes déjà en mode de récupération, voulez-vous recharger l'image de récupération?</value>
+  </data>
+  <data name="DownloadingEllipsis" xml:space="preserve">
+    <value>Téléchargement...</value>
+  </data>
+  <data name="DownloadingProgress" xml:space="preserve">
+    <value>Téléchargement: {0} / {1}</value>
+  </data>
+  <data name="KernelCheckFailed" xml:space="preserve">
+    <value>Échec de vérification du checksum</value>
+  </data>
+  <data name="Archiving" xml:space="preserve">
+    <value>Archivage: {0}</value>
+  </data>
+  <data name="ArchivingGame" xml:space="preserve">
+    <value>Archivage du Jeu</value>
+  </data>
+  <data name="ArchivingGames" xml:space="preserve">
+    <value>Archivage des Jeux</value>
+  </data>
+  <data name="ReplaceFileQ" xml:space="preserve">
+    <value>Remplacer le Fichier?</value>
+  </data>
+  <data name="ReplaceFollowingFileQ" xml:space="preserve">
+    <value>Êtes-vous sûr de remplacer le fichier suivant? {0}</value>
+  </data>
+  <data name="ShowExperimentalQuestion" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir afficher les mods expérimentaux?</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>En traitement...</value>
+  </data>
+  <data name="UnsavedChanges" xml:space="preserve">
+    <value>Changements non sauvegardés</value>
+  </data>
+  <data name="UnsavedChangesQ" xml:space="preserve">
+    <value>Vous avez des changements non sauvegardés, désirez-vous les sauvegarder?</value>
+  </data>
+  <data name="NoRepositoriesConfigured" xml:space="preserve">
+    <value>Aucun dépôt configuré</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
+  <data name="Hakchi2CEGames0" xml:space="preserve">
+    <value>Hakchi2 CE Jeux - {0}</value>
+  </data>
+  <data name="HTMLFiles" xml:space="preserve">
+    <value>Fichiers HTML</value>
+  </data>
+  <data name="XMLFiles" xml:space="preserve">
+    <value>Fichiers XML|*.xml</value>
+  </data>
+  <data name="ArchiveFiles" xml:space="preserve">
+    <value>Fichiers d'Archive</value>
+  </data>
+  <data name="GameArchive" xml:space="preserve">
+    <value>Fichiers de Jeu</value>
+  </data>
+  <data name="SupportedFiles" xml:space="preserve">
+    <value>Fichiers Supportés</value>
+  </data>
+  <data name="AddingHakchiMBR" xml:space="preserve">
+    <value>Ajouter hakchi MBR</value>
+  </data>
+  <data name="ClearingTheFirst32MBOfSDCard" xml:space="preserve">
+    <value>Nettoyage des premiers 32MB de la carte SD</value>
+  </data>
+  <data name="CopyFilesFromNandQ" xml:space="preserve">
+    <value>Copier les fichiers à partir de la NAND?</value>
+  </data>
+  <data name="CopyFilesFromNandQ2" xml:space="preserve">
+    <value>Voulez-vous copier vos jeux et sauvegardes de la NAND vers la carte SD?</value>
+  </data>
+  <data name="CopyingHakchiToSDCard" xml:space="preserve">
+    <value>Copie de hakchi vers la carte SD</value>
+  </data>
+  <data name="CopyingNandDataToSDCard" xml:space="preserve">
+    <value>Copier de la NAND vers la carte SD</value>
+  </data>
+  <data name="ExtractingHakchiToTemporaryFolder" xml:space="preserve">
+    <value>Extraction de hakchi vers le dossier temporaire</value>
+  </data>
+  <data name="FormatSD" xml:space="preserve">
+    <value>Formatter carte SD</value>
+  </data>
+  <data name="FormatSDQ" xml:space="preserve">
+    <value>Êtes-vous sûr de formatter la carte SD insérée dans la classic?
+
+Ceci effacera  toutes les données sur la carte!</value>
+  </data>
+  <data name="FormattingSDCard" xml:space="preserve">
+    <value>Formattage de la carte SD</value>
+  </data>
+  <data name="FormattingTheSDCard" xml:space="preserve">
+    <value>Formattage de la carte SD</value>
+  </data>
+  <data name="MountingSDCard" xml:space="preserve">
+    <value>Activation de la carte SD</value>
+  </data>
+  <data name="MountingSquashFS" xml:space="preserve">
+    <value>Activation de la SquashFS</value>
+  </data>
+  <data name="NoSDCard" xml:space="preserve">
+    <value>Aucune carte SD insérée dans la classic.</value>
+  </data>
+  <data name="UnmountingSDCard" xml:space="preserve">
+    <value>Désactivation de la carte SD</value>
+  </data>
+  <data name="WritingBoot0" xml:space="preserve">
+    <value>Écriture boot0</value>
+  </data>
+  <data name="WritingFATFilesystem" xml:space="preserve">
+    <value>Écriture système de fichiers FAT</value>
+  </data>
+  <data name="WritingKernel" xml:space="preserve">
+    <value>Écriture du noyau</value>
+  </data>
+  <data name="WritingSquashFS" xml:space="preserve">
+    <value>Écriture de SquashFS</value>
+  </data>
+  <data name="WritingUboot" xml:space="preserve">
+    <value>Écriture de uboot</value>
+  </data>
+  <data name="FactoryReset" xml:space="preserve">
+    <value>Restoration aux paramètres d'usine </value>
+  </data>
+  <data name="FactoryResetWithKernelFile" xml:space="preserve">
+    <value>Restoration aux paramètres d'usine avec le fichier noyau</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>Désinstaller les modules supplémentaires</value>
+  </data>
+  <data name="UninstallWithKernelFile" xml:space="preserve">
+    <value>Désinstaller et flasher le fichier noyau</value>
+  </data>
+  <data name="consoleTypeMdAsia" xml:space="preserve">
+    <value>Sega MegaDrive (Asie)</value>
+  </data>
+  <data name="consoleTypeMdEur" xml:space="preserve">
+    <value>Sega MegaDrive (Europe)</value>
+  </data>
+  <data name="consoleTypeMdJpn" xml:space="preserve">
+    <value>Sega MegaDrive (Japon)</value>
+  </data>
+  <data name="consoleTypeMdUsa" xml:space="preserve">
+    <value>Sega Genesis (É-U)</value>
+  </data>
+  <data name="NotSupportedOnThisPlatform" xml:space="preserve">
+    <value>Non supporté sur cette platforme</value>
+  </data>
+  <data name="BluetoothAdapters" xml:space="preserve">
+    <value>Adapteurs Bluetooth</value>
+  </data>
+  <data name="PairedDevicesClickToUnpair" xml:space="preserve">
+    <value>Appareils jumelés (Cliquer pour déjumeler)</value>
+  </data>
+  <data name="DetectedDevicesClickToPair" xml:space="preserve">
+    <value>Appareils détectés (Cliquer pour jumeler)</value>
+  </data>
+  <data name="NoDevicesDetected" xml:space="preserve">
+    <value>Aucun appareil détecté</value>
+  </data>
+  <data name="TrustedNotPairedClickToRemove" xml:space="preserve">
+    <value>Ajouté / Non jumelé (Cliquer pour enlever)</value>
+  </data>
+  <data name="GenreAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="GenreAdventure" xml:space="preserve">
+    <value>Aventure</value>
+  </data>
+  <data name="GenreEducational" xml:space="preserve">
+    <value>Éducatif</value>
+  </data>
+  <data name="GenrePuzzle" xml:space="preserve">
+    <value>Casse-tête</value>
+  </data>
+  <data name="GenreRacing" xml:space="preserve">
+    <value>Course</value>
+  </data>
+  <data name="GenreRPG" xml:space="preserve">
+    <value>RPG</value>
+  </data>
+  <data name="GenreShootEmUp" xml:space="preserve">
+    <value>Violent</value>
+  </data>
+  <data name="GenreSports" xml:space="preserve">
+    <value>Sports</value>
+  </data>
+  <data name="GenreSimulation" xml:space="preserve">
+    <value>Simulation</value>
+  </data>
+  <data name="GenreTable" xml:space="preserve">
+    <value>De table</value>
+  </data>
+  <data name="One" xml:space="preserve">
+    <value>Un</value>
+  </data>
+  <data name="TwoNotSimultaneously" xml:space="preserve">
+    <value>Deux, non simultanés</value>
+  </data>
+  <data name="TwoSimultaneously" xml:space="preserve">
+    <value>Deux, simultanément</value>
+  </data>
+  <data name="UnitedStates" xml:space="preserve">
+    <value>États-Unis</value>
+  </data>
+  <data name="Europe" xml:space="preserve">
+    <value>Europe</value>
+  </data>
+  <data name="Japan" xml:space="preserve">
+    <value>Japon</value>
+  </data>
+  <data name="Five" xml:space="preserve">
+    <value>Cinq</value>
+  </data>
+  <data name="Four" xml:space="preserve">
+    <value>Quatre</value>
+  </data>
+  <data name="Three" xml:space="preserve">
+    <value>Trois</value>
+  </data>
+  <data name="SystemFilesModifiedMessage" xml:space="preserve">
+    <value>Le système de fichier semble avoir été modifié:
+
+Version: {0}
+Hash: {1}
+
+Voulez-vous continuer?</value>
+  </data>
+  <data name="SystemFilesUnknownMessage" xml:space="preserve">
+    <value>Le système de fichiers est d'une version inconnue:
+
+Version: {0}
+Hash: {1}
+
+Voulez-vous continuer?</value>
+  </data>
+  <data name="UnknownSystemVersionDetected" xml:space="preserve">
+    <value>Version système inconnue détectée</value>
+  </data>
+  <data name="SystemModificationDetected" xml:space="preserve">
+    <value>Modification système détectée</value>
+  </data>
+  <data name="ProjectLunarHasBeenDetected" xml:space="preserve">
+    <value>Project Lunar détecté, l'installation ne peut continuer avant qu'il soit enlevé.</value>
+  </data>
+  <data name="PartitionExpandQMd" xml:space="preserve">
+    <value>Voulez-vous étendre la partition de données, cela vous donnera environ {0} d'espace additionel.
+
+Il y a une faible chance de pertes de données, donc s.v.p. assurez-vous d'avoir une sauvegarde de vos données.
+
+Ceci peut affecter la compatibilité de d'autres hacks.</value>
+  </data>
+  <data name="PartitionExpandQ" xml:space="preserve">
+    <value>Voulez-vous étendre la partition de données, cela vous donnera environ {0} d'espace additionel.
+
+Il y a une faible chance de pertes de données, donc s.v.p. assurez-vous d'avoir une sauvegarde de vos données.</value>
+  </data>
+  <data name="DoYouWantToExpandTheDataPartition" xml:space="preserve">
+    <value>Voulez-vous étendre la partition de données?</value>
+  </data>
+  <data name="GenreRacingSports" xml:space="preserve">
+    <value>Course / Sports</value>
+  </data>
+  <data name="GenreFighting" xml:space="preserve">
+    <value>Combat</value>
+  </data>
+  <data name="GenreActionShooting" xml:space="preserve">
+    <value>Action / Tir</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Coller</value>
+  </data>
+  <data name="PasteStretchToFit" xml:space="preserve">
+    <value>Coller (Étirer pour ajuster)</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Sélectionner un fichier</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Chargement...</value>
+  </data>
+  <data name="ApplyingChanges" xml:space="preserve">
+    <value>Application des changements</value>
+  </data>
+  <data name="DownloadingLatestHakchi" xml:space="preserve">
+    <value>Téléchargement du dernier hakchi</value>
+  </data>
+  <data name="EnterAPrefix" xml:space="preserve">
+    <value>Entrez un préfixe</value>
+  </data>
+  <data name="AddPrefixMessage" xml:space="preserve">
+    <value>Entrez un préfixe à ajouter au début du nom des jeux sélectionnés. Un point et une virgule seront ajoutés automatiquement à la fin du préfixe.</value>
+  </data>
+  <data name="RemovePrefixMessage" xml:space="preserve">
+    <value>Entrez un préfixe à enlever du début du nom des jeux sélectionnés. Un point et une virgule seront ajoutés automatiquement à la fin du préfixe.</value>
+  </data>
+  <data name="RemoveAllDevices" xml:space="preserve">
+    <value>Enlever tous les appareils</value>
+  </data>
+  <data name="PoweredBy0" xml:space="preserve">
+    <value>Alimenté par {0}</value>
+  </data>
+  <data name="Scraping0" xml:space="preserve">
+    <value>Recherche en ligne {0}</value>
+  </data>
+  <data name="DownloadingFrontArtFor0" xml:space="preserve">
+    <value>Téléchargement de l'illustration pour {0}</value>
+  </data>
+  <data name="DownloadingClearLogoFor0" xml:space="preserve">
+    <value>Téléchargement du logo transparent pour {0}</value>
+  </data>
+  <data name="GeneratingSpineFor0" xml:space="preserve">
+    <value>Générer l'étiquette latérale pour {0}</value>
+  </data>
+  <data name="Artwork" xml:space="preserve">
+    <value>Illustration</value>
+  </data>
+  <data name="AutoScrapeKnownGames" xml:space="preserve">
+    <value>Auto-recherche en ligne pour les jeux connus</value>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>Les deux</value>
+  </data>
+  <data name="ChooseWhatYouWouldLikeToScrape" xml:space="preserve">
+    <value>Choisissez ce que vous désirer remplacer suite à la recherche en ligne.</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Métadonnées</value>
+  </data>
+  <data name="ThisWillReplaceAnyCustomInformationAndArtworkFromScraper" xml:space="preserve">
+    <value>Ceci remplacera toute information modifiée et les illustrations par ceux de la source de recherche en ligne.
+
+Êtes-vous sûr?</value>
+  </data>
+  <data name="RunningAsAdministrator" xml:space="preserve">
+    <value>Lancer en tant qu'administrateur</value>
+  </data>
+  <data name="RunningAsAdministratorMessage" xml:space="preserve">
+    <value>Lancer en tant qu'administrateur peut causer des problèmes, si vous voulez vraiment lancer hakchi en tant qu'administrateur, utilisez l'option --allowAdministrator à la ligne de commande lors du chargement de hakchi.exe.</value>
+  </data>
+  <data name="Scanning" xml:space="preserve">
+    <value>Analyse...</value>
+  </data>
+  <data name="NoItemsSelected" xml:space="preserve">
+    <value>Aucun item sélectionné</value>
+  </data>
+  <data name="_0ItemSelected1" xml:space="preserve">
+    <value>{0} item sélectionné, {1}</value>
+  </data>
+  <data name="_0ItemsSelected1" xml:space="preserve">
+    <value>{0} items sélectionnés, {1}</value>
   </data>
 </root>

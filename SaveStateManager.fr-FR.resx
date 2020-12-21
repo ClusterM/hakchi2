@@ -97,4 +97,7 @@
   <data name="statusStrip.Text" xml:space="preserve">
     <value>Statut</value>
   </data>
+  <data name="buttonOpenWithFTP.Text" xml:space="preserve">
+    <value>Ouvrir par FTP</value>
+  </data>
 </root>

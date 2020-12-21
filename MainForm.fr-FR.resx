@@ -188,7 +188,7 @@
     <value>248, 22</value>
   </data>
   <data name="exportGamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>E&amp;xporter les jeux</value>
+    <value>E&amp;xporter les jeux...</value>
   </data>
   <data name="synchronizeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 22</value>
@@ -444,7 +444,7 @@
     <value>SFROM Tool</value>
   </data>
   <data name="sFROMToolToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Si vous voulez utiliser SFROM Tool,</value>
+    <value>Si vous voulez utiliser SFROM Tool, </value>
   </data>
   <data name="enableSFROMToolToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>241, 22</value>
@@ -552,7 +552,7 @@
     <value>398, 22</value>
   </data>
   <data name="enableAutofireToolStripMenuItem.Text" xml:space="preserve">
-    <value>Utiliser "Select+A/B" pour activer l’autofire sur A/B</value>
+    <value>Utiliser "Select+A/B" pour activer l’autofire sur A/B </value>
   </data>
   <data name="useXYOnClassicControllerAsAutofireABToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>398, 22</value>
@@ -711,7 +711,7 @@
     <value>Ajouter des jeux supplémentaires</value>
   </data>
   <data name="openFileDialogNes.Title" xml:space="preserve">
-    <value>Sélection des jeux</value>
+    <value>Choisir des jeux</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>381, 248</value>
@@ -1027,5 +1027,143 @@
   </data>
   <data name="toolStripStatusLabelShell.Text" xml:space="preserve">
     <value>Hors ligne</value>
+  </data>
+  <data name="autodetectToolStripMenuItem.Text" xml:space="preserve">
+    <value>Autodétecter...</value>
+  </data>
+  <data name="asIsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tel quel...</value>
+  </data>
+  <data name="generateModulesReportToolStripMenuItem.Text" xml:space="preserve">
+    <value>Générer rapport de modules</value>
+  </data>
+  <data name="manageModRepositoriesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gérer les sources de mod</value>
+  </data>
+  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
+    <value>Console</value>
+  </data>
+  <data name="autoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="unitedStatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>États-Unis</value>
+  </data>
+  <data name="europeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Europe</value>
+  </data>
+  <data name="japanToolStripMenuItem.Text" xml:space="preserve">
+    <value>Japon</value>
+  </data>
+  <data name="segaUiThemeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Thème IU SEGA</value>
+  </data>
+  <data name="convertSNESROMSToSFROMToolStripMenuItem.Text" xml:space="preserve">
+    <value>Convertir ROMs SNES en SFROM</value>
+  </data>
+  <data name="separateGamesStorageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Séparer les dossiers de jeux</value>
+  </data>
+  <data name="enableInformationScrapeOnImportToolStripMenuItem.Text" xml:space="preserve">
+    <value>Activer la recherche auto en ligne d'info sur importation</value>
+  </data>
+  <data name="downloadLatestHakchiToolStripMenuItem.Text" xml:space="preserve">
+    <value>Télécharger la dernière version de Hakchi</value>
+  </data>
+  <data name="alwaysCopyOriginalGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Toujours copier les jeux originaux</value>
+  </data>
+  <data name="importGamesFromMiniToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importer les jeux à partir de la mini</value>
+  </data>
+  <data name="saveDmesgOutputToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sauvegarder le résultat de 'dmesg'</value>
+  </data>
+  <data name="switchRunningFirmwareToolStripMenuItem.Text" xml:space="preserve">
+    <value>Changer de firmware</value>
+  </data>
+  <data name="formatSDCardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Formatter carte SD</value>
+  </data>
+  <data name="bluetoothToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bluetooth</value>
+  </data>
+  <data name="joinOurDiscordServerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Joindre notre serveur Discord</value>
+  </data>
+  <data name="rRockinTheClassicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>/r/RockinTheClassics</value>
+  </data>
+  <data name="addPrefixToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ajouter un préfixe</value>
+  </data>
+  <data name="removePrefixToolStripMenuItem.Text" xml:space="preserve">
+    <value>Retirer un préfixe</value>
+  </data>
+  <data name="scrapeSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rechercher les bases de données en ligne</value>
+  </data>
+  <data name="archiveSelectedGamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Archiver les jeux sélectionnés</value>
+  </data>
+  <data name="openFileDialogImage.Filter" xml:space="preserve">
+    <value>Images (*.bmp;*.png;*.jpg;*.jpeg;*.gif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif|Tous les fichiers|*.*</value>
+  </data>
+  <data name="buttonExport.Text" xml:space="preserve">
+    <value>Exporter sur USB</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Taille:</value>
+  </data>
+  <data name="labelCommandLine.Text" xml:space="preserve">
+    <value>Ligne de commande</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="buttonShowGameGenieDatabase.Text" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="labelMaxPlayers.Text" xml:space="preserve">
+    <value>Joueurs Max</value>
+  </data>
+  <data name="labelSaveCount.Text" xml:space="preserve">
+    <value>Nb Sauvegardes</value>
+  </data>
+  <data name="labelPublisher.Text" xml:space="preserve">
+    <value>Éditeur</value>
+  </data>
+  <data name="maskedTextBoxReleaseDate.Mask" xml:space="preserve">
+    <value>0000-00-00</value>
+  </data>
+  <data name="labelDescription.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="labelReleaseDate.Text" xml:space="preserve">
+    <value>Date de sortie (AAAA-MM-JJ)</value>
+  </data>
+  <data name="labelGenre.Text" xml:space="preserve">
+    <value>Genre</value>
+  </data>
+  <data name="labelCountry.Text" xml:space="preserve">
+    <value>Région</value>
+  </data>
+  <data name="labelCopyright.Text" xml:space="preserve">
+    <value>Droits d'auteur</value>
+  </data>
+  <data name="buttonSpine.Text" xml:space="preserve">
+    <value>Étiquette latérale</value>
+  </data>
+  <data name="groupBoxCurrentGamesCollection.Text" xml:space="preserve">
+    <value>Collection de Jeux Actuelle</value>
+  </data>
+  <data name="groupBoxArtSega.Text" xml:space="preserve">
+    <value>Illustration - Sega</value>
+  </data>
+  <data name="groupBoxArtNintendo.Text" xml:space="preserve">
+    <value>Illustration - Nintendo</value>
+  </data>
+  <data name="groupBoxGameInfo.Text" xml:space="preserve">
+    <value>Infos Jeu</value>
   </data>
 </root>

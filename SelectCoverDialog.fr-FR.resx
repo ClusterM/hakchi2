@@ -133,7 +133,7 @@
     <value>Effacer</value>
   </data>
   <data name="buttonImFeelingLucky.Text" xml:space="preserve">
-    <value>J'ai de la &amp;chance</value>
+    <value>J'ai de la &amp;chance!</value>
   </data>
   <data name="nameColumnHeader.Text" xml:space="preserve">
     <value>Nom</value>
@@ -149,5 +149,8 @@
   </data>
   <data name="coverColumnHeader.Text" xml:space="preserve">
     <value>Illustration</value>
+  </data>
+  <data name="systemColumnHeader.Text" xml:space="preserve">
+    <value>Console</value>
   </data>
 </root>

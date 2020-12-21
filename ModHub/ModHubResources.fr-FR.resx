@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Author" xml:space="preserve">
+    <value>Auteur:</value>
+  </data>
+  <data name="DownloadAndInstallModule" xml:space="preserve">
+    <value>Télécharger et installer Module</value>
+  </data>
+  <data name="DownloadAndInstallModules" xml:space="preserve">
+    <value>Télécharger et installer Modules</value>
+  </data>
+  <data name="DownloadGame" xml:space="preserve">
+    <value>Télécharger Jeu</value>
+  </data>
+  <data name="DownloadGames" xml:space="preserve">
+    <value>Télécharger Jeux</value>
+  </data>
+  <data name="DownloadModule" xml:space="preserve">
+    <value>Télécharger Module</value>
+  </data>
+  <data name="DownloadModules" xml:space="preserve">
+    <value>Télécharger Modules</value>
+  </data>
+  <data name="InstalledVersion" xml:space="preserve">
+    <value>Version installée:</value>
+  </data>
+  <data name="LatestVersion" xml:space="preserve">
+    <value>Dernier version:</value>
+  </data>
+  <data name="ModuleName" xml:space="preserve">
+    <value>Nom du module:</value>
+  </data>
+  <data name="MultipleItemsSelected" xml:space="preserve">
+    <value>Items Multiples Sélectionnés</value>
+  </data>
 </root>

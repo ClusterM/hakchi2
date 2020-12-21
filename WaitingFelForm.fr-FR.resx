@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="buttonDriver.Text" xml:space="preserve">
+    <value>Installer pilote</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Si vous n'avez pas encore fait:</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Le câble inclus avec les systèms Sega ne fonctionnera pas!</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>S.V.P. Faire les étapes suivantes:</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>3. En apputant sur 'reset', connecter le câble USB à la mini.</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>1. Déconnecter le câble USB de la mini</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>2. Placer le commutateur à la position ON</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>En attente de votre mini...</value>
+  </data>
 </root>

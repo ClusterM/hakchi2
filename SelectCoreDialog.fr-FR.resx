@@ -147,4 +147,13 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Sélectionner les coeurs</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Sélectionner la console et le moteur approprié pour les jeux suivants:</value>
+  </data>
+  <data name="systemColumnHeader.Text" xml:space="preserve">
+    <value>Console</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Console:</value>
+  </data>
 </root>

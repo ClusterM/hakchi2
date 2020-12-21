@@ -154,4 +154,10 @@
   <data name="checkLinked.Text" xml:space="preserve">
     <value>Exportation liée</value>
   </data>
+  <data name="checkCreateSavesFolder.Text" xml:space="preserve">
+    <value>Créer dossiers de sauvegarde</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Exporter sur USB</value>
+  </data>
 </root>
