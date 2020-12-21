@@ -1160,8 +1160,8 @@ namespace com.clusterrr.hakchi_gui
                     true;
 
                     deleteSelectedGamesToolStripMenuItem.Enabled =
-                    repairGamesToolStripMenuItem.Enabled =
-                    selectEmulationCoreToolStripMenuItem.Enabled = !game.IsOriginalGame;
+                    repairGamesToolStripMenuItem.Enabled = !game.IsOriginalGame;
+                    selectEmulationCoreToolStripMenuItem.Enabled = true;
 
                     compressSelectedGamesToolStripMenuItem.Enabled = game.CompressPossible().Count() > 0;
                     decompressSelectedGamesToolStripMenuItem.Enabled = game.DecompressPossible().Count() > 0;

@@ -23,6 +23,12 @@ namespace com.clusterrr.hakchi_gui
             {
                 var core = CoreCollection.GetCore(game.Metadata.Core);
                 var filename = Path.GetFileName(game.GameFilePath);
+
+                if (string.IsNullOrEmpty(filename) && game.Desktop.Args.Length > 0)
+                {
+                    filename = Path.GetFileName(game.Desktop.Args[0]);
+                }
+
                 if (!string.IsNullOrEmpty(filename))
                 {
                     if (filename.EndsWith(".7z"))
