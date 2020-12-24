@@ -140,7 +140,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAD0
-        IwAAAk1TRnQBSQFMAgEBJgEAAbQBAQG0AQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        IwAAAk1TRnQBSQFMAgEBJgEAAeQBAQHkAQEBEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAAaADAAEBAQABCAYAASgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -770,8 +770,8 @@
   <data name="&gt;&gt;splitContainer.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="comboBoxBackPosition.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="comboBoxBackPosition.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="comboBoxBackPosition.Items" xml:space="preserve">
     <value>Leftmost</value>
@@ -780,10 +780,13 @@
     <value>Rightmost</value>
   </data>
   <data name="comboBoxBackPosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>440, 9</value>
+    <value>440, 8</value>
+  </data>
+  <data name="comboBoxBackPosition.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 8, 3, 3</value>
   </data>
   <data name="comboBoxBackPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 21</value>
+    <value>147, 21</value>
   </data>
   <data name="comboBoxBackPosition.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -795,31 +798,34 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;comboBoxBackPosition.Parent" xml:space="preserve">
-    <value>panel2</value>
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;comboBoxBackPosition.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="labelPosition2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+    <value>5</value>
   </data>
   <data name="labelPosition2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="labelPosition2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="labelPosition2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelPosition2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>329, 12</value>
+    <value>327, 0</value>
   </data>
   <data name="labelPosition2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 13</value>
+    <value>107, 38</value>
   </data>
   <data name="labelPosition2.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
   <data name="labelPosition2.Text" xml:space="preserve">
     <value>Back button position:</value>
+  </data>
+  <data name="labelPosition2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;labelPosition2.Name" xml:space="preserve">
     <value>labelPosition2</value>
@@ -828,10 +834,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelPosition2.Parent" xml:space="preserve">
-    <value>panel2</value>
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;labelPosition2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>120, 17</value>
@@ -893,20 +899,26 @@
   <data name="&gt;&gt;contextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="labelElementCount.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="labelElementCount.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelElementCount.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
   </data>
   <data name="labelElementCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+    <value>3, 0</value>
   </data>
   <data name="labelElementCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>311, 13</value>
+    <value>79, 38</value>
   </data>
   <data name="labelElementCount.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
   <data name="labelElementCount.Text" xml:space="preserve">
     <value>Folder statistics</value>
+  </data>
+  <data name="labelElementCount.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;labelElementCount.Name" xml:space="preserve">
     <value>labelElementCount</value>
@@ -915,52 +927,31 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelElementCount.Parent" xml:space="preserve">
-    <value>panel2</value>
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;labelElementCount.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="checkBoxAddHome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="checkBoxAddHome.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBoxAddHome.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="checkBoxAddHome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>588, 12</value>
-  </data>
-  <data name="checkBoxAddHome.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
-  </data>
-  <data name="checkBoxAddHome.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="checkBoxAddHome.Text" xml:space="preserve">
-    <value>Add home</value>
-  </data>
-  <data name="&gt;&gt;checkBoxAddHome.Name" xml:space="preserve">
-    <value>checkBoxAddHome</value>
-  </data>
-  <data name="&gt;&gt;checkBoxAddHome.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxAddHome.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;checkBoxAddHome.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="buttonCancel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buttonCancel.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="buttonCancel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>778, 7</value>
+    <value>771, 3</value>
+  </data>
+  <data name="buttonCancel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>30, 0, 30, 0</value>
   </data>
   <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 25</value>
+    <value>110, 32</value>
   </data>
   <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -975,19 +966,67 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
-    <value>panel2</value>
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
-  <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="checkBoxAddHome.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxAddHome.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="checkBoxAddHome.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="checkBoxAddHome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>593, 6</value>
+  </data>
+  <data name="checkBoxAddHome.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 6, 3, 3</value>
+  </data>
+  <data name="checkBoxAddHome.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 29</value>
+  </data>
+  <data name="checkBoxAddHome.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="checkBoxAddHome.Text" xml:space="preserve">
+    <value>Add home</value>
+  </data>
+  <data name="checkBoxAddHome.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAddHome.Name" xml:space="preserve">
+    <value>checkBoxAddHome</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAddHome.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAddHome.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAddHome.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="buttonOk.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buttonOk.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="buttonOk.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>672, 7</value>
+    <value>673, 3</value>
+  </data>
+  <data name="buttonOk.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>30, 0, 30, 0</value>
   </data>
   <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 25</value>
+    <value>92, 32</value>
   </data>
   <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -1002,10 +1041,40 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonOk.Parent" xml:space="preserve">
-    <value>panel2</value>
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>884, 38</value>
+  </data>
+  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="labelElementCount" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonCancel" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="checkBoxAddHome" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="buttonOk" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="labelPosition2" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="comboBoxBackPosition" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>

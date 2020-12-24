@@ -40,9 +40,9 @@
             this.groupBoxSplitModes = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelSplit = new System.Windows.Forms.TableLayoutPanel();
             this.buttonFoldersApp = new System.Windows.Forms.Button();
-            this.buttonNoFoldersOriginal = new System.Windows.Forms.Button();
             this.buttonNoFolders = new System.Windows.Forms.Button();
             this.buttonFoldersLetters = new System.Windows.Forms.Button();
+            this.buttonNoFoldersOriginal = new System.Windows.Forms.Button();
             this.buttonFoldersEqually = new System.Windows.Forms.Button();
             this.buttonFoldersGenre = new System.Windows.Forms.Button();
             this.groupBoxArt = new System.Windows.Forms.GroupBox();
@@ -58,8 +58,9 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelElementCount = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.checkBoxAddHome = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.checkBoxAddHome = new System.Windows.Forms.CheckBox();
             this.buttonOk = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -82,6 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -236,14 +238,6 @@
             this.buttonFoldersApp.UseVisualStyleBackColor = true;
             this.buttonFoldersApp.Click += new System.EventHandler(this.buttonFoldersApp_Click);
             // 
-            // buttonNoFoldersOriginal
-            // 
-            resources.ApplyResources(this.buttonNoFoldersOriginal, "buttonNoFoldersOriginal");
-            this.buttonNoFoldersOriginal.Name = "buttonNoFoldersOriginal";
-            this.tableLayoutPanelSplit.SetRowSpan(this.buttonNoFoldersOriginal, 2);
-            this.buttonNoFoldersOriginal.UseVisualStyleBackColor = true;
-            this.buttonNoFoldersOriginal.Click += new System.EventHandler(this.buttonNoFoldersOriginal_Click);
-            // 
             // buttonNoFolders
             // 
             resources.ApplyResources(this.buttonNoFolders, "buttonNoFolders");
@@ -259,6 +253,14 @@
             this.buttonFoldersLetters.Name = "buttonFoldersLetters";
             this.buttonFoldersLetters.UseVisualStyleBackColor = true;
             this.buttonFoldersLetters.Click += new System.EventHandler(this.buttonFoldersLetters_Click);
+            // 
+            // buttonNoFoldersOriginal
+            // 
+            resources.ApplyResources(this.buttonNoFoldersOriginal, "buttonNoFoldersOriginal");
+            this.buttonNoFoldersOriginal.Name = "buttonNoFoldersOriginal";
+            this.tableLayoutPanelSplit.SetRowSpan(this.buttonNoFoldersOriginal, 2);
+            this.buttonNoFoldersOriginal.UseVisualStyleBackColor = true;
+            this.buttonNoFoldersOriginal.Click += new System.EventHandler(this.buttonNoFoldersOriginal_Click);
             // 
             // buttonFoldersEqually
             // 
@@ -360,20 +362,20 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.checkBoxAddHome);
-            this.panel2.Controls.Add(this.comboBoxBackPosition);
-            this.panel2.Controls.Add(this.labelPosition2);
-            this.panel2.Controls.Add(this.buttonCancel);
-            this.panel2.Controls.Add(this.buttonOk);
-            this.panel2.Controls.Add(this.labelElementCount);
+            this.panel2.Controls.Add(this.tableLayoutPanel1);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
-            // checkBoxAddHome
+            // tableLayoutPanel1
             // 
-            resources.ApplyResources(this.checkBoxAddHome, "checkBoxAddHome");
-            this.checkBoxAddHome.Name = "checkBoxAddHome";
-            this.checkBoxAddHome.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.labelElementCount, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonCancel, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.checkBoxAddHome, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonOk, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.labelPosition2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.comboBoxBackPosition, 2, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // buttonCancel
             // 
@@ -382,6 +384,12 @@
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // checkBoxAddHome
+            // 
+            resources.ApplyResources(this.checkBoxAddHome, "checkBoxAddHome");
+            this.checkBoxAddHome.Name = "checkBoxAddHome";
+            this.checkBoxAddHome.UseVisualStyleBackColor = true;
             // 
             // buttonOk
             // 
@@ -478,7 +486,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArt)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -530,5 +539,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelSplit;
         private System.Windows.Forms.Button buttonFoldersGenre;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

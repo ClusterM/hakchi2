@@ -156,32 +156,115 @@
     <Compile Include="data\GamesDB.cs" />
     <Compile Include="data\Genre.cs" />
     <Compile Include="data\SnesCarts.cs" />
+    <EmbeddedResource Include="AboutBox.es.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportGamesDialog.es.resx">
+      <DependentUpon>ExportGamesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersManagerForm.es.resx">
+      <DependentUpon>FoldersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeAddModForm.es.resx">
+      <DependentUpon>GameGenieCodeAddModForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameGenieCodeForm.es.resx">
+      <DependentUpon>GameGenieCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameImporterForm.resx">
       <DependentUpon>GameImporterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hmod\SelectForm.es.resx">
+      <DependentUpon>SelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageGooglerForm.es.resx">
+      <DependentUpon>ImageGooglerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LicenseInfo.es.resx">
+      <DependentUpon>LicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LicenseInfo.fr-FR.resx">
       <DependentUpon>LicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.es.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModHub\ModHubResources.es.resx" />
+    <EmbeddedResource Include="ModHub\Repository\RepoManagementForm.es.resx">
+      <DependentUpon>RepoManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModHub\Repository\RepoManagementForm.fr-FR.resx">
       <DependentUpon>RepoManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Motd.es.resx">
+      <DependentUpon>Motd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Motd.sv.resx">
       <DependentUpon>Motd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewCustomGameForm.es.resx">
+      <DependentUpon>NewCustomGameForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewCustomGameForm.sv.resx">
       <DependentUpon>NewCustomGameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.es.resx" />
+    <EmbeddedResource Include="SaveStateManager.es.resx">
+      <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveStateManager.sv.resx">
       <DependentUpon>SaveStateManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ScraperForm.es.resx">
+      <DependentUpon>ScraperForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScraperForm.fr-FR.resx">
       <DependentUpon>ScraperForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScreenshotForm.es.resx">
+      <DependentUpon>ScreenshotForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.es.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectCoreDialog.es.resx">
+      <DependentUpon>SelectCoreDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectCoverDialog.es.resx">
+      <DependentUpon>SelectCoverDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFileForm.es.resx">
+      <DependentUpon>SelectFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectFirmwareDialog.es.resx">
+      <DependentUpon>SelectFirmwareDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectIconForm.es.resx">
+      <DependentUpon>SelectIconForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectNesButtonsForm.es.resx">
+      <DependentUpon>SelectNesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSnesButtonsForm.es.resx">
+      <DependentUpon>SelectSnesButtonsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectSystemDialog.es.resx">
+      <DependentUpon>SelectSystemDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.es.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.sv.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SnesPresetEditor.es.resx">
+      <DependentUpon>SnesPresetEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SnesPresetEditor.sv.resx">
       <DependentUpon>SnesPresetEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpineForm.es.resx">
+      <DependentUpon>SpineForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SpineForm.fr-FR.resx">
       <DependentUpon>SpineForm.cs</DependentUpon>
@@ -189,11 +272,41 @@
     <EmbeddedResource Include="SpineForm.sv.resx">
       <DependentUpon>SpineForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StringInputForm.es.resx">
+      <DependentUpon>StringInputForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StringInputForm.sv.resx">
       <DependentUpon>StringInputForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\ErrorForm.es.resx">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\MessageForm.es.resx">
+      <DependentUpon>MessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\SDFormat.es.resx">
+      <DependentUpon>SDFormat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tasks\SDFormat.fr-FR.resx">
       <DependentUpon>SDFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\TaskerForm.es.resx">
+      <DependentUpon>TaskerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\TaskerTransferForm.es.resx">
+      <DependentUpon>TaskerTransferForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechInfo.es.resx">
+      <DependentUpon>TechInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingFelForm.es.resx">
+      <DependentUpon>WaitingFelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingShellCycleForm.es.resx">
+      <DependentUpon>WaitingShellCycleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitingShellForm.es.resx">
+      <DependentUpon>WaitingShellForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitingShellForm.sv.resx">
       <DependentUpon>WaitingShellForm.cs</DependentUpon>

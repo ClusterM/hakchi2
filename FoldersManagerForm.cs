@@ -120,6 +120,8 @@ namespace com.clusterrr.hakchi_gui
                 Trace.WriteLine(ex.Message + ex.StackTrace);
                 Tasks.ErrorForm.Show(mainForm, ex);
             }
+
+            comboBoxBackPosition.Width = Shared.DropDownWidth(comboBoxBackPosition) + 20;
         }
 
         void DrawTree()
