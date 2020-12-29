@@ -1,6 +1,6 @@
 ﻿namespace com.clusterrr.hakchi_gui
 {
-    partial class LicenseInfo
+    partial class TextInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LicenseInfo));
-            this.textBoxLicenses = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextInfo));
+            this.textBoxInfo = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBoxLicenses
+            // textBoxInfo
             // 
-            resources.ApplyResources(this.textBoxLicenses, "textBoxLicenses");
-            this.textBoxLicenses.Name = "textBoxLicenses";
-            this.textBoxLicenses.ReadOnly = true;
+            resources.ApplyResources(this.textBoxInfo, "textBoxInfo");
+            this.textBoxInfo.Name = "textBoxInfo";
+            this.textBoxInfo.ReadOnly = true;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBoxInfo);
             resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Controls.Add(this.textBoxLicenses);
             this.panel1.Name = "panel1";
             // 
-            // LicenseInfo
+            // TextInfo
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
-            this.Name = "LicenseInfo";
-            this.Shown += new System.EventHandler(this.LicenseInfo_Shown);
+            this.Name = "TextInfo";
+            this.Shown += new System.EventHandler(this.TextInfo_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -61,8 +61,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBoxLicenses;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.TextBox textBoxInfo;
     }
 }

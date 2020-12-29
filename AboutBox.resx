@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tableLayoutPanel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="tableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -804,10 +807,7 @@
     <value>3, 3</value>
   </data>
   <data name="logoPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 443</value>
-  </data>
-  <data name="logoPictureBox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
+    <value>184, 431</value>
   </data>
   <data name="logoPictureBox.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -824,11 +824,14 @@
   <data name="&gt;&gt;logoPictureBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="labelProductName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="labelProductName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="labelProductName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 0</value>
+    <value>196, 0</value>
   </data>
   <data name="labelProductName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 9</value>
@@ -836,8 +839,11 @@
   <data name="labelProductName.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 17</value>
   </data>
+  <data name="labelProductName.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
   <data name="labelProductName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>379, 17</value>
+    <value>417, 17</value>
   </data>
   <data name="labelProductName.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -860,11 +866,14 @@
   <data name="&gt;&gt;labelProductName.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="labelVersion.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="labelVersion.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="labelVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 26</value>
+    <value>196, 26</value>
   </data>
   <data name="labelVersion.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 9</value>
@@ -872,8 +881,11 @@
   <data name="labelVersion.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 17</value>
   </data>
+  <data name="labelVersion.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
   <data name="labelVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>379, 17</value>
+    <value>417, 17</value>
   </data>
   <data name="labelVersion.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -896,11 +908,14 @@
   <data name="&gt;&gt;labelVersion.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="labelCopyright.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="labelCopyright.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="labelCopyright.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 104</value>
+    <value>196, 104</value>
   </data>
   <data name="labelCopyright.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 9</value>
@@ -908,8 +923,11 @@
   <data name="labelCopyright.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 17</value>
   </data>
+  <data name="labelCopyright.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
   <data name="labelCopyright.Size" type="System.Drawing.Size, System.Drawing">
-    <value>379, 17</value>
+    <value>417, 17</value>
   </data>
   <data name="labelCopyright.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -932,11 +950,14 @@
   <data name="&gt;&gt;labelCopyright.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="labelCompanyName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="labelCompanyName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="labelCompanyName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 130</value>
+    <value>196, 130</value>
   </data>
   <data name="labelCompanyName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 9</value>
@@ -944,8 +965,11 @@
   <data name="labelCompanyName.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 17</value>
   </data>
+  <data name="labelCompanyName.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
   <data name="labelCompanyName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>379, 17</value>
+    <value>417, 17</value>
   </data>
   <data name="labelCompanyName.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -972,7 +996,7 @@
     <value>Fill</value>
   </data>
   <data name="textBoxDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 159</value>
+    <value>196, 159</value>
   </data>
   <data name="textBoxDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 3, 3, 3</value>
@@ -984,7 +1008,7 @@
     <value>Both</value>
   </data>
   <data name="textBoxDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>379, 252</value>
+    <value>417, 240</value>
   </data>
   <data name="textBoxDescription.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -1004,11 +1028,14 @@
   <data name="&gt;&gt;textBoxDescription.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="labelGitCommit.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="labelGitCommit.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="labelGitCommit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 52</value>
+    <value>196, 52</value>
   </data>
   <data name="labelGitCommit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 9</value>
@@ -1016,8 +1043,11 @@
   <data name="labelGitCommit.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 17</value>
   </data>
+  <data name="labelGitCommit.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
   <data name="labelGitCommit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>379, 17</value>
+    <value>417, 17</value>
   </data>
   <data name="labelGitCommit.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -1047,7 +1077,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -1059,7 +1089,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 3</value>
+    <value>339, 3</value>
   </data>
   <data name="okButton.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>21, 0, 21, 0</value>
@@ -1098,7 +1128,7 @@
     <value>NoControl</value>
   </data>
   <data name="licenseInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>182, 3</value>
   </data>
   <data name="licenseInfo.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>21, 0, 21, 0</value>
@@ -1124,17 +1154,56 @@
   <data name="&gt;&gt;licenseInfo.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="buttonCommitsSinceTag.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="buttonCommitsSinceTag.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buttonCommitsSinceTag.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="buttonCommitsSinceTag.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonCommitsSinceTag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="buttonCommitsSinceTag.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>21, 0, 21, 0</value>
+  </data>
+  <data name="buttonCommitsSinceTag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 23</value>
+  </data>
+  <data name="buttonCommitsSinceTag.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="buttonCommitsSinceTag.Text" xml:space="preserve">
+    <value>&amp;Commits Since Last Tag</value>
+  </data>
+  <data name="&gt;&gt;buttonCommitsSinceTag.Name" xml:space="preserve">
+    <value>buttonCommitsSinceTag</value>
+  </data>
+  <data name="&gt;&gt;buttonCommitsSinceTag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonCommitsSinceTag.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;buttonCommitsSinceTag.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>339, 417</value>
+    <value>197, 405</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 29</value>
+    <value>416, 29</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -1152,13 +1221,16 @@
     <value>7</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="okButton" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="licenseInfo" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="okButton" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="licenseInfo" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="buttonCommitsSinceTag" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="labelGitTag.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="labelGitTag.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="labelGitTag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 78</value>
+    <value>196, 78</value>
   </data>
   <data name="labelGitTag.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>6, 0, 3, 9</value>
@@ -1166,8 +1238,11 @@
   <data name="labelGitTag.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 17</value>
   </data>
+  <data name="labelGitTag.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
   <data name="labelGitTag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>379, 17</value>
+    <value>417, 17</value>
   </data>
   <data name="labelGitTag.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -1197,7 +1272,7 @@
     <value>8</value>
   </data>
   <data name="tableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 449</value>
+    <value>616, 437</value>
   </data>
   <data name="tableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1215,7 +1290,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="logoPictureBox" Row="0" RowSpan="8" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelProductName" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelVersion" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCopyright" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCompanyName" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxDescription" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelGitCommit" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel1" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelGitTag" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,Percent,67" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Percent,100,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="logoPictureBox" Row="0" RowSpan="8" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelProductName" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelVersion" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCopyright" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelCompanyName" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textBoxDescription" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelGitCommit" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel1" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelGitTag" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,190,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Percent,100,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1223,8 +1298,11 @@
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
+  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>597, 467</value>
+    <value>634, 455</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>9, 9, 9, 9</value>

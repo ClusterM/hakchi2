@@ -1,16 +1,15 @@
-﻿using SharpCompress.Archives;
+﻿using com.clusterrr.hakchi_gui.Properties;
+using SharpCompress.Archives;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public partial class LicenseInfo : Form
+    public class LicenseInfo: TextInfo
     {
-        public LicenseInfo()
+        public LicenseInfo(): base()
         {
-            InitializeComponent();
-
+            this.Text = Resources.LicenseInformation;
             var licenses = new List<string>();
 
             using (var licenseMs = new MemoryStream(Properties.Resources.LicensesTar))
@@ -33,12 +32,7 @@ namespace com.clusterrr.hakchi_gui
 
             licenses.Sort();
 
-            textBoxLicenses.Text = string.Join("\n--------------------------------------------------------------------------------\n", licenses.ToArray()).Replace("\r", "").Replace("\n", "\r\n");
-        }
-
-        private void LicenseInfo_Shown(object sender, System.EventArgs e)
-        {
-            textBoxLicenses.DeselectAll();
+            textBoxInfo.Text = string.Join("\n--------------------------------------------------------------------------------\n", licenses.ToArray()).Replace("\r", "").Replace("\n", "\r\n");
         }
     }
 }

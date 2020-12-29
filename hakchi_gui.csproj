@@ -180,11 +180,11 @@
     <EmbeddedResource Include="ImageGooglerForm.es.resx">
       <DependentUpon>ImageGooglerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LicenseInfo.es.resx">
-      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    <EmbeddedResource Include="TextInfo.es.resx">
+      <DependentUpon>TextInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LicenseInfo.fr-FR.resx">
-      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    <EmbeddedResource Include="TextInfo.fr-FR.resx">
+      <DependentUpon>TextInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.es.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -339,6 +339,7 @@
     <Content Include="data\romfiles.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="git-commits-since-last-tag.txt" />
     <Content Include="Licenses\ArxOne.Ftp.txt" />
     <Compile Include="GameImporterForm.cs">
       <SubType>Form</SubType>
@@ -349,8 +350,11 @@
     <Compile Include="LicenseInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LicenseInfo.Designer.cs">
-      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    <Compile Include="TextInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextInfo.Designer.cs">
+      <DependentUpon>TextInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Rom\RomData.cs" />
     <Compile Include="Models\Rom\RomFiles.cs" />
@@ -2284,17 +2288,17 @@
     <EmbeddedResource Include="ImagesForm.sv.resx">
       <DependentUpon>ImagesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LicenseInfo.ar-SA.resx">
-      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    <EmbeddedResource Include="TextInfo.ar-SA.resx">
+      <DependentUpon>TextInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LicenseInfo.pt-BR.resx">
-      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    <EmbeddedResource Include="TextInfo.pt-BR.resx">
+      <DependentUpon>TextInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LicenseInfo.resx">
-      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    <EmbeddedResource Include="TextInfo.resx">
+      <DependentUpon>TextInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LicenseInfo.sv.resx">
-      <DependentUpon>LicenseInfo.cs</DependentUpon>
+    <EmbeddedResource Include="TextInfo.sv.resx">
+      <DependentUpon>TextInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.ar-SA.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -4528,6 +4532,7 @@
 "./busybox" rm -rf "../$(OutDir)user_mods/hakchi.hmod"
 "./busybox" cp -R "../user_mods/" "../$(OutDir)/"
 "./busybox" sh -e "./gitcommit" &gt; "../commit.txt"
+"./busybox" sh -e "./git-commits-since-last-tag" &gt; "../git-commits-since-last-tag.txt"
 "./busybox" sh -e "./gittag" &gt; "../tag.txt"
 "./busybox" mkdir -p "../ApiKeys"
 "./busybox" touch "../ApiKeys/TheGamesDB.txt"

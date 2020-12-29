@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
 {
     partial class AboutBox : Form
     {
+        string commitsSinceTag;
         public AboutBox()
         {
             InitializeComponent();
@@ -17,6 +19,11 @@ namespace com.clusterrr.hakchi_gui
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
+
+            commitsSinceTag = Encoding.UTF8.GetString(Properties.Resources.gitCommitsSinceLastTag).Trim();
+
+            buttonCommitsSinceTag.Visible = !String.IsNullOrEmpty(commitsSinceTag);
+
         }
 
         #region Assembly Attribute Accessors
@@ -103,6 +110,16 @@ namespace com.clusterrr.hakchi_gui
         {
             using (var info = new LicenseInfo())
             {
+                info.ShowDialog();
+            }
+        }
+
+        private void buttonCommitsSinceTag_Click(object sender, EventArgs e)
+        {
+            using (var info = new TextInfo())
+            {
+                info.Text = "Commits Since Last Tag";
+                info.textBoxInfo.Text = commitsSinceTag.Replace("\r", "").Replace("\n", "\r\n");
                 info.ShowDialog();
             }
         }

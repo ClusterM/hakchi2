@@ -39,6 +39,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.okButton = new System.Windows.Forms.Button();
             this.licenseInfo = new System.Windows.Forms.Button();
+            this.buttonCommitsSinceTag = new System.Windows.Forms.Button();
             this.labelGitTag = new System.Windows.Forms.Label();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -101,8 +102,9 @@
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.okButton, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.licenseInfo, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.okButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.licenseInfo, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonCommitsSinceTag, 0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // okButton
@@ -116,6 +118,12 @@
             resources.ApplyResources(this.licenseInfo, "licenseInfo");
             this.licenseInfo.Name = "licenseInfo";
             this.licenseInfo.Click += new System.EventHandler(this.licenseInfo_Click);
+            // 
+            // buttonCommitsSinceTag
+            // 
+            resources.ApplyResources(this.buttonCommitsSinceTag, "buttonCommitsSinceTag");
+            this.buttonCommitsSinceTag.Name = "buttonCommitsSinceTag";
+            this.buttonCommitsSinceTag.Click += new System.EventHandler(this.buttonCommitsSinceTag_Click);
             // 
             // labelGitTag
             // 
@@ -140,6 +148,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -157,5 +166,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button licenseInfo;
         private System.Windows.Forms.Label labelGitTag;
+        private System.Windows.Forms.Button buttonCommitsSinceTag;
     }
 }

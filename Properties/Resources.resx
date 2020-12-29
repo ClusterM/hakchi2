@@ -1707,4 +1707,10 @@ Are you sure?</value>
   <data name="_0ItemsSelected1" xml:space="preserve">
     <value>{0} items selected, {1}</value>
   </data>
+  <data name="gitCommitsSinceLastTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\git-commits-since-last-tag.txt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="LicenseInformation" xml:space="preserve">
+    <value>License Information</value>
+  </data>
 </root>

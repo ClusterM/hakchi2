@@ -2359,6 +2359,16 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gitCommitsSinceLastTag {
+            get {
+                object obj = ResourceManager.GetObject("gitCommitsSinceLastTag", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap github {
@@ -2663,6 +2673,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         internal static string KernelDumped {
             get {
                 return ResourceManager.GetString("KernelDumped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License Information.
+        /// </summary>
+        internal static string LicenseInformation {
+            get {
+                return ResourceManager.GetString("LicenseInformation", resourceCulture);
             }
         }
         
@@ -4433,7 +4452,7 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to a14d982753518ea3438fe788e214ae1640f837dc2f076c2f6f1cf8b243e2ceb7.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string TheGamesDBKey {
             get {

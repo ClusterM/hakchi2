@@ -29,3 +29,4 @@ tools/arm/detached-fallback
 tools/putty/puttytel.exe
 user_mods/bluetooth.hmod
 !user_mods/snes_custom_filters.hmod/usr/bin/
+git-commits-since-last-tag.txt
