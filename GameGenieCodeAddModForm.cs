@@ -47,11 +47,10 @@ namespace com.clusterrr.hakchi_gui
 
             if (FGame != null)
             {
-                var tmpPath = Path.Combine(Path.GetTempPath(), FGame.Code);
+                var tmpPath = TempHelpers.getUniqueTempPath();
                 try
                 {
-                    FGame.CopyTo(tmpPath);
-                    var lGame = NesApplication.FromDirectory(tmpPath);
+                    var lGame = FGame.CopyTo(tmpPath);
                     (lGame as NesApplication).GameGenie = textBoxCode.Text;
                     lGame.Save();
                     (lGame as ISupportsGameGenie).ApplyGameGenie();

@@ -80,7 +80,6 @@ namespace com.clusterrr.hakchi_gui
                     if (FGameNode == null)
                     {
                         string lGamesDir = Path.Combine(Program.BaseDirectoryExternal, "games");
-                        NesFile lGame = new NesFile(Path.Combine(Path.Combine(lGamesDir, FGame.Code), FGame.Code + ".nes"));
                         XmlAttribute lXmlAttribute;
 
                         FGameNode = FXml.CreateElement("game");
@@ -95,7 +94,7 @@ namespace com.clusterrr.hakchi_gui
                         FGameNode.Attributes.Append(lXmlAttribute);
 
                         lXmlAttribute = FXml.CreateAttribute("crc");
-                        lXmlAttribute.Value = lGame.CRC32.ToString("X");
+                        lXmlAttribute.Value = FGame?.Metadata?.OriginalCrc32.ToString("X");
                         FGameNode.Attributes.Append(lXmlAttribute);
                     }
                 }
