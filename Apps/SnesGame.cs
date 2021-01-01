@@ -10,7 +10,7 @@ using System.Text;
 
 namespace com.clusterrr.hakchi_gui
 {
-    public class SnesGame : NesApplication, ICloverAutofill /*, ISupportsGameGenie*/
+    public class SnesGame : NesApplication, ICloverAutofill, ISupportsGameGenie
     {
         public enum SnesRomType { LoRom = 0x14, HiRom = 0x15 };
 
