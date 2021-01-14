@@ -545,6 +545,7 @@ namespace com.clusterrr.hakchi_gui
             "e9f1ed8378db818f477a75c462916782  MOON-mass-moon-es1-v0.8.3-1085AS-1f2365d", // Booted
             "4d0dc84296b576f3b7fa30772b36a71b  MOON-mass-moon-es1-v0.8.3-1085EU-1f2365d", // Booted
             "010cb247983ebcfc245aa68da7221846  MOON-mass-moon-es1-v0.8.3-1085JP-1f2365d", // Booted
+			"253d28b886595fa8369faabbbc751b3d  MOON-rework-moon-es1-v0.8.3-1080US-7c6101c", // Booted
             "ec5bb349eb675d65da91bfe3b5a2b31c  _MOON-mass-moon-es1-v0.8.0-1062US-d9de80c", // Booted
             "102e1104a9af8fc88c6cc2f521c70584  _MOON-mass-moon-es1-v0.8.1-1080US-e0c1975", // Booted
             "fbcae55f319b5c6300a87e360e3af92a  _MOON-rework-moon-es1-v0.8.1-1080US-71571fe", // Booted
@@ -554,6 +555,7 @@ namespace com.clusterrr.hakchi_gui
             "67342a75cf192c361f57e6a3bdbe0682  MOON-mass-moon-es1-v0.8.3-1085AS-1f2365d", // Never Booted
             "121babdd900ba8573e36c98ae51c48bf  MOON-mass-moon-es1-v0.8.3-1085EU-1f2365d", // Never Booted
             "8454dd4c8fdcdbed5563d68992248976  MOON-mass-moon-es1-v0.8.3-1085JP-1f2365d", // Never Booted
+            "87ae9e15a0dfd72aa91e55c5583ef92c  MOON-rework-moon-es1-v0.8.3-1080US-7c6101c", // Never Booted
             "94cecd773757ff570f945ac9b375d261  _MOON-mass-moon-es1-v0.8.0-1062US-d9de80c", // Never Booted
             "c5d31c389940744ac94153935b949503  _MOON-mass-moon-es1-v0.8.1-1080US-e0c1975", // Never Booted
             "63a5f47e844ac6cc604f575e496e9ee9  _MOON-rework-moon-es1-v0.8.1-1080US-71571fe" // Never Booted
