@@ -22,9 +22,27 @@ namespace com.clusterrr.hakchi_gui
         }
         public static void doWithTempFolder(Action<string> func, bool deleteAfter = true, string baseDir = null)
         {
+            doWithTempFolder<Object>((tempDir) => {
+                func(tempDir);
+                return null;
+            }, deleteAfter, baseDir);
+        }
+        public static T doWithTempFolder<T>(Func<string, T> func, bool deleteAfter = true, string baseDir = null)
+        {
             var tempFolder = getUniqueTempPath(baseDir);
             Directory.CreateDirectory(tempFolder);
-            func(tempFolder);
+            Exception funcError = null;
+            T returnValue = default(T);
+
+            try
+            {
+                returnValue = func(tempFolder);
+            } 
+            catch (Exception ex)
+            {
+                funcError = ex;
+            }
+
             if (deleteAfter)
             {
                 try
@@ -33,6 +51,10 @@ namespace com.clusterrr.hakchi_gui
                 }
                 catch (Exception) { }
             }
+
+            if (funcError != null) throw funcError;
+
+            return returnValue;
         }
     }
 }

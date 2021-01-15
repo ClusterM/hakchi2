@@ -2005,6 +2005,8 @@ namespace com.clusterrr.hakchi_gui
                 tasker.SetStatusImage(Resources.sign_cogs);
                 tasker.SetTitle(title);
                 string dumpFilename = null;
+                string systemSuggestedFilename = "system_software";
+                
                 switch (task)
                 {
                     case MembootTasks.NandTasks.DumpNand:
@@ -2015,7 +2017,7 @@ namespace com.clusterrr.hakchi_gui
                         break;
 
                     case MembootTasks.NandTasks.DumpSystemPartition:
-                        if (!DumpDialog(FileAccess.Write, "system_software.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
+                        if (!DumpDialog(FileAccess.Write, $"{systemSuggestedFilename}.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
                             return false;
 
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.DumpSystemPartition, dumpPath: dumpFilename));
@@ -2029,14 +2031,14 @@ namespace com.clusterrr.hakchi_gui
                         break;
 
                     case MembootTasks.NandTasks.FlashSystemPartition:
-                        if (!DumpDialog(FileAccess.Read, "system_software.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.hsqs"))
+                        if (!DumpDialog(FileAccess.Read, "system_software.hsqs", "hsqs", out dumpFilename, $"{Resources.SystemSoftwareBackup}|*.bin;*.bz2;*.gz;*.hsqs;*.tar;*.tgz;*.xz"))
                             return false;
 
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashSystemPartition, dumpPath: dumpFilename));
                         break;
 
                     case MembootTasks.NandTasks.FlashUserPartition:
-                        if (!DumpDialog(FileAccess.Read, "user_data.tar", "tar", out dumpFilename, $"{Resources.UserDataBackup}|*.tar;*.hsqs"))
+                        if (!DumpDialog(FileAccess.Read, "user_data.tar", "tar", out dumpFilename, $"{Resources.UserDataBackup}|*.bz2;*.gz;*.hsqs;*.tar;*.xz"))
                             return false;
 
                         tasker.AddTasks(new MembootTasks(MembootTasks.MembootTaskType.FlashUserPartition, dumpPath: dumpFilename));

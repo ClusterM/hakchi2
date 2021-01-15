@@ -636,18 +636,18 @@ namespace com.clusterrr.hakchi_gui
 
             // Wait for the streams to finish
             try {
-                transferFrom.Wait();
+                transferFrom?.Wait();
             }
             catch { }
 
             try {
-                transferTo.Wait();
+                transferTo?.Wait();
             }
             catch { }
 
             // Close everything.
-            socketStream.Close();
-            client.Close();
+            socketStream?.Close();
+            client?.Close();
         }
 
         

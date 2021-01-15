@@ -1302,4 +1302,7 @@ http://darkakuma.z-net.us/p/sfromtool.html </value>
   <data name="_0ItemsSelected1" xml:space="preserve">
     <value>{0} أدوات مختارة, {1}</value>
   </data>
+  <data name="ExtractingToTemporaryFolder" xml:space="preserve">
+    <value>جاري الإستخراج لمجلد مؤقت</value>
+  </data>
 </root>

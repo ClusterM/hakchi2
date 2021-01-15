@@ -1300,4 +1300,7 @@ Il y a une faible chance de pertes de données, donc s.v.p. assurez-vous d'avoir
   <data name="_0ItemsSelected1" xml:space="preserve">
     <value>{0} items sélectionnés, {1}</value>
   </data>
+  <data name="ExtractingToTemporaryFolder" xml:space="preserve">
+    <value>Extraction dans le répertoire temporaire</value>
+  </data>
 </root>

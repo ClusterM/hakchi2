@@ -1271,4 +1271,7 @@ Para montar sus particiones base, deberá ejecutar el comando "hakchi mount_base
   <data name="AlreadyInRecoveryQ" xml:space="preserve">
     <value>Ya estás en modo de recuperación, ¿quieres volver a cargar la imagen de recuperación?</value>
   </data>
+  <data name="ExtractingToTemporaryFolder" xml:space="preserve">
+    <value>Extrayendo a carpeta temporal</value>
+  </data>
 </root>

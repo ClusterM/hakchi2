@@ -1391,6 +1391,15 @@ namespace com.clusterrr.hakchi_gui.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extracting to temporary folder.
+        /// </summary>
+        internal static string ExtractingToTemporaryFolder {
+            get {
+                return ResourceManager.GetString("ExtractingToTemporaryFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Factory reset .
         /// </summary>
         internal static string FactoryReset {

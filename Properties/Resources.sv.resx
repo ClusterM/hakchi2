@@ -1286,4 +1286,25 @@ För att montera dina baspartitioner så behöver du köra kommandot "hakchi mou
   <data name="DownloadingClearLogoFor0" xml:space="preserve">
     <value>Hämtar transparent logotyp för {0}</value>
   </data>
+  <data name="NoItemsSelected" xml:space="preserve">
+    <value>Inga objekt markerade</value>
+  </data>
+  <data name="_0ItemsSelected1" xml:space="preserve">
+    <value>{0} objekt markerade, {1}</value>
+  </data>
+  <data name="_0ItemSelected1" xml:space="preserve">
+    <value>{0} objekt markerat, {1}</value>
+  </data>
+  <data name="RunningAsAdministratorMessage" xml:space="preserve">
+    <value>Köra som administrator kan orsaka problem. Om du verkligen vill köra som administrator så starta hakchi.exe med argumentet --allowAdministrator.</value>
+  </data>
+  <data name="Scanning" xml:space="preserve">
+    <value>Söker igenom…</value>
+  </data>
+  <data name="RunningAsAdministrator" xml:space="preserve">
+    <value>Kör som administrator</value>
+  </data>
+  <data name="ExtractingToTemporaryFolder" xml:space="preserve">
+    <value>Extraherar till temporärmapp</value>
+  </data>
 </root>

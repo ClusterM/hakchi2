@@ -1713,4 +1713,7 @@ Are you sure?</value>
   <data name="LicenseInformation" xml:space="preserve">
     <value>License Information</value>
   </data>
+  <data name="ExtractingToTemporaryFolder" xml:space="preserve">
+    <value>Extracting to temporary folder</value>
+  </data>
 </root>
