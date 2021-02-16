@@ -232,6 +232,11 @@ namespace com.clusterrr.hakchi_gui
 
                     game.Desktop.Save(Path.Combine(destinationPath, $"{game.Desktop.Code}.desktop"));
 
+                    if (!ConfigIni.Instance.SelectedGames.Contains(game.Desktop.Code))
+                    {
+                        ConfigIni.Instance.SelectedGames.Add(game.Desktop.Code);
+                    }
+
                     return Conclusion.Success;
                 }
 
