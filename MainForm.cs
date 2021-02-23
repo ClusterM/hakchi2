@@ -1104,7 +1104,7 @@ namespace com.clusterrr.hakchi_gui
                 }
                 else
                 {
-                    GameGenieEnabled = app is ISupportsGameGenie;
+                    GameGenieEnabled = false; //app is ISupportsGameGenie;
                     textBoxGameGenie.Text = app.GameGenie;
                 }
                 tableLayoutPanelArtButtons.Enabled =
