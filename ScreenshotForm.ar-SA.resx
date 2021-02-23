@@ -141,4 +141,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>لقطة شاشة مأخوذة في {0} على  {1}</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
+    <value>إلتقاط صورة من الشاشة</value>
+  </data>
 </root>

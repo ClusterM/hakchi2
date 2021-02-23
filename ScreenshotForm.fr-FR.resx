@@ -141,4 +141,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Capture d'écran sur {0} à {1}</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
+    <value>Faire une capture d’écran</value>
+  </data>
 </root>

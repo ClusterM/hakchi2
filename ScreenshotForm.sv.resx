@@ -141,4 +141,7 @@
   <data name="takeUnattendedScreenshotToolStripMenuItem.Text" xml:space="preserve">
     <value>Ta automatisk skärmbild</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ta skärmbild</value>
+  </data>
 </root>

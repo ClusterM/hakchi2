@@ -185,8 +185,17 @@
   <data name="takeUnattendedScreenshotToolStripMenuItem.Text" xml:space="preserve">
     <value>Take unattended screenshot</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>F8</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 22</value>
+  </data>
+  <data name="takeScreenshotToolStripMenuItem.Text" xml:space="preserve">
+    <value>Take screenshot</value>
+  </data>
   <data name="screenshotContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 148</value>
+    <value>248, 192</value>
   </data>
   <data name="&gt;&gt;screenshotContextMenuStrip.Name" xml:space="preserve">
     <value>screenshotContextMenuStrip</value>
@@ -290,6 +299,12 @@
   </data>
   <data name="&gt;&gt;saveImageFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;takeScreenshotToolStripMenuItem.Name" xml:space="preserve">
+    <value>takeScreenshotToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;takeScreenshotToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ScreenshotForm</value>

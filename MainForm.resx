@@ -757,6 +757,9 @@
   <data name="importGamesFromMiniToolStripMenuItem.Text" xml:space="preserve">
     <value>Import games from mini</value>
   </data>
+  <data name="takeScreenshotToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>F8</value>
+  </data>
   <data name="takeScreenshotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 22</value>
   </data>

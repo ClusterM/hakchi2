@@ -12,6 +12,7 @@ namespace com.clusterrr.hakchi_gui
 {
     public partial class ScreenshotForm : Form
     {
+        private bool f8Pressed = false;
         private readonly string unattendedPath = Path.Combine(Program.BaseDirectoryExternal, "screenshots");
         private bool liveView;
         private string formatTitle;
@@ -242,6 +243,38 @@ namespace com.clusterrr.hakchi_gui
             else if (e.Modifiers == Keys.None && e.KeyCode == Keys.F11)
             {
                 unattendedScreenshot();
+            }
+            else if (e.Modifiers == Keys.None && e.KeyCode == Keys.F8 && f8Pressed)
+            {
+                takeScreenshotToolStripMenuItem_Click(sender, e);
+            }
+
+            if (e.KeyCode == Keys.F8)
+            {
+                f8Pressed = false;
+            }
+        }
+
+        private void takeScreenshotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (WaitingShellForm.WaitForDevice(this))
+                {
+                    Program.FormContext.AddForm(new ScreenshotForm());
+                }
+            }
+            catch (Exception ex)
+            {
+                Tasks.ErrorForm.Show(this, ex);
+            }
+        }
+
+        private void ScreenshotForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F8)
+            {
+                f8Pressed = true;
             }
         }
     }

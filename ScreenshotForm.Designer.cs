@@ -43,6 +43,7 @@ namespace com.clusterrr.hakchi_gui
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.takeUnattendedScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.takeScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.screenshotPictureBox)).BeginInit();
             this.screenshotContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +67,8 @@ namespace com.clusterrr.hakchi_gui
             this.updateScreenshotToolStripMenuItem,
             this.startStopLiveViewToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.takeUnattendedScreenshotToolStripMenuItem});
+            this.takeUnattendedScreenshotToolStripMenuItem,
+            this.takeScreenshotToolStripMenuItem});
             this.screenshotContextMenuStrip.Name = "screenshotContextMenuStrip";
             resources.ApplyResources(this.screenshotContextMenuStrip, "screenshotContextMenuStrip");
             // 
@@ -120,6 +122,12 @@ namespace com.clusterrr.hakchi_gui
             this.saveImageFileDialog.DefaultExt = "png";
             resources.ApplyResources(this.saveImageFileDialog, "saveImageFileDialog");
             // 
+            // takeScreenshotToolStripMenuItem
+            // 
+            this.takeScreenshotToolStripMenuItem.Name = "takeScreenshotToolStripMenuItem";
+            resources.ApplyResources(this.takeScreenshotToolStripMenuItem, "takeScreenshotToolStripMenuItem");
+            this.takeScreenshotToolStripMenuItem.Click += new System.EventHandler(this.takeScreenshotToolStripMenuItem_Click);
+            // 
             // ScreenshotForm
             // 
             resources.ApplyResources(this, "$this");
@@ -128,6 +136,7 @@ namespace com.clusterrr.hakchi_gui
             this.Icon = global::com.clusterrr.hakchi_gui.Properties.Resources.icon;
             this.Name = "ScreenshotForm";
             this.Load += new System.EventHandler(this.ScreenshotForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ScreenshotForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ScreenshotForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.screenshotPictureBox)).EndInit();
             this.screenshotContextMenuStrip.ResumeLayout(false);
@@ -148,5 +157,6 @@ namespace com.clusterrr.hakchi_gui
         private System.Windows.Forms.ToolStripMenuItem updateScreenshotToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem takeUnattendedScreenshotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem takeScreenshotToolStripMenuItem;
     }
 }
