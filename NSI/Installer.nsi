@@ -8,7 +8,7 @@
 !system 'del version.nsh'
 
 ; Create zip files
-!system '..\Zipper\bin\Debug\Zipper.exe ..\bin\Debug ..\bin\hakchi2-ce-${DisplayVersion}.zip'
+!system '..\Zipper\bin\Debug\Zipper.exe ..\bin\Debug ..\bin\hakchi2-ce-${DisplayVersion}-portable.zip'
 
 ; The icon of the installer
 Icon "..\icon_app.ico"
