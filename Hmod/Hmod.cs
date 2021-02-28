@@ -221,7 +221,7 @@ namespace com.clusterrr.hakchi_gui.Hmod
         {
             var userModsDirectory = UserModsDirectory;
             var count = 0;
-            var cleanName = BadCharsRegex.Replace(modName, "_").Trim('_', '-');
+            var cleanName = BadCharsRegex.Replace(modName, "_");
             var output = Path.Combine(userModsDirectory, $"{cleanName}.hmod"); ;
             
             if (allowReplacement == false)
