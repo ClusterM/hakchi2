@@ -1011,7 +1011,7 @@
     <value>Flasher la partition données utilisateur</value>
   </data>
   <data name="formatNANDCToolStripMenuItem.Text" xml:space="preserve">
-    <value>Fromatter la partition données utilisateur</value>
+    <value>Formater la partition données utilisateur</value>
   </data>
   <data name="technicalInformationToolStripMenuItem.Text" xml:space="preserve">
     <value>Information technique...</value>
@@ -1083,7 +1083,7 @@
     <value>Changer de firmware</value>
   </data>
   <data name="formatSDCardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Formatter carte SD</value>
+    <value>Formater carte SD</value>
   </data>
   <data name="bluetoothToolStripMenuItem.Text" xml:space="preserve">
     <value>Bluetooth</value>
