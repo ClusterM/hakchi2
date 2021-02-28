@@ -141,13 +141,13 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
 
                 case 1:
                     var mod = (Repository.Repository.Item)(modList.SelectedItems[0].Tag);
-                    if (hmodDisplayed != mod.RawName)
+                    if (hmodDisplayed != mod.CleanName)
                     {
-                        var installedMod = installedMods.Where((o) => o.RawName == mod.RawName);
+                        var installedMod = installedMods.Where((o) => o.RawName == mod.CleanName);
 
                         modInfo.SetInfo(mod.Name, mod.Creator, mod.Version, installedMod.Count() > 0 ? installedMod.First().Version ?? Resources.Unknown : null);
                         modReadme.setReadme(mod.Name, mod.Readme);
-                        hmodDisplayed = mod.RawName;
+                        hmodDisplayed = mod.CleanName;
                     }
                     break;
 
@@ -183,7 +183,7 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
             switch (item.Kind)
             {
                 case Repository.Repository.ItemKind.Hmod:
-                    var modPath = Path.Combine(Program.BaseDirectoryExternal, "user_mods", $"{Hmod.Hmod.GetCleanName(Path.GetFileNameWithoutExtension(item.FileName), true)}.hmod");
+                    var modPath = Path.Combine(Program.BaseDirectoryExternal, "user_mods", $"{item.CleanName}.hmod");
                     if (File.Exists(modPath))
                         File.Delete(modPath);
 
@@ -243,7 +243,7 @@ namespace com.clusterrr.hakchi_gui.ModHub.Controls
                     tasker.AddTasks(GetItemDownloadTask(mod));
 
                     if(mod.Kind == Repository.Repository.ItemKind.Hmod)
-                        selectedMods.Add(mod.RawName);
+                        selectedMods.Add(mod.CleanName);
                 }
 
                 if (install && selectedMods.Count > 0)

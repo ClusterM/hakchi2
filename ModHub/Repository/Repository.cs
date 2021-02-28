@@ -85,6 +85,16 @@ namespace com.clusterrr.hakchi_gui.ModHub.Repository
                     return FileName;
                 }
             }
+            public string CleanName
+            {
+                get
+                {
+                    if (Kind == ItemKind.Hmod)
+                        return Hmod.Hmod.GetCleanName(RawName, true);
+
+                    return RawName;
+                }
+            }
             public string Name { get; private set; }
             public string Category { get; private set; }
             public string Creator { get; private set; }
@@ -137,7 +147,7 @@ namespace com.clusterrr.hakchi_gui.ModHub.Repository
             }
             private void setValues()
             {
-                Name = Readme.frontMatter.ContainsKey("Name") ? Readme.frontMatter["Name"] : RawName;
+                Name = Readme.frontMatter.ContainsKey("Name") ? Readme.frontMatter["Name"] : CleanName;
                 Category = Readme.frontMatter.ContainsKey("Category") ? Readme.frontMatter["Category"] : null;
                 Creator = Readme.frontMatter.ContainsKey("Creator") ? Readme.frontMatter["Creator"] : null;
                 Version = Readme.frontMatter.ContainsKey("Version") ? Readme.frontMatter["Version"] : null;
