@@ -6,11 +6,45 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("hakchi CE")]
-[assembly: AssemblyDescription("Based on hakchi by madmonkey.\r\n\r\nCoders:\r\nAlexey 'Cluster' Avdyukhin\r\nprincess_daphie\r\nDanTheMan827\r\nskogaby\r\n\r\nTranslators:\r\nArabic: AluCarD\r\nFrench: princess_daphie, JumpmanFR\r\nGerman: Domi78\r\nPortuguese: kONNEN\r\nSpanish (Latin America): ReyVGM\r\nSwedish: yeager\r\n\r\nSega Boxart and spine templates designed by TheWez1981 with backgrounds designed by HerbFargus and taken from the EmulationStation \"TronkyFran\" Theme\r\n\r\nInspired by the original USA / EUR Boxarts\r\nJP Boxarts are my own design inspired by various real Boxarts, because there is no standard in the JP Boxart theme\r\n\r\nGo check him out on FB: WH Creative Designs\r\nhttps://www.facebook.com/TheWez81\r\n\r\nSpecial thanks:\r\nmadmonkey and pcm720 for great help with everything.\r\nPete Batard/Akeo for libwdi & Zadig.\r\nThomas Bleeker for WinUSBNet lib.\r\nbootgod for cartridge database.\r\nNeoRame for Graphics.\r\nFaustbear (u/faustbear) for additional folder graphics.\r\nNhakin for Game Genie database.\r\nAdam Hathcock for SharpCompress.\r\nBoneSoft software for ProgressODoom.\r\nGert Driesen for SSH.NET.")]
+[assembly: AssemblyDescription(@"Based on hakchi by madmonkey.
+
+Coders:
+Alexey 'Cluster' Avdyukhin
+princess_daphie
+DanTheMan827
+skogaby
+
+Translators:
+Arabic: AluCarD
+French: princess_daphie, JumpmanFR
+German: Domi78
+Portuguese: kONNEN
+Spanish (Latin America): ReyVGM
+Swedish: yeager
+
+Sega Boxart and spine templates designed by TheWez1981 with backgrounds designed by HerbFargus and taken from the EmulationStation ""TronkyFran"" Theme
+
+Inspired by the original USA / EUR Boxarts
+JP Boxarts are my own design inspired by various real Boxarts, because there is no standard in the JP Boxart theme
+
+Go check him out on FB: WH Creative Designs
+https://www.facebook.com/TheWez81
+
+Special thanks:
+madmonkey and pcm720 for great help with everything.
+Pete Batard/Akeo for libwdi & Zadig.
+Thomas Bleeker for WinUSBNet lib.
+bootgod for cartridge database.
+NeoRame for Graphics.
+Faustbear (u/faustbear) for additional folder graphics.
+Nhakin for Game Genie database.
+Adam Hathcock for SharpCompress.
+BoneSoft software for ProgressODoom.
+Gert Driesen for SSH.NET.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Team Shinkansen")]
 [assembly: AssemblyProduct("hakchi CE")]
-[assembly: AssemblyCopyright("Copyright © 2020")]
+[assembly: AssemblyCopyright("Copyright © 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
