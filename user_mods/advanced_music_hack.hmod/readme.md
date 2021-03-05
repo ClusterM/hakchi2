@@ -52,6 +52,3 @@ ThanosRD has acquired permission to use some music for the mod. We have bundled 
 ### Notes and Known Issues
 
 > When a gameplay demo starts, the music will restart from the beginning after the demo finishes.
-
-#### Final note:
-I am not to be held responsible for your shit music taste. If your friends laugh at you for having something like Taylor Swift as your Nintendo Mini menu music then it's down to you. You have been warned!
