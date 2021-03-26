@@ -331,7 +331,7 @@
     <value>9</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>3. While holding reset, plug the USB cable in to the mini.</value>
+    <value>3. While holding reset, plug the USB cable in to the mini, let go when flashing initiates.</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
