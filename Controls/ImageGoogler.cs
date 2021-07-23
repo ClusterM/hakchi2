@@ -105,7 +105,7 @@ namespace com.clusterrr.hakchi_gui.Controls
 
                 // For some reason Google returns different data for different users (IPs?)
                 // This is alternative method #2
-                search = "\\]\\n,\\[\"([^\"]+)\",\\d+,\\d+]";
+                search = "\\]\\n?,\\[\"([^\"]+)\",\\d+,\\d+]";
                 matches = Regex.Matches(responseFromServer, search);
                 foreach (Match match in matches)
                 {
