@@ -867,10 +867,15 @@ namespace com.clusterrr.hakchi_gui
                     Threads.Add(Thread.CurrentThread);
                     IScraperResult results = null;
                     Task<IScraperResult> resultsTask = null;
-                    var matches = Regex.Matches(item.SearchTerm, "^ID:(?:,?\\s*(\\d+))+$");
-                    var ids = Regex.Matches(item.SearchTerm, "(\\d+)").Cast<Match>().Select(m => int.Parse(m.Groups[1].Value)).ToArray();
+                    var ids = Regex.Matches(item.SearchTerm, "(\\d+$)").Cast<Match>().Select(m =>
+                    {
+                        int value = 0;
+                        int.TryParse(m.Groups[0].Value, out value);
+
+                        return value;
+                    }).Where(i => i > 0).Distinct().ToArray();
                     
-                    if (matches.Count > 0 && ids.Length > 0 && scraper is TeamShinkansen.Scrapers.TheGamesDB.Scraper)
+                    if (item.SearchTerm.StartsWith("ID:") && ids.Length > 0 && scraper is TeamShinkansen.Scrapers.TheGamesDB.Scraper)
                     {
                         resultsTask = ((TeamShinkansen.Scrapers.TheGamesDB.Scraper)scraper).GetInfoByID(ids);
                     }
