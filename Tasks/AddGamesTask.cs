@@ -207,7 +207,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                     }
                     else
                     {
-                        if (app.CoverArtMatches != null && app.CoverArtMatches.Count() > 1)
+                        if (app != null && app.CoverArtMatches != null && app.CoverArtMatches.Count() > 1)
                         {
                             gamesWithMultipleArt.Add(app);
                         }
