@@ -18,7 +18,7 @@ pr:
     - '*'  # must quote since "*" is a YAML reserved character; we want a string
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-2019'
 
 variables:
   solution: 'hakchi_gui.sln'
