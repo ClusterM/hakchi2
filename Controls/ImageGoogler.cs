@@ -75,7 +75,7 @@ namespace com.clusterrr.hakchi_gui.Controls
                 Trace.WriteLine("Web request: " + url);
                 var request = WebRequest.Create(url);
                 request.Credentials = CredentialCache.DefaultCredentials;
-                (request as HttpWebRequest).UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36";
+                (request as HttpWebRequest).UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0";
                 request.Timeout = 10000;
                 var response = request.GetResponse();
                 Stream dataStream = response.GetResponseStream();
