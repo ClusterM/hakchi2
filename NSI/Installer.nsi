@@ -92,6 +92,7 @@ Section "" section_install
   
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "DisplayName" "Hakchi2 CE"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "DisplayVersion" "${DisplayVersion}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "Publisher" "Team Shinkansen"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "URLInfoAbout" "https://github.com/TeamShinkansen/hakchi2"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "HelpLink" "https://github.com/TeamShinkansen/hakchi2"
