@@ -687,13 +687,7 @@ namespace com.clusterrr.hakchi_gui
             return returnValue;
         }
 
-		public static readonly bool isWindows = _isWindows();
-        public static string ReverseMarkdown(string html)
-        {
-            var converter = new ReverseMarkdown.Converter();
-            var text = converter.Convert(html);
-            return Regex.Replace(text.Replace("\r", ""), @"[\n]{2,}", "\n\n").Replace("\n", "\r\n").Trim();
-        }
+        public static readonly bool isWindows = _isWindows();
 
         public static string ReplaceInvalidFilenameCharacters(string input, string replacement = "_")
         {

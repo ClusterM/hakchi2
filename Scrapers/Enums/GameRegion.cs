@@ -1,34 +1,20 @@
-﻿#if !NET461
-using System.ComponentModel.DataAnnotations;
-#endif
-
-namespace TeamShinkansen.Scrapers.Enums
+﻿namespace TeamShinkansen.Scrapers.Enums
 {
     public enum GameRegion
     {
-        #if !NET461
-        [Display(Name = "Region Free")]
-        #endif
+        // Region Free
         RegionFree,
 
-        #if !NET461
-        [Display(Name = "NTSC - Japan")]
-        #endif
+        // NTSC - Japan
         NTSC_J,
 
-        #if !NET461
-        [Display(Name = "NTSC - North America")]
-        #endif
+        // "NTSC - North America
         NTSC_U,
 
-        #if !NET461
-        [Display(Name = "PAL")]
-        #endif
+        // PAL
         PAL,
 
-        #if !NET461
-        [Display(Name = "NTSC - China")]
-        #endif
+        // NTSC - China
         NTSC_C
     }
 }
