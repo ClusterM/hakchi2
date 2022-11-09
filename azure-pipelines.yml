@@ -61,7 +61,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      $(System.DefaultWorkingDirectory)/bin/Debug/hakchi.exe --versionFormat "##vso[task.setvariable variable=displayVersion]{0}" --versionFile displayVersion.txt
+      $(System.DefaultWorkingDirectory)/bin/Debug/net461/hakchi.exe --versionFormat "##vso[task.setvariable variable=displayVersion]{0}" --versionFile displayVersion.txt
       cat displayVersion.txt
       del displayVersion.txt
 
@@ -85,7 +85,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/bin/Debug/'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/bin/Debug/net461/'
     ArtifactName: 'hakchi2-ce-$(displayVersion)-portable'
     publishLocation: 'Container'
 

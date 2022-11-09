@@ -65,23 +65,23 @@
   <PropertyGroup>
     <NMakeBuildCommandLine>msbuild.exe "$(SolutionDir)NSI\nsi-helper\nsi-helper.csproj" /p:Configuration=Release
 
-del /S /Q "$(SolutionDir)bin\Debug"
-rmdir /S /Q "$(SolutionDir)bin\Debug"
+del /S /Q "$(SolutionDir)bin\Debug\net461"
+rmdir /S /Q "$(SolutionDir)bin\Debug\net461"
 
 msbuild.exe "$(SolutionPath)" /p:Configuration=Debug
 
-"$(SolutionDir)NSI\nsi-helper\bin\Release\nsi-helper.exe" "$(SolutionDir)bin\Debug" "$(SolutionDir)NSI\debug-uninstall.nsh"
+"$(SolutionDir)NSI\nsi-helper\bin\Release\nsi-helper.exe" "$(SolutionDir)bin\Debug\net461" "$(SolutionDir)NSI\debug-uninstall.nsh"
 
 makensis.exe "$(SolutionDir)NSI\Installer.nsi"
 
 del "$(SolutionDir)NSI\debug-uninstall.nsh"</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>msbuild.exe "$(SolutionDir)NSI\nsi-helper\nsi-helper.csproj" /p:Configuration=Release
 
-del /S /Q "$(SolutionDir)bin\Debug"
-del /S /Q "$(SolutionDir)bin\Release"
+del /S /Q "$(SolutionDir)bin\Debug\net461"
+del /S /Q "$(SolutionDir)bin\Release\net461"
 
-rmdir /S /Q "$(SolutionDir)bin\Debug"
-rmdir /S /Q "$(SolutionDir)bin\Release"
+rmdir /S /Q "$(SolutionDir)bin\Debug\net461"
+rmdir /S /Q "$(SolutionDir)bin\Release\net461"
 
 msbuild.exe "$(SolutionPath)" /t:Clean /p:Configuration=Release
 msbuild.exe "$(SolutionPath)" /t:Clean /p:Configuration=Debug
@@ -89,8 +89,8 @@ msbuild.exe "$(SolutionPath)" /t:Clean /p:Configuration=Debug
 msbuild.exe "$(SolutionPath)" /p:Configuration=Release
 msbuild.exe "$(SolutionPath)" /p:Configuration=Debug
 
-"$(SolutionDir)NSI\nsi-helper\bin\Release\nsi-helper.exe" "$(SolutionDir)bin\Release" "$(SolutionDir)NSI\release-uninstall.nsh"
-"$(SolutionDir)NSI\nsi-helper\bin\Release\nsi-helper.exe" "$(SolutionDir)bin\Debug" "$(SolutionDir)NSI\debug-uninstall.nsh"
+"$(SolutionDir)NSI\nsi-helper\bin\Release\nsi-helper.exe" "$(SolutionDir)bin\Release\net461" "$(SolutionDir)NSI\release-uninstall.nsh"
+"$(SolutionDir)NSI\nsi-helper\bin\Release\nsi-helper.exe" "$(SolutionDir)bin\Debug\net461" "$(SolutionDir)NSI\debug-uninstall.nsh"
 
 makensis.exe "$(SolutionDir)NSI\Installer.nsi"
 

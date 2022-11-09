@@ -51,6 +51,8 @@ Gert Driesen for SSH.NET.</Description>
 	  <RepositoryUrl>https://github.com/TeamShinkansen/Hakchi2-CE</RepositoryUrl>
 	  <RepositoryType>git</RepositoryType>
 	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BuildDependsOn>$(BuildDependsOn);MoveLanguageResourceFiles;</BuildDependsOn>
+    <CleanDependsOn>$(CleanDependsOn); CustomAfterClean </CleanDependsOn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -215,5 +217,34 @@ Gert Driesen for SSH.NET.</Description>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="cd /D &quot;$(ProjectDir)tools/&quot; || cd &quot;$(ProjectDir)tools/&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./downloadfiles&quot; ../&#xD;&#xA;&quot;./busybox&quot; tar -cvf &quot;../basehmods.tar&quot; -C &quot;../mods/hmods&quot; &quot;.&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./copypackedhmods&quot; &quot;../mods/hmods&quot; &quot;../$(OutDir)user_mods&quot;&#xD;&#xA;&quot;./busybox&quot; rm -rf &quot;../$(OutDir)user_mods/hakchi.hmod&quot;&#xD;&#xA;&quot;./busybox&quot; cp -R &quot;../user_mods/&quot; &quot;../$(OutDir)/&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./gitcommit&quot; &gt; &quot;../commit.txt&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./git-commits-since-last-tag&quot; &gt; &quot;../git-commits-since-last-tag.txt&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./gittag&quot; &gt; &quot;../tag.txt&quot;&#xD;&#xA;&quot;./busybox&quot; mkdir -p &quot;../ApiKeys&quot;&#xD;&#xA;&quot;./busybox&quot; touch &quot;../ApiKeys/TheGamesDB.txt&quot;&#xD;&#xA;&quot;./busybox&quot; rm &quot;../data/libretro_cores.tar&quot;&#xD;&#xA;&quot;./busybox&quot; rm &quot;../data/desktop_entries.tar&quot;&#xD;&#xA;&quot;./busybox&quot; rm &quot;../data/original_art.tar&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cvf &quot;../data/libretro_cores.tar&quot; -C &quot;../data/libretro_cores/&quot; &quot;.&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cvf &quot;../data/desktop_entries.tar&quot; -C &quot;../data/desktop_entries/&quot; &quot;.&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cvf &quot;../data/original_art.tar&quot; -C &quot;../data/original_art/&quot; &quot;.&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cvf &quot;../data/licenses.tar&quot; -C &quot;../Licenses/&quot; &quot;.&quot;" />
+  </Target>
+
+  <Target Name="CustomAfterClean" AfterTargets="CoreClean">
+    <ItemGroup>
+      <HakchiFiles Include="$(ProjectDir)basehmods.tar" />
+      <HakchiFiles Include="$(ProjectDir)mods/hmods/hakchi.hmod" />
+      <HakchiFiles Include="$(ProjectDir)tools/arm/detached-fallback" />
+    </ItemGroup>
+    <Delete Files="@(HakchiFiles)" />
+  </Target>
+
+  <Target Name="RemoveUnwantedFiles" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <UnwantedFiles Include="$(OutDir)Renci.SshNet.xml" />
+      <UnwantedFiles Include="$(OutDir)CueSharp.xml" />
+      <UnwantedFiles Include="$(OutDir)tiny7z.dll.config" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="MoveLanguageResourceFiles" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <LanguageResourceFiles Include="$(OutDir)**\hakchi.resources.dll;" Exclude="$(OutDir)languages\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(LanguageResourceFiles)" DestinationFolder="$(OutDir)languages\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <RemoveDir Directories="$(OutDir)%(LanguageResourceFiles.RecursiveDir);" />
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="cd /D &quot;$(ProjectDir)tools/&quot; || cd &quot;$(ProjectDir)tools/&quot;&#xD;&#xA;&quot;./busybox&quot; rm &quot;../$(OutDir)CueSharp.xml&quot;&#xD;&#xA;&quot;./busybox&quot; rm &quot;../$(OutDir)Renci.SshNet.xml&quot;&#xD;&#xA;&quot;./busybox&quot; rm &quot;../$(OutDir)tiny7z.dll.config&quot;" />
   </Target>
 </Project>
