@@ -3,6 +3,7 @@ using FelLib;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace com.clusterrr.hakchi_gui
@@ -69,20 +70,82 @@ namespace com.clusterrr.hakchi_gui
 
         public static bool WaitForDevice(IWin32Window owner)
         {
-            if (Fel.DeviceExists()) return true;
+            if (Fel.DeviceExists())
+                return true;
             var form = new WaitingFelForm();
             form.ShowDialog(owner);
             return form.DialogResult == DialogResult.OK;
+        }
+
+        private static bool AttemptUpdateHandshake()
+        {
+            var result = false;
+            using (Fel fel = new Fel())
+            {
+                var probeSuccess = false;
+
+                try
+                {
+                    fel.WriteLine += (string message) => Trace.WriteLine(message);
+                    if (!fel.Open(isFel: false))
+                    {
+                        throw new Exception("USB Device Not Found");
+                    }
+
+                    if (!fel.UsbUpdateProbe())
+                    {
+                        throw new Exception("Failed to handshake with burn mode");
+                    }
+
+                    probeSuccess = true;
+
+                    if (!fel.UsbUpdateEnterFel())
+                    {
+                        throw new Exception("Failed to enter FEL");
+                    }
+
+                    result = true;
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine(ex.Message);
+                    result = probeSuccess || false;
+                }
+                finally
+                {
+                    fel.Close();
+                }
+            }
+
+            return result;
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
             if (Fel.DeviceExists())
             {
-                DialogResult = DialogResult.OK;
                 timer.Enabled = false;
-                deviceFound = true;
-                Close();
+                var handshakeSuccess = AttemptUpdateHandshake();
+
+                new Thread(() =>
+                {
+                    if (handshakeSuccess)
+                    {
+                        Thread.Sleep(1000);
+
+                        while (!Fel.DeviceExists())
+                        {
+                            Thread.Sleep(1000);
+                        }
+                    }
+
+                    Invoke(new Action(() =>
+                    {
+                        DialogResult = DialogResult.OK;
+                        deviceFound = true;
+                        Close();
+                    }));
+                }).Start();
             }
         }
 
