@@ -1,8 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.156
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hakchi_gui", "hakchi_gui.csproj", "{F1F983FD-A54F-4881-8394-5A4BA65EFD6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hakchi_gui", "hakchi_gui.csproj", "{F1F983FD-A54F-4881-8394-5A4BA65EFD6B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AEC446C6-FA7D-4224-83C4-87C270759403} = {AEC446C6-FA7D-4224-83C4-87C270759403}
 	EndProjectSection
@@ -29,7 +29,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZIP Files", "Makefile Proje
 		{2865B421-2F1D-484B-9826-D92A002702E6} = {2865B421-2F1D-484B-9826-D92A002702E6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FelLib", "Libraries\FelLib\FelLib\FelLib.csproj", "{3CB5E644-AB96-478C-8D88-093C48781174}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FelLib", "Libraries\FelLib\FelLib\FelLib.csproj", "{3CB5E644-AB96-478C-8D88-093C48781174}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CueSharp", "Libraries\CueSharp\CueSharp\CueSharp.csproj", "{AEC446C6-FA7D-4224-83C4-87C270759403}"
 EndProject
@@ -42,6 +42,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scrapers", "Scrapers\Scrapers.csproj", "{5AA091A1-CFD0-494E-AD89-0DBE4F1E7ED7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scrapers.Test", "Scrapers.Test\Scrapers.Test.csproj", "{0044F5F6-FFB4-442D-897D-08D41433EE4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ce-data", "Makefile Projects\ce-data\ce-data.csproj", "{070DE232-4EBE-44A8-841E-B5F6ECD4B943}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -323,6 +325,24 @@ Global
 		{0044F5F6-FFB4-442D-897D-08D41433EE4A}.Release|x64.Build.0 = Release|Any CPU
 		{0044F5F6-FFB4-442D-897D-08D41433EE4A}.Release|x86.ActiveCfg = Release|Any CPU
 		{0044F5F6-FFB4-442D-897D-08D41433EE4A}.Release|x86.Build.0 = Release|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Debug|x64.Build.0 = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Debug|x86.Build.0 = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Installer|Any CPU.ActiveCfg = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Installer|Any CPU.Build.0 = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Installer|x64.ActiveCfg = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Installer|x64.Build.0 = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Installer|x86.ActiveCfg = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Installer|x86.Build.0 = Debug|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Release|x64.ActiveCfg = Release|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Release|x64.Build.0 = Release|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Release|x86.ActiveCfg = Release|Any CPU
+		{070DE232-4EBE-44A8-841E-B5F6ECD4B943}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
