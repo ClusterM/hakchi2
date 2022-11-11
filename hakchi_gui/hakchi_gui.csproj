@@ -221,6 +221,7 @@ Gert Driesen for SSH.NET.</Description>
       <UnwantedFiles Include="$(OutDir)CueSharp.xml" />
       <UnwantedFiles Include="$(OutDir)tiny7z.dll.config" />
       <UnwantedFiles Include="$(OutDir)data\licenses.tar" />
+      <UnwantedFiles Include="$(OutDir)mods\hmods\hakchi.hmod" />
     </ItemGroup>
     <Delete Files="@(UnwantedFiles)" />
   </Target>
