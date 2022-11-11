@@ -125,6 +125,7 @@ namespace com.clusterrr.hakchi_gui.Wireless.Bluetooth
         {
             if (cmdThread?.IsAlive ?? false)
             {
+                #warning Refactor this to get rid of Thread.Abort!
                 cmdThread.Abort();
             }
             cmdThread = null;

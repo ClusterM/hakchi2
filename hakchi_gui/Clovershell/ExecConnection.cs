@@ -89,6 +89,7 @@ namespace com.clusterrr.clovershell
 
         public void Dispose()
         {
+            #warning Refactor this to get rid of Thread.Abort!
             if (stdinThread != null)
                 stdinThread.Abort();            
         }

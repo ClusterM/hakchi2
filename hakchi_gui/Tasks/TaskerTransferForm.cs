@@ -221,6 +221,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
                 // make more checks to bypass question when appropriate
                 if (Tasker.ShowMessage(Resources.AreYouSure, Resources.DoYouWantCancel, Resources.sign_warning, new MessageForm.Button[] { MessageForm.Button.Yes, MessageForm.Button.No }, MessageForm.DefaultButton.Button2) == MessageForm.Button.Yes)
                 {
+                    #warning Refactor this to get rid of Thread.Abort!
                     Tasker.Abort();
                     return;
                 }

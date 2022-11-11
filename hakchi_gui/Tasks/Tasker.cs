@@ -296,6 +296,7 @@ namespace com.clusterrr.hakchi_gui.Tasks
         {
             if (thread != null)
             {
+                #warning Refactor this to get rid of Thread.Abort!
                 thread.Abort();
             }
         }

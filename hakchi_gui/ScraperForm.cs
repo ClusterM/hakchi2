@@ -580,6 +580,7 @@ namespace com.clusterrr.hakchi_gui
                         textBoxDescription.Text = result.Description;
                     }
 
+                    #warning Refactor this to get rid of Thread.Abort!
                     SelectedItem.ScraperImageFetchThread?.Abort();
                     SelectedItem.ScraperImageFetchThread = new Thread(() =>
                     {
@@ -633,6 +634,7 @@ namespace com.clusterrr.hakchi_gui
                     });
                     SelectedItem.ScraperImageFetchThread.Start();
 
+                    #warning Refactor this to get rid of Thread.Abort!
                     SelectedItem.ScraperSpineFetchThread?.Abort();
                     SelectedItem.ScraperSpineFetchThread = new Thread(() =>
                     {
@@ -826,7 +828,8 @@ namespace com.clusterrr.hakchi_gui
         private void ScraperForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             foreach (var thread in Threads.ToArray())
-            {
+            {             
+                #warning Refactor this to get rid of Thread.Abort!
                 if (thread != null && thread.IsAlive)
                     thread.Abort();
             }

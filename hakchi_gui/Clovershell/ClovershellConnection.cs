@@ -74,6 +74,7 @@ namespace com.clusterrr.clovershell
                 }
                 else
                 {
+                    #warning Refactor this to get rid of Thread.Abort!
                     if (mainThread != null)
                         mainThread.Abort();
                     mainThread = null;
@@ -127,6 +128,7 @@ namespace com.clusterrr.clovershell
                 }
                 else
                 {
+                    #warning Refactor this to get rid of Thread.Abort!
                     shellListenerThread.Abort();
                     shellListenerThread = null;
                 }

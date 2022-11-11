@@ -60,6 +60,7 @@ namespace com.clusterrr.ssh
                 {
                     if (connectThread != null)
                     {
+                        #warning Refactor this to get rid of Thread.Abort!
                         connectThread.Abort();
                         connectThread = null;
                     }

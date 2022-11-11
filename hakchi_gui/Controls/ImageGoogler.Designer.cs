@@ -20,6 +20,7 @@
 
             if (disposing && searchThread != null)
             {
+                #warning Refactor this to get rid of Thread.Abort!
                 if (searchThread.IsAlive)
                     searchThread.Abort();
 

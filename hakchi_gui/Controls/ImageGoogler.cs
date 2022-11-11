@@ -47,6 +47,7 @@ namespace com.clusterrr.hakchi_gui.Controls
             {
                 if (searchThread.IsAlive)
                 {
+                    #warning Refactor this to get rid of Thread.Abort!
                     searchThread.Abort();
                     searchThread = null;
                 }

@@ -683,6 +683,7 @@ namespace com.clusterrr.hakchi_gui
             });
             transferThread.Start();
             int returnValue = hakchi.Shell.Execute($"nc -lv -w 60 -i 60 -s 0.0.0.0 -e {command}", null, null, splitStream, timeout, throwOnNonZero);
+            #warning Refactor this to get rid of Thread.Abort!
             transferThread.Abort();
             return returnValue;
         }
