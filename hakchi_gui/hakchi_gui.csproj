@@ -233,11 +233,11 @@ Gert Driesen for SSH.NET.</Description>
     <RemoveDir Directories="$(OutDir)%(LanguageResourceFiles.RecursiveDir);" />
   </Target>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="cd /D &quot;$(SolutionDir)tools/&quot; || cd &quot;$(SolutionDir)tools/&quot;&#xD;&#xA;&quot;./busybox&quot; mkdir -p &quot;../hakchi_gui/ApiKeys&quot;&#xD;&#xA;&quot;./busybox&quot; touch &quot;../hakchi_gui/ApiKeys/TheGamesDB.txt&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./gitcommit&quot; &gt; &quot;../hakchi_gui/commit.txt&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./git-commits-since-last-tag&quot; &gt; &quot;../hakchi_gui/git-commits-since-last-tag.txt&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./gittag&quot; &gt; &quot;../hakchi_gui/tag.txt&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cf - -C ../GeneratedData . | &quot;busybox&quot; tar -xvf - -C &quot;../hakchi_gui/bin/$(Configuration)/$(TargetFramework)&quot;" />
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="cd /D &quot;$(SolutionDir)tools/&quot; || cd &quot;$(SolutionDir)tools/&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cf - -C ../GeneratedData . | &quot;busybox&quot; tar -xvf - -C &quot;../hakchi_gui/bin/$(Configuration)/$(TargetFramework)&quot;" />
   </Target>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="cd /D &quot;$(SolutionDir)tools/&quot; || cd &quot;$(SolutionDir)tools/&quot;&#xD;&#xA;" />
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="cd /D &quot;$(SolutionDir)tools/&quot; || cd &quot;$(SolutionDir)tools/&quot;&#xD;&#xA;&quot;./busybox&quot; mkdir -p &quot;../hakchi_gui/ApiKeys&quot;&#xD;&#xA;&quot;./busybox&quot; touch &quot;../hakchi_gui/ApiKeys/TheGamesDB.txt&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./gitcommit&quot; &gt; &quot;../hakchi_gui/commit.txt&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./git-commits-since-last-tag&quot; &gt; &quot;../hakchi_gui/git-commits-since-last-tag.txt&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./gittag&quot; &gt; &quot;../hakchi_gui/tag.txt&quot;&#xD;&#xA;" />
   </Target>
 </Project>
