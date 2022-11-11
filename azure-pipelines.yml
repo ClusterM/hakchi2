@@ -49,7 +49,7 @@ steps:
   inputs:
     secureFile: 'TheGamesDB.txt'
 
-- script: mkdir "$(System.DefaultWorkingDirectory)/ApiKeys" && copy "$(GamesDBApiKey.secureFilePath)" "$(System.DefaultWorkingDirectory)/ApiKeys/TheGamesDB.txt"
+- script: mkdir "$(System.DefaultWorkingDirectory)/hakchi_gui/ApiKeys" && copy "$(GamesDBApiKey.secureFilePath)" "$(System.DefaultWorkingDirectory)/hakchi_gui/ApiKeys/TheGamesDB.txt"
   continueOnError: true
 
 - task: VSBuild@1
