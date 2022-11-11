@@ -110,7 +110,7 @@ namespace com.clusterrr.hakchi_gui
                 return;
             }
 
-            Debug.Listeners.Add(new TextWriterTraceListener(stdout));
+            Trace.Listeners.Add(new TextWriterTraceListener(stdout));
             
             if (Debugger.IsAttached || Array.IndexOf(args, "/debug") != -1)
             {
@@ -125,7 +125,7 @@ namespace com.clusterrr.hakchi_gui
                     standardOutput.AutoFlush = true;
                     Console.SetOut(standardOutput);
                     debugStreams.Add(consoleFileStream);
-                    Debug.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
+                    Trace.Listeners.Add(new TextWriterTraceListener(System.Console.Out));
                     ConsoleVisible = true;
                 }
                 catch { }
@@ -133,7 +133,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     Stream logFile = File.Create("debuglog.txt");
                     debugStreams.Add(logFile);
-                    Debug.Listeners.Add(new TextWriterTraceListener(logFile));
+                    Trace.Listeners.Add(new TextWriterTraceListener(logFile));
                 }
                 catch (Exception ex)
                 {

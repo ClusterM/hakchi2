@@ -201,11 +201,11 @@ namespace com.clusterrr.hakchi_gui
             {
                 if (message == null)
                 {
-                    message = File.ReadAllText(Path.Combine(Program.BaseDirectoryExternal, "config", "motd.md"));
+                    message = File.ReadAllText(MotdFilename);
                 }
                 new Motd(message).ShowDialog(this);
             }
-            catch
+            catch (Exception ex)
             {
                 Trace.WriteLine("Could not show \"Message of the day\"");
             }

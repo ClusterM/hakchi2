@@ -693,3 +693,8 @@
 .markdown-body hr {
   border-bottom-color: #eee;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+}

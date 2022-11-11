@@ -20,9 +20,9 @@ namespace com.clusterrr.hakchi_gui
 
             if (Shared.isWindows)
             {
-                webBrowser = new WebBrowser() { Location = position, Size = size, Url = new Uri("about:blank") };
+                webBrowser = new WebBrowser() { Location = position, Size = size, Dock = DockStyle.Fill, Url = new Uri("about:blank") };
                 webBrowser.Navigating += webBrowser_Navigating;
-                Controls.Add(webBrowser);
+                panel1.Controls.Add(webBrowser);
                 Color color = this.BackColor;
                 string text = CommonMarkConverter.Convert(message);
                 this.html = String.Format(
@@ -34,8 +34,8 @@ namespace com.clusterrr.hakchi_gui
             }
             else
             {
-                textBox = new TextBox() { Location = position, Size = size, ReadOnly = true, BackColor = SystemColors.Window, Multiline = true, ScrollBars = ScrollBars.Both };
-                Controls.Add(textBox);
+                textBox = new TextBox() { Location = position, Size = size, ReadOnly = true, BackColor = SystemColors.Window, Multiline = true, ScrollBars = ScrollBars.Both, Dock = DockStyle.Fill };
+                panel1.Controls.Add(textBox);
                 textBox.Text = message;
             }
         }
