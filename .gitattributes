@@ -5,4 +5,4 @@
 *.resx text eol=crlf
 *.sln text eol=crlf
 *.xml text eol=lf
-data/moon_hashes/* text eol=lf
+hakchi_gui/data/moon_hashes/* text eol=lf

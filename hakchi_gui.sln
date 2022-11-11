@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hakchi_gui", "hakchi_gui.csproj", "{F1F983FD-A54F-4881-8394-5A4BA65EFD6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hakchi_gui", "hakchi_gui\hakchi_gui.csproj", "{F1F983FD-A54F-4881-8394-5A4BA65EFD6B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AEC446C6-FA7D-4224-83C4-87C270759403} = {AEC446C6-FA7D-4224-83C4-87C270759403}
 	EndProjectSection
@@ -17,17 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nsi-helper", "NSI\nsi-helpe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zipper", "Zipper\Zipper.csproj", "{2865B421-2F1D-484B-9826-D92A002702E6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Installer", "Makefile Projects\Installer.vcxproj", "{15F9D451-9DAF-4904-B2EC-6B485FCA86FD}"
-	ProjectSection(ProjectDependencies) = postProject
-		{2865B421-2F1D-484B-9826-D92A002702E6} = {2865B421-2F1D-484B-9826-D92A002702E6}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Installer", "Installer\Installer.vcxproj", "{15F9D451-9DAF-4904-B2EC-6B485FCA86FD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Installer (Web)", "Makefile Projects\Web Installer.vcxproj", "{1994C582-5BCD-45B1-A825-93123C16E33D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Installer (Web)", "Web Installer\Web Installer.vcxproj", "{1994C582-5BCD-45B1-A825-93123C16E33D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZIP Files", "Makefile Projects\ZIP Files.vcxproj", "{2A876B34-06C7-4CD4-AF78-6783AC37DBAC}"
-	ProjectSection(ProjectDependencies) = postProject
-		{2865B421-2F1D-484B-9826-D92A002702E6} = {2865B421-2F1D-484B-9826-D92A002702E6}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZIP Files", "ZIP Files\ZIP Files.vcxproj", "{2A876B34-06C7-4CD4-AF78-6783AC37DBAC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FelLib", "Libraries\FelLib\FelLib\FelLib.csproj", "{3CB5E644-AB96-478C-8D88-093C48781174}"
 EndProject
@@ -43,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scrapers", "Scrapers\Scrape
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scrapers.Test", "Scrapers.Test\Scrapers.Test.csproj", "{0044F5F6-FFB4-442D-897D-08D41433EE4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ce-data", "Makefile Projects\ce-data\ce-data.csproj", "{070DE232-4EBE-44A8-841E-B5F6ECD4B943}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ce-data", "ce-data\ce-data.csproj", "{070DE232-4EBE-44A8-841E-B5F6ECD4B943}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

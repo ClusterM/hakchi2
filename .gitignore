@@ -3,30 +3,21 @@
 *.vcxproj.user
 .vs/
 ApiKeys/
-Makefile Projects/Debug/
-Makefile Projects/Release/
-Web Installer/*.exe
-basehmods.tar
+hakchi_gui/basehmods.tar
 bin/
-commit.txt
-data/desktop_entries.7z
-data/desktop_entries.tar
-data/libretro_cores.7z
-data/libretro_cores.tar
-data/licenses.tar
-data/original_art.tar
-data/romfiles.xml
-data/romfiles.xml.gz
-downloadedFiles.txt
-driver/classic_driver.exe
+hakchi_gui/commit.txt
+GeneratedFiles/
 driver/source/nesmini_driver/Release/
-driver/usb_driver/
-mods/hmods/hakchi.hmod
+hakchi_gui/mods/hmods/hakchi.hmod
 obj/
 packages/
-tag.txt
-tools/arm/detached-fallback
-tools/putty/puttytel.exe
-user_mods/bluetooth.hmod
-!user_mods/snes_custom_filters.hmod/usr/bin/
-git-commits-since-last-tag.txt
+hakchi_gui/tag.txt
+hakchi_gui/tools/arm/detached-fallback
+hakchi_gui/tools/putty/puttytel.exe
+hakchi_gui/user_mods/bluetooth.hmod
+!hakchi_gui/user_mods/snes_custom_filters.hmod/usr/bin/
+hakchi_gui/git-commits-since-last-tag.txt
+GeneratedData/
+Installer/**/
+Web Installer/**/
+ZIP Files/**/

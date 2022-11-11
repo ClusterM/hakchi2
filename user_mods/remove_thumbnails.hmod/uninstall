@@ -1,5 +1,0 @@
-find $rootfs/usr/share -name "sys_game_thumbnail.scn" -delete
-find $rootfs/usr/share -name "nes.json" -delete
-find $rootfs/usr/share -name "packed.json" -delete
-preinitfile=p81a8_hide_thumnbnails
-rm -f $preinitpath/$preinitfile

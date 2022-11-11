@@ -5,15 +5,15 @@
 Name "Hakchi2 CE"
 
 ; The icon of the installer
-Icon "..\icon_app.ico"
+Icon "..\hakchi_gui\icon_app.ico"
 
 ; The file to write
-OutFile "..\bin\hakchi2-ce-webinstaller.exe"
+OutFile "..\hakchi_gui\bin\hakchi2-ce-webinstaller.exe"
 
 ; The default installation directory
 InstallDir "$PROGRAMFILES\Team Shinkansen\Hakchi2 CE"
 
-; Registry key to check for directory (so if you install again, it will 
+; Registry key to check for directory (so if you install again, it will
 ; overwrite the old one automatically)
 InstallDirRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "InstallLocation"
 
@@ -56,13 +56,13 @@ SectionGroupEnd
 Section
   SetShellVarContext all
   SectionIn RO
-  
+
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
 
   ; Create the installation directory.
   CreateDirectory "$INSTDIR"
-  
+
   ; Download update.xml
   inetc::get $DownloadURL "update.xml"
   Pop $0
@@ -89,10 +89,10 @@ Section
   ; Create nonportable.flag
   FileOpen $9 "nonportable.flag" w
   FileClose $9
-  
+
   ; Write the installation path into the registry
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "InstallLocation" "$INSTDIR"
-  
+
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "DisplayName" "Hakchi2 CE"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "Publisher" "Team Shinkansen"
@@ -115,7 +115,7 @@ Section
 
   InstallEnd:
   AccessControl::GrantOnFile "$INSTDIR\" "(BU)" "GenericRead + GenericWrite"
-  
+
 SectionEnd
 
 Section "Start Menu Shortcuts"
@@ -160,7 +160,7 @@ Function .onSelChange
     !insertmacro RadioButton ${section_release}
     !insertmacro RadioButton ${section_debug}
   !insertmacro EndRadioButtons
-  
+
   ${If} ${SectionIsSelected} ${section_release}
     StrCpy $DownloadURL "https://teamshinkansen.github.io/xml/updates/update-release.xml"
   ${EndIf}

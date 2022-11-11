@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <RootNamespace>ce_data</RootNamespace>
+  </PropertyGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="cd /D &quot;$(SolutionDir)tools&quot; || cd &quot;$(SolutionDir)tools&quot;&#xD;&#xA;&quot;./busybox&quot; mkdir -p &quot;../GeneratedData&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./downloadfiles&quot; &quot;../GeneratedData&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cvf &quot;../GeneratedData/basehmods.tar&quot; -C &quot;../hakchi_gui/mods/hmods&quot; &quot;.&quot;&#xD;&#xA;&quot;./busybox&quot; sh -e &quot;./copypackedhmods&quot; &quot;../hakchi_gui/mods/hmods&quot; &quot;../GeneratedData/user_mods&quot;&#xD;&#xA;&quot;./busybox&quot; rm -rf &quot;../GeneratedData/user_mods/hakchi.hmod&quot;&#xD;&#xA;&quot;./busybox&quot; cp -R &quot;../hakchi_gui/user_mods/&quot; &quot;../GeneratedData/&quot;&#xD;&#xA;&quot;./busybox&quot; rm &quot;../GeneratedData/data/libretro_cores.tar&quot;&#xD;&#xA;&quot;./busybox&quot; rm &quot;../GeneratedData/data/desktop_entries.tar&quot;&#xD;&#xA;&quot;./busybox&quot; rm &quot;../GeneratedData/data/original_art.tar&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cvf &quot;../GeneratedData/data/libretro_cores.tar&quot; -C &quot;../hakchi_gui/data/libretro_cores/&quot; &quot;.&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cvf &quot;../GeneratedData/data/desktop_entries.tar&quot; -C &quot;../hakchi_gui/data/desktop_entries/&quot; &quot;.&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cvf &quot;../GeneratedData/data/original_art.tar&quot; -C &quot;../hakchi_gui/data/original_art/&quot; &quot;.&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cvf &quot;../GeneratedData/data/licenses.tar&quot; -C &quot;../hakchi_gui/Licenses/&quot; &quot;.&quot;" />
+  </Target>
+
+</Project>

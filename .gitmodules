@@ -11,9 +11,6 @@
 [submodule "Libraries/LibUsbDotNet"]
 	path = Libraries/LibUsbDotNet
 	url = https://github.com/TeamShinkansen/LibUsbDotNet.git
-[submodule "driver/source"]
-	path = driver/source
-	url = https://github.com/TeamShinkansen/libwdi.git
 [submodule "Libraries/FelLib"]
 	path = Libraries/FelLib
 	url = https://github.com/TeamShinkansen/FelLib.git
@@ -22,4 +19,7 @@
 	url = https://github.com/TeamShinkansen/CueSharp.git
 [submodule "Libraries/SpineGen"]
 	path = Libraries/SpineGen
-url=https://github.com/DanTheMan827/SpineGen.git
+	url = https://github.com/DanTheMan827/SpineGen.git
+[submodule "libwdi"]
+	path = libwdi
+	url = https://github.com/TeamShinkansen/libwdi.git

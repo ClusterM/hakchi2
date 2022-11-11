@@ -3,18 +3,18 @@
 !include "FileFunc.nsh"
 
 ; Display Version
-!system '..\bin\Debug\net461\hakchi.exe --versionFormat "!define DisplayVersion {0}" --versionFile version.nsh'
+!system '..\hakchi_gui\bin\Debug\net461\hakchi.exe --versionFormat "!define DisplayVersion {0}" --versionFile version.nsh'
 !include ".\version.nsh"
 !system 'del version.nsh'
 
 ; Create zip files
-!system '..\Zipper\bin\Debug\Zipper.exe ..\bin\Debug\net461 ..\bin\hakchi2-ce-${DisplayVersion}-portable.zip'
+!system '..\Zipper\bin\Release\Zipper.exe ..\hakchi_gui\bin\Debug\net461 ..\hakchi_gui\bin\hakchi2-ce-${DisplayVersion}-portable.zip'
 
 ; The icon of the installer
-Icon "..\icon_app.ico"
+Icon "..\hakchi_gui\icon_app.ico"
 
 ; The file to write
-OutFile "..\bin\hakchi2-ce-${DisplayVersion}-installer.exe"
+OutFile "..\hakchi_gui\bin\hakchi2-ce-${DisplayVersion}-installer.exe"
 
 ; The default installation directory
 Var defaultInstDir
@@ -26,7 +26,7 @@ var launchArgs
 ; The name of the installer
 Name "Hakchi2 CE ${DisplayVersion}"
 
-; Registry key to check for directory (so if you install again, it will 
+; Registry key to check for directory (so if you install again, it will
 ; overwrite the old one automatically)
 InstallDirRegKey HKLM "Software\Team Shinkansen\Hakchi2 CE" "Install_Dir"
 
@@ -73,7 +73,7 @@ SectionEnd
 Section "Hakchi2 CE ${DisplayVersion} (required)" section_main
   SectionIn RO
   SetOutPath $INSTDIR
-  File /r "..\bin\Debug\net461\*"
+  File /r "..\hakchi_gui\bin\Debug\net461\*"
   AccessControl::GrantOnFile "$INSTDIR\" "(BU)" "GenericRead + GenericWrite"
 SectionEnd
 
@@ -86,10 +86,10 @@ Section "" section_install
   ; Create nonportable.flag
   FileOpen $9 "nonportable.flag" w
   FileClose $9
-  
+
   ; Write the installation path into the registry
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "InstallLocation" "$INSTDIR"
-  
+
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "DisplayName" "Hakchi2 CE"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hakchi2 CE" "DisplayVersion" "${DisplayVersion}"
@@ -120,7 +120,7 @@ SectionEnd
 Section "" section_launch
   ${GetOptions} $CMDLINE "-LAUNCH=" $launchExe
   ${GetOptions} $CMDLINE "-LAUNCH_ARGS=" $launchArgs
-  
+
   ${If} $launchExe != ""
     SetAutoClose true
     SetOutPath "$INSTDIR"
@@ -138,7 +138,7 @@ Section "Uninstall"
   Delete "$DESKTOP\Hakchi2 CE.lnk"
   RMDir /r "$SMPROGRAMS\Team Shinkansen\Hakchi2 CE"
   RMDir "$SMPROGRAMS\Team Shinkansen"
-  
+
   !include "debug-uninstall.nsh"
 
   Delete "$INSTDIR\nonportable.flag"
@@ -157,7 +157,7 @@ FunctionEnd
 Function .onSelChange
   ${If} ${SectionIsSelected} ${section_portable}
     StrCpy $InstDir "$EXEDIR\hakchi2-ce-${DisplayVersion}"
-      
+
     !insertmacro UnselectSection ${section_install}
     !insertmacro UnselectSection ${section_startmenu}
     !insertmacro UnselectSection ${section_desktop}
@@ -165,15 +165,15 @@ Function .onSelChange
     SectionSetFlags ${section_desktop} ${SF_RO}
   ${Else}
     StrCpy $InstDir $defaultInstDir
-    
+
     SectionGetFlags ${section_startmenu} $0
     IntOp $0 $0 & ${SF_SELECTED}
     SectionSetFlags ${section_startmenu} $0
-    
+
     SectionGetFlags ${section_desktop} $0
     IntOp $0 $0 & ${SF_SELECTED}
     SectionSetFlags ${section_desktop} $0
-    
+
     !insertmacro SelectSection ${section_install}
   ${EndIf}
 
