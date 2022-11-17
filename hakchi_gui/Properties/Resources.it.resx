@@ -1,0 +1,1297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Sei sicuro?</value>
+  </data>
+  <data name="BuildingCustom" xml:space="preserve">
+    <value>Creazione dell'immagine del kernel modificato...</value>
+  </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>Congratulazioni!</value>
+  </data>
+  <data name="CustomKernel" xml:space="preserve">
+    <value>Kernel modificato</value>
+  </data>
+  <data name="CustomKernelQ" xml:space="preserve">
+    <value>Vuoi esegiure il flash del kernel modificato?</value>
+  </data>
+  <data name="CustomWarning" xml:space="preserve">
+    <value>Devi eseguire il flash del kernel modificato sul tuo NES/SNES Mini.Questo è richiesto solo una volta.Vuoi continuare?</value>
+  </data>
+  <data name="Default30games" xml:space="preserve">
+    <value>Giochi originali</value>
+  </data>
+  <data name="DeleteGame" xml:space="preserve">
+    <value>Vuoi davvero eliminare il gioco "{0}"?</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Fatto!</value>
+  </data>
+  <data name="DoneYouCanUpload" xml:space="preserve">
+    <value>Fatto! Puoi caricare i giochi sul tuo NES/SNES Mini ora.</value>
+  </data>
+  <data name="DoYouWantCancel" xml:space="preserve">
+    <value>Vuoi annullare l'operazione in corso?</value>
+  </data>
+  <data name="DoYouWantToContinue" xml:space="preserve">
+    <value>Vuoi continuare?</value>
+  </data>
+  <data name="DumpingKernel" xml:space="preserve">
+    <value>Salvataggio del kernel...</value>
+  </data>
+  <data name="DumpKernelQ" xml:space="preserve">
+    <value>Vuoi salvare il kernel?</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Errore</value>
+  </data>
+  <data name="ExecutingCommand" xml:space="preserve">
+    <value>Esecuzione del comando:</value>
+  </data>
+  <data name="FlasingCustom" xml:space="preserve">
+    <value>Sto flashando il kernel modificato...</value>
+  </data>
+  <data name="FlasingOriginal" xml:space="preserve">
+    <value>Sto flashando il kernel originale...</value>
+  </data>
+  <data name="GamesSelected" xml:space="preserve">
+    <value>Giochi selezionati</value>
+  </data>
+  <data name="InvalidKernelHeader" xml:space="preserve">
+    <value>Intestazione del kernel non valida.</value>
+  </data>
+  <data name="InvalidKernelSize" xml:space="preserve">
+    <value>Dimensione del kernel non valida:</value>
+  </data>
+  <data name="MapperNotSupported" xml:space="preserve">
+    <value>{0} usa il mapper #{1} ma questo mapper non è supportato da NES Mini e il gioco probabilmente non si avvierà</value>
+  </data>
+  <data name="MD5Failed" xml:space="preserve">
+    <value>Il kernel è stato scaricato ma il checksum MD5 è sconosciuto:</value>
+  </data>
+  <data name="MD5Failed2" xml:space="preserve">
+    <value>Il kernel è già patchato o è una revisione sconosciuta. Inviami questo messaggio (premi Ctrl+C). Continua a tuo rischio.</value>
+  </data>
+  <data name="NoKernel" xml:space="preserve">
+    <value>Nessun salvataggio del kernel trovato</value>
+  </data>
+  <data name="NoKernelWarning" xml:space="preserve">
+    <value>Per prima cosa,salva l'immagine del kernel del tuo NES/SNES Mini.Devi farlo solo una volta. Vuoi continuare?</value>
+  </data>
+  <data name="NoKernelYouNeed" xml:space="preserve">
+    <value>Nessun salvataggio del kernel trovato. Devi prima salvare il kernel.</value>
+  </data>
+  <data name="OriginalKernelQ" xml:space="preserve">
+    <value>Vuoi eseguire il flash del kernel originale?</value>
+  </data>
+  <data name="PressOkToContinue" xml:space="preserve">
+    <value>Premi OK per continuare.</value>
+  </data>
+  <data name="ReplaceKernelQ" xml:space="preserve">
+    <value>Hai già il salvataggio del kernel.Se vuoi VERAMENTE sostituire il backup del tuo kernel e lo fai DAVVERO</value>
+  </data>
+  <data name="SelectAtLeast" xml:space="preserve">
+    <value>Seleziona almeno un gioco.</value>
+  </data>
+  <data name="UploadingFes1" xml:space="preserve">
+    <value>Caricamento ed esecuzione di FES-1...</value>
+  </data>
+  <data name="UploadingGames" xml:space="preserve">
+    <value>Caricamento giochi...</value>
+  </data>
+  <data name="UploadingKernel" xml:space="preserve">
+    <value>Caricamento del kernel...</value>
+  </data>
+  <data name="VerifyFailed" xml:space="preserve">
+    <value>Verifica fallita :O Non va bene.</value>
+  </data>
+  <data name="Verifying" xml:space="preserve">
+    <value>Verifica...</value>
+  </data>
+  <data name="WaitingForDevice" xml:space="preserve">
+    <value>In attesa del dispositivo...</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Attenzione!</value>
+  </data>
+  <data name="Wow" xml:space="preserve">
+    <value>Wow</value>
+  </data>
+  <data name="PleaseTryAgainUSB" xml:space="preserve">
+    <value>Se il problema persiste,prova a utilizzare un'altra porta o cavo USB</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Se ti piace quest'app,puoi donarmi.Puoi trovare il mio PayPal nella casella "Informazioni"</value>
+  </data>
+  <data name="FirstRun" xml:space="preserve">
+    <value>Ciao! Sono molto contento che tu stia usando hakchi2!</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Ciao</value>
+  </data>
+  <data name="KernelDumped" xml:space="preserve">
+    <value>Il tuo kernel originale è stato salvato in un'area speciale della tua console.</value>
+  </data>
+  <data name="DeletePreset" xml:space="preserve">
+    <value>Vuoi davvero eliminare il preset "{0}"?</value>
+  </data>
+  <data name="FourScreenNotSupported" xml:space="preserve">
+    <value>Spiacenti, {0} utilizza la modalità a quattro schermi (ovvero il gioco ha memoria VRAM aggiuntiva nella cartuccia) e questa funzione non è supportata da NES Mini. Il gioco probabilmente non si avvierà. Ma dovrebbe funzionare se è installato il modulo di un altro emulatore. Vuoi comunque aggiungere questo gioco?</value>
+  </data>
+  <data name="InputPreset" xml:space="preserve">
+    <value>Inserisci un nome preimpostato per la selezione di giochi corrente.</value>
+  </data>
+  <data name="NewPreset" xml:space="preserve">
+    <value>Nuova selezione preimpostata</value>
+  </data>
+  <data name="UninstallFactoryNote" xml:space="preserve">
+    <value>Fatto! Non dimenticare di eseguire un ripristino alle impostazioni di fabbrica se desideri eliminare tutti i punti di sospensione.</value>
+  </data>
+  <data name="Uninstalling" xml:space="preserve">
+    <value>Disinstallazione...</value>
+  </data>
+  <data name="UninstallQ1" xml:space="preserve">
+    <value>Vuoi davvero rimuovere tutte le tracce di hakchi2 e riportare il tuo NES/SNES Mini al suo stato originale?</value>
+  </data>
+  <data name="UninstallQ2" xml:space="preserve">
+    <value>Vuoi eseguire il flash del kernel originale?</value>
+  </data>
+  <data name="GameGenieFormatError" xml:space="preserve">
+    <value>Codice Game Genie "{0}" non valido per il gioco "{1}".</value>
+  </data>
+  <data name="GameGenieNotFound" xml:space="preserve">
+    <value>Impossibile applicare il codice Game Genie "{0}" al gioco "{1}" - valore non trovato. Forse questo codice è per un altro gioco?</value>
+  </data>
+  <data name="PatchAvailable" xml:space="preserve">
+    <value>Patch disponibile</value>
+  </data>
+  <data name="PatchQ" xml:space="preserve">
+    <value>C'è una patch per "{0}". Vuoi patchare questo gioco?</value>
+  </data>
+  <data name="AutofillResult" xml:space="preserve">
+    <value>Dati compilati automaticamente per {0} gioco/i.</value>
+  </data>
+  <data name="SelectAtLeastTwo" xml:space="preserve">
+    <value>Seleziona almeno due pulsanti.</value>
+  </data>
+  <data name="AutofireHelp1" xml:space="preserve">
+    <value>Tieni premuto Select+A/B per un secondo per abilitare/disabilitare il fuoco automatico A/B.</value>
+  </data>
+  <data name="ExtraArgsInfo" xml:space="preserve">
+    <value>Puoi aggiungere argomenti globali della riga di comando che verranno aggiunti a tutti i giochi, incluso l'originale. Questo è solo per esperti!</value>
+  </data>
+  <data name="ExtraArgsTitle" xml:space="preserve">
+    <value>Argomenti aggiuntivi della riga di comando</value>
+  </data>
+  <data name="DownloadAllCoversTitle" xml:space="preserve">
+    <value>Download della box art per tutti i giochi (mi sento fortunato!)</value>
+  </data>
+  <data name="GooglingFor" xml:space="preserve">
+    <value>Cerco su Google per...</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Non trovato:</value>
+  </data>
+  <data name="LoadingGames" xml:space="preserve">
+    <value>Caricamento giochi...</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoForAll" xml:space="preserve">
+    <value>No per tutti</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Si</value>
+  </data>
+  <data name="YesForAll" xml:space="preserve">
+    <value>Si per tutti</value>
+  </data>
+  <data name="GGCodeDelete" xml:space="preserve">
+    <value>Vuoi eliminare il codice "{0}"?</value>
+  </data>
+  <data name="GGCodeEmpty" xml:space="preserve">
+    <value>Devi inserire un codice!</value>
+  </data>
+  <data name="GGCodeExists" xml:space="preserve">
+    <value>Questo codice esiste già. Vuoi modificarlo?</value>
+  </data>
+  <data name="GGDescriptionEmpty" xml:space="preserve">
+    <value>Devi inserire una descrizione!</value>
+  </data>
+  <data name="FolderNameBack" xml:space="preserve">
+    <value>Indietro</value>
+  </data>
+  <data name="FolderNameMoreGames" xml:space="preserve">
+    <value>Più giochi...</value>
+  </data>
+  <data name="FolderNameOriginalGames" xml:space="preserve">
+    <value>Giochi originali</value>
+  </data>
+  <data name="DeleteElement" xml:space="preserve">
+    <value>Vuoi davvero eliminare "{0}"?</value>
+  </data>
+  <data name="FolderContent" xml:space="preserve">
+    <value>Il contenuto eliminato verrà spostato nel Cestino. Puoi eliminare questa cartella in modo permanente o spostare i giochi in altre cartelle.</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Menù Home</value>
+  </data>
+  <data name="BuildingFolders" xml:space="preserve">
+    <value>Creazione della struttura delle cartelle...</value>
+  </data>
+  <data name="FolderNameNewFolder" xml:space="preserve">
+    <value>Nuova cartella</value>
+  </data>
+  <data name="FolderNameUnsorted" xml:space="preserve">
+    <value>Non ordinato</value>
+  </data>
+  <data name="FoldersSaveQ" xml:space="preserve">
+    <value>Vuoi salvare questa struttura delle cartelle?</value>
+  </data>
+  <data name="FolderStatistics" xml:space="preserve">
+    <value>La cartella "{0}" contiene {1} elementi.</value>
+  </data>
+  <data name="NewGamesUnsorted" xml:space="preserve">
+    <value>I nuovi giochi vengono spostati nella cartella "Non ordinati".</value>
+  </data>
+  <data name="AddingGames" xml:space="preserve">
+    <value>Elaborazione dei giochi, attendere...</value>
+  </data>
+  <data name="DeleteElements" xml:space="preserve">
+    <value>Vuoi davvero eliminare {0} elementi?</value>
+  </data>
+  <data name="FolderNameTrashBin" xml:space="preserve">
+    <value>
+Cestino</value>
+  </data>
+  <data name="InstallingMods" xml:space="preserve">
+    <value>Installazione delle mod...</value>
+  </data>
+  <data name="SelectModsInstall" xml:space="preserve">
+    <value>Seleziona i moduli da installare sul tuo NES/SNES Mini</value>
+  </data>
+  <data name="SelectModsUninstall" xml:space="preserve">
+    <value>Seleziona i moduli da rimuovere dal tuo NES/SNES Mini</value>
+  </data>
+  <data name="UninstallingMods" xml:space="preserve">
+    <value>Disinstallazione delle mod...</value>
+  </data>
+  <data name="MemoryFull" xml:space="preserve">
+    <value>Spiacenti, ci sono {0} di giochi, è troppo.</value>
+  </data>
+  <data name="UploadingConfig" xml:space="preserve">
+    <value>Caricamento nuova configurazione...</value>
+  </data>
+  <data name="UploadingOriginalGames" xml:space="preserve">
+    <value>Elaborazione di giochi originali...</value>
+  </data>
+  <data name="MemoryStats" xml:space="preserve">
+    <value>Dimensione totale della memoria scrivibile: {0:F1}MB|Memoria disponibile per i giochi: {1:F1}MB|Utilizzata dai salvataggi: {2:F1}MB|Utilizzata da altri file: {3:F1}MB</value>
+  </data>
+  <data name="AllFiles" xml:space="preserve">
+    <value>Tutti i file</value>
+  </data>
+  <data name="GamesAndApps" xml:space="preserve">
+    <value>Giochi e app</value>
+  </data>
+  <data name="DeleteSavesQ" xml:space="preserve">
+    <value>Vuoi davvero eliminare quei stati di salvataggio</value>
+  </data>
+  <data name="SavesFlterName" xml:space="preserve">
+    <value>Backup dello stato di salvataggio</value>
+  </data>
+  <data name="SizeOfSaves" xml:space="preserve">
+    <value>Dimensione degli stati di salvataggio selezionati:</value>
+  </data>
+  <data name="UnknownGame" xml:space="preserve">
+    <value>Gioco sconosciuto
+
+</value>
+  </data>
+  <data name="NoTelnet" xml:space="preserve">
+    <value>Impossibile avviare il client Telnet, sembra disabilitato. Devi prima abilitarlo, puoi farlo in "Pannello di controllo" -&gt; "Programmi" -&gt; "Attiva o disattiva le funzionalità di Windows".</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Immagini</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Attendere prego...</value>
+  </data>
+  <data name="DumpingNand" xml:space="preserve">
+    <value>Salvataggio NAND...</value>
+  </data>
+  <data name="NandDumped" xml:space="preserve">
+    <value>La memoria NAND è stata salvata correttamente.</value>
+  </data>
+  <data name="Membooting" xml:space="preserve">
+    <value>Avvio il kernel dalla RAM...</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Dimensione:</value>
+  </data>
+  <data name="Compressing" xml:space="preserve">
+    <value>Compressione di {0}...</value>
+  </data>
+  <data name="CompressingGames" xml:space="preserve">
+    <value>Compressione dei giochi...</value>
+  </data>
+  <data name="Decompressing" xml:space="preserve">
+    <value>Decompressione {0}...</value>
+  </data>
+  <data name="DecompressingGames" xml:space="preserve">
+    <value>Decompressione giochi...</value>
+  </data>
+  <data name="DeleteSelectedGamesQ" xml:space="preserve">
+    <value>Eliminare i giochi selezionati?</value>
+  </data>
+  <data name="Removing" xml:space="preserve">
+    <value>Rimozione di {0}...</value>
+  </data>
+  <data name="RemovingGames" xml:space="preserve">
+    <value>Rimozione dei giochi...</value>
+  </data>
+  <data name="InvalidConsoleSelected" xml:space="preserve">
+    <value>Console non valida selezionata! Console rilevata:</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>Box art</value>
+  </data>
+  <data name="DownloadCoverQ" xml:space="preserve">
+    <value>Vuoi provare a scaricare la box art per "{0}"?</value>
+  </data>
+  <data name="Need3rdPartyEmulator" xml:space="preserve">
+    <value>Spiacenti, sembra che "{0}" non funzioni correttamente con l'emulatore originale. Vuoi utilizzare un emulatore di terze parti per questo gioco (deve essere installato)?</value>
+  </data>
+  <data name="FlashingNand" xml:space="preserve">
+    <value>Sto flashando la memoria NAND...</value>
+  </data>
+  <data name="FlashNandCQ" xml:space="preserve">
+    <value>Vuoi flashare i dati utente? Sostituirà tutti i dati utente.</value>
+  </data>
+  <data name="NandFlashed" xml:space="preserve">
+    <value>La memoria NAND è stata flashata.</value>
+  </data>
+  <data name="NotRecommended" xml:space="preserve">
+    <value>non consigliato</value>
+  </data>
+  <data name="TooManyPerFolder" xml:space="preserve">
+    <value>Avvertimento! Non è consigliabile archiviare così tanti giochi per cartella.</value>
+  </data>
+  <data name="FolderNotEmpty" xml:space="preserve">
+    <value>La cartella selezionata non è vuota</value>
+  </data>
+  <data name="RemovingCovers" xml:space="preserve">
+    <value>Rimozione della copertina...</value>
+  </data>
+  <data name="UpdatingLocalCache" xml:space="preserve">
+    <value>Aggiornamento della cache dei giochi originali locali in corso...</value>
+  </data>
+  <data name="ResetOriginalGamesQ" xml:space="preserve">
+    <value>Vuoi davvero annullare tutte le personalizzazioni sui giochi originali per {0}?</value>
+  </data>
+  <data name="CannotDeleteTempFolder" xml:space="preserve">
+    <value>Errore durante l'eliminazione della cartella temporanea. Per favore riprova.</value>
+  </data>
+  <data name="CleaningUp" xml:space="preserve">
+    <value>Ripulisco l'attivita precedente...</value>
+  </data>
+  <data name="BuildingMenu" xml:space="preserve">
+    <value>Costruzione Menù...</value>
+  </data>
+  <data name="Aborting" xml:space="preserve">
+    <value>Interruzione...</value>
+  </data>
+  <data name="ExportGames" xml:space="preserve">
+    <value>Esporta su USB</value>
+  </data>
+  <data name="LinkedGamesQ" xml:space="preserve">
+    <value>Vuoi creare giochi collegati?</value>
+  </data>
+  <data name="PermanentlyDeleteQ" xml:space="preserve">
+    <value>Vuoi eliminare definitivamente il contenuto di:
+
+{0}
+
+Questo processo non può essere annullato!</value>
+  </data>
+  <data name="ScanningCovers" xml:space="preserve">
+    <value>Scansione della cartella art per la box art...</value>
+  </data>
+  <data name="ResettingOriginalGames" xml:space="preserve">
+    <value>Ripristino dei giochi originali...</value>
+  </data>
+  <data name="DetectedConsole" xml:space="preserve">
+    <value>Console rilevata: {0}</value>
+  </data>
+  <data name="VersionRevisionNotice" xml:space="preserve">
+    <value>VERSIONE INTERNA SOLO A SCOPO DI COLLAUDO</value>
+  </data>
+  <data name="InvalidUbootSize" xml:space="preserve">
+    <value>Dimensioni del file uboot.bin non valide.</value>
+  </data>
+  <data name="FlashingUboot" xml:space="preserve">
+    <value>Sto flashando l'uboot...</value>
+  </data>
+  <data name="FlashUbootNormalQ" xml:space="preserve">
+    <value>Vuoi davvero far flashare l'uboot in MODALITÀ NORMALE?</value>
+  </data>
+  <data name="FlashUbootSDQ" xml:space="preserve">
+    <value>Vuoi davvero eseguire il flashing dell'uboot SD MODE?</value>
+  </data>
+  <data name="UbootFlashed" xml:space="preserve">
+    <value>L'uboot è stato flashato correttamente.</value>
+  </data>
+  <data name="NoDriveSelected" xml:space="preserve">
+    <value>Nessuna unità selezionata</value>
+  </data>
+  <data name="SelectRegion" xml:space="preserve">
+    <value>Seleziona una regione</value>
+  </data>
+  <data name="InvalidImageResolution" xml:space="preserve">
+    <value>La risoluzione dell'immagine deve essere {0}x{1}</value>
+  </data>
+  <data name="ResetROMHeaderSelectedGamesQ" xml:space="preserve">
+    <value>Sei sicuro di voler ripristinare/riparare le intestazioni SFROM dei giochi selezionati?</value>
+  </data>
+  <data name="ResettingHeader" xml:space="preserve">
+    <value>Reimpostazione dell'intestazione SFROM in {0}</value>
+  </data>
+  <data name="ResettingHeaders" xml:space="preserve">
+    <value>Ripristino delle intestazioni SFROM...</value>
+  </data>
+  <data name="Skipping" xml:space="preserve">
+    <value>Saltando {0}</value>
+  </data>
+  <data name="DownloadSfromTool" xml:space="preserve">
+    <value>Per utilizzare lo strumento SFROM con hakchi2 CE, è necessario:
+- Visita il sito web di /u/DarkAkuma
+- Scarica l'ultima versione del suo strumento
+- Installa il pacchetto in {0}\sfrom_tool
+
+Vuoi scaricare lo strumento?
+
+http://darkakuma.z-net.us/p/sfromtool.html</value>
+  </data>
+  <data name="SfromTool" xml:space="preserve">
+    <value>Strumento SFROM</value>
+  </data>
+  <data name="LoadingHmods" xml:space="preserve">
+    <value>Caricamento mod...</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Sconosciuto</value>
+  </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>Applica i cambiamenti</value>
+  </data>
+  <data name="ApplyChangesQ" xml:space="preserve">
+    <value>Vuoi applicare le modifiche?</value>
+  </data>
+  <data name="CustomGameCodeAlreadyExists" xml:space="preserve">
+    <value>Il codice dell'app esiste già, utilizza un codice diverso!</value>
+  </data>
+  <data name="CustomGameNeedValidData" xml:space="preserve">
+    <value>Devi inserire un codice app e un nome validi!</value>
+  </data>
+  <data name="DiscardChanges" xml:space="preserve">
+    <value>Non salvare le modifiche</value>
+  </data>
+  <data name="DiscardChangesQ" xml:space="preserve">
+    <value>Sei sicuro di voler annullare le modifiche?</value>
+  </data>
+  <data name="ListCategoryAll" xml:space="preserve">
+    <value>Tutti i giochi</value>
+  </data>
+  <data name="ListCategoryCustom" xml:space="preserve">
+    <value>Giochi personalizzati</value>
+  </data>
+  <data name="ListCategoryNew" xml:space="preserve">
+    <value>Nuove app</value>
+  </data>
+  <data name="ListCategoryOriginal" xml:space="preserve">
+    <value>Giochi originali</value>
+  </data>
+  <data name="ListCategoryUnknown" xml:space="preserve">
+    <value>App sconosciute</value>
+  </data>
+  <data name="NewCustomGame" xml:space="preserve">
+    <value>Nuovo gioco personalizzato</value>
+  </data>
+  <data name="OutdatedKernel" xml:space="preserve">
+    <value>Kernel scaduto</value>
+  </data>
+  <data name="OutdatedScripts" xml:space="preserve">
+    <value>Script scaduti</value>
+  </data>
+  <data name="PleaseUpdate" xml:space="preserve">
+    <value>Fino a quando non installi gli aggiornamenti necessari, è probabile che si verifichino errori durante il tentativo di utilizzare questo programma. Si prega di aggiornare per ricevere la piena compatibilità.</value>
+  </data>
+  <data name="SystemEligibleForRootfsUpdate" xml:space="preserve">
+    <value>Gli script del kernel del tuo sistema non sono aggiornati e possono essere aggiornati. Desideri aggiornare gli script del kernel personalizzati ora?</value>
+  </data>
+  <data name="SystemRequiresReflash" xml:space="preserve">
+    <value>Il kernel personalizzato del tuo sistema non è aggiornato e richiede un aggiornamento prima di poter utilizzare questo programma. Vorresti eseguire il flashing del kernel personalizzato ora?</value>
+  </data>
+  <data name="SystemRequiresRootfsUpdate" xml:space="preserve">
+    <value>Gli script del kernel del tuo sistema non sono aggiornati e richiede un meboot prima di poter utilizzare questo programma. Vuoi meboot del kernel personalizzato ora?</value>
+  </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>Non assegnato</value>
+  </data>
+  <data name="CalculatingDiff" xml:space="preserve">
+    <value>Calcolo differenziale...</value>
+  </data>
+  <data name="FormatNandCQ" xml:space="preserve">
+    <value>Vuoi formattare la partizione dati utente? Cancellerà tutti i dati dell'utente.</value>
+  </data>
+  <data name="ScanningCover" xml:space="preserve">
+    <value>Scansione della grafica della scatola per {0}</value>
+  </data>
+  <data name="ErrorRestoringAllOriginalGames" xml:space="preserve">
+    <value>Si è verificato un errore durante il ripristino dei giochi originali. Puoi sempre utilizzare File -&gt; Ripristina giochi originali in un secondo momento per riprovare con la raccolta di giochi in cui intendi utilizzarli.</value>
+  </data>
+  <data name="UninstallNote" xml:space="preserve">
+    <value>Fatto. Se tutto è andato bene, il tuo NES/SNES Mini dovrebbe tornare a eseguire il kernel stock.</value>
+  </data>
+  <data name="ImageTooLarge" xml:space="preserve">
+    <value>L'immagine è troppo grande</value>
+  </data>
+  <data name="InvalidHsqs" xml:space="preserve">
+    <value>Immagine hsqs non valida</value>
+  </data>
+  <data name="consoleTypeFamicom" xml:space="preserve">
+    <value>Famicom (Giappone)</value>
+  </data>
+  <data name="consoleTypeNes" xml:space="preserve">
+    <value>NES (USA/Europa)</value>
+  </data>
+  <data name="consoleTypeSnes" xml:space="preserve">
+    <value>SNES (USA/Europa)
+</value>
+  </data>
+  <data name="consoleTypeSuperFamicom" xml:space="preserve">
+    <value>Super Famicom (Giappone)</value>
+  </data>
+  <data name="FTPServerOn" xml:space="preserve">
+    <value>Server FTP su ftp://root@{0} (pass:clover)</value>
+  </data>
+  <data name="TelnetServerOn" xml:space="preserve">
+    <value>Server Telnet su telnet://{0} (login:root)</value>
+  </data>
+  <data name="ListCategoryNoCoverArt" xml:space="preserve">
+    <value>Nessuna box art personalizzata</value>
+  </data>
+  <data name="CopyingGames" xml:space="preserve">
+    <value>Sto copiando i giochi...</value>
+  </data>
+  <data name="MemoryStatsExport" xml:space="preserve">
+    <value>Spazio totale disponibile su unità: {0}</value>
+  </data>
+  <data name="SelectDrive" xml:space="preserve">
+    <value>Seleziona l'unità di esportazione...</value>
+  </data>
+  <data name="UploadGames" xml:space="preserve">
+    <value>Carica giochi</value>
+  </data>
+  <data name="Uploading" xml:space="preserve">
+    <value>Caricamento {0}</value>
+  </data>
+  <data name="DefaultNoChange" xml:space="preserve">
+    <value>Predefinito/nessuna modifica</value>
+  </data>
+  <data name="BootingHakchi" xml:space="preserve">
+    <value>Avvio di hakchi...</value>
+  </data>
+  <data name="InstallingHakchi" xml:space="preserve">
+    <value>Installazione di hakchi...</value>
+  </data>
+  <data name="PoweringOff" xml:space="preserve">
+    <value>Spegnimento...</value>
+  </data>
+  <data name="Rebooting" xml:space="preserve">
+    <value>Riavvio...</value>
+  </data>
+  <data name="ResettingHakchi" xml:space="preserve">
+    <value>Ripristino di hakchi...</value>
+  </data>
+  <data name="TransferringMods" xml:space="preserve">
+    <value>Trasferimento di mod...</value>
+  </data>
+  <data name="UninstallingHakchi" xml:space="preserve">
+    <value>Disinstallazione di hakchi...</value>
+  </data>
+  <data name="DisableAutoRefresh" xml:space="preserve">
+    <value>Disattiva aggiornamento automatico</value>
+  </data>
+  <data name="EnableAutoRefresh" xml:space="preserve">
+    <value>Abilita aggiornamento automatico</value>
+  </data>
+  <data name="RepairGames" xml:space="preserve">
+    <value>Riparazione giochi</value>
+  </data>
+  <data name="RepairingGame" xml:space="preserve">
+    <value>Riparazione {0}</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>Informazioni</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="YesToAll" xml:space="preserve">
+    <value>Si a tutti</value>
+  </data>
+  <data name="SelectFileFor" xml:space="preserve">
+    <value>Seleziona il file per {0}</value>
+  </data>
+  <data name="CannotSyncToNonMultiBoot" xml:space="preserve">
+    <value>Non puoi sincronizzare una raccolta di {0} giochi sul tuo mini attualmente in esecuzione ({1}). Passa alla raccolta di giochi corrispondenti o passa alla modalità "giochi separati per avvio multiplo" per procedere.</value>
+  </data>
+  <data name="PleaseConnectYourDevice" xml:space="preserve">
+    <value>Collega il tuo NES/SNES Mini per procedere. Nota che devi anche installare il kernel personalizzato, usando le opzioni nel menu Kernel.</value>
+  </data>
+  <data name="Starting" xml:space="preserve">
+    <value>Sto iniziando...</value>
+  </data>
+  <data name="AddingGame" xml:space="preserve">
+    <value>Gioco in elaborazione {0}</value>
+  </data>
+  <data name="RepairSelectedGamesQ" xml:space="preserve">
+    <value>Sei sicuro di voler tentare di riparare i giochi selezionati? (Questo potrebbe interrompere alcuni giochi, specialmente se non sono stati importati da hakchi2. Prova solo su giochi rotti.)</value>
+  </data>
+  <data name="RunningFoldersManager" xml:space="preserve">
+    <value>Gestione cartelle in esecuzione...</value>
+  </data>
+  <data name="consoleTypeSnesEur" xml:space="preserve">
+    <value>Super NES (Europa)</value>
+  </data>
+  <data name="consoleTypeSnesUsa" xml:space="preserve">
+    <value>Super NES (Stati Uniti)</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Predefinito</value>
+  </data>
+  <data name="RecoveryModeMessage" xml:space="preserve">
+    <value>Il tuo sistema è ora in modalità di ripristino, qui puoi telnet nel sistema per eseguire qualsiasi comando desideri, puoi anche utilizzare FTP per trasferire file.</value>
+  </data>
+  <data name="FactoryResetQ" xml:space="preserve">
+    <value>Sei sicuro di voler ripristinare le impostazioni di fabbrica?
+
+Tutti i dati verranno cancellati e il kernel stock verrà eseguito il flashing.
+
+Continua?</value>
+  </data>
+  <data name="CannotProceedCannotInteract" xml:space="preserve">
+    <value>Il tuo kernel o gli script non sono aggiornati. Aggiorna prima di sincronizzare i giochi</value>
+  </data>
+  <data name="CannotProceedMinimalMemboot" xml:space="preserve">
+    <value>Il tuo NES/SNES Mini è attualmente in stato di ripristino, non può procedere. Per uscire da questo stato, usa Strumenti -&gt; Riavvia</value>
+  </data>
+  <data name="FactoryResetNote" xml:space="preserve">
+    <value>Fatto! Tutte le tracce di hakchi sono state rimosse e il tuo NES/SNES Mini è stato ripristinato alle impostazioni di fabbrica.</value>
+  </data>
+  <data name="NandFormatted" xml:space="preserve">
+    <value>La memoria NAND è stata formattata correttamente.</value>
+  </data>
+  <data name="RecoveryKernel" xml:space="preserve">
+    <value>Recovery kernel</value>
+  </data>
+  <data name="ResetQ" xml:space="preserve">
+    <value>Sei sicuro di voler ripristinare e riparare hakchi sul tuo NES/SNES Mini?</value>
+  </data>
+  <data name="UpdateComplete" xml:space="preserve">
+    <value>Aggiornamento completato!</value>
+  </data>
+  <data name="SyncMultibootWarning" xml:space="preserve">
+    <value>Hai {0} di giochi già sincronizzati sul tuo mini (non separati per il multiboot). Procedendo li cancellerà. Sei sicuro?</value>
+  </data>
+  <data name="SyncNonMultibootWarning" xml:space="preserve">
+    <value>Hai {0} di giochi già sincronizzati sul tuo mini (separati per l'avvio multiplo). Procedendo li cancellerà. Sei sicuro?</value>
+  </data>
+  <data name="FolderNameHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="SaveSettings" xml:space="preserve">
+    <value>Salva le impostazioni</value>
+  </data>
+  <data name="SaveStructureQ" xml:space="preserve">
+    <value>Sei sicuro di voler sincronizzare le impostazioni della struttura di tutte le tue raccolte di giochi con le impostazioni attualmente visualizzate?</value>
+  </data>
+  <data name="CannotInteract" xml:space="preserve">
+    <value>È richiesto l'aggiornamento di Hakchi</value>
+  </data>
+  <data name="JustWaitForYourMini" xml:space="preserve">
+    <value>Aspetta solo che si spenga e si riaccenda.</value>
+  </data>
+  <data name="MakeSureYourMiniIsConnected" xml:space="preserve">
+    <value>Assicurati che il tuo mini sia collegato correttamente tramite cavo USB.</value>
+  </data>
+  <data name="RecoveryMode" xml:space="preserve">
+    <value>Recovery mode</value>
+  </data>
+  <data name="SfromToolInstalled" xml:space="preserve">
+    <value>Strumenti SFROM</value>
+  </data>
+  <data name="ErrorImportingGame" xml:space="preserve">
+    <value>Errore durante l'importazione del gioco "{0}". Verifica che il file sia valido e non danneggiato.</value>
+  </data>
+  <data name="ImportGames" xml:space="preserve">
+    <value>Importa giochi</value>
+  </data>
+  <data name="UpdatingList" xml:space="preserve">
+    <value>Aggiornamento elenco...</value>
+  </data>
+  <data name="CustomKernelInstalledQ" xml:space="preserve">
+    <value>Hai già eseguito il flashing del kernel personalizzato sul tuo NES/SNES Mini?</value>
+  </data>
+  <data name="DisableUSBWarning" xml:space="preserve">
+    <value>Ciò disabiliterà qualsiasi dispositivo USB OTG collegato al tuo NES/SNES Mini. Sei sicuro di voler disabilitare USB-HOST?</value>
+  </data>
+  <data name="CalculatingFreeSpace" xml:space="preserve">
+    <value>Calcolo spazio libero...</value>
+  </data>
+  <data name="InvalidUserDataBackup" xml:space="preserve">
+    <value>Backup dei dati utente non valido.</value>
+  </data>
+  <data name="CriticalError" xml:space="preserve">
+    <value>Errore critico</value>
+  </data>
+  <data name="FinishBootSequenceQ" xml:space="preserve">
+    <value>Al momento sei in Recovery mode. Desideri terminare la normale procedura di avvio invece di riavviare?</value>
+  </data>
+  <data name="DumpOriginalKernelCompleteMessage" xml:space="preserve">
+    <value>Si noti che questo file di dump è utile solo per le versioni legacy hakchi2 o hakchi2CE, non è utile per la versione corrente.</value>
+  </data>
+  <data name="DumpOriginalKernelCompleteTitle" xml:space="preserve">
+    <value>Salvataggio originale del kernel completo</value>
+  </data>
+  <data name="DumpOriginalKernelNotFound" xml:space="preserve">
+    <value>Impossibile trovare il kernel originale sul sistema.</value>
+  </data>
+  <data name="KernelDump" xml:space="preserve">
+    <value>Salvataggio kernel</value>
+  </data>
+  <data name="SystemSoftwareBackup" xml:space="preserve">
+    <value>Backup del software di sistema</value>
+  </data>
+  <data name="UserDataBackup" xml:space="preserve">
+    <value>Backup dei dati dell'utente</value>
+  </data>
+  <data name="DumpOriginalKernelInvalid" xml:space="preserve">
+    <value>Il file del kernel originale che hai fornito non è un kernel originale convalidato.</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Nessuno</value>
+  </data>
+  <data name="WaitingForDeviceTakingALongTime" xml:space="preserve">
+    <value>Il tuo dispositivo sta impiegando molto tempo per riavviarsi.
+
+Puoi aspettare ancora un po' e se torna online, dovresti vedere "Modalità di ripristino" nella barra del titolo. In tal caso, puoi provare di nuovo la stessa azione o utilizzare "Strumenti&gt; Riavvia" per tornare al normale funzionamento.
+
+Il motivo più comune per cui la console impiega troppo tempo per il riavvio è un firewall, come Windows Firewall, puoi aggiungere un'eccezione per hakchi2 ce per risolvere questo problema.
+
+Altri motivi possono includere le VPN che bloccano il traffico verso la rete locale e Windows che non riesce a rilevare correttamente il driver RNDIS.</value>
+  </data>
+  <data name="RecoveryModeCloseWarning" xml:space="preserve">
+    <value>Il tuo NES/SNES Mini è attualmente in Recovery mode. Non sarai in grado di spegnerlo normalmente. Vuoi terminare la sequenza di avvio in modo che torni alla normalità in seguito?</value>
+  </data>
+  <data name="consoleTypeShonenJump" xml:space="preserve">
+    <value>Famicom (Shonen Jump)</value>
+  </data>
+  <data name="LinkingGames" xml:space="preserve">
+    <value>Elaborazione collegamenti simbolici...</value>
+  </data>
+  <data name="Firmware" xml:space="preserve">
+    <value>Firmware</value>
+  </data>
+  <data name="FirmwareSwitched" xml:space="preserve">
+    <value>Al riavvio, il tuo NES/SNES Mini in esecuzione dovrebbe eseguire il firmware selezionato "{0}"!</value>
+  </data>
+  <data name="FirmwareDefault" xml:space="preserve">
+    <value>Firmware predefinito su NAND</value>
+  </data>
+  <data name="FirmwareCurrent" xml:space="preserve">
+    <value>Attuale</value>
+  </data>
+  <data name="AlreadyInRecovery" xml:space="preserve">
+    <value>Già in recovery mode</value>
+  </data>
+  <data name="AlreadyInRecoveryQ" xml:space="preserve">
+    <value>Sei già in recovery mode, vuoi ricaricare l'immagine di ripristino?</value>
+  </data>
+  <data name="CannotProceedCannotSync" xml:space="preserve">
+    <value>La tua installazione di hakchi sta eseguendo il daemon Clovershell. Non è sicuro sincronizzare i giochi con Clovershell. Disinstalla questo modulo per sincronizzare i giochi in sicurezza!</value>
+  </data>
+  <data name="DownloadingEllipsis" xml:space="preserve">
+    <value>Download in corso...</value>
+  </data>
+  <data name="DownloadingProgress" xml:space="preserve">
+    <value>Download: {0}/{1}</value>
+  </data>
+  <data name="KernelCheckFailed" xml:space="preserve">
+    <value>Checksum del kernel non riuscito</value>
+  </data>
+  <data name="Archiving" xml:space="preserve">
+    <value>Archiviazione: {0}</value>
+  </data>
+  <data name="ArchivingGame" xml:space="preserve">
+    <value>Archiviazione gioco: {0}</value>
+  </data>
+  <data name="ArchivingGames" xml:space="preserve">
+    <value>Archiviazione giochi</value>
+  </data>
+  <data name="ReplaceFileQ" xml:space="preserve">
+    <value>Sostituire il file?</value>
+  </data>
+  <data name="ReplaceFollowingFileQ" xml:space="preserve">
+    <value>Vuoi sostituire il seguente file?
+
+{0}</value>
+  </data>
+  <data name="ShowExperimentalQuestion" xml:space="preserve">
+    <value>Sei sicuro di voler mostrare le mod sperimentali?</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>In lavorazione...</value>
+  </data>
+  <data name="UnsavedChanges" xml:space="preserve">
+    <value>Modifiche non salvate</value>
+  </data>
+  <data name="UnsavedChangesQ" xml:space="preserve">
+    <value>Hai modifiche non salvate, vuoi salvarle?</value>
+  </data>
+  <data name="NoRepositoriesConfigured" xml:space="preserve">
+    <value>Nessun repository configurato</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Benarrivato</value>
+  </data>
+  <data name="Hakchi2CEGames0" xml:space="preserve">
+    <value>Giochi Hakchi2 CE - {0}</value>
+  </data>
+  <data name="HTMLFiles" xml:space="preserve">
+    <value>File HTML</value>
+  </data>
+  <data name="XMLFiles" xml:space="preserve">
+    <value>File XML</value>
+  </data>
+  <data name="ArchiveFiles" xml:space="preserve">
+    <value>File di archivio</value>
+  </data>
+  <data name="GameArchive" xml:space="preserve">
+    <value>Archivio giochi</value>
+  </data>
+  <data name="SupportedFiles" xml:space="preserve">
+    <value>File supportati</value>
+  </data>
+  <data name="AddingHakchiMBR" xml:space="preserve">
+    <value>Aggiunta di hakchi MBR</value>
+  </data>
+  <data name="ClearingTheFirst32MBOfSDCard" xml:space="preserve">
+    <value>Cancellazione dei primi 32 MB di scheda SD</value>
+  </data>
+  <data name="CopyFilesFromNandQ" xml:space="preserve">
+    <value>Copiare file da NAND?</value>
+  </data>
+  <data name="CopyFilesFromNandQ2" xml:space="preserve">
+    <value>Vuoi copiare i tuoi salvataggi e giochi dalla NAND alla scheda SD?</value>
+  </data>
+  <data name="CopyingHakchiToSDCard" xml:space="preserve">
+    <value>Copia di hakchi su scheda SD</value>
+  </data>
+  <data name="CopyingNandDataToSDCard" xml:space="preserve">
+    <value>Copia di dati NAND su scheda SD</value>
+  </data>
+  <data name="ExtractingHakchiToTemporaryFolder" xml:space="preserve">
+    <value>Estrarre hakchi nella cartella temporanea</value>
+  </data>
+  <data name="FormatSD" xml:space="preserve">
+    <value>Formatta SD</value>
+  </data>
+  <data name="FormatSDQ" xml:space="preserve">
+    <value>Sei sicuro di voler formattare la SD card inserita nel classico?
+
+Questo cancellerà tutti i dati presenti sulla carta!</value>
+  </data>
+  <data name="FormattingSDCard" xml:space="preserve">
+    <value>Formattazione della scheda SD</value>
+  </data>
+  <data name="FormattingTheSDCard" xml:space="preserve">
+    <value>Formattazione della scheda SD</value>
+  </data>
+  <data name="MountingSDCard" xml:space="preserve">
+    <value>Montaggio della scheda SD</value>
+  </data>
+  <data name="MountingSquashFS" xml:space="preserve">
+    <value>Montaggio SquashFS</value>
+  </data>
+  <data name="NoSDCard" xml:space="preserve">
+    <value>Nessuna scheda SD è inserita nel classic.</value>
+  </data>
+  <data name="UnmountingSDCard" xml:space="preserve">
+    <value>Smontaggio della scheda SD</value>
+  </data>
+  <data name="WritingBoot0" xml:space="preserve">
+    <value>Scrittura boot0</value>
+  </data>
+  <data name="WritingFATFilesystem" xml:space="preserve">
+    <value>Scrittura del filesystem FAT</value>
+  </data>
+  <data name="WritingKernel" xml:space="preserve">
+    <value>Scrittura del kernel</value>
+  </data>
+  <data name="WritingSquashFS" xml:space="preserve">
+    <value>Scrivere SquashFS</value>
+  </data>
+  <data name="WritingUboot" xml:space="preserve">
+    <value>Scrittura uboot</value>
+  </data>
+  <data name="FactoryReset" xml:space="preserve">
+    <value>Ripristino ai dati di fabbrica</value>
+  </data>
+  <data name="FactoryResetWithKernelFile" xml:space="preserve">
+    <value>Ripristino di fabbrica con file del kernel</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>Disinstalla</value>
+  </data>
+  <data name="UninstallWithKernelFile" xml:space="preserve">
+    <value>Disinstallare e flashare il file del kernel</value>
+  </data>
+  <data name="consoleTypeMdAsia" xml:space="preserve">
+    <value>Sega MegaDrive (Asia)</value>
+  </data>
+  <data name="consoleTypeMdEur" xml:space="preserve">
+    <value>Sega MegaDrive (EUR)</value>
+  </data>
+  <data name="consoleTypeMdJpn" xml:space="preserve">
+    <value>Sega MegaDrive (JPN)</value>
+  </data>
+  <data name="consoleTypeMdUsa" xml:space="preserve">
+    <value>Sega Genesis (Stati Uniti)</value>
+  </data>
+  <data name="NotSupportedOnThisPlatform" xml:space="preserve">
+    <value>Non supportato su questa piattaforma</value>
+  </data>
+  <data name="BluetoothAdapters" xml:space="preserve">
+    <value>Adattatori Bluetooth</value>
+  </data>
+  <data name="PairedDevicesClickToUnpair" xml:space="preserve">
+    <value>Dispositivi accoppiati (fare clic per annullare l'associazione)</value>
+  </data>
+  <data name="DetectedDevicesClickToPair" xml:space="preserve">
+    <value>Dispositivi rilevati (fai clic per associare)</value>
+  </data>
+  <data name="NoDevicesDetected" xml:space="preserve">
+    <value>Nessun dispositivo rilevato</value>
+  </data>
+  <data name="TrustedNotPairedClickToRemove" xml:space="preserve">
+    <value>Affidabile/non accoppiato (fai clic per rimuovere)</value>
+  </data>
+  <data name="GenreAction" xml:space="preserve">
+    <value>Azione</value>
+  </data>
+  <data name="GenreAdventure" xml:space="preserve">
+    <value>Avventura</value>
+  </data>
+  <data name="GenreEducational" xml:space="preserve">
+    <value>Educativo</value>
+  </data>
+  <data name="GenrePuzzle" xml:space="preserve">
+    <value>Puzzle</value>
+  </data>
+  <data name="GenreRacing" xml:space="preserve">
+    <value>Da corsa</value>
+  </data>
+  <data name="GenreRPG" xml:space="preserve">
+    <value>RPG</value>
+  </data>
+  <data name="GenreShootEmUp" xml:space="preserve">
+    <value>Sparagli</value>
+  </data>
+  <data name="GenreSports" xml:space="preserve">
+    <value>Sport</value>
+  </data>
+  <data name="GenreSimulation" xml:space="preserve">
+    <value>Simulazione</value>
+  </data>
+  <data name="GenreTable" xml:space="preserve">
+    <value>Tavolo</value>
+  </data>
+  <data name="One" xml:space="preserve">
+    <value>Uno</value>
+  </data>
+  <data name="TwoNotSimultaneously" xml:space="preserve">
+    <value>Due, non contemporaneamente</value>
+  </data>
+  <data name="TwoSimultaneously" xml:space="preserve">
+    <value>Due, contemporaneamente</value>
+  </data>
+  <data name="UnitedStates" xml:space="preserve">
+    <value>Stati Uniti</value>
+  </data>
+  <data name="Europe" xml:space="preserve">
+    <value>Europa</value>
+  </data>
+  <data name="Japan" xml:space="preserve">
+    <value>Giappone</value>
+  </data>
+  <data name="Five" xml:space="preserve">
+    <value>Cinque</value>
+  </data>
+  <data name="Four" xml:space="preserve">
+    <value>Quattro</value>
+  </data>
+  <data name="Three" xml:space="preserve">
+    <value>Tre</value>
+  </data>
+  <data name="SystemFilesModifiedMessage" xml:space="preserve">
+    <value>I file di sistema sembrano essere stati modificati:
+
+Versione: {0}</value>
+  </data>
+  <data name="SystemFilesUnknownMessage" xml:space="preserve">
+    <value>I file di sistema sono una versione sconosciuta:
+
+Versione: {0}</value>
+  </data>
+  <data name="UnknownSystemVersionDetected" xml:space="preserve">
+    <value>Rilevata versione di sistema sconosciuta</value>
+  </data>
+  <data name="SystemModificationDetected" xml:space="preserve">
+    <value>Rilevata modifica del sistema</value>
+  </data>
+  <data name="ProjectLunarHasBeenDetected" xml:space="preserve">
+    <value>Il progetto Lunar è stato rilevato, l'installazione non può continuare finché non viene rimossa.</value>
+  </data>
+  <data name="PartitionExpandQMd" xml:space="preserve">
+    <value>Desideri espandere la partizione dati, questo ti darà circa {0} di spazio libero aggiuntivo.
+
+C'è una piccola possibilità di perdita di dati, assicurati di aver eseguito il backup dei tuoi salvataggi.</value>
+  </data>
+  <data name="PartitionExpandQ" xml:space="preserve">
+    <value>Desideri espandere la partizione dati, questo ti darà circa {0} di spazio libero aggiuntivo.</value>
+  </data>
+  <data name="GenreRacingSports" xml:space="preserve">
+    <value>C'è una piccola possibilità di perdita di dati, assicurati di aver eseguito il backup dei tuoi salvataggi.</value>
+  </data>
+  <data name="GenreFighting" xml:space="preserve">
+    <value>Battagliero</value>
+  </data>
+  <data name="GenreActionShooting" xml:space="preserve">
+    <value>Azione/Ripresa</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Incolla</value>
+  </data>
+  <data name="PasteStretchToFit" xml:space="preserve">
+    <value>Incolla (allunga per adattarsi)</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Seleziona il file</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Caricamento in corso...</value>
+  </data>
+  <data name="ApplyingChanges" xml:space="preserve">
+    <value>Applicazione delle modifiche</value>
+  </data>
+  <data name="DownloadingLatestHakchi" xml:space="preserve">
+    <value>Download dell'ultimo hakchi</value>
+  </data>
+  <data name="EnterAPrefix" xml:space="preserve">
+    <value>Inserisci un prefisso</value>
+  </data>
+  <data name="AddPrefixMessage" xml:space="preserve">
+    <value>Inserisci un prefisso da anteporre al nome di tutti i giochi selezionati, due punti e uno spazio verranno automaticamente aggiunti alla fine del prefisso.</value>
+  </data>
+  <data name="RemovePrefixMessage" xml:space="preserve">
+    <value>Inserisci un prefisso da rimuovere dall'inizio di tutti i giochi selezionati, due punti e uno spazio verranno automaticamente aggiunti alla fine del prefisso.</value>
+  </data>
+  <data name="RemoveAllDevices" xml:space="preserve">
+    <value>Rimuovi tutti i dispositivi</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Collegato</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Disconnesso</value>
+  </data>
+  <data name="PoweredBy0" xml:space="preserve">
+    <value>Alimentato da {0}</value>
+  </data>
+  <data name="Scraping0" xml:space="preserve">
+    <value>Raschiare {0}</value>
+  </data>
+  <data name="DownloadingFrontArtFor0" xml:space="preserve">
+    <value>Download della grafica frontale per {0}</value>
+  </data>
+  <data name="DownloadingClearLogoFor0" xml:space="preserve">
+    <value>Download del logo trasparente per {0}</value>
+  </data>
+  <data name="GeneratingSpineFor0" xml:space="preserve">
+    <value>Generazione Spine per {0}</value>
+  </data>
+  <data name="Artwork" xml:space="preserve">
+    <value>Opera d'arte</value>
+  </data>
+  <data name="AutoScrapeKnownGames" xml:space="preserve">
+    <value>Scansione automatica dei giochi conosciuti</value>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>Tutti e due</value>
+  </data>
+  <data name="ChooseWhatYouWouldLikeToScrape" xml:space="preserve">
+    <value>Scegli cosa desideri raschiare, questo sostituirà tutte le informazioni esistenti.</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="ThisWillReplaceAnyCustomInformationAndArtworkFromScraper" xml:space="preserve">
+    <value>Questo sostituirà qualsiasi informazione e grafica personalizzata con quella del raschietto.
+
+Sei sicuro?</value>
+  </data>
+  <data name="RunningAsAdministrator" xml:space="preserve">
+    <value>In esecuzione come amministratore</value>
+  </data>
+  <data name="RunningAsAdministratorMessage" xml:space="preserve">
+    <value>L'esecuzione come amministratore può causare problemi, se vuoi davvero eseguire come amministratore avvia hakchi.exe con l'argomento --allowAdministrator.</value>
+  </data>
+  <data name="Scanning" xml:space="preserve">
+    <value>Scansione...</value>
+  </data>
+  <data name="NoItemsSelected" xml:space="preserve">
+    <value>Nessun elemento selezionato</value>
+  </data>
+  <data name="_0ItemSelected1" xml:space="preserve">
+    <value>{0} elemento selezionato, {1}</value>
+  </data>
+  <data name="_0ItemsSelected1" xml:space="preserve">
+    <value>{0} elementi selezionati, {1}</value>
+  </data>
+  <data name="LicenseInformation" xml:space="preserve">
+    <value>Informazioni Licenza</value>
+  </data>
+  <data name="ExtractingToTemporaryFolder" xml:space="preserve">
+    <value>Estrazione nella cartella temporanea</value>
+  </data>
+</root>
