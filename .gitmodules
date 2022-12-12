@@ -4,7 +4,7 @@
 	branch = notracesource
 [submodule "Libraries/ProgressODoom"]
 	path = Libraries/ProgressODoom
-	url = https://github.com/daPhie79/ProgressODoom.git
+	url = https://github.com/TeamShinkansen/ProgressODoom.git
 [submodule "Libraries/tiny7z"]
 	path = Libraries/tiny7z
 	url = https://github.com/daPhie79/tiny7z.git

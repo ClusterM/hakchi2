@@ -112,7 +112,9 @@ namespace com.clusterrr.hakchi_gui
 
             Trace.Listeners.Add(new TextWriterTraceListener(stdout));
             
+#if !DUMPER
             if (Debugger.IsAttached || Array.IndexOf(args, "/debug") != -1)
+#endif
             {
                 try
                 {
@@ -173,6 +175,7 @@ namespace com.clusterrr.hakchi_gui
                 {
                     if (createdNew)
                     {
+#if !DUMPER
                         if (!isPortable)
                         {
                             BaseDirectoryExternal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "hakchi2");
@@ -258,6 +261,9 @@ namespace com.clusterrr.hakchi_gui
                         }
 
                         SetupScrapers();
+#else
+                        BaseDirectoryExternal = BaseDirectoryInternal;
+#endif
 
                         Trace.WriteLine("Starting, version: " + Shared.AppDisplayVersion);
 
@@ -267,7 +273,11 @@ namespace com.clusterrr.hakchi_gui
 
                         FormContext.AllFormsClosed += Process.GetCurrentProcess().Kill; // Suicide! Just easy and dirty way to kill all threads.
 
+#if !DUMPER
                         FormContext.AddForm(new MainForm());
+#else
+                        FormContext.AddForm(new DumperForm());
+#endif
                         Application.Run(FormContext);
                         Trace.WriteLine("Done.");
                     }

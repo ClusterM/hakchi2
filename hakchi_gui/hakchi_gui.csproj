@@ -54,10 +54,15 @@ Gert Driesen for SSH.NET.</Description>
 	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <BuildDependsOn>$(BuildDependsOn);MoveLanguageResourceFiles;</BuildDependsOn>
     <CleanDependsOn>$(CleanDependsOn); CustomAfterClean </CleanDependsOn>
+    <Configurations>Debug;Release;Dumper</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>$(DefineConstants);TRACE;LIBUSBDOTNET WINDOWS_TESTING</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dumper|AnyCPU'">
+    <DefineConstants>$(DefineConstants);TRACE;LIBUSBDOTNET WINDOWS_TESTING;DEBUG</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -113,7 +118,7 @@ Gert Driesen for SSH.NET.</Description>
     <Reference Include="System.Web" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'!='Dumper|AnyCPU'">
     <None Update="art\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -205,6 +210,14 @@ Gert Driesen for SSH.NET.</Description>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Update="tools\arm\detached-fallback">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="tools\arm\kexec.static">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
   <Target Name="CustomAfterClean" AfterTargets="CoreClean">
     <ItemGroup>
@@ -236,7 +249,8 @@ Gert Driesen for SSH.NET.</Description>
   </Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="cd /D &quot;$(SolutionDir)tools/&quot; || cd &quot;$(SolutionDir)tools/&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cf - -C ../GeneratedData . | &quot;busybox&quot; tar -xvf - -C &quot;../hakchi_gui/bin/$(Configuration)/$(TargetFramework)&quot;" />
+    <Exec Condition="'$(Configuration)|$(Platform)'!='Dumper|AnyCPU'" Command="cd /D &quot;$(SolutionDir)tools/&quot; || cd &quot;$(SolutionDir)tools/&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cf - -C ../GeneratedData . | &quot;busybox&quot; tar -xvf - -C &quot;../hakchi_gui/bin/$(Configuration)/$(TargetFramework)&quot;" />
+    <Exec Condition="'$(Configuration)|$(Platform)'=='Dumper|AnyCPU'" Command="cd /D &quot;$(SolutionDir)tools/&quot; || cd &quot;$(SolutionDir)tools/&quot;&#xD;&#xA;&quot;./busybox&quot; tar -cf - -C ../GeneratedData basehmods.tar driver tools/arm/detached-fallback | &quot;busybox&quot; tar -xvf - -C &quot;../hakchi_gui/bin/$(Configuration)/$(TargetFramework)&quot;" />
   </Target>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

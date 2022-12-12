@@ -1950,8 +1950,15 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
+#if DUMPER
+internal static 
+#endif
         bool DumpDialog(FileAccess type, string FileName, string FileExt, out string DumpFileName, string DialogFilter = null)
         {
+#if DUMPER
+            var openDumpFileDialog = new OpenFileDialog();
+            var saveDumpFileDialog = new SaveFileDialog();
+#endif
             DumpFileName = null;
             string currentFilter;
             switch (type)
@@ -1997,9 +2004,13 @@ namespace com.clusterrr.hakchi_gui
             }
         }
 
-        bool DoNand(MembootTasks.NandTasks task, string title)
+        bool DoNand(MembootTasks.NandTasks task, string title) => DoNand(task, title, this);
+#if DUMPER
+internal static 
+#endif
+        bool DoNand(MembootTasks.NandTasks task, string title, Form owner)
         {
-            using (Tasker tasker = new Tasker(this))
+            using (Tasker tasker = new Tasker(owner))
             {
                 tasker.AttachViews(new Tasks.TaskerTaskbar(), new Tasks.TaskerForm());
                 tasker.SetStatusImage(Resources.sign_cogs);

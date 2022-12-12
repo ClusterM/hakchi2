@@ -20,7 +20,11 @@ namespace com.clusterrr.hakchi_gui
         public const string SERVICE_TYPE = "_ssh._tcp";
         public const string USERNAME = "root";
         public const string PASSWORD = "";
+#if DUMPER
+        public static readonly string latestHmodFile = Path.Combine(Program.BaseDirectoryInternal, "hakchi.hmod");
+#else
         public static readonly string latestHmodFile = Path.Combine(Program.BaseDirectoryExternal ?? "", "data", "hakchi-latest.hmod");
+#endif
         public const string latestHmodUrl = "https://hakchi.net/hakchi/hmods/hakchi-latest.hmod";
         public const long BLOCK_SIZE = 4096;
 
@@ -39,11 +43,26 @@ namespace com.clusterrr.hakchi_gui
             public DateTime LastModified;
             public static Hmod Get()
             {
+                var baseHmodsPath = Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar");
                 Hmod hakchiHmod = new Hmod();
 
                 hakchiHmod.HmodStream = new MemoryStream();
 
-                using (var extractor = ArchiveFactory.Open(Path.Combine(Program.BaseDirectoryInternal, "basehmods.tar")))
+                if (!File.Exists(baseHmodsPath) && File.Exists(latestHmodFile))
+                {
+                    using (var file = File.OpenRead(latestHmodFile))
+                    {
+                        hakchiHmod.LastModified = File.GetLastWriteTime(latestHmodFile);
+                        hakchiHmod.Location = Hmod.HmodLocation.HakchiLatest;
+                        file.CopyTo(hakchiHmod.HmodStream);
+                    }
+
+                    hakchiHmod.HmodStream.Seek(0, SeekOrigin.Begin);
+
+                    return hakchiHmod;
+                }
+
+                using (var extractor = ArchiveFactory.Open(baseHmodsPath))
                 {
                     var hakchiEntry = extractor.Entries.Where(e => e.Key == "./hakchi.hmod" || e.Key == "hakchi.hmod").First();
                     if (File.Exists(latestHmodFile) && File.GetLastWriteTime(latestHmodFile) > hakchiEntry.LastModifiedTime)

@@ -24,7 +24,7 @@ namespace com.clusterrr.hakchi_gui.Sunxi
 
             public static PartitionInfo GetByLabel(IEnumerable<PartitionInfo> info, params string[] labels)
             {
-                return info.Where(e => labels.Contains(e.Label)).First();
+                return info.Where(e => labels.Contains(e.Label)).FirstOrDefault();
             }
         }
 
@@ -46,7 +46,14 @@ namespace com.clusterrr.hakchi_gui.Sunxi
         public static NandInfo GetNandInfo(string partCommand = "sunxi-part")
         {
             string partInfo = hakchi.Shell.ExecuteSimple(partCommand);
-            string[] nandInfo = hakchi.Shell.ExecuteSimple("sunxi-flash nandinfo").Split(' ');
+            string commandOutput = hakchi.Shell.ExecuteSimple("sunxi-flash nandinfo");
+
+            if (string.IsNullOrWhiteSpace(commandOutput))
+            {
+                return new NandInfo(new PartitionInfo[] { }, 0, 0, 0);
+            }
+
+            string[] nandInfo = commandOutput.Split(' ');
 
             var partitions = new List<PartitionInfo>();
 

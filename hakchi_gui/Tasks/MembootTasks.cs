@@ -853,13 +853,15 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             throw new Exception(Properties.Resources.InvalidUserDataBackup);
                     }
 
+                    var hasNand = hakchi.Shell.ExecuteSimple("ls -lah /dev/nanda &> /dev/null && echo 1 || echo 0") == "1";
+                    var hasMmc = hakchi.Shell.ExecuteSimple("ls -lah /dev/mmcblk0 &> /dev/null && echo 1 || echo 0") == "1";
                     var nandInfo = Sunxi.NandInfo.GetNandInfo();
 
                     long partitionSize = 300 * 1024 * 1024;
                     var splitStream = new SplitterStream(Program.debugStreams);
-                    string rootfsDevice = $"/dev/{nandInfo.GetRootfsPartition().Device}";
+                    string rootfsDevice = $"/dev/{nandInfo.GetRootfsPartition()?.Device}";
                     string osDecryptedDevice = rootfsDevice;
-                    string userDataDevice = $"/dev/{nandInfo.GetDataPartition().Device}";
+                    string userDataDevice = $"/dev/{nandInfo.GetDataPartition()?.Device}";
                     bool hasKeyfile = hakchi.Shell.Execute("[ -f /key-file ]") == 0;
 
                     if (hasKeyfile)
@@ -901,7 +903,14 @@ namespace com.clusterrr.hakchi_gui.Tasks
                             break;
 
                         case NandTasks.DumpNand:
-                            partitionSize = 536870912;
+                            if (hasNand)
+                            {
+                                partitionSize = 536870912;
+                            }
+                            if (!hasNand && hasMmc)
+                            {
+                                partitionSize = long.Parse(hakchi.Shell.ExecuteSimple($"blockdev --getsize64 /dev/mmcblk0", throwOnNonZero: true));
+                            }
                             break;
                     }
 
@@ -1050,8 +1059,16 @@ namespace com.clusterrr.hakchi_gui.Tasks
                                 break;
 
                             case NandTasks.DumpNand:
-                                hakchi.Shell.Execute("hakchi umount_base", null, splitStream, splitStream, 0, true);
-                                Shared.ShellPipe("sntool sunxi_flash phy_read 0", null, file, throwOnNonZero: true);
+                                if (hasNand)
+                                {
+                                    hakchi.Shell.Execute("hakchi umount_base", null, splitStream, splitStream, 0, true);
+                                    Shared.ShellPipe("sntool sunxi_flash phy_read 0", null, file, throwOnNonZero: true);
+                                }
+
+                                if (!hasNand && hasMmc)
+                                {
+                                    Shared.ShellPipe("dd if=/dev/mmcblk0 bs=1M", null, file, throwOnNonZero: true);
+                                }
                                 break;
                         }
                         file.Close();
